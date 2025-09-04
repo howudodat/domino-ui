@@ -13,27 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dominokit.domino.ui.datatable;
+package org.dominokit.domino.ui.datatable.plugins.grouping;
 
+import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.Node;
+import org.dominokit.domino.ui.datatable.BaseCellRenderer;
+import org.dominokit.domino.ui.datatable.GroupCellInfo;
 
-/**
- * A functional interface representing the renderer responsible for rendering a cell within the data
- * table.
- *
- * @param <T> the type of data contained within the table row.
- * @deprecated use {@link RowCellRenderer}
- */
-@FunctionalInterface
-@Deprecated
-public interface CellRenderer<T> {
+public interface GroupCellRenderer<T>
+    extends BaseCellRenderer<
+        T, HTMLTableCellElement, GroupCellInfo<T>, GroupCell<T>, GroupCellRenderer<T>> {
 
   /**
    * Converts the given cell information into a displayable Node element.
    *
-   * @param rowCell information about the cell being rendered.
+   * @param cellInfo information about the cell being rendered.
    * @return the Node representation of the cell content.
    */
   @Deprecated
-  Node asElement(RowCell<T> rowCell);
+  Node asElement(GroupCell<T> cellInfo);
+
+  default void render(GroupCell<T> groupCell) {
+    groupCell.appendChild(asElement(groupCell));
+  }
 }

@@ -17,18 +17,18 @@
 package org.dominokit.domino.ui.datatable.plugins.grouping;
 
 import static java.util.Objects.nonNull;
-import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.Node;
 import java.util.*;
 import java.util.function.Supplier;
-import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.GroupCellInfo;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.events.OnBeforeDataChangeEvent;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.ToggleIcon;
 import org.dominokit.domino.ui.icons.ToggleMdiIcon;
 import org.dominokit.domino.ui.icons.lib.Icons;
@@ -67,7 +67,7 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
 
   private Map<String, DataGroup<T>> dataGroups = new HashMap<>();
   private final GroupSupplier<T> groupSupplier;
-  private CellRenderer<T> groupRenderer;
+  private GroupCellRenderer<T> groupRenderer;
   private Supplier<ToggleIcon<?, ?>> groupExpandedCollapseIconSupplier =
       () -> ToggleMdiIcon.create(Icons.minus_box(), Icons.plus_box());
 
@@ -77,7 +77,7 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
    * @param groupSupplier The supplier for grouping records.
    * @param groupRenderer The cell renderer for rendering group headers.
    */
-  public GroupingPlugin(GroupSupplier<T> groupSupplier, CellRenderer<T> groupRenderer) {
+  public GroupingPlugin(GroupSupplier<T> groupSupplier, GroupCellRenderer<T> groupRenderer) {
     this.groupSupplier = groupSupplier;
     this.groupRenderer = groupRenderer;
   }
@@ -114,13 +114,22 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
   public void appendRow(DataTable<T> dataTable, TableRow<T> tableRow) {
     String groupId = groupSupplier.getRecordGroupId(tableRow);
     if (!dataGroups.containsKey(groupId)) {
+      DivElement groupBody = div().addCss(dui_grow_1);
+      DivElement groupPrefix = div();
       HTMLTableCellElement cellElement =
           elements
               .td()
               .setAttribute("colspan", dataTable.getTableConfig().getColumns().size() + "")
+              .appendChild(
+                  div()
+                      .addCss(dui_flex, dui_gap_2, dui_items_center, dui_p_1)
+                      .appendChild(groupPrefix)
+                      .appendChild(groupBody))
               .element();
-      CellRenderer.CellInfo<T> cellInfo = new CellRenderer.CellInfo<>(tableRow, cellElement);
-      DataGroup<T> dataGroup = new DataGroup<>(tableRow, cellInfo);
+
+      GroupCellInfo<T> cellInfo = new GroupCellInfo<>(tableRow, cellElement, groupBody);
+      GroupCell<T> groupCell = new GroupCell<>(cellInfo);
+      DataGroup<T> dataGroup = new DataGroup<>(tableRow, groupCell);
 
       ToggleIcon<?, ?> groupIconSupplier =
           groupExpandedCollapseIconSupplier
@@ -129,6 +138,8 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
               .toggleOnClick(true)
               .addClickListener(evt -> dataGroup.toggleGroup());
       dataGroup.setGroupIconSupplier(groupIconSupplier).setGroupRenderer(groupRenderer).render();
+
+      groupPrefix.appendChild(groupIconSupplier);
 
       dataTable
           .bodyElement()
@@ -201,20 +212,20 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
 
     private List<TableRow<T>> groupRows = new ArrayList<>();
     private TableRow<T> lastRow;
-    private CellRenderer.CellInfo<T> cellInfo;
+    private GroupCell<T> groupCell;
     private boolean expanded = true;
     private ToggleIcon<?, ?> groupIconSupplier;
-    private CellRenderer<T> groupRenderer;
+    private GroupCellRenderer<T> groupRenderer;
 
     /**
      * Creates a new {@code DataGroup} instance with the given lastRow and cellInfo.
      *
      * @param lastRow The last TableRow in the group.
-     * @param cellInfo The CellInfo containing the group cell element.
+     * @param groupCell The CellInfo containing the group cell element.
      */
-    public DataGroup(TableRow<T> lastRow, CellRenderer.CellInfo<T> cellInfo) {
+    public DataGroup(TableRow<T> lastRow, GroupCell<T> groupCell) {
       this.lastRow = lastRow;
-      this.cellInfo = cellInfo;
+      this.groupCell = groupCell;
       addRow(lastRow);
     }
 
@@ -272,7 +283,7 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
      * @param groupRenderer The group renderer.
      * @return This {@code DataGroup} instance for method chaining.
      */
-    private DataGroup<T> setGroupRenderer(CellRenderer<T> groupRenderer) {
+    private DataGroup<T> setGroupRenderer(GroupCellRenderer<T> groupRenderer) {
       this.groupRenderer = groupRenderer;
       return this;
     }
@@ -299,19 +310,7 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
 
     /** Renders the group header cell with the provided group icon and group renderer. */
     public void render() {
-      elements
-          .elementOf(cellInfo.getElement())
-          .clearElement()
-          .appendChild(
-              elements
-                  .div()
-                  .addCss(dui_flex, dui_gap_2, dui_items_center, dui_p_1)
-                  .appendChild(groupIconSupplier)
-                  .appendChild(
-                      elements
-                          .div()
-                          .addCss(dui_grow_1)
-                          .appendChild(groupRenderer.asElement(cellInfo))));
+      groupRenderer.render(groupCell);
     }
   }
 

@@ -78,8 +78,8 @@ public class TableConfig<T>
           .setPluginColumn(true)
           .applyMeta(ResizeColumnMeta.create().setResizable(false))
           .setCellRenderer(
-              cellInfo -> {
-                elements.elementOf(cellInfo.getElement()).addCss(dui_datatable_column_utility);
+              rowCell -> {
+                rowCell.addCss(dui_datatable_column_utility);
                 return elements
                     .div()
                     .addCss(dui_datatable_utility_elements)
@@ -88,7 +88,7 @@ public class TableConfig<T>
                           List<DataTablePlugin<T>> pluginsList = getPlugins();
                           for (DataTablePlugin<T> plugin : pluginsList) {
                             Optional<List<HTMLElement>> optionalElements =
-                                plugin.getUtilityElements(dataTable, cellInfo);
+                                plugin.getUtilityElements(dataTable, rowCell);
                             if (optionalElements.isPresent()) {
                               List<HTMLElement> nodes = optionalElements.get();
                               for (HTMLElement node : nodes) {
@@ -104,11 +104,11 @@ public class TableConfig<T>
                             }
                           }
 
-                          cellInfo
+                          rowCell
                               .getColumnConfig()
                               .ifPresent(
                                   columnConfig -> {
-                                    if (cellInfo
+                                    if (rowCell
                                         .getTableRow()
                                         .getDataTable()
                                         .getTableConfig()
@@ -118,8 +118,7 @@ public class TableConfig<T>
                                               .getHeadElement()
                                               .element()
                                               .getBoundingClientRect();
-                                      elements
-                                          .elementOf(cellInfo.getElement())
+                                      rowCell
                                           .setCssProperty("width", domRect.width + "px")
                                           .setCssProperty("min-width", domRect.width + "px")
                                           .setCssProperty("max-width", domRect.width + "px");
@@ -129,6 +128,9 @@ public class TableConfig<T>
                     .element();
               });
   private UtilityColumnHandler<T> utilityColumnHandler = utilityColumn -> {};
+  private List<ColumnConfig<T>> flattenColumns;
+  private List<ColumnConfig<T>> leafColumnsList;
+  private List<ColumnConfig<T>> allColumns;
 
   /**
    * Draws headers of the DataTable based on the provided configurations.
@@ -415,12 +417,14 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing the leaf columns.
    */
   public List<ColumnConfig<T>> getColumns() {
-    List<ColumnConfig<T>> allColumns = new ArrayList<>();
-    for (ColumnConfig<T> col : columns) {
-      // Retrieve the leaf columns from the current column
-      List<ColumnConfig<T>> leafColumns = col.leafColumns();
-      for (ColumnConfig<T> leaf : leafColumns) {
-        allColumns.add(leaf);
+    if (isNull(this.allColumns)) {
+      allColumns = new ArrayList<>();
+      for (ColumnConfig<T> col : columns) {
+        // Retrieve the leaf columns from the current column
+        List<ColumnConfig<T>> leafColumns = col.leafColumns();
+        for (ColumnConfig<T> leaf : leafColumns) {
+          allColumns.add(leaf);
+        }
       }
     }
     return allColumns;
@@ -432,11 +436,13 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing all columns, flattened.
    */
   public List<ColumnConfig<T>> getFlattenColumns() {
-    List<ColumnConfig<T>> flattenColumns = new ArrayList<>();
-    for (ColumnConfig<T> col : columns) {
-      List<ColumnConfig<T>> colFlattenColumns = col.flattenColumns();
-      for (ColumnConfig<T> flattened : colFlattenColumns) {
-        flattenColumns.add(flattened);
+    if (isNull(flattenColumns)) {
+      flattenColumns = new ArrayList<>();
+      for (ColumnConfig<T> col : columns) {
+        List<ColumnConfig<T>> colFlattenColumns = col.flattenColumns();
+        for (ColumnConfig<T> flattened : colFlattenColumns) {
+          flattenColumns.add(flattened);
+        }
       }
     }
     return flattenColumns;
@@ -448,11 +454,13 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing all columns, flattened.
    */
   public List<ColumnConfig<T>> getLeafColumns() {
-    List<ColumnConfig<T>> leafColumnsList = new ArrayList<>();
-    for (ColumnConfig<T> col : columns) {
-      List<ColumnConfig<T>> childLeafColumns = col.leafColumns();
-      for (ColumnConfig<T> leaf : childLeafColumns) {
-        leafColumnsList.add(leaf);
+    if (isNull(leafColumnsList)) {
+      leafColumnsList = new ArrayList<>();
+      for (ColumnConfig<T> col : columns) {
+        List<ColumnConfig<T>> childLeafColumns = col.leafColumns();
+        for (ColumnConfig<T> leaf : childLeafColumns) {
+          leafColumnsList.add(leaf);
+        }
       }
     }
     return leafColumnsList;

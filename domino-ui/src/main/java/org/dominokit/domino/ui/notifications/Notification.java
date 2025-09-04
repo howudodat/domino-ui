@@ -141,7 +141,7 @@ public class Notification extends BaseDominoElement<HTMLDivElement, Notification
    * @return the style target element
    */
   @Override
-  protected HTMLElement getStyleTarget() {
+  public HTMLElement getStyleTarget() {
     return element.element();
   }
 

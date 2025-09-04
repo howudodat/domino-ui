@@ -263,7 +263,7 @@ public class ResizeColumnsPlugin<T>
   @Override
   public void onBeforeAddCell(DataTable<T> dataTable, TableRow<T> tableRow, RowCell<T> rowCell) {
     if (config.isClipContent()) {
-      elements.elementOf(rowCell.getCellInfo().getElement()).addCss(dui_text_ellipsis);
+      rowCell.addCss(dui_text_ellipsis);
     }
   }
 

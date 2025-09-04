@@ -15,25 +15,8 @@
  */
 package org.dominokit.domino.ui.datatable;
 
-import elemental2.dom.Node;
+import elemental2.dom.HTMLTableCellElement;
 
-/**
- * A functional interface representing the renderer responsible for rendering a cell within the data
- * table.
- *
- * @param <T> the type of data contained within the table row.
- * @deprecated use {@link RowCellRenderer}
- */
-@FunctionalInterface
-@Deprecated
-public interface CellRenderer<T> {
-
-  /**
-   * Converts the given cell information into a displayable Node element.
-   *
-   * @param rowCell information about the cell being rendered.
-   * @return the Node representation of the cell content.
-   */
-  @Deprecated
-  Node asElement(RowCell<T> rowCell);
-}
+public interface RowCellRenderer<T>
+    extends BaseCellRenderer<
+        T, HTMLTableCellElement, RowCellInfo<T>, RowCell<T>, RowCellRenderer<T>> {}

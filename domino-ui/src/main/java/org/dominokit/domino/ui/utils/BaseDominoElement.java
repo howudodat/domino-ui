@@ -149,9 +149,6 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   /** The Waves support for this DOM element. */
   protected WavesSupport wavesSupport;
 
-  /** A list of detach observers for this DOM element. */
-  private Map<String, List<MutationObserverCallback>> attributesObservers;
-
   /** Optional ResizeObserver for this DOM element. */
   private ResizeObserver resizeObserver;
 
@@ -253,6 +250,8 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
     onDetached(
         NamedMutationObserverCallback.doOnce(
             "dui-freestyles-detach-observer", mutationRecord -> freeStyle()));
+    onAttributeChange("readonly", mutationRecord -> setReadOnly(hasAttribute("readonly")));
+    onAttributeChange("disabled", mutationRecord -> setDisabled(hasAttribute("disabled")));
   }
 
   private void freeStyle() {
@@ -1075,6 +1074,8 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    */
   @Editor.Ignore
   public T onAttributeChange(String attribute, MutationObserverCallback observerCallback) {
+    Map<String, List<MutationObserverCallback>> original = getAttributesObservers();
+    Map<String, List<MutationObserverCallback>> attributesObservers = new HashMap<>(original);
     if (isNull(this.attributeChangeEventListener)) {
       if (!hasAttribute(ATTRIBUTE_CHANGE_UID_KEY)) {
         setAttribute(ATTRIBUTE_CHANGE_UID_KEY, DominoId.unique());
@@ -1084,36 +1085,47 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
             CustomEvent cevent = Js.uncheckedCast(evt);
             MutationRecord record = Js.uncheckedCast(cevent.detail);
 
-            Optional.ofNullable(getAttributesObservers().get("*"))
+            Optional.ofNullable(attributesObservers.get("*"))
                 .ifPresent(
                     observerCallbacks -> {
                       observerCallbacks.forEach(
-                          callback -> callback.onObserved(Js.uncheckedCast(cevent.detail)));
+                          callback -> {
+                            callback.onObserved(Js.uncheckedCast(cevent.detail));
+                            if (callback.isAutoRemove()) {
+                              original.get("*").remove(callback);
+                            }
+                          });
                     });
 
-            Optional.ofNullable(getAttributesObservers().get(record.attributeName))
+            Optional.ofNullable(attributesObservers.get(record.attributeName))
                 .ifPresent(
                     ObserverCallbacks -> {
                       ObserverCallbacks.forEach(
-                          callback -> callback.onObserved(Js.uncheckedCast(cevent.detail)));
+                          callback -> {
+                            callback.onObserved(Js.uncheckedCast(cevent.detail));
+                            if (callback.isAutoRemove()) {
+                              original.get(record.attributeName).remove(callback);
+                            }
+                          });
                     });
           };
       String type = ObserverEventType.attributeType(this);
       this.element.element().addEventListener(type, this.attributeChangeEventListener);
     }
-    if (!getAttributesObservers().containsKey(attribute)) {
-      getAttributesObservers().put(attribute, new ArrayList<>());
+    if (!attributesObservers.containsKey(attribute)) {
+      attributesObservers.put(attribute, new ArrayList<>());
     }
-    getAttributesObservers().get(attribute).add(observerCallback);
+    attributesObservers.get(attribute).add(observerCallback);
     ElementUtil.startObservingAttributes();
     return element;
   }
 
   private Map<String, List<MutationObserverCallback>> getAttributesObservers() {
-    if (isNull(this.attributesObservers)) {
-      this.attributesObservers = new HashMap<>();
+    JsPropertyMap<Object> asPropertyMap = Js.asPropertyMap(element());
+    if (!asPropertyMap.has("dui-attribute-observers")) {
+      asPropertyMap.set("dui-attribute-observers", new HashMap<>());
     }
-    return attributesObservers;
+    return Js.uncheckedCast(asPropertyMap.get("dui-attribute-observers"));
   }
 
   /**
@@ -1340,7 +1352,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    *
    * @return The target element for applying styles.
    */
-  protected Element getStyleTarget() {
+  public Element getStyleTarget() {
     return element.element();
   }
 
@@ -2015,11 +2027,15 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   @Editor.Ignore
   @Override
   public T setReadOnly(boolean readOnly) {
-    if (readOnly) {
-      return setAttribute("readonly", "readonly");
-    } else {
-      return removeAttribute("readonly");
-    }
+    AttributesObserver.pauseFor(
+        () -> {
+          if (readOnly) {
+            setAttribute("readonly", "readonly");
+          } else {
+            removeAttribute("readonly");
+          }
+        });
+    return (T) this;
   }
 
   /**
@@ -2954,15 +2970,17 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    */
   @Editor.Ignore
   public T setDisabled(boolean disabled) {
-    if (disabled) {
-      DisableUtil.disable(this);
-      elementOf(getClickableElement()).setCssProperty("pointer-events", "none");
-      return element;
-    } else {
-      DisableUtil.enable(this);
-      elementOf(getClickableElement()).removeCssProperty("pointer-events");
-      return element;
-    }
+    AttributesObserver.pauseFor(
+        () -> {
+          if (disabled) {
+            DisableUtil.disable(this);
+            elementOf(getClickableElement()).setCssProperty("pointer-events", "none");
+          } else {
+            DisableUtil.enable(this);
+            elementOf(getClickableElement()).removeCssProperty("pointer-events");
+          }
+        });
+    return element;
   }
 
   /**

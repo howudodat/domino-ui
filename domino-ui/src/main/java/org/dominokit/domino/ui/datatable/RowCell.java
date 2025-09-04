@@ -17,11 +17,10 @@
 package org.dominokit.domino.ui.datatable;
 
 import static java.util.Objects.nonNull;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 import elemental2.dom.HTMLTableCellElement;
-import org.dominokit.domino.ui.utils.DominoElement;
+import java.util.Optional;
 
 /**
  * The {@code RowCell} class represents a cell within a data table row. It encapsulates the cell's
@@ -30,19 +29,11 @@ import org.dominokit.domino.ui.utils.DominoElement;
  *
  * @param <T> The type of data contained in the cell.
  */
-public class RowCell<T> {
+public class RowCell<T>
+    extends TableCell<T, HTMLTableCellElement, RowCellInfo<T>, RowCellRenderer<T>, RowCell<T>> {
 
   /** The column configuration associated with this cell. */
   private final ColumnConfig<T> columnConfig;
-
-  /**
-   * Information about the cell, including its parent row and the HTML element representing the
-   * cell.
-   */
-  private final CellRenderer.CellInfo<T> cellInfo;
-
-  /** The default cell renderer used when no custom renderer is specified. */
-  private CellRenderer<T> defaultCellRenderer = cell -> elements.text();
 
   /**
    * Constructs a new {@code RowCell} with the given cell information and column configuration.
@@ -50,9 +41,14 @@ public class RowCell<T> {
    * @param cellInfo Information about the cell.
    * @param columnConfig The column configuration associated with this cell.
    */
-  public RowCell(CellRenderer.CellInfo<T> cellInfo, ColumnConfig<T> columnConfig) {
+  public RowCell(RowCellInfo<T> cellInfo, ColumnConfig<T> columnConfig) {
+    super(cellInfo);
     this.columnConfig = columnConfig;
-    this.cellInfo = cellInfo;
+  }
+
+  @Override
+  public RowCellRenderer<T> getDefaultCellRenderer() {
+    return cellInfo -> elements.text();
   }
 
   /**
@@ -60,8 +56,8 @@ public class RowCell<T> {
    *
    * @return The column configuration of this cell.
    */
-  public ColumnConfig<T> getColumnConfig() {
-    return columnConfig;
+  public Optional<ColumnConfig<T>> getColumnConfig() {
+    return Optional.ofNullable(columnConfig);
   }
 
   /**
@@ -69,39 +65,32 @@ public class RowCell<T> {
    * This method should be called whenever the cell's content needs to be refreshed.
    */
   public void updateCell() {
-    DominoElement<HTMLTableCellElement> cellElement = elements.elementOf(cellInfo.getElement());
-    cellElement.clearElement();
+    clearElement();
 
-    if (nonNull(columnConfig.getTextAlign())) {
-      cellElement.addCss(columnConfig.getTextAlign());
-    }
+    getColumnConfig()
+        .ifPresent(
+            columnConfig -> {
+              if (nonNull(columnConfig.getTextAlign())) {
+                addCss(columnConfig.getTextAlign());
+              }
 
-    if (nonNull(columnConfig.getHeaderTextAlign())) {
-      columnConfig.getHeadElement().addCss(columnConfig.getHeaderTextAlign());
-    }
+              if (nonNull(columnConfig.getHeaderTextAlign())) {
+                columnConfig.getHeadElement().addCss(columnConfig.getHeaderTextAlign());
+              }
 
-    if (cellInfo.getTableRow().isEditable()) {
-      if (nonNull(columnConfig.getEditableCellRenderer())) {
-        cellElement.appendChild(columnConfig.getEditableCellRenderer().asElement(cellInfo));
-      } else {
-        cellElement.appendChild(defaultCellRenderer.asElement(cellInfo));
-      }
-    } else {
-      if (nonNull(columnConfig.getCellRenderer())) {
-        cellElement.appendChild(columnConfig.getCellRenderer().asElement(cellInfo));
-      } else {
-        cellElement.appendChild(defaultCellRenderer.asElement(cellInfo));
-      }
-    }
-  }
-
-  /**
-   * Gets the information about the cell, including its parent row and the HTML element representing
-   * the cell.
-   *
-   * @return Information about the cell.
-   */
-  public CellRenderer.CellInfo<T> getCellInfo() {
-    return cellInfo;
+              if (getCellInfo().getTableRow().isEditable()) {
+                if (nonNull(columnConfig.getEditableCellRenderer())) {
+                  columnConfig.getEditableCellRenderer().render(this);
+                } else {
+                  getDefaultCellRenderer().render(this);
+                }
+              } else {
+                if (nonNull(columnConfig.getCellRenderer())) {
+                  columnConfig.getCellRenderer().render(this);
+                } else {
+                  getDefaultCellRenderer().render(this);
+                }
+              }
+            });
   }
 }

@@ -20,6 +20,7 @@ import static elemental2.dom.DomGlobal.document;
 import elemental2.core.JsArray;
 import elemental2.dom.CustomEvent;
 import elemental2.dom.CustomEventInit;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.Element;
 import elemental2.dom.MutationObserver;
 import elemental2.dom.MutationObserverInit;
@@ -45,11 +46,11 @@ final class AttributesObserver {
    * @param handler The action to perform while the observer is paused.
    */
   static void pauseFor(Runnable handler) {
-    mutationObserver.disconnect();
+    paused = true;
     try {
       handler.run();
     } finally {
-      observe();
+      DomGlobal.setTimeout(p0 -> paused = false, 0);
     }
   }
 

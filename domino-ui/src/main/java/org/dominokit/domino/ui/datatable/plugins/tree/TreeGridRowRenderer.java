@@ -57,7 +57,7 @@ public class TreeGridRowRenderer<T> implements TableRow.RowRenderer<T> {
     rowCells.forEach(
         rowCell -> {
           tableRow.addCell(rowCell);
-          tableRow.element().appendChild(rowCell.getCellInfo().getElement());
+          tableRow.appendChild(rowCell.getCellInfo());
         });
   }
 }

@@ -502,7 +502,7 @@ public class AbstractDialog<T extends AbstractDialog<T>>
 
   /** {@inheritDoc} */
   @Override
-  protected HTMLElement getStyleTarget() {
+  public HTMLElement getStyleTarget() {
     return modalElement.element();
   }
 

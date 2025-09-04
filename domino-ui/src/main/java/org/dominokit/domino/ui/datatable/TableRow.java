@@ -69,6 +69,22 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
   /**
    * Constructs a table row with the given record, index, and parent table.
    *
+   * @param tr the {@link TableRowElement}.
+   * @param record The data record for this row.
+   * @param index The index of this row.
+   * @param dataTable The parent table containing this row.
+   */
+  public TableRow(TableRowElement tr, T record, int index, DataTable<T> dataTable) {
+    this.record = record;
+    this.index = index;
+    this.dataTable = dataTable;
+    this.element = tr;
+    init(this);
+    addCss(dui_datatable_row);
+  }
+  /**
+   * Constructs a table row with the given record, index, and parent table.
+   *
    * @param record The data record for this row.
    * @param index The index of this row.
    * @param dataTable The parent table containing this row.
@@ -482,7 +498,12 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
    * @param rowCell The cell to be added.
    */
   public void addCell(RowCell<T> rowCell) {
-    getCells().put(rowCell.getColumnConfig().getName(), rowCell);
+    rowCell
+        .getColumnConfig()
+        .ifPresent(
+            columnConfig -> {
+              getCells().put(columnConfig.getName(), rowCell);
+            });
   }
 
   /**
@@ -676,7 +697,7 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
                                 .addCss(columnCssRule.getCssRule().getCssClass())));
 
     RowCell<T> rowCell =
-        new RowCell<>(new CellRenderer.CellInfo<>(this, columnConfig, cellElement), columnConfig);
+        new RowCell<>(new RowCellInfo<>(this, columnConfig, cellElement), columnConfig);
     rowCell.updateCell();
     addCell(rowCell);
 

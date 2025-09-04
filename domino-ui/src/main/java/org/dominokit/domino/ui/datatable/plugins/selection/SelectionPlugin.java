@@ -90,21 +90,21 @@ public class SelectionPlugin<T> implements DataTablePlugin<T> {
    * Returns a list of utility elements to be added to utility columns for a specific cell.
    *
    * @param dataTable The DataTable to which this plugin is applied.
-   * @param cellInfo The cell information containing the cell content and metadata.
+   * @param rowCell The cell information containing the cell content and metadata.
    * @return An optional list of utility elements, empty if none.
    */
   @Override
   public Optional<List<HTMLElement>> getUtilityElements(
-      DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
-    if (selectionCondition.isAllowSelection(dataTable, cellInfo.getTableRow())) {
+      DataTable<T> dataTable, RowCell<T> rowCell) {
+    if (selectionCondition.isAllowSelection(dataTable, rowCell.getCellInfo().getTableRow())) {
       if (dataTable.getTableConfig().isMultiSelect()) {
-        return Optional.of(singletonList(createMultiSelectCell(dataTable, cellInfo)));
+        return Optional.of(singletonList(createMultiSelectCell(dataTable, rowCell.getCellInfo())));
       } else {
         return Optional.of(
             singletonList(
                 div()
                     .setMinWidth("24px")
-                    .appendChild(createSingleSelectCell(dataTable, cellInfo))
+                    .appendChild(createSingleSelectCell(dataTable, rowCell.getCellInfo()))
                     .element()));
       }
     }
@@ -157,7 +157,7 @@ public class SelectionPlugin<T> implements DataTablePlugin<T> {
    * @param cell The cell information containing the cell content and metadata.
    * @return The selection indicator element for a single selection cell.
    */
-  private Element createSingleSelectCell(DataTable<T> dataTable, CellRenderer.CellInfo<T> cell) {
+  private Element createSingleSelectCell(DataTable<T> dataTable, RowCellInfo<T> cell) {
     Element clonedIndicator = Js.uncheckedCast(singleSelectIndicator.get());
     elementOf(clonedIndicator).addCss(dui_fg_accent);
 
@@ -208,7 +208,7 @@ public class SelectionPlugin<T> implements DataTablePlugin<T> {
    * @param cell The cell information containing the cell content and metadata.
    * @return The selection indicator element for a multi-selection cell.
    */
-  private HTMLElement createMultiSelectCell(DataTable<T> dataTable, CellRenderer.CellInfo<T> cell) {
+  private HTMLElement createMultiSelectCell(DataTable<T> dataTable, RowCellInfo<T> cell) {
     CheckBox checkBox = createCheckBox(Optional.ofNullable(cell.getTableRow()));
 
     TableRow<T> tableRow = cell.getTableRow();

@@ -187,7 +187,7 @@ public interface DataTablePlugin<T>
    * @return An optional list of HTMLElements representing utility elements to be added to the cell.
    */
   default Optional<List<HTMLElement>> getUtilityElements(
-      DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
+      DataTable<T> dataTable, RowCell<T> cellInfo) {
     return Optional.empty();
   }
 

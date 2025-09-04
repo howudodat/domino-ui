@@ -17,7 +17,6 @@ package org.dominokit.domino.ui.datatable.plugins;
 
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.datatable.DataTableStyles.*;
-import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Text;
@@ -26,9 +25,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
-import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.RowCell;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.events.RecordDraggedOutEvent;
 import org.dominokit.domino.ui.datatable.events.RecordDroppedEvent;
@@ -121,7 +120,7 @@ public class DragDropPlugin<T> implements DataTablePlugin<T> {
    */
   @Override
   public Optional<List<HTMLElement>> getUtilityElements(
-      DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
+      DataTable<T> dataTable, RowCell<T> cellInfo) {
     return Optional.of(
         Collections.singletonList(dragDropIconSupplier.get().addCss(dui_row_dnd_grab).element()));
   }

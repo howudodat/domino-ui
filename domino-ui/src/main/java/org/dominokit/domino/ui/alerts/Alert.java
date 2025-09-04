@@ -15,17 +15,7 @@
  */
 package org.dominokit.domino.ui.alerts;
 
-import static org.dominokit.domino.ui.alerts.AlertStyles.dui_alert;
-import static org.dominokit.domino.ui.alerts.AlertStyles.dui_alert_body;
 import static org.dominokit.domino.ui.utils.Domino.*;
-
-import elemental2.dom.Element;
-import elemental2.dom.HTMLDivElement;
-import org.dominokit.domino.ui.button.RemoveButton;
-import org.dominokit.domino.ui.elements.DivElement;
-import org.dominokit.domino.ui.utils.BaseDominoElement;
-import org.dominokit.domino.ui.utils.ChildHandler;
-import org.dominokit.domino.ui.utils.LazyChild;
 
 /**
  * Displays a none floating message anywhere in the page, the message can be permanent or
@@ -48,23 +38,16 @@ import org.dominokit.domino.ui.utils.LazyChild;
  *          .appendChild("You successfully read this important alert message.")
  * </pre>
  *
- * @see BaseDominoElement
+ * @see org.dominokit.domino.ui.utils.BaseDominoElement
  */
-public class Alert extends BaseDominoElement<HTMLDivElement, Alert> {
-
-  private final DivElement element;
-  private final DivElement bodyElement;
-  private LazyChild<RemoveButton> removeButton;
+public class Alert extends BaseAlert<Alert> {
 
   /**
    * Creates an Alert message without assuming a specific context, context can be applied by adding
    * a context css class like <b>dui_success, dui_error, dui_info, .. etc</b>
    */
   public Alert() {
-    element = div().addCss(dui_alert).appendChild(bodyElement = div().addCss(dui_alert_body));
-    removeButton = LazyChild.of(RemoveButton.create().addClickListener(evt -> remove()), element);
-
-    init(this);
+    super();
   }
 
   /**
@@ -145,93 +128,5 @@ public class Alert extends BaseDominoElement<HTMLDivElement, Alert> {
    */
   public static Alert error() {
     return create().addCss(dui_error);
-  }
-
-  /**
-   * Use to show or hide the Alert message close button, clicking the close button will remove the
-   * Alert message from the dom.
-   *
-   * @param dismissible <b>true</b> to show the close button, <b>false</b> to hide the close button
-   * @return Same Alert instance
-   */
-  public Alert setDismissible(boolean dismissible) {
-    if (dismissible) {
-      return dismissible();
-    } else {
-      return unDismissible();
-    }
-  }
-
-  /**
-   * A shortcut method for <b>setDismissible(true)</b>
-   *
-   * @return Same Alert instance
-   */
-  public Alert dismissible() {
-    removeButton.get();
-    return this;
-  }
-
-  /**
-   * Shortcut method for <b>setDismissible(false)</b>
-   *
-   * @return Same Alert instance
-   */
-  public Alert unDismissible() {
-    removeButton.remove();
-    return this;
-  }
-
-  /**
-   * Use to check if the Alert instance is dismissible or not.
-   *
-   * @return true if the alert is dismissible, false otherwise
-   */
-  public boolean isDismissible() {
-    return removeButton.isInitialized();
-  }
-
-  /**
-   * When this method is called, it is assumed the button will be customized for a dismissible alert
-   * and so the alert will be marked as dismissible.
-   *
-   * @return the close button element
-   */
-  public RemoveButton getCloseButton() {
-    return removeButton.get();
-  }
-
-  /**
-   * Applies customization on the close button without breaking the fluent API chain, this will have
-   * the same effect as <b>getCloseButton()</b>
-   *
-   * @param handler a {@link org.dominokit.domino.ui.utils.ChildHandler} object
-   * @return Same Alert instance.
-   */
-  public Alert withCloseButton(ChildHandler<Alert, RemoveButton> handler) {
-    handler.apply(this, removeButton.get());
-    return this;
-  }
-
-  /**
-   * This will be effectively same as <b>setDismissible(true)</b>
-   *
-   * @return Same Alert instance
-   */
-  public Alert withCloseButton() {
-    removeButton.get();
-    return this;
-  }
-
-  /** @dominokit-site-ignore {@inheritDoc} */
-  @Override
-  public Element getAppendTarget() {
-    return bodyElement.element();
-  }
-
-  /** @dominokit-site-ignore {@inheritDoc} */
-  @Override
-  public HTMLDivElement element() {
-    return element.element();
   }
 }

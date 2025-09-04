@@ -61,8 +61,8 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
   private String maxWidth;
   private CellTextAlign cellTextAlign = CellTextAlign.LEFT;
   private CellTextAlign headerCellTextAlign = CellTextAlign.LEFT;
-  private CellRenderer<T> cellRenderer;
-  private CellRenderer<T> editableCellRenderer;
+  private RowCellRenderer<T> cellRenderer;
+  private RowCellRenderer<T> editableCellRenderer;
   private HeaderElementSupplier headerElementSupplier = this::text;
   private Handler<ColumnConfig<T>> headerHandler = col -> {};
   private Handler<RowCell<T>> cellHandler = cell -> {};
@@ -339,7 +339,7 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @return the cell renderer
    */
-  public CellRenderer<T> getCellRenderer() {
+  public RowCellRenderer<T> getCellRenderer() {
     return cellRenderer;
   }
 
@@ -347,11 +347,11 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    * Sets the renderer for displaying cell data in this column. If the editable cell renderer is
    * null, it also updates the editable cell renderer.
    *
-   * @param cellRenderer the cell renderer to set
+   * @param renderer the cell renderer to set
    * @return the current instance for chaining
    */
-  public ColumnConfig<T> setCellRenderer(CellRenderer<T> cellRenderer) {
-    this.cellRenderer = cellRenderer;
+  public ColumnConfig<T> setRenderer(RowCellRenderer<T> renderer) {
+    this.cellRenderer = renderer;
     if (isNull(editableCellRenderer)) {
       this.editableCellRenderer = cellRenderer;
     }
@@ -364,11 +364,24 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @return the editable cell renderer or the cell renderer if editable one is null
    */
-  public CellRenderer<T> getEditableCellRenderer() {
+  public RowCellRenderer<T> getEditableCellRenderer() {
     if (isNull(editableCellRenderer)) {
       return cellRenderer;
     }
     return editableCellRenderer;
+  }
+
+  /**
+   * Sets the renderer for displaying cell data in this column. If the editable cell renderer is
+   * null, it also updates the editable cell renderer.
+   *
+   * @param cellRenderer the cell renderer to set
+   * @return the current instance for chaining
+   * @deprecated use {@link #setRenderer(RowCellRenderer)}
+   */
+  @Deprecated
+  public ColumnConfig<T> setCellRenderer(CellRenderer<T> cellRenderer) {
+    return setRenderer(cell -> cell.appendChild(cellRenderer.asElement(cell)));
   }
 
   /**
@@ -378,12 +391,25 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    * @param editableCellRenderer the editable cell renderer to set
    * @return the current instance for chaining
    */
-  public ColumnConfig<T> setEditableCellRenderer(CellRenderer<T> editableCellRenderer) {
+  public ColumnConfig<T> setEditableRenderer(RowCellRenderer<T> editableCellRenderer) {
     this.editableCellRenderer = editableCellRenderer;
     if (isNull(cellRenderer)) {
       this.cellRenderer = editableCellRenderer;
     }
     return this;
+  }
+
+  /**
+   * Sets the renderer for editable cells in this column. If the cell renderer is null, it also
+   * updates the cell renderer.
+   *
+   * @param editableCellRenderer the editable cell renderer to set
+   * @return the current instance for chaining
+   * @deprecated use {@link #setEditableRenderer(RowCellRenderer)}
+   */
+  @Deprecated
+  public ColumnConfig<T> setEditableCellRenderer(CellRenderer<T> editableCellRenderer) {
+    return setEditableRenderer(cell -> cell.appendChild(editableCellRenderer.asElement(cell)));
   }
 
   /**
@@ -408,7 +434,7 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    */
   @Deprecated
   public ColumnConfig<T> styleCell(CellStyler<T> cellStyler) {
-    this.cellHandler = cell -> cellStyler.styleCell(cell.getCellInfo().getElement());
+    this.cellHandler = cell -> cellStyler.styleCell(cell.getCellInfo().element());
     return this;
   }
 
