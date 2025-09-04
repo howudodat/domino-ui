@@ -267,3 +267,9 @@
     top: 0;
     z-index: 1;
 }
+
+.dui-datatable-responsive.dui-datatable-row-highlight .dui-datatable-row-highlighted {
+    --dui-datatable-even-bg-color: var(--dui-datatable-row-highlight-bg-color, var(--dui-accent-l-3));
+    --dui-datatable-odd-bg-color: var(--dui-datatable-row-highlight-bg-color, var(--dui-accent-l-3));
+    --dui-bg-clr: var(--dui-datatable-row-highlight-bg-color, var(--dui-accent-l-3));
+}
