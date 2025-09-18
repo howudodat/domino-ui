@@ -19,7 +19,6 @@ package org.dominokit.domino.ui.datatable.plugins.column;
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.datatable.DataTableStyles.dui_datatable_column_filter;
 import static org.dominokit.domino.ui.datatable.DataTableStyles.dui_datatable_row;
-import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLElement;
 import java.util.List;
@@ -84,7 +83,7 @@ public class ColumnHeaderFilterPlugin<T> implements DataTablePlugin<T> {
     columns.forEach(
         columnConfig -> {
           ColumnHeader th = ColumnHeader.create().addCss(dui_datatable_column_filter);
-          columnConfig.getHeaderHandler().apply(columnConfig);
+          columnConfig.applyHeaderHandlers();
 
           columnConfig.applyScreenMedia(th.element());
 

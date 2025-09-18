@@ -20,8 +20,8 @@ import java.util.Optional;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
+import org.dominokit.domino.ui.menu.DropTarget;
 import org.dominokit.domino.ui.menu.Menu;
-import org.dominokit.domino.ui.menu.MenuTarget;
 
 /**
  * A plugin for adding row context menus to a DataTable.
@@ -53,7 +53,7 @@ public class RowContextMenuPlugin<T> implements DataTablePlugin<T> {
   @Override
   public void onRowAdded(DataTable<T> dataTable, TableRow<T> tableRow) {
     this.menu.addTarget(
-        MenuTarget.of(tableRow.element()).applyMeta(RowContextMenuMeta.of(tableRow)));
+        DropTarget.of(tableRow.element()).applyMeta(RowContextMenuMeta.of(tableRow)));
     tableRow.setAttribute(Menu.DUI_AUTO_CLEAR_SELECTION, true);
   }
 

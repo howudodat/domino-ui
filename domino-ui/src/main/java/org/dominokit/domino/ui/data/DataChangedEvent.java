@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package org.dominokit.domino.ui.datatable.store;
+package org.dominokit.domino.ui.data;
 
 import java.util.List;
+import java.util.Optional;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortDirection;
 
 /**
@@ -24,10 +25,13 @@ import org.dominokit.domino.ui.datatable.plugins.pagination.SortDirection;
  * store changes, such as when records are loaded or sorted.
  *
  * @param <T> The type of data representing the records in the data table.
- * @deprecated use {@link org.dominokit.domino.ui.data.DataChangedEvent} instead
  */
-@Deprecated
-public class DataChangedEvent<T> extends org.dominokit.domino.ui.data.DataChangedEvent<T> {
+public class DataChangedEvent<T> {
+  private final List<T> newData;
+  private final boolean append;
+  private final int totalCount;
+  private final Optional<SortDirection> sortDir;
+  private final Optional<String> sortColumn;
 
   /**
    * Constructs a new {@code DataChangedEvent} with the provided data and total count.
@@ -36,7 +40,11 @@ public class DataChangedEvent<T> extends org.dominokit.domino.ui.data.DataChange
    * @param totalCount The total count of records.
    */
   public DataChangedEvent(List<T> newData, int totalCount) {
-    super(newData, totalCount);
+    this.newData = newData;
+    this.totalCount = totalCount;
+    this.append = false;
+    this.sortDir = Optional.empty();
+    this.sortColumn = Optional.empty();
   }
 
   /**
@@ -50,7 +58,11 @@ public class DataChangedEvent<T> extends org.dominokit.domino.ui.data.DataChange
    */
   public DataChangedEvent(
       List<T> newData, int totalCount, SortDirection sortDirection, String sortColumn) {
-    super(newData, totalCount, sortDirection, sortColumn);
+    this.newData = newData;
+    this.totalCount = totalCount;
+    this.append = false;
+    this.sortDir = Optional.of(sortDirection);
+    this.sortColumn = Optional.of(sortColumn);
   }
 
   /**
@@ -62,7 +74,11 @@ public class DataChangedEvent<T> extends org.dominokit.domino.ui.data.DataChange
    * @param totalCount The total count of records.
    */
   public DataChangedEvent(List<T> newData, boolean append, int totalCount) {
-    super(newData, append, totalCount);
+    this.newData = newData;
+    this.append = append;
+    this.totalCount = totalCount;
+    this.sortDir = Optional.empty();
+    this.sortColumn = Optional.empty();
   }
 
   /**
@@ -82,6 +98,55 @@ public class DataChangedEvent<T> extends org.dominokit.domino.ui.data.DataChange
       int totalCount,
       SortDirection sortDirection,
       String sortColumn) {
-    super(newData, append, totalCount, sortDirection, sortColumn);
+    this.newData = newData;
+    this.append = append;
+    this.totalCount = totalCount;
+    this.sortDir = Optional.of(sortDirection);
+    this.sortColumn = Optional.of(sortColumn);
+  }
+
+  /**
+   * Gets the list of new data records.
+   *
+   * @return A list of new data records.
+   */
+  public List<T> getNewData() {
+    return newData;
+  }
+
+  /**
+   * Checks if the data is being appended to the existing data.
+   *
+   * @return {@code true} if the data is being appended; {@code false} otherwise.
+   */
+  public boolean isAppend() {
+    return append;
+  }
+
+  /**
+   * Gets the total count of records.
+   *
+   * @return The total count of records.
+   */
+  public int getTotalCount() {
+    return totalCount;
+  }
+
+  /**
+   * Gets the sorting direction, if available.
+   *
+   * @return An {@code Optional} containing the sorting direction, or empty if not available.
+   */
+  public Optional<SortDirection> getSortDir() {
+    return sortDir;
+  }
+
+  /**
+   * Gets the column used for sorting, if available.
+   *
+   * @return An {@code Optional} containing the sort column, or empty if not available.
+   */
+  public Optional<String> getSortColumn() {
+    return sortColumn;
   }
 }

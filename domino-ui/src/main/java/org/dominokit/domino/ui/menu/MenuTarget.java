@@ -15,125 +15,32 @@
  */
 package org.dominokit.domino.ui.menu;
 
-import static java.util.Objects.isNull;
-import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
-
 import elemental2.dom.Element;
-import java.util.HashMap;
-import java.util.Map;
-import org.dominokit.domino.ui.utils.ComponentMeta;
-import org.dominokit.domino.ui.utils.DominoElement;
-import org.dominokit.domino.ui.utils.HasMeta;
-import org.dominokit.domino.ui.utils.MutationObserverCallback;
 
-/**
- * Represents a target for the menu in the UI. This class wraps a target DOM {@link Element} to be
- * used as a menu target in a Domino UI application.
- *
- * <p><b>Usage example:</b>
- *
- * <pre>
- * Element myElement = ... // some DOM element
- * MenuTarget menuTarget = MenuTarget.of(myElement);
- * </pre>
- */
-public class MenuTarget implements HasMeta<MenuTarget> {
-
-  private DominoElement<Element> targetElement;
-  private MutationObserverCallback targetDetachObserver;
-  private MutationObserverCallback targetAttachObserver;
-  private Map<String, ComponentMeta> metaObjects;
+/** @deprecated use {@link DropTarget} */
+@Deprecated
+public class MenuTarget extends DropTarget {
 
   /**
-   * Factory method to create an instance of {@link MenuTarget} using the given DOM {@link Element}.
+   * Factory method to create an instance of {@link DropTarget} using the given DOM {@link Element}.
    *
    * @param element the target DOM element
-   * @return a new instance of {@link MenuTarget}
+   * @return a new instance of {@link DropTarget}
+   * @deprecated use {@link DropTarget#of(Element)}
    */
-  public static MenuTarget of(Element element) {
-    return new MenuTarget(element);
+  @Deprecated
+  public static DropTarget of(Element element) {
+    return new DropTarget(element);
   }
 
   /**
-   * Constructs a new {@link MenuTarget} for the provided target DOM {@link Element}.
+   * Constructs a new {@link DropTarget} for the provided target DOM {@link Element}.
    *
    * @param targetElement the target DOM element
+   * @deprecated use {@link DropTarget(Element)}
    */
+  @Deprecated
   public MenuTarget(Element targetElement) {
-    this.targetElement = elements.elementOf(targetElement);
-  }
-
-  /**
-   * Retrieves the wrapped target DOM {@link Element} as a {@link DominoElement}.
-   *
-   * @return the target {@link DominoElement}
-   */
-  public DominoElement<Element> getTargetElement() {
-    return targetElement;
-  }
-
-  /**
-   * Sets an observer for the target's attach/detach events.
-   *
-   * @param targetDetachObserver the observer callback
-   */
-  public void setTargetDetachObserver(MutationObserverCallback targetDetachObserver) {
-    this.targetDetachObserver = targetDetachObserver;
-  }
-
-  /**
-   * Retrieves the observer set for the target's attach/detach events.
-   *
-   * @return the observer callback
-   */
-  public MutationObserverCallback getTargetDetachObserver() {
-    return targetDetachObserver;
-  }
-
-  /**
-   * Sets an observer for the target's attach/detach events.
-   *
-   * @param targetAttachObserver the observer callback
-   */
-  public void setTargetAttachObserver(MutationObserverCallback targetAttachObserver) {
-    this.targetAttachObserver = targetAttachObserver;
-  }
-
-  /**
-   * Retrieves the observer set for the target's attach/detach events.
-   *
-   * @return the observer callback
-   */
-  public MutationObserverCallback getTargetAttachObserver() {
-    return targetAttachObserver;
-  }
-
-  /**
-   * {@inheritDoc}
-   *
-   * <p>Returns a map of meta objects associated with this menu target.
-   *
-   * @return a map where the key is a string identifier and the value is the associated {@link
-   *     ComponentMeta} object.
-   */
-  @Override
-  public Map<String, ComponentMeta> getMetaObjects() {
-    if (isNull(this.metaObjects)) {
-      this.metaObjects = new HashMap<>();
-    }
-    return metaObjects;
-  }
-
-  void setObservers() {
-    getTargetElement().registerOnDetached(getTargetDetachObserver());
-    getTargetElement().registerOnAttached(getTargetAttachObserver());
-  }
-
-  void cleanUp() {
-    getTargetElement().removeDetachObserver(getTargetDetachObserver());
-    getTargetElement().removeAttachObserver(getTargetAttachObserver());
-    this.targetDetachObserver = null;
-    this.targetAttachObserver = null;
-    this.targetElement = null;
+    super(targetElement);
   }
 }

@@ -8,7 +8,7 @@ fieldset.dui {
     flex-direction: var(--dui-form-field-direction, column);
     align-items: var(--dui-form-field-align, flex-start);
     padding: var(--dui-form-field-padding);
-    margin: var(--dui-form-field-marging);
+    margin: var(--dui-form-field-margin);
     width: 100%;
     margin-inline: 0;
     max-inline-size: 100%;
@@ -84,6 +84,15 @@ fieldset.dui {
 .dui-form-label-float-left {
     --dui-form-field-direction: row;
     --dui-form-field-align: baseline;
+}
+
+.dui-form-label-float-left .dui-form-field,
+.dui-form-field.dui-form-label-float-left{
+    gap: var(--dui-form-field-label-gap);
+}
+
+.dui-form-label-float-left .dui-field-label {
+    flex-shrink: 0;
 }
 
 .dui-form-label-float-top {

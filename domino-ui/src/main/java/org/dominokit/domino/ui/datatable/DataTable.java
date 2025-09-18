@@ -34,13 +34,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.dominokit.domino.ui.IsElement;
+import org.dominokit.domino.ui.data.DataStore;
 import org.dominokit.domino.ui.datatable.events.DataSortEvent;
 import org.dominokit.domino.ui.datatable.events.OnBeforeDataChangeEvent;
 import org.dominokit.domino.ui.datatable.events.SelectAllEvent;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.model.SearchContext;
-import org.dominokit.domino.ui.datatable.store.DataStore;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.TBodyElement;
 import org.dominokit.domino.ui.elements.TFootElement;
@@ -121,51 +121,55 @@ public class DataTable<T> extends BaseDominoElement<HTMLDivElement, DataTable<T>
     tableElement = table().addCss(dui_datatable, dui_datatable_width_full);
     super.init(this);
     this.tableConfig = tableConfig;
-
     this.dataStore = dataStore;
-    this.addTableEventListener(ANY, dataStore);
-    tableElement.setAttribute("dui-data-v-scroll", 0);
-    tableElement.setAttribute("dui-data-h-scroll", 0);
-    this.addEventListener(EventType.keydown.getName(), disableKeyboardListener, true);
-    tableElement.addEventListener(
-        "scroll",
-        evt -> {
-          double scrollTop = new Double(tableElement.element().scrollTop).intValue();
-          double scrollLeft = new Double(tableElement.element().scrollLeft).intValue();
-          tableElement.setAttribute("dui-data-v-scroll", scrollTop);
-          tableElement.setAttribute("dui-data-h-scroll", scrollLeft);
-        });
-    this.dataStore.onDataChanged(
-        dataChangedEvent -> {
-          fireTableEvent(
-              new OnBeforeDataChangeEvent<>(
-                  this.data, dataChangedEvent.getTotalCount(), dataChangedEvent.isAppend()));
-          if (dataChangedEvent.getSortDir().isPresent()
-              && dataChangedEvent.getSortColumn().isPresent()) {
-            fireTableEvent(
-                new DataSortEvent(
-                    dataChangedEvent.getSortDir().get(), dataChangedEvent.getSortColumn().get()));
-          }
+    this.tableConfig.freezeAndApply(
+        tTableConfig -> {
+          this.addTableEventListener(ANY, dataStore);
+          tableElement.setAttribute("dui-data-v-scroll", 0);
+          tableElement.setAttribute("dui-data-h-scroll", 0);
+          this.addEventListener(EventType.keydown.getName(), disableKeyboardListener, true);
+          tableElement.addEventListener(
+              "scroll",
+              evt -> {
+                double scrollTop = new Double(tableElement.element().scrollTop).intValue();
+                double scrollLeft = new Double(tableElement.element().scrollLeft).intValue();
+                tableElement.setAttribute("dui-data-v-scroll", scrollTop);
+                tableElement.setAttribute("dui-data-h-scroll", scrollLeft);
+              });
+          this.dataStore.onDataChanged(
+              dataChangedEvent -> {
+                fireTableEvent(
+                    new OnBeforeDataChangeEvent<>(
+                        this.data, dataChangedEvent.getTotalCount(), dataChangedEvent.isAppend()));
+                if (dataChangedEvent.getSortDir().isPresent()
+                    && dataChangedEvent.getSortColumn().isPresent()) {
+                  fireTableEvent(
+                      new DataSortEvent(
+                          dataChangedEvent.getSortDir().get(),
+                          dataChangedEvent.getSortColumn().get()));
+                }
 
-          if (dataChangedEvent.isAppend()) {
-            appendData(dataChangedEvent.getNewData());
-          } else {
-            setData(dataChangedEvent.getNewData());
-          }
-          fireTableEvent(new TableDataUpdatedEvent<>(this.data, dataChangedEvent.getTotalCount()));
-        });
+                if (dataChangedEvent.isAppend()) {
+                  appendData(dataChangedEvent.getNewData());
+                } else {
+                  setData(dataChangedEvent.getNewData());
+                }
+                fireTableEvent(
+                    new TableDataUpdatedEvent<>(this.data, dataChangedEvent.getTotalCount()));
+              });
 
-    initDynamicStyleSheet();
-    init();
-    onAttached(
-        mutationRecord -> {
-          DomGlobal.setTimeout(
-              p0 -> {
-                getDynamicStyleSheet().flush();
-              },
-              0);
+          initDynamicStyleSheet();
+          init();
+          onAttached(
+              mutationRecord -> {
+                DomGlobal.setTimeout(
+                    p0 -> {
+                      getDynamicStyleSheet().flush();
+                    },
+                    0);
+              });
+          addCss(dui_datatable_hover, dui_datatable_striped);
         });
-    addCss(dui_datatable_hover, dui_datatable_striped);
   }
 
   /** Initializes dynamic style sheet configurations for the table columns. */

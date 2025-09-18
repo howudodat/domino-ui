@@ -22,7 +22,11 @@ import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 import elemental2.dom.DOMRect;
 import elemental2.dom.HTMLElement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
 import org.dominokit.domino.ui.datatable.plugins.column.ResizeColumnMeta;
@@ -70,6 +74,8 @@ public class TableConfig<T>
 
   private Consumer<TableRow<T>> onRowEditHandler = (tableRow) -> {};
   private Consumer<TableRow<T>> onRowFinishEditHandler = (tableRow) -> {};
+
+  private boolean frozen = false;
 
   private final ColumnConfig<T> pluginUtilityColumn =
       ColumnConfig.<T>create("plugin-utility-column")
@@ -417,7 +423,7 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing the leaf columns.
    */
   public List<ColumnConfig<T>> getColumns() {
-    if (isNull(this.allColumns)) {
+    if (isNull(this.allColumns) || !this.frozen) {
       allColumns = new ArrayList<>();
       for (ColumnConfig<T> col : columns) {
         // Retrieve the leaf columns from the current column
@@ -436,7 +442,7 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing all columns, flattened.
    */
   public List<ColumnConfig<T>> getFlattenColumns() {
-    if (isNull(flattenColumns)) {
+    if (isNull(flattenColumns) || !this.frozen) {
       flattenColumns = new ArrayList<>();
       for (ColumnConfig<T> col : columns) {
         List<ColumnConfig<T>> colFlattenColumns = col.flattenColumns();
@@ -454,7 +460,7 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing all columns, flattened.
    */
   public List<ColumnConfig<T>> getLeafColumns() {
-    if (isNull(leafColumnsList)) {
+    if (isNull(leafColumnsList) || !frozen) {
       leafColumnsList = new ArrayList<>();
       for (ColumnConfig<T> col : columns) {
         List<ColumnConfig<T>> childLeafColumns = col.leafColumns();
@@ -704,6 +710,17 @@ public class TableConfig<T>
   /** @return the handler to be called when a row editing finished. */
   Consumer<TableRow<T>> getOnRowFinishEditHandler() {
     return onRowFinishEditHandler;
+  }
+
+  TableConfig<T> freezeAndApply(Consumer<TableConfig<T>> consumer) {
+    boolean oldState = this.frozen;
+    this.frozen = true;
+    try {
+      consumer.accept(this);
+    } finally {
+      this.frozen = oldState;
+    }
+    return this;
   }
 
   /** A functional interface defining the behavior for appending rows. */

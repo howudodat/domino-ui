@@ -22,10 +22,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Consumer;
+import org.dominokit.domino.ui.data.DataStore;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.plugins.tree.store.TreeNodeStore;
 import org.dominokit.domino.ui.datatable.plugins.tree.store.TreeNodeStoreContext;
-import org.dominokit.domino.ui.datatable.store.DataStore;
 import org.dominokit.domino.ui.utils.ComponentMeta;
 
 /**
@@ -74,7 +74,6 @@ public class TreeGridRowSubItemsMeta<T> implements ComponentMeta {
    * records.
    *
    * @param config The configuration for the TreeGridPlugin.
-   * @param records The collection of sub-items records.
    */
   public TreeGridRowSubItemsMeta(TreePluginConfig<T> config) {
     this.config = config;

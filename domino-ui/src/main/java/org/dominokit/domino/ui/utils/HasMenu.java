@@ -13,16 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dominokit.domino.ui.datatable.store;
+package org.dominokit.domino.ui.utils;
 
-/**
- * The {@code StoreDataChangeListener} functional interface defines a contract for handling data
- * change events in a data store used by a data table.
- *
- * @param <T> The type of data representing the records in the data table.
- * @deprecated use {@link org.dominokit.domino.ui.data.StoreDataChangeListener} instead
- */
-@Deprecated
-@FunctionalInterface
-public interface StoreDataChangeListener<T>
-    extends org.dominokit.domino.ui.data.StoreDataChangeListener<T> {}
+import org.dominokit.domino.ui.menu.base.IsMenu;
+
+public interface HasMenu<C extends IsMenu<?, ?, ?, ?>> {
+
+  C getMenu();
+
+  boolean hasMenu();
+}

@@ -703,7 +703,7 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
 
     columnConfig.applyScreenMedia(cellElement);
 
-    columnConfig.applyCellHandler(rowCell);
+    columnConfig.applyCellHandlers(rowCell);
     if (columnConfig.isHidden()) {
       elementOf(cellElement).hide();
     }

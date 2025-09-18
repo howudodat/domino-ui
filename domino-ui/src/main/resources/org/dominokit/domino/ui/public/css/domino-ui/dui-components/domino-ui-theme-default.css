@@ -1005,13 +1005,13 @@ body.dui {
 
     /* =========================== Form fields =========================*/
     --dui-form-field-padding: 0px;
-    --dui-form-field-marging: 0 0 var(--dui-spc-4) 0;
+    --dui-form-field-margin: 0 0 var(--dui-spc-4) 0;
     --dui-form-field-wrapper-padding: 5px;
     --dui-form-field-wrapper-radius: 5px;
     --dui-form-field-wrapper-gap: 5px;
     --dui-form-field-border: 1px solid var(--dui-form-field-border-color);
     --dui-form-field-invalid-border-color: var(--dui-clr-red);
-
+    --dui-form-field-label-gap: var(--dui-spc-1);
 
     --dui-form-field-readonly-border: 1px solid var(--dui-form-field-readonly-border-color);
     --dui-form-field-input-readonly-border: 1px solid var(--dui-clr-transparent);

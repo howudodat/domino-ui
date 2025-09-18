@@ -14,14 +14,32 @@
  * limitations under the License.
  */
 
-package org.dominokit.domino.ui.datatable.store;
+package org.dominokit.domino.ui.data;
+
+import org.dominokit.domino.ui.utils.DominoEventListener;
 
 /**
  * The {@code DataStore} interface defines a contract for managing and retrieving data for a data
  * table.
  *
  * @param <T> The type of data representing the records in the data table.
- * @deprecated use {@link org.dominokit.domino.ui.data.DataStore} instead
  */
-@Deprecated
-public interface DataStore<T> extends org.dominokit.domino.ui.data.DataStore<T> {}
+public interface DataStore<T> extends DominoEventListener {
+
+  /**
+   * Registers a data change listener to be notified when the data in the store changes.
+   *
+   * @param dataChangeListener The data change listener to register.
+   */
+  void onDataChanged(StoreDataChangeListener<T> dataChangeListener);
+
+  /**
+   * Removes a previously registered data change listener.
+   *
+   * @param dataChangeListener The data change listener to remove.
+   */
+  void removeDataChangeListener(StoreDataChangeListener<T> dataChangeListener);
+
+  /** Loads or refreshes the data in the data store. */
+  void load();
+}

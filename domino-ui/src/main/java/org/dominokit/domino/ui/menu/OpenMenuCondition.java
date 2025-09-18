@@ -15,6 +15,10 @@
  */
 package org.dominokit.domino.ui.menu;
 
+import org.dominokit.domino.ui.menu.base.IsMenu;
+import org.dominokit.domino.ui.menu.base.IsMenuItem;
+import org.dominokit.domino.ui.utils.Selectable;
+
 /**
  * Functional interface for defining a condition under which a menu should be opened.
  *
@@ -30,7 +34,8 @@ package org.dominokit.domino.ui.menu;
  *
  * @param <V> The type of the item's value in the menu
  */
-public interface OpenMenuCondition<V> {
+public interface OpenMenuCondition<
+    V, C extends IsMenu<V, C, I, S>, I extends IsMenuItem<V, I, S>, S extends Selectable<S>> {
 
   /**
    * This method is invoked to check whether the menu should be opened.
@@ -38,5 +43,5 @@ public interface OpenMenuCondition<V> {
    * @param menu The menu for which the condition is being checked
    * @return {@code true} if the menu should be opened, {@code false} otherwise
    */
-  boolean check(Menu<V> menu);
+  boolean check(C menu);
 }

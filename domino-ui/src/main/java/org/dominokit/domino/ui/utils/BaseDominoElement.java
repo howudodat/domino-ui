@@ -62,7 +62,8 @@ import org.dominokit.domino.ui.keyboard.HasKeyboardEvents;
 import org.dominokit.domino.ui.keyboard.KeyEventsConsumer;
 import org.dominokit.domino.ui.keyboard.KeyboardEventOptions;
 import org.dominokit.domino.ui.keyboard.KeyboardEvents;
-import org.dominokit.domino.ui.menu.Menu;
+import org.dominokit.domino.ui.menu.base.IsMenu;
+import org.dominokit.domino.ui.menu.base.IsMenuItem;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.Tooltip;
@@ -4443,7 +4444,8 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    * @param dropMenu The drop-down menu to set.
    * @return The modified DOM element.
    */
-  public T setDropMenu(Menu<?> dropMenu) {
+  public <V, C extends IsMenu<V, C, I, S>, I extends IsMenuItem<V, I, S>, S extends Selectable<S>>
+      T setDropMenu(C dropMenu) {
     if (nonNull(dropMenu)) {
       dropMenu.setTargetElement(this);
     }

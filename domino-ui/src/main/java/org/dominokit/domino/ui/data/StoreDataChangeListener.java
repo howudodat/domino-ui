@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dominokit.domino.ui.menu;
+package org.dominokit.domino.ui.data;
 
 /**
- * Defines the behavior of deselection a menu item when other menu items are selected. this will
- * only be applied for single selection menu.
+ * The {@code StoreDataChangeListener} functional interface defines a contract for handling data
+ * change events in a data store used by a data table.
+ *
+ * @param <T> The type of data representing the records in the data table.
  */
-public enum DeselectionMode {
-  /** The menu item is deselected when another menu item is selected. */
-  DESELECT,
+@FunctionalInterface
+public interface StoreDataChangeListener<T> {
 
-  /** The menu item is not deselected when another menu item is selected. */
-  PRESERVE_SELECTION
+  /**
+   * Called when the data in the data store changes.
+   *
+   * @param dataChangedEvent The event containing information about the data change.
+   */
+  void onDataChanged(DataChangedEvent<T> dataChangedEvent);
 }

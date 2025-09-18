@@ -57,4 +57,6 @@ public interface HasAttributes<T> {
    * @return The value of the attribute as a string, or {@code null} if the attribute is not set.
    */
   String getAttribute(String name);
+
+  T removeAttribute(String name);
 }
