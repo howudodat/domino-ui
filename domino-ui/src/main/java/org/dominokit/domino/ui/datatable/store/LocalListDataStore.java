@@ -286,6 +286,30 @@ public class LocalListDataStore<T>
   }
 
   /**
+   * Registers a data change listener to be notified when data changes.
+   *
+   * @param dataChangeListener The data change listener to register.
+   * @deprecated use {@link #onDataChanged(StoreDataChangeListener)} instead.
+   */
+  @Deprecated
+  public void onDataChanged(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener) {
+    this.onDataChanged((StoreDataChangeListener<T>) dataChangeListener);
+  }
+
+  /**
+   * Removes a registered data change listener.
+   *
+   * @param dataChangeListener The data change listener to remove.
+   * @deprecated use {@link #removeDataChangeListener(StoreDataChangeListener)} instead.
+   */
+  @Deprecated
+  public void removeDataChangeListener(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener) {
+    removeDataChangeListener((StoreDataChangeListener<T>) dataChangeListener);
+  }
+
+  /**
    * Removes a registered data change listener.
    *
    * @param dataChangeListener The data change listener to remove.
