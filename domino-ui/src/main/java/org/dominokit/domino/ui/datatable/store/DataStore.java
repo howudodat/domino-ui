@@ -16,6 +16,9 @@
 
 package org.dominokit.domino.ui.datatable.store;
 
+import java.util.Objects;
+import org.dominokit.domino.ui.data.DataChangedEvent;
+
 /**
  * The {@code DataStore} interface defines a contract for managing and retrieving data for a data
  * table.
@@ -24,4 +27,48 @@ package org.dominokit.domino.ui.datatable.store;
  * @deprecated use {@link org.dominokit.domino.ui.data.DataStore} instead
  */
 @Deprecated
-public interface DataStore<T> extends org.dominokit.domino.ui.data.DataStore<T> {}
+public interface DataStore<T> extends org.dominokit.domino.ui.data.DataStore<T> {
+
+  void onDataChanged(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener);
+
+  void removeDataChangeListener(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener);
+
+  default void onDataChanged(
+      org.dominokit.domino.ui.data.StoreDataChangeListener<T> dataChangeListener) {
+    onDataChanged(new ListenerWrapper<>(dataChangeListener));
+  }
+
+  default void removeDataChangeListener(
+      org.dominokit.domino.ui.data.StoreDataChangeListener<T> dataChangeListener) {
+    removeDataChangeListener(new ListenerWrapper<>(dataChangeListener));
+  }
+
+  final class ListenerWrapper<T>
+      implements org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> {
+
+    private final org.dominokit.domino.ui.data.StoreDataChangeListener<T> wrapped;
+
+    public ListenerWrapper(org.dominokit.domino.ui.data.StoreDataChangeListener<T> wrapped) {
+      this.wrapped = wrapped;
+    }
+
+    @Override
+    public void onDataChanged(DataChangedEvent<T> dataChangedEvent) {
+      wrapped.onDataChanged(dataChangedEvent);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == null || getClass() != o.getClass()) return false;
+      ListenerWrapper<?> that = (ListenerWrapper<?>) o;
+      return Objects.equals(wrapped, that.wrapped);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hashCode(wrapped);
+    }
+  }
+}
