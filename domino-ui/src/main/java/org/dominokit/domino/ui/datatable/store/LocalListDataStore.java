@@ -380,7 +380,7 @@ public class LocalListDataStore<T>
   public void onSearchChanged(SearchEvent event) {
     if (nonNull(getSearchFilter())) {
       setLastSearch(event);
-      filtered = filterData(original);
+      filtered = LocalListDataStore.this.filterData(original);
       if (nonNull(getLastSort())) {
         sort(getLastSort());
       }
@@ -818,6 +818,16 @@ public class LocalListDataStore<T>
 
   @Override
   public List<T> filterData(T data) {
+    return HasDataFilters.super.filterData(data).stream()
+        .filter(
+            record ->
+                isNull(this.getLastSearch())
+                    || getSearchFilter().filterRecord(getLastSearch(), record))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<T> filterData(Collection<T> data) {
     return HasDataFilters.super.filterData(data).stream()
         .filter(
             record ->
