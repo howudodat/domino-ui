@@ -40,4 +40,6 @@ public interface ButtonStyles {
 
   /** Constant <code>dui_top_scroller</code> */
   CssClass dui_top_scroller = () -> "dui-top-scroller";
+
+  CssClass dui_toggle_button = () -> "dui-toggle-button";
 }

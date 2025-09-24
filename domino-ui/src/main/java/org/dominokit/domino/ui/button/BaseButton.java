@@ -62,7 +62,10 @@ public abstract class BaseButton<E extends HTMLElement, B extends BaseButton<E, 
             .appendChild(bodyElement = div().addCss(dui_button_body));
     textElement = LazyChild.of(span().addCss(dui_button_text), bodyElement);
     init((B) this);
+    prepare();
   }
+
+  protected void prepare() {}
 
   /**
    * createButtonElement.

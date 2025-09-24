@@ -84,10 +84,16 @@ fieldset[disabled] .dui-btn {
 .dui.dui-btn:hover {
     outline-offset: var(--dui-btn-focus-outline-offset);
     outline: var(--dui-bg-l-4, var(--dui-accent-l-4)) var(--dui-btn-focus-outline-style) var(--dui-btn-focus-outline-width);
-    background-color: var(--dui-btn-hover-bg-clr, var(--dui-accent-l-4));
-    color: var(--dui-btn-hover-color);
     box-shadow: var(--dui-btn-focus-box-shadow);
     --dui-btn-bg: var(--dui-bg-l-4, var(--dui-accent-l-4));
+}
+
+.dui.dui-btn.dui-ctx:not(.dui-toggle-button):hover,
+.dui.dui-btn.dui-ctx:not(.dui-toggle-button):focus,
+.dui.dui-btn:not(.dui-toggle-button):focus,
+.dui.dui-btn:not(.dui-toggle-button):hover {
+    background-color: var(--dui-btn-hover-bg-clr, var(--dui-accent-l-4));
+    color: var(--dui-btn-hover-color);
 }
 
 .dui-btn:hover,

@@ -23,6 +23,7 @@ import static org.dominokit.domino.ui.utils.Domino.*;
 import elemental2.dom.HTMLElement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
@@ -79,7 +80,12 @@ public class SortPlugin<T>
           .addEventListener(
               EventType.click.getName(),
               evt -> {
-                applySort(column, sortContext, currentSortContext.sortDirection);
+                applySort(
+                    column,
+                    sortContext,
+                    Optional.ofNullable(currentSortContext)
+                        .map(c -> c.sortDirection)
+                        .orElse(SortDirection.DESC));
               });
       if (config.isShowSortOptionsInColumnMenu()) {
         column

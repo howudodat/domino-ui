@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -579,6 +580,17 @@ public class DataTable<T> extends BaseDominoElement<HTMLDivElement, DataTable<T>
    */
   public List<TableRow<T>> getRootRows() {
     return getRows().stream().filter(TableRow::isRoot).collect(Collectors.toList());
+  }
+
+  /**
+   * Retrieves the table row containing the specified record.
+   *
+   * @param record the record to find in the table rows
+   * @return an Optional containing the matching table row if found, or an empty Optional if no
+   *     matching row is found
+   */
+  public Optional<TableRow<T>> getRecordRow(T record) {
+    return getRows().stream().filter(row -> Objects.equals(row.getRecord(), record)).findFirst();
   }
 
   /**

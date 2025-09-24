@@ -87,7 +87,10 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
     collapseIcon = getConfig().getCardCollapseExpandIcon().get();
 
     init((C) this);
+    onInit();
   }
+
+  protected void onInit() {}
 
   /**
    * Calling this will assume the Header is needed to for customization and will initialize the

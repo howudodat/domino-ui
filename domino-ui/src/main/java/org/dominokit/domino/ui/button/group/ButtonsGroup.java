@@ -18,11 +18,7 @@ package org.dominokit.domino.ui.button.group;
 import static org.dominokit.domino.ui.button.ButtonStyles.*;
 import static org.dominokit.domino.ui.utils.Domino.*;
 
-import elemental2.dom.HTMLElement;
-import java.util.Arrays;
 import org.dominokit.domino.ui.button.IsButton;
-import org.dominokit.domino.ui.elements.DivElement;
-import org.dominokit.domino.ui.style.BooleanCssClass;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 /**
@@ -31,15 +27,10 @@ import org.dominokit.domino.ui.utils.BaseDominoElement;
  *
  * @see BaseDominoElement
  */
-public class ButtonsGroup extends BaseDominoElement<HTMLElement, ButtonsGroup> {
-
-  private DivElement groupElement;
+public class ButtonsGroup extends BaseButtonsGroup<ButtonsGroup, IsButton<?>> {
 
   /** Creates an empty ButtonsGroup */
-  public ButtonsGroup() {
-    groupElement = div().addCss(dui_button_group).setAttribute("role", "group");
-    init(this);
-  }
+  public ButtonsGroup() {}
 
   /**
    * Creates a ButtonsGroup that holds the provided buttons
@@ -48,8 +39,7 @@ public class ButtonsGroup extends BaseDominoElement<HTMLElement, ButtonsGroup> {
    *     appended to the ButtonsGroup
    */
   public ButtonsGroup(IsButton<?>... buttons) {
-    this();
-    appendChild(buttons);
+    super(buttons);
   }
 
   /**
@@ -70,55 +60,5 @@ public class ButtonsGroup extends BaseDominoElement<HTMLElement, ButtonsGroup> {
    */
   public static ButtonsGroup create(IsButton<?>... buttons) {
     return new ButtonsGroup(buttons);
-  }
-
-  /**
-   * Appends the provided button to the ButtonsGroup
-   *
-   * @param buttons a {@link org.dominokit.domino.ui.button.IsButton} to be appended
-   * @return same ButtonsGroup instance
-   */
-  public ButtonsGroup appendChild(IsButton<?>... buttons) {
-    Arrays.stream(buttons).forEach(btn -> appendChild(btn.asButton()));
-    return this;
-  }
-
-  /** @dominokit-site-ignore {@inheritDoc} */
-  @Override
-  public HTMLElement element() {
-    return groupElement.element();
-  }
-
-  /**
-   * Aligns the buttons within this ButtonsGroup instance vertically if the provided flag is true,
-   * otherwise revert to default alignment -Horizontally-.
-   *
-   * @param vertical a boolean, <b>true</b> to align the buttons vertically, <b>false</b> revert to
-   *     horizontal default alignment
-   * @return same ButtonsGroup instance
-   */
-  public ButtonsGroup setVertical(boolean vertical) {
-    addCss(BooleanCssClass.of(dui_vertical, vertical));
-    return this;
-  }
-
-  /**
-   * Shortcut method for <b>setVertical(true)</b>
-   *
-   * @return same ButtonsGroup instance
-   */
-  public ButtonsGroup vertical() {
-    return addCss(dui_vertical);
-  }
-
-  /**
-   * Remove the vertical alignment and switch to the horizontal default alignment this is same as
-   * calling <b>setVertical(false)</b>
-   *
-   * @return same ButtonsGroup instance
-   */
-  public ButtonsGroup horizontal() {
-    dui_vertical.remove(this.element());
-    return this;
   }
 }
