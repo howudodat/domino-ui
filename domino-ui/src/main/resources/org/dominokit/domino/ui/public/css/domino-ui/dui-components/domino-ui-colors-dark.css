@@ -414,8 +414,10 @@
     --dui-clickable-box-shadow: 0 0 0 0 rgb(255 255 255 / 40%), 0 0 0 5px rgb(255 255 255 / 8%);
     --dui-datatable-even-bg-color: var(--dui-accent-d-4);
     --dui-datatable-odd-bg-color: var(--dui-clr-dominant);
-    --dui-datatable-row-selected-bg-color: var(--dui-accent-d-2);
+    --dui-datatable-row-selected-bg-color: var(--dui-accent-d-1);
     --dui-datatable-row-hover-bg-color: var(--dui-accent-d-3);
+    --dui-datatable-row-stripped-selected-bg-color: var(--dui-accent-d-1);
+    --dui-datatable-row-selected-hover-bg-color: var(--dui-accent-d-2);
     --dui-datatable-header-hover-bg-color: var(--dui-accent-d-3);
     --dui-datatable-border-color: var(--dui-accent-d-4);
     --dui-datatable-column-resizer-color: var(--dui-accent-d-2);

@@ -48,6 +48,12 @@
     background-color: var(--dui-datatable-row-hover-bg-color);
 }
 
+.dui-datatable-hover tbody .dui-datatable-row.dui-datatable-row-selected:not(.dui-datatable-row-editable):hover,
+.dui-datatable-hover tbody .dui-datatable-row.dui-datatable-row-selected:nth-child(odd):not(.dui-datatable-row-editable):hover,
+.dui-datatable-hover tbody .dui-datatable-row.dui-datatable-row-selected:nth-child(even):not(.dui-datatable-row-editable):hover {
+    background-color: var(--dui-datatable-row-selected-hover-bg-color);
+}
+
 .dui-datatable-row.dui-context-menu-target-open:not(.dui-datatable-row-editable),
 .dui-datatable-row.dui-context-menu-target-open:nth-child(odd):not(.dui-datatable-row-editable),
 .dui-datatable-row.dui-context-menu-target-open:nth-child(even):not(.dui-datatable-row-editable) {
