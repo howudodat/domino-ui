@@ -23,6 +23,7 @@ import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLInputElement;
 import java.util.Date;
 import java.util.Objects;
+import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.datepicker.*;
 import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.i18n.CalendarLabels;
@@ -697,5 +698,10 @@ public class DateBox extends TextInputFormField<DateBox, HTMLInputElement, Date>
   public DateBox withPopover(ChildHandler<DateBox, Popover> handler) {
     handler.apply(this, this.popover);
     return this;
+  }
+
+  @Override
+  public Collapsible getCollapsible() {
+    return this.popover.getCollapsible();
   }
 }

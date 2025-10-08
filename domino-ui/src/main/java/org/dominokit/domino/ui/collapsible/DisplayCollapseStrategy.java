@@ -39,8 +39,8 @@ public class DisplayCollapseStrategy implements CollapseStrategy, CollapsibleSty
   /** @dominokit-site-ignore {@inheritDoc} */
   @Override
   public void expand(Element element) {
-    elements.elementOf(element).removeCss(dui_hidden).removeAttribute(DUI_COLLAPSED);
     this.handlers.onBeforeExpand().run();
+    elements.elementOf(element).removeCss(dui_hidden).removeAttribute(DUI_COLLAPSED);
     this.handlers.onExpandCompleted().run();
   }
 

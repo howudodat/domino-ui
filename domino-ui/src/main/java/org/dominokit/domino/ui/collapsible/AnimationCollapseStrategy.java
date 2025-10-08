@@ -17,7 +17,6 @@ package org.dominokit.domino.ui.collapsible;
 
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.style.DisplayCss.dui_hidden;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 import elemental2.dom.Element;
@@ -95,6 +94,7 @@ public class AnimationCollapseStrategy implements CollapseStrategy {
   @Override
   public void expand(Element element) {
     if (!showing) {
+      handlers.onBeforeExpand().run();
       elements.elementOf(element).removeCss(this.options.getShowDuration().getStyle());
       elements.elementOf(element).removeCss(this.options.getHideDuration().getStyle());
       showAnimation =
@@ -127,7 +127,8 @@ public class AnimationCollapseStrategy implements CollapseStrategy {
   /** @dominokit-site-ignore {@inheritDoc} */
   @Override
   public void collapse(Element element) {
-    Optional.ofNullable(showAnimation).ifPresent(animation -> animation.stop(false));
+    Optional.ofNullable(showAnimation)
+        .ifPresent(animation -> animation.stop(animation.isCompleted()));
     if (!hiding) {
       elements.elementOf(element).removeCss(this.options.getShowDuration().getStyle());
       elements.elementOf(element).removeCss(this.options.getHideDuration().getStyle());

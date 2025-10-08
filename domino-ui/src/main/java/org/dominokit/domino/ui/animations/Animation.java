@@ -15,7 +15,6 @@
  */
 package org.dominokit.domino.ui.animations;
 
-import static org.dominokit.domino.ui.utils.Domino.*;
 import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 import elemental2.dom.Element;
@@ -59,6 +58,7 @@ public class Animation {
   private StartHandler startHandler = DEFAULT_START_HANDLER;
   private EventListener stopListener;
   private double repeatCount = 1;
+  private boolean completed = false;
 
   /**
    * Creates a new Animation instance for the provided element.
@@ -196,6 +196,7 @@ public class Animation {
    * @return same instance
    */
   public Animation animate() {
+    this.completed = false;
     if (delay > 0) {
       new Timer() {
         @Override
@@ -267,6 +268,11 @@ public class Animation {
     if (!silent) {
       callback.onComplete(element.element());
     }
+    this.completed = true;
+  }
+
+  public boolean isCompleted() {
+    return completed;
   }
 
   /**
