@@ -82,4 +82,6 @@ public interface IsCalendar {
    * @return The calendar initialization configuration.
    */
   CalendarInitConfig getConfig();
+
+  Date getActiveSelection();
 }

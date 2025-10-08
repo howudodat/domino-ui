@@ -92,7 +92,7 @@ public class MonthsPicker extends BaseDominoElement<HTMLDivElement, MonthsPicker
                 .textContent(months[counter])
                 .addClickListener(
                     evt -> {
-                      Date calendarDate = calendar.getDate();
+                      Date calendarDate = calendar.getActiveSelection();
                       Date date = new Date(calendarDate.getTime());
                       date.setDate(1);
                       date.setMonth(month);

@@ -232,4 +232,8 @@ public class CalendarSelectors extends BaseDominoElement<HTMLDivElement, Calenda
   public void onUpdateCalendarView(Date date) {
     setDate(date);
   }
+
+  public Date getDate() {
+    return this.date;
+  }
 }

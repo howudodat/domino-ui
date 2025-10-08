@@ -293,6 +293,11 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     return this.date;
   }
 
+  @Override
+  public Date getActiveSelection() {
+    return selectors.getDate() != null ? selectors.getDate() : getDate();
+  }
+
   /**
    * Change the selected date.
    *
