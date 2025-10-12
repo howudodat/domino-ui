@@ -565,8 +565,8 @@ public class HeaderBarPlugin<T> implements DataTablePlugin<T> {
                                                     elements
                                                         .div()
                                                         .textContent(columnConfig.getTitle())))
-                                        .addSelectionHandler(
-                                            value ->
+                                        .addSelectionListener(
+                                            (source, selection) ->
                                                 columnConfig.toggleDisplay(
                                                     columnConfig.isHidden())));
                               }));

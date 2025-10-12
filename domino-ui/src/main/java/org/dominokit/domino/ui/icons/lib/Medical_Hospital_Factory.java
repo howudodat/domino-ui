@@ -42,6 +42,7 @@ public class Medical_Hospital_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.clipboard_pulse_medical_hospital());
     icons.add(() -> tagIcons.clipboard_pulse_outline_medical_hospital());
     icons.add(() -> tagIcons.diabetes_medical_hospital());
+    icons.add(() -> tagIcons.diaper_outline_medical_hospital());
     icons.add(() -> tagIcons.doctor_medical_hospital());
     icons.add(() -> tagIcons.ear_hearing_medical_hospital());
     icons.add(() -> tagIcons.ear_hearing_loop_medical_hospital());

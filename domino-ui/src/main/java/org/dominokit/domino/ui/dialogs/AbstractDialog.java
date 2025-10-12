@@ -442,19 +442,6 @@ public class AbstractDialog<T extends AbstractDialog<T>>
   }
 
   /**
-   * @dominokit-site-ignore
-   * @deprecated use {@link #addCss(org.dominokit.domino.ui.style.CssClass...)} with {@link
-   *     DialogType} or the styles from {@link DialogStyles} setType.
-   * @param type {@link org.dominokit.domino.ui.dialogs.DialogType}
-   * @return same Dialog instance
-   */
-  @Deprecated
-  public T setType(DialogType type) {
-    addCss(type);
-    return (T) this;
-  }
-
-  /**
    * Checks if the dialog is modal, i.e., if it blocks interactions with the rest of the page.
    *
    * @return {@code true} if the dialog is modal, {@code false} otherwise.

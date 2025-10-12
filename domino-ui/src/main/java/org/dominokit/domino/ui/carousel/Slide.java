@@ -319,15 +319,6 @@ public class Slide extends BaseDominoElement<HTMLDivElement, Slide> {
     return captionElement.get();
   }
 
-  /**
-   * @return The element of the image of this slide.
-   * @deprecated use {@link #getWrappedElement()}
-   */
-  @Deprecated
-  public DominoElement<Element> getImageElement() {
-    return elementOf(wrappedElement);
-  }
-
   /** @return The element wrapped by this slide. */
   public DominoElement<Element> getWrappedElement() {
     return elementOf(wrappedElement);

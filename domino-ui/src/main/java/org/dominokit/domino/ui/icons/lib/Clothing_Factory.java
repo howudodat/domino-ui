@@ -31,6 +31,7 @@ public class Clothing_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.bow_tie_clothing());
     icons.add(() -> tagIcons.chef_hat_clothing());
     icons.add(() -> tagIcons.coat_rack_clothing());
+    icons.add(() -> tagIcons.diaper_outline_clothing());
     icons.add(() -> tagIcons.face_mask_clothing());
     icons.add(() -> tagIcons.face_mask_outline_clothing());
     icons.add(() -> tagIcons.glasses_clothing());
@@ -53,6 +54,7 @@ public class Clothing_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.tshirt_crew_outline_clothing());
     icons.add(() -> tagIcons.tshirt_v_clothing());
     icons.add(() -> tagIcons.tshirt_v_outline_clothing());
+    icons.add(() -> tagIcons.underwear_outline_clothing());
     icons.add(() -> tagIcons.wizard_hat_clothing());
   }
 

@@ -679,6 +679,10 @@ public interface Date_Time {
     return MdiIcon.create("mdi-home-clock-outline");
   }
 
+  default MdiIcon hours_12_date_time() {
+    return MdiIcon.create("mdi-hours-12");
+  }
+
   default MdiIcon hours_24_date_time() {
     return MdiIcon.create("mdi-hours-24");
   }

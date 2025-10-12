@@ -435,6 +435,10 @@ public interface Video_Movie {
     return MdiIcon.create("mdi-video-stabilization");
   }
 
+  default MdiIcon video_standard_definition_video_movie() {
+    return MdiIcon.create("mdi-video-standard-definition");
+  }
+
   default MdiIcon video_switch_video_movie() {
     return MdiIcon.create("mdi-video-switch");
   }

@@ -99,6 +99,7 @@ public class Photography_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.image_multiple_outline_photography());
     icons.add(() -> tagIcons.image_refresh_photography());
     icons.add(() -> tagIcons.image_refresh_outline_photography());
+    icons.add(() -> tagIcons.image_remove_outline_photography());
     icons.add(() -> tagIcons.image_sync_photography());
     icons.add(() -> tagIcons.image_sync_outline_photography());
     icons.add(() -> tagIcons.multimedia_photography());

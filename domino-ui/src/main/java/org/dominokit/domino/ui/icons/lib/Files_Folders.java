@@ -1156,6 +1156,10 @@ public interface Files_Folders {
     return MdiIcon.create("mdi-text-box-search-outline");
   }
 
+  default MdiIcon upload_circle_outline_files_folders() {
+    return MdiIcon.create("mdi-upload-circle-outline");
+  }
+
   default MdiIcon zip_box_files_folders() {
     return MdiIcon.create("mdi-zip-box");
   }

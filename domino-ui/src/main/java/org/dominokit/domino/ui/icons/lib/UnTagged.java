@@ -555,6 +555,14 @@ public interface UnTagged {
     return MdiIcon.create("mdi-backup-restore");
   }
 
+  default MdiIcon bag_personal_plus() {
+    return MdiIcon.create("mdi-bag-personal-plus");
+  }
+
+  default MdiIcon bag_personal_plus_outline() {
+    return MdiIcon.create("mdi-bag-personal-plus-outline");
+  }
+
   default MdiIcon bag_personal_tag() {
     return MdiIcon.create("mdi-bag-personal-tag");
   }
@@ -779,6 +787,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-book-open-blank-variant");
   }
 
+  default MdiIcon book_open_blank_variant_outline() {
+    return MdiIcon.create("mdi-book-open-blank-variant-outline");
+  }
+
   default MdiIcon book_open_outline() {
     return MdiIcon.create("mdi-book-open-outline");
   }
@@ -793,6 +805,10 @@ public interface UnTagged {
 
   default MdiIcon book_open_variant() {
     return MdiIcon.create("mdi-book-open-variant");
+  }
+
+  default MdiIcon book_open_variant_outline() {
+    return MdiIcon.create("mdi-book-open-variant-outline");
   }
 
   default MdiIcon book_outline() {
@@ -1163,6 +1179,14 @@ public interface UnTagged {
     return MdiIcon.create("mdi-bullhorn-variant-outline");
   }
 
+  default MdiIcon bus_sign() {
+    return MdiIcon.create("mdi-bus-sign");
+  }
+
+  default MdiIcon bus_wrench() {
+    return MdiIcon.create("mdi-bus-wrench");
+  }
+
   default MdiIcon cable_data() {
     return MdiIcon.create("mdi-cable-data");
   }
@@ -1285,6 +1309,10 @@ public interface UnTagged {
 
   default MdiIcon charity() {
     return MdiIcon.create("mdi-charity");
+  }
+
+  default MdiIcon charity_search() {
+    return MdiIcon.create("mdi-charity-search");
   }
 
   default MdiIcon chat() {
@@ -2415,6 +2443,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-download-multiple");
   }
 
+  default MdiIcon download_multiple_outline() {
+    return MdiIcon.create("mdi-download-multiple-outline");
+  }
+
   default MdiIcon download_network() {
     return MdiIcon.create("mdi-download-network");
   }
@@ -2461,6 +2493,18 @@ public interface UnTagged {
 
   default MdiIcon drama_masks() {
     return MdiIcon.create("mdi-drama-masks");
+  }
+
+  default MdiIcon earth_arrow_down() {
+    return MdiIcon.create("mdi-earth-arrow-down");
+  }
+
+  default MdiIcon earth_arrow_left() {
+    return MdiIcon.create("mdi-earth-arrow-left");
+  }
+
+  default MdiIcon earth_arrow_up() {
+    return MdiIcon.create("mdi-earth-arrow-up");
   }
 
   default MdiIcon eject() {
@@ -2639,6 +2683,30 @@ public interface UnTagged {
     return MdiIcon.create("mdi-email-variant");
   }
 
+  default MdiIcon emoticon_minus() {
+    return MdiIcon.create("mdi-emoticon-minus");
+  }
+
+  default MdiIcon emoticon_minus_outline() {
+    return MdiIcon.create("mdi-emoticon-minus-outline");
+  }
+
+  default MdiIcon emoticon_plus() {
+    return MdiIcon.create("mdi-emoticon-plus");
+  }
+
+  default MdiIcon emoticon_plus_outline() {
+    return MdiIcon.create("mdi-emoticon-plus-outline");
+  }
+
+  default MdiIcon emoticon_remove() {
+    return MdiIcon.create("mdi-emoticon-remove");
+  }
+
+  default MdiIcon emoticon_remove_outline() {
+    return MdiIcon.create("mdi-emoticon-remove-outline");
+  }
+
   default MdiIcon eraser() {
     return MdiIcon.create("mdi-eraser");
   }
@@ -2665,6 +2733,10 @@ public interface UnTagged {
 
   default MdiIcon ethernet_cable_off() {
     return MdiIcon.create("mdi-ethernet-cable-off");
+  }
+
+  default MdiIcon ethernet_off() {
+    return MdiIcon.create("mdi-ethernet-off");
   }
 
   default MdiIcon exclamation_thick() {
@@ -2729,6 +2801,10 @@ public interface UnTagged {
 
   default MdiIcon eye_circle_outline() {
     return MdiIcon.create("mdi-eye-circle-outline");
+  }
+
+  default MdiIcon eye_closed() {
+    return MdiIcon.create("mdi-eye-closed");
   }
 
   default MdiIcon eye_lock() {
@@ -2945,6 +3021,10 @@ public interface UnTagged {
 
   default MdiIcon fire_hydrant_off() {
     return MdiIcon.create("mdi-fire-hydrant-off");
+  }
+
+  default MdiIcon fire_station() {
+    return MdiIcon.create("mdi-fire-station");
   }
 
   default MdiIcon firewire() {
@@ -3169,6 +3249,14 @@ public interface UnTagged {
 
   default MdiIcon gas_cylinder() {
     return MdiIcon.create("mdi-gas-cylinder");
+  }
+
+  default MdiIcon gas_station_in_use() {
+    return MdiIcon.create("mdi-gas-station-in-use");
+  }
+
+  default MdiIcon gas_station_in_use_outline() {
+    return MdiIcon.create("mdi-gas-station-in-use-outline");
   }
 
   default MdiIcon gas_station_off() {
@@ -3672,6 +3760,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-heart-remove-outline");
   }
 
+  default MdiIcon heart_search() {
+    return MdiIcon.create("mdi-heart-search");
+  }
+
   default MdiIcon help() {
     return MdiIcon.create("mdi-help");
   }
@@ -3764,6 +3856,14 @@ public interface UnTagged {
     return MdiIcon.create("mdi-hot-tub");
   }
 
+  default MdiIcon hub() {
+    return MdiIcon.create("mdi-hub");
+  }
+
+  default MdiIcon hub_outline() {
+    return MdiIcon.create("mdi-hub-outline");
+  }
+
   default MdiIcon hubspot() {
     return MdiIcon.create("mdi-hubspot");
   }
@@ -3842,10 +3942,6 @@ public interface UnTagged {
 
   default MdiIcon image_remove() {
     return MdiIcon.create("mdi-image-remove");
-  }
-
-  default MdiIcon image_remove_outline() {
-    return MdiIcon.create("mdi-image-remove-outline");
   }
 
   default MdiIcon image_search() {
@@ -3952,6 +4048,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-information-variant");
   }
 
+  default MdiIcon invoice_arrow_left_outline() {
+    return MdiIcon.create("mdi-invoice-arrow-left-outline");
+  }
+
   default MdiIcon ip() {
     return MdiIcon.create("mdi-ip");
   }
@@ -3970,6 +4070,10 @@ public interface UnTagged {
 
   default MdiIcon ipod() {
     return MdiIcon.create("mdi-ipod");
+  }
+
+  default MdiIcon island_variant() {
+    return MdiIcon.create("mdi-island-variant");
   }
 
   default MdiIcon kettle_pour_over() {
@@ -4260,6 +4364,18 @@ public interface UnTagged {
     return MdiIcon.create("mdi-link-box-variant-outline");
   }
 
+  default MdiIcon link_circle() {
+    return MdiIcon.create("mdi-link-circle");
+  }
+
+  default MdiIcon link_circle_outline() {
+    return MdiIcon.create("mdi-link-circle-outline");
+  }
+
+  default MdiIcon link_edit() {
+    return MdiIcon.create("mdi-link-edit");
+  }
+
   default MdiIcon link_off() {
     return MdiIcon.create("mdi-link-off");
   }
@@ -4450,6 +4566,10 @@ public interface UnTagged {
 
   default MdiIcon memory() {
     return MdiIcon.create("mdi-memory");
+  }
+
+  default MdiIcon memory_arrow_down() {
+    return MdiIcon.create("mdi-memory-arrow-down");
   }
 
   default MdiIcon menu() {
@@ -4720,6 +4840,14 @@ public interface UnTagged {
     return MdiIcon.create("mdi-mouse-bluetooth");
   }
 
+  default MdiIcon mouse_left_click() {
+    return MdiIcon.create("mdi-mouse-left-click");
+  }
+
+  default MdiIcon mouse_left_click_outline() {
+    return MdiIcon.create("mdi-mouse-left-click-outline");
+  }
+
   default MdiIcon mouse_move_down() {
     return MdiIcon.create("mdi-mouse-move-down");
   }
@@ -4734,6 +4862,22 @@ public interface UnTagged {
 
   default MdiIcon mouse_off() {
     return MdiIcon.create("mdi-mouse-off");
+  }
+
+  default MdiIcon mouse_outline() {
+    return MdiIcon.create("mdi-mouse-outline");
+  }
+
+  default MdiIcon mouse_right_click() {
+    return MdiIcon.create("mdi-mouse-right-click");
+  }
+
+  default MdiIcon mouse_right_click_outline() {
+    return MdiIcon.create("mdi-mouse-right-click-outline");
+  }
+
+  default MdiIcon mouse_scroll_wheel() {
+    return MdiIcon.create("mdi-mouse-scroll-wheel");
   }
 
   default MdiIcon mouse_variant() {
@@ -5260,8 +5404,32 @@ public interface UnTagged {
     return MdiIcon.create("mdi-passport");
   }
 
+  default MdiIcon passport_alert() {
+    return MdiIcon.create("mdi-passport-alert");
+  }
+
   default MdiIcon passport_biometric() {
     return MdiIcon.create("mdi-passport-biometric");
+  }
+
+  default MdiIcon passport_cancel() {
+    return MdiIcon.create("mdi-passport-cancel");
+  }
+
+  default MdiIcon passport_check() {
+    return MdiIcon.create("mdi-passport-check");
+  }
+
+  default MdiIcon passport_minus() {
+    return MdiIcon.create("mdi-passport-minus");
+  }
+
+  default MdiIcon passport_plus() {
+    return MdiIcon.create("mdi-passport-plus");
+  }
+
+  default MdiIcon passport_remove() {
+    return MdiIcon.create("mdi-passport-remove");
   }
 
   default MdiIcon pause_circle() {
@@ -5504,6 +5672,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-plus-outline");
   }
 
+  default MdiIcon pocket() {
+    return MdiIcon.create("mdi-pocket");
+  }
+
   default MdiIcon podcast() {
     return MdiIcon.create("mdi-podcast");
   }
@@ -5632,6 +5804,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-progress-star-four-points");
   }
 
+  default MdiIcon progress_tag() {
+    return MdiIcon.create("mdi-progress-tag");
+  }
+
   default MdiIcon progress_upload() {
     return MdiIcon.create("mdi-progress-upload");
   }
@@ -5700,6 +5876,11 @@ public interface UnTagged {
     return MdiIcon.create("mdi-quality-medium");
   }
 
+  default MdiIcon queue_first_in_last_out() {
+    return MdiIcon.create("mdi-queue-first-in-last-out");
+  }
+
+  @Deprecated
   default MdiIcon quora() {
     return MdiIcon.create("mdi-quora");
   }
@@ -5752,10 +5933,6 @@ public interface UnTagged {
     return MdiIcon.create("mdi-read");
   }
 
-  default MdiIcon receipt() {
-    return MdiIcon.create("mdi-receipt");
-  }
-
   default MdiIcon receipt_clock() {
     return MdiIcon.create("mdi-receipt-clock");
   }
@@ -5764,96 +5941,12 @@ public interface UnTagged {
     return MdiIcon.create("mdi-receipt-clock-outline");
   }
 
-  default MdiIcon receipt_outline() {
-    return MdiIcon.create("mdi-receipt-outline");
-  }
-
   default MdiIcon receipt_send() {
     return MdiIcon.create("mdi-receipt-send");
   }
 
   default MdiIcon receipt_send_outline() {
     return MdiIcon.create("mdi-receipt-send-outline");
-  }
-
-  default MdiIcon receipt_text() {
-    return MdiIcon.create("mdi-receipt-text");
-  }
-
-  default MdiIcon receipt_text_arrow_left() {
-    return MdiIcon.create("mdi-receipt-text-arrow-left");
-  }
-
-  default MdiIcon receipt_text_arrow_left_outline() {
-    return MdiIcon.create("mdi-receipt-text-arrow-left-outline");
-  }
-
-  default MdiIcon receipt_text_arrow_right() {
-    return MdiIcon.create("mdi-receipt-text-arrow-right");
-  }
-
-  default MdiIcon receipt_text_arrow_right_outline() {
-    return MdiIcon.create("mdi-receipt-text-arrow-right-outline");
-  }
-
-  default MdiIcon receipt_text_check() {
-    return MdiIcon.create("mdi-receipt-text-check");
-  }
-
-  default MdiIcon receipt_text_check_outline() {
-    return MdiIcon.create("mdi-receipt-text-check-outline");
-  }
-
-  default MdiIcon receipt_text_clock() {
-    return MdiIcon.create("mdi-receipt-text-clock");
-  }
-
-  default MdiIcon receipt_text_clock_outline() {
-    return MdiIcon.create("mdi-receipt-text-clock-outline");
-  }
-
-  default MdiIcon receipt_text_edit() {
-    return MdiIcon.create("mdi-receipt-text-edit");
-  }
-
-  default MdiIcon receipt_text_edit_outline() {
-    return MdiIcon.create("mdi-receipt-text-edit-outline");
-  }
-
-  default MdiIcon receipt_text_minus() {
-    return MdiIcon.create("mdi-receipt-text-minus");
-  }
-
-  default MdiIcon receipt_text_minus_outline() {
-    return MdiIcon.create("mdi-receipt-text-minus-outline");
-  }
-
-  default MdiIcon receipt_text_outline() {
-    return MdiIcon.create("mdi-receipt-text-outline");
-  }
-
-  default MdiIcon receipt_text_plus() {
-    return MdiIcon.create("mdi-receipt-text-plus");
-  }
-
-  default MdiIcon receipt_text_plus_outline() {
-    return MdiIcon.create("mdi-receipt-text-plus-outline");
-  }
-
-  default MdiIcon receipt_text_remove() {
-    return MdiIcon.create("mdi-receipt-text-remove");
-  }
-
-  default MdiIcon receipt_text_remove_outline() {
-    return MdiIcon.create("mdi-receipt-text-remove-outline");
-  }
-
-  default MdiIcon receipt_text_send() {
-    return MdiIcon.create("mdi-receipt-text-send");
-  }
-
-  default MdiIcon receipt_text_send_outline() {
-    return MdiIcon.create("mdi-receipt-text-send-outline");
   }
 
   default MdiIcon record_circle() {
@@ -5914,22 +6007,6 @@ public interface UnTagged {
 
   default MdiIcon remote_off() {
     return MdiIcon.create("mdi-remote-off");
-  }
-
-  default MdiIcon rename() {
-    return MdiIcon.create("mdi-rename");
-  }
-
-  default MdiIcon rename_box() {
-    return MdiIcon.create("mdi-rename-box");
-  }
-
-  default MdiIcon rename_box_outline() {
-    return MdiIcon.create("mdi-rename-box-outline");
-  }
-
-  default MdiIcon rename_outline() {
-    return MdiIcon.create("mdi-rename-outline");
   }
 
   default MdiIcon reorder_horizontal() {
@@ -6456,6 +6533,10 @@ public interface UnTagged {
     return MdiIcon.create("mdi-server-minus");
   }
 
+  default MdiIcon server_minus_outline() {
+    return MdiIcon.create("mdi-server-minus-outline");
+  }
+
   default MdiIcon server_network() {
     return MdiIcon.create("mdi-server-network");
   }
@@ -6464,12 +6545,24 @@ public interface UnTagged {
     return MdiIcon.create("mdi-server-network-off");
   }
 
+  default MdiIcon server_network_outline() {
+    return MdiIcon.create("mdi-server-network-outline");
+  }
+
   default MdiIcon server_off() {
     return MdiIcon.create("mdi-server-off");
   }
 
+  default MdiIcon server_outline() {
+    return MdiIcon.create("mdi-server-outline");
+  }
+
   default MdiIcon server_plus() {
     return MdiIcon.create("mdi-server-plus");
+  }
+
+  default MdiIcon server_plus_outline() {
+    return MdiIcon.create("mdi-server-plus-outline");
   }
 
   default MdiIcon server_remove() {
@@ -7268,6 +7361,14 @@ public interface UnTagged {
     return MdiIcon.create("mdi-tag-check-outline");
   }
 
+  default MdiIcon tag_edit() {
+    return MdiIcon.create("mdi-tag-edit");
+  }
+
+  default MdiIcon tag_edit_outline() {
+    return MdiIcon.create("mdi-tag-edit-outline");
+  }
+
   default MdiIcon tag_faces() {
     return MdiIcon.create("mdi-tag-faces");
   }
@@ -7608,16 +7709,16 @@ public interface UnTagged {
     return MdiIcon.create("mdi-trademark");
   }
 
+  default MdiIcon train_bus() {
+    return MdiIcon.create("mdi-train-bus");
+  }
+
   default MdiIcon transcribe() {
     return MdiIcon.create("mdi-transcribe");
   }
 
   default MdiIcon transcribe_close() {
     return MdiIcon.create("mdi-transcribe-close");
-  }
-
-  default MdiIcon transfer() {
-    return MdiIcon.create("mdi-transfer");
   }
 
   default MdiIcon transition() {
@@ -7732,8 +7833,24 @@ public interface UnTagged {
     return MdiIcon.create("mdi-upload");
   }
 
+  default MdiIcon upload_box() {
+    return MdiIcon.create("mdi-upload-box");
+  }
+
+  default MdiIcon upload_box_outline() {
+    return MdiIcon.create("mdi-upload-box-outline");
+  }
+
+  default MdiIcon upload_circle() {
+    return MdiIcon.create("mdi-upload-circle");
+  }
+
   default MdiIcon upload_multiple() {
     return MdiIcon.create("mdi-upload-multiple");
+  }
+
+  default MdiIcon upload_multiple_outline() {
+    return MdiIcon.create("mdi-upload-multiple-outline");
   }
 
   default MdiIcon upload_network() {
@@ -7758,6 +7875,10 @@ public interface UnTagged {
 
   default MdiIcon usb() {
     return MdiIcon.create("mdi-usb");
+  }
+
+  default MdiIcon usb_c_port() {
+    return MdiIcon.create("mdi-usb-c-port");
   }
 
   default MdiIcon usb_flash_drive() {
@@ -7894,6 +8015,18 @@ public interface UnTagged {
 
   default MdiIcon watermark() {
     return MdiIcon.create("mdi-watermark");
+  }
+
+  default MdiIcon wave_arrow_down() {
+    return MdiIcon.create("mdi-wave-arrow-down");
+  }
+
+  default MdiIcon wave_arrow_up() {
+    return MdiIcon.create("mdi-wave-arrow-up");
+  }
+
+  default MdiIcon wave_undercurrent() {
+    return MdiIcon.create("mdi-wave-undercurrent");
   }
 
   default MdiIcon web_cancel() {

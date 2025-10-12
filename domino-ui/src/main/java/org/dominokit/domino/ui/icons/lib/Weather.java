@@ -551,6 +551,18 @@ public interface Weather {
     return MdiIcon.create("mdi-weather-lightning-rainy");
   }
 
+  default MdiIcon weather_moonset_weather() {
+    return MdiIcon.create("mdi-weather-moonset");
+  }
+
+  default MdiIcon weather_moonset_down_weather() {
+    return MdiIcon.create("mdi-weather-moonset-down");
+  }
+
+  default MdiIcon weather_moonset_up_weather() {
+    return MdiIcon.create("mdi-weather-moonset-up");
+  }
+
   default MdiIcon weather_night_weather() {
     return MdiIcon.create("mdi-weather-night");
   }

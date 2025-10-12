@@ -161,12 +161,6 @@ public abstract class TreeRoot<V, N extends TreeNode<V, N, S>, C extends TreeRoo
     return (C) this;
   }
 
-  /** @deprecated use {@link #setNodeIconSupplier(NodeIconSupplier)} */
-  @Deprecated
-  public C setTreeItemIconSupplier(NodeIconSupplier<V, N, S> iconSupplier) {
-    return setNodeIconSupplier(iconSupplier);
-  }
-
   /**
    * Gets the custom icon supplier set for this tree. The icon supplier provides icons for each tree
    * item based on its content.

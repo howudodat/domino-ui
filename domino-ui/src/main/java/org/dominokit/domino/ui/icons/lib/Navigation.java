@@ -416,6 +416,10 @@ public interface Navigation {
     return MdiIcon.create("mdi-math-compass");
   }
 
+  default MdiIcon menu_close_navigation() {
+    return MdiIcon.create("mdi-menu-close");
+  }
+
   default MdiIcon navigation_navigation() {
     return MdiIcon.create("mdi-navigation");
   }

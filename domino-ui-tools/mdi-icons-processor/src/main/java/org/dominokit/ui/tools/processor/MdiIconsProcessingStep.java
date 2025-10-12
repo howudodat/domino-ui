@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 /** MdiIconsProcessingStep class. */
 public class MdiIconsProcessingStep {
 
-  private static final String MDI_VERSION = "v7.2.96";
+  private static final String MDI_VERSION = "v7.4.47";
   private static final Logger LOGGER = LoggerFactory.getLogger(MdiIconsProcessingStep.class);
   /** Constant <code>ICONS_ROOT_PACKAGE="org.dominokit.domino.ui.icons"</code> */
   public static final String ICONS_ROOT_PACKAGE = "org.dominokit.domino.ui.icons";

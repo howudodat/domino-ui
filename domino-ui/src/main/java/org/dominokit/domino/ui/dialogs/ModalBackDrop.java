@@ -67,7 +67,7 @@ public class ModalBackDrop extends BaseDominoElement<HTMLDivElement, ModalBackDr
               }
             })
         .addEventListener(
-            EventType.keypress,
+            EventType.keydown,
             event -> {
               if (ModalBackDrop.INSTANCE.isEqualNode(Js.uncheckedCast(event.target))) {
                 closeCurrentOpen();

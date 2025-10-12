@@ -132,6 +132,7 @@ public class Video_Movie_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.video_plus_video_movie());
     icons.add(() -> tagIcons.video_plus_outline_video_movie());
     icons.add(() -> tagIcons.video_stabilization_video_movie());
+    icons.add(() -> tagIcons.video_standard_definition_video_movie());
     icons.add(() -> tagIcons.video_switch_video_movie());
     icons.add(() -> tagIcons.video_switch_outline_video_movie());
     icons.add(() -> tagIcons.video_vintage_video_movie());

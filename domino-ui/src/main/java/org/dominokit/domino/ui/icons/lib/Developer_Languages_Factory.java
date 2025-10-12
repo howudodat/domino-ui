@@ -50,6 +50,10 @@ public class Developer_Languages_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.bulma_developer_languages());
     icons.add(() -> tagIcons.cloud_braces_developer_languages());
     icons.add(() -> tagIcons.code_array_developer_languages());
+    icons.add(() -> tagIcons.code_block_braces_developer_languages());
+    icons.add(() -> tagIcons.code_block_brackets_developer_languages());
+    icons.add(() -> tagIcons.code_block_parentheses_developer_languages());
+    icons.add(() -> tagIcons.code_block_tags_developer_languages());
     icons.add(() -> tagIcons.code_braces_developer_languages());
     icons.add(() -> tagIcons.code_braces_box_developer_languages());
     icons.add(() -> tagIcons.code_brackets_developer_languages());

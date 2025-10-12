@@ -22,6 +22,7 @@ import elemental2.dom.DomGlobal;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.dominokit.domino.ui.button.group.BaseButtonsGroup;
@@ -93,20 +94,20 @@ public class ToggleButtonsGroup extends BaseButtonsGroup<ToggleButtonsGroup, Tog
         triggerChangeListeners(oldValue, newValue);
       } else {
         DomGlobal.console.info("Only multiple toggle is allowed for this group");
-        getButtons().stream()
-            .filter(ToggleButton::isToggled)
-            .filter(button -> !button.equals(toggleItem))
-            .findFirst()
-            .ifPresentOrElse(
-                toggleButton -> {
-                  toggleButton.updateToggle(false, false);
-                  triggerChangeListeners(
-                      new HashSet<>(Collections.singleton(toggleButton)),
-                      new HashSet<>(Collections.singleton(toggleItem)));
-                },
-                () ->
-                    triggerChangeListeners(
-                        new HashSet<>(), new HashSet<>(Collections.singleton(toggleItem))));
+        Optional<ToggleButton> first =
+            getButtons().stream()
+                .filter(ToggleButton::isToggled)
+                .filter(button -> !button.equals(toggleItem))
+                .findFirst();
+        if (first.isPresent()) {
+          ToggleButton toggleButton = first.get();
+          toggleButton.updateToggle(false, false);
+          triggerChangeListeners(
+              new HashSet<>(Collections.singleton(toggleButton)),
+              new HashSet<>(Collections.singleton(toggleItem)));
+        } else {
+          triggerChangeListeners(new HashSet<>(), new HashSet<>(Collections.singleton(toggleItem)));
+        }
       }
     }
   }

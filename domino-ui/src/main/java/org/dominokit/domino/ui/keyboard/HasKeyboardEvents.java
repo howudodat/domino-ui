@@ -54,29 +54,6 @@ public interface HasKeyboardEvents<T> {
   T stopOnKeyUp();
 
   /**
-   * Registers an event listener to be called when a key is pressed and held down.
-   *
-   * @param onKeyPress The {@link KeyEventsConsumer} to call when a key is pressed and held down.
-   * @return The instance of type {@code T} for method chaining.
-   * @deprecated use keydown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated
-  T onKeyPress(KeyEventsConsumer onKeyPress);
-
-  /**
-   * Stops listening for key press and hold events.
-   *
-   * @return The instance of type {@code T} for method chaining.
-   * @deprecated use keydown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated
-  T stopOnKeyPress();
-
-  /**
    * Registers an event listener to be called when an input is applied.
    *
    * @param onInput The {@link KeyEventsConsumer} to call when an input is applied.

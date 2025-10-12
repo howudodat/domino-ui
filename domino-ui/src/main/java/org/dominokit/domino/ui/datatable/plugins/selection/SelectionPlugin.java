@@ -335,7 +335,7 @@ public class SelectionPlugin<T> implements DataTablePlugin<T> {
           }
         });
 
-    dataTable.addSelectionDeselectionListener(
+    dataTable.addSelectionChangeListener(
         (source, selectedRows) -> {
           updateHeaderCheckBox(selectedRows);
         });

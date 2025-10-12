@@ -193,6 +193,7 @@ public class Date_Time_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.history_date_time());
     icons.add(() -> tagIcons.home_clock_date_time());
     icons.add(() -> tagIcons.home_clock_outline_date_time());
+    icons.add(() -> tagIcons.hours_12_date_time());
     icons.add(() -> tagIcons.hours_24_date_time());
     icons.add(() -> tagIcons.lock_clock_date_time());
     icons.add(() -> tagIcons.map_clock_date_time());

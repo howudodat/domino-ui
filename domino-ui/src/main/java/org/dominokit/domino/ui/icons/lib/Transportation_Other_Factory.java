@@ -50,6 +50,8 @@ public class Transportation_Other_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.escalator_transportation_other());
     icons.add(() -> tagIcons.escalator_down_transportation_other());
     icons.add(() -> tagIcons.escalator_up_transportation_other());
+    icons.add(() -> tagIcons.excavator_transportation_other());
+    icons.add(() -> tagIcons.generator_mobile_transportation_other());
     icons.add(() -> tagIcons.golf_cart_transportation_other());
     icons.add(() -> tagIcons.gondola_transportation_other());
     icons.add(() -> tagIcons.horse_transportation_other());
@@ -104,6 +106,8 @@ public class Transportation_Other_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.transit_detour_transportation_other());
     icons.add(() -> tagIcons.transit_skip_transportation_other());
     icons.add(() -> tagIcons.transit_transfer_transportation_other());
+    icons.add(() -> tagIcons.truck_off_road_transportation_other());
+    icons.add(() -> tagIcons.truck_off_road_off_transportation_other());
     icons.add(() -> tagIcons.tunnel_transportation_other());
     icons.add(() -> tagIcons.tunnel_outline_transportation_other());
     icons.add(() -> tagIcons.unicycle_transportation_other());

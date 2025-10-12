@@ -2996,39 +2996,6 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   }
 
   /**
-   * Elevates this element to the specified elevation level.
-   *
-   * @param level The elevation level to apply.
-   * @return The modified DOM element.
-   * @deprecated use addCss(dui_elevation_xxx) instead
-   */
-  @Deprecated
-  public T elevate(int level) {
-    return elevate(Elevation.of(level));
-  }
-
-  /**
-   * Elevates this element using the specified elevation style.
-   *
-   * @param elevation The elevation style to apply.
-   * @return The modified DOM element.
-   * @deprecated use addCss(dui_elevation_xxx) instead
-   */
-  @Deprecated
-  @SuppressWarnings("unchecked")
-  public T elevate(Elevation elevation) {
-    if (nonNull(this.elevation)) {
-      removeCss(this.elevation.getStyle());
-    } else {
-      Elevation.removeFrom(element());
-    }
-
-    this.elevation = elevation;
-    addCss(this.elevation.getStyle());
-    return (T) this;
-  }
-
-  /**
    * Adds a collapse listener to this element.
    *
    * @param handler The collapse handler to add.
@@ -4592,39 +4559,6 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   public T stopOnKeyUp() {
     keyEventsInitializer.apply();
     keyboardEvents.stopListenOnKeyUp();
-    return (T) this;
-  }
-
-  /**
-   * Registers an event handler to be executed when a key is pressed and released.
-   *
-   * @param onKeyPress The event handler for key press events.
-   * @return The modified DOM element.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   * @deprecated use keydown instead.
-   */
-  @Deprecated
-  @Override
-  public T onKeyPress(KeyEventsConsumer onKeyPress) {
-    keyEventsInitializer.apply();
-    keyboardEvents.listenOnKeyPress(onKeyPress);
-    return (T) this;
-  }
-
-  /**
-   * Stops listening to key press events.
-   *
-   * @return The modified DOM element.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   * @deprecated use keydown instead.
-   */
-  @Deprecated
-  @Override
-  public T stopOnKeyPress() {
-    keyEventsInitializer.apply();
-    keyboardEvents.stopListenOnKeyPress();
     return (T) this;
   }
 

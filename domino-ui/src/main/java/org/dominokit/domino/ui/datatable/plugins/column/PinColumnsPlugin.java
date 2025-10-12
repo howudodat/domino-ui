@@ -158,8 +158,8 @@ public class PinColumnsPlugin<T>
                         MenuItem.<String>create(config.getPinLeftText())
                             .withValue("left")
                             .appendChild(PrefixAddOn.of(Icons.dock_left()))
-                            .addSelectionHandler(
-                                value -> {
+                            .addSelectionListener(
+                                (source, selection) -> {
                                   setPinLeftColumn(column);
                                   applyPinnedColumns();
                                 }))
@@ -167,8 +167,8 @@ public class PinColumnsPlugin<T>
                         MenuItem.<String>create(config.getPinRightText())
                             .withValue("right")
                             .appendChild(PrefixAddOn.of(Icons.dock_right()))
-                            .addSelectionHandler(
-                                value -> {
+                            .addSelectionListener(
+                                (source, selection) -> {
                                   setPinRightColumn(column);
                                   applyPinnedColumns();
                                 }))
@@ -176,8 +176,8 @@ public class PinColumnsPlugin<T>
                         MenuItem.<String>create(config.getUnpinText())
                             .withValue("right")
                             .appendChild(PrefixAddOn.of(Icons.pin_off()))
-                            .addSelectionHandler(
-                                value -> {
+                            .addSelectionListener(
+                                (source, selection) -> {
                                   unpinColumn(column);
                                 }));
               }

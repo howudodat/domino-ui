@@ -312,6 +312,7 @@ public class Files_Folders_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.text_box_remove_outline_files_folders());
     icons.add(() -> tagIcons.text_box_search_files_folders());
     icons.add(() -> tagIcons.text_box_search_outline_files_folders());
+    icons.add(() -> tagIcons.upload_circle_outline_files_folders());
     icons.add(() -> tagIcons.zip_box_files_folders());
     icons.add(() -> tagIcons.zip_box_outline_files_folders());
   }

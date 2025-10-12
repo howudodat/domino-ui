@@ -303,6 +303,10 @@ public interface Photography {
     return MdiIcon.create("mdi-image-refresh-outline");
   }
 
+  default MdiIcon image_remove_outline_photography() {
+    return MdiIcon.create("mdi-image-remove-outline");
+  }
+
   default MdiIcon image_sync_photography() {
     return MdiIcon.create("mdi-image-sync");
   }

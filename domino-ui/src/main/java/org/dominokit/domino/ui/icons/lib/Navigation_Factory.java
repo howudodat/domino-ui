@@ -127,6 +127,7 @@ public class Navigation_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.map_search_navigation());
     icons.add(() -> tagIcons.map_search_outline_navigation());
     icons.add(() -> tagIcons.math_compass_navigation());
+    icons.add(() -> tagIcons.menu_close_navigation());
     icons.add(() -> tagIcons.navigation_navigation());
     icons.add(() -> tagIcons.navigation_outline_navigation());
     icons.add(() -> tagIcons.navigation_variant_navigation());

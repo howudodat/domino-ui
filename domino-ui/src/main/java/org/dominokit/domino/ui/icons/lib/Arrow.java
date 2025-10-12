@@ -887,6 +887,10 @@ public interface Arrow {
     return MdiIcon.create("mdi-swap-horizontal-circle-outline");
   }
 
+  default MdiIcon swap_horizontal_hidden_arrow() {
+    return MdiIcon.create("mdi-swap-horizontal-hidden");
+  }
+
   default MdiIcon swap_horizontal_variant_arrow() {
     return MdiIcon.create("mdi-swap-horizontal-variant");
   }
