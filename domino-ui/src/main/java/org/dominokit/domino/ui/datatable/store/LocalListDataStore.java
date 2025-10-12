@@ -53,7 +53,7 @@ public class LocalListDataStore<T>
 
   private final List<StoreDataChangeListener<T>> listeners = new ArrayList<>();
 
-  protected final List<T> original;
+  protected List<T> original;
   protected List<T> filtered;
   private HasPagination pagination;
   private SearchFilter<T> searchFilter;
@@ -95,15 +95,14 @@ public class LocalListDataStore<T>
       };
   private boolean filtersPaused = false;
   private Set<DataFilter<? super T>> dataFilters;
-  private FilterMode<Object> filterMode;
+  private FilterMode<T> filterMode;
 
   /**
    * Constructs a new {@code LocalListDataStore} with an empty original data list and filtered data
    * list.
    */
   public LocalListDataStore() {
-    this.original = new ArrayList<>();
-    this.filtered = new ArrayList<>();
+    initData(new ArrayList<>());
   }
 
   /**
@@ -112,6 +111,10 @@ public class LocalListDataStore<T>
    * @param data The list of data records.
    */
   public LocalListDataStore(List<T> data) {
+    initData(data);
+  }
+
+  protected final void initData(List<T> data) {
     this.original = data;
     this.filtered = new ArrayList<>(filterData(data));
   }
@@ -352,9 +355,7 @@ public class LocalListDataStore<T>
    */
   private void handleDraggedOutEvent(RecordDraggedOutEvent<T> event) {
     T rowToRemove = event.getDraggedOutRecord();
-
     dragDropRecordActions.onDraggedOut(rowToRemove);
-
     fireUpdate(true);
   }
 
@@ -723,20 +724,6 @@ public class LocalListDataStore<T>
   }
 
   /**
-   * Deprecated method to remove multiple records from the data store, updating both the original
-   * and filtered lists.
-   *
-   * @param records A collection of records to be removed.
-   * @deprecated Use {@link #removeRecords(Collection)} instead.
-   */
-  @Deprecated
-  public void removeRecord(Collection<T> records) {
-    original.removeAll(records);
-    filtered.removeAll(records);
-    load();
-  }
-
-  /**
    * Removes multiple records from the data store, updating both the original and filtered lists.
    *
    * @param records A collection of records to be removed.
@@ -804,6 +791,16 @@ public class LocalListDataStore<T>
   @Override
   public boolean isDataFiltersPaused() {
     return this.filtersPaused;
+  }
+
+  public LocalListDataStore<T> setFilterMode(FilterMode<T> filterMode) {
+    this.filterMode = filterMode;
+    return this;
+  }
+
+  @Override
+  public FilterMode<T> getFilterMode() {
+    return nonNull(filterMode) ? filterMode : FilterMode.denial();
   }
 
   public LocalListDataStore<T> setDataFiltersEnabled(boolean state) {
