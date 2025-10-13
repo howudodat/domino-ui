@@ -23,6 +23,7 @@ import elemental2.dom.HTMLDivElement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import org.dominokit.domino.ui.config.HasComponentConfig;
@@ -30,6 +31,7 @@ import org.dominokit.domino.ui.config.StepperConfig;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.style.BooleanCssClass;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
+import org.dominokit.domino.ui.utils.ChildHandler;
 
 /**
  * Represents a visual track within a stepper component.
@@ -76,6 +78,7 @@ public class StepperTrack extends BaseDominoElement<HTMLDivElement, StepperTrack
   public StepperTrack appendChild(StepTracker stepTracker) {
     root.appendChild(stepTracker);
     trackers.add(stepTracker);
+    stepTracker.bind(this);
     return this;
   }
 
@@ -93,6 +96,7 @@ public class StepperTrack extends BaseDominoElement<HTMLDivElement, StepperTrack
   public StepperTrack removeTracker(StepTracker stepTracker) {
     if (trackers.contains(stepTracker)) {
       stepTracker.remove();
+      stepTracker.unbind(this);
     }
     return this;
   }
@@ -415,6 +419,82 @@ public class StepperTrack extends BaseDominoElement<HTMLDivElement, StepperTrack
   }
 
   /**
+   * Applies the provided handler to the list of step trackers and returns the updated StepperTrack.
+   *
+   * @param handler the handler that processes the list of step trackers and the current
+   *     StepperTrack instance
+   * @return the updated StepperTrack instance after applying the handler
+   */
+  public StepperTrack withStepsTracks(ChildHandler<StepperTrack, List<StepTracker>> handler) {
+    handler.apply(this, new ArrayList<>(trackers));
+    return this;
+  }
+
+  /**
+   * Activates the {@link StepTracker} by its index.
+   *
+   * @param index the index of the {@link StepTracker} to activate.
+   * @param consumer callback to handle active step changes
+   * @return this {@link StepperTrack}
+   */
+  public StepperTrack activateByIndex(int index, StepTrackersConsumer consumer) {
+    if (index < 0 || index >= trackers.size()) {
+      throw new IllegalArgumentException("Invalid index provided: " + index);
+    }
+
+    if (index < this.currentTrackerIndex) {
+      int tempIndex = this.currentTrackerIndex;
+      while (tempIndex > index) {
+        prev(0, consumer);
+        tempIndex--;
+      }
+    }
+
+    if (index > this.currentTrackerIndex) {
+      int tempIndex = this.currentTrackerIndex;
+      while (tempIndex < index) {
+        next(0, consumer);
+        tempIndex++;
+      }
+    }
+
+    return this;
+  }
+
+  /**
+   * Retrieves the StepTracker object at the specified index from the list of trackers. If the index
+   * is invalid, an IllegalArgumentException is thrown.
+   *
+   * @param index the position in the trackers list from which to retrieve the StepTracker
+   * @return an Optional containing the StepTracker if found; otherwise an empty Optional
+   * @throws IllegalArgumentException if the index is out of bounds
+   */
+  public Optional<StepTracker> getStepTrackerByIndex(int index) {
+    if (index < 0 || index >= trackers.size()) {
+      return Optional.empty();
+    }
+    return Optional.ofNullable(trackers.get(index));
+  }
+
+  /**
+   * Activates the {@link StepTracker} by its index.
+   *
+   * @param key the key of the {@link StepTracker} to activate.
+   * @param consumer callback to handle active step changes
+   * @return this {@link StepperTrack}
+   */
+  public StepperTrack activateByKey(String key, StepTrackersConsumer consumer) {
+    for (int i = 0; i < trackers.size(); i++) {
+      StepTracker stepTracker = trackers.get(i);
+      if (Objects.equals(stepTracker.getKey(), key)) {
+        activateByIndex(i, consumer);
+        return this;
+      }
+    }
+    return this;
+  }
+
+  /**
    * Sets the text position within the {@link StepperTrack} to be reversed or not.
    *
    * @param reversed {@code true} to reverse the text position, {@code false} otherwise
@@ -445,6 +525,14 @@ public class StepperTrack extends BaseDominoElement<HTMLDivElement, StepperTrack
   @Override
   public HTMLDivElement element() {
     return root.element();
+  }
+
+  public int indexOf(StepTracker stepTracker) {
+    return this.trackers.indexOf(stepTracker);
+  }
+
+  public int getActiveIndex() {
+    return this.currentTrackerIndex;
   }
 
   /** Functional interface to consume changes in active steps. */
