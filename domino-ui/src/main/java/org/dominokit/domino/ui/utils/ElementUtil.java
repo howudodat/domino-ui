@@ -188,6 +188,11 @@ public class ElementUtil {
     AttributesObserver.startObserving();
   }
 
+  /** Starts observing the body for elements attributes changes events. */
+  public static void startObservingTextContent() {
+    CharacterDataObserver.startObserving();
+  }
+
   /**
    * Registers an observer to be notified when an HTMLElement is detached from the DOM.
    *

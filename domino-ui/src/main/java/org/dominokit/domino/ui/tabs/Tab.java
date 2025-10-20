@@ -352,7 +352,7 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @return The current {@link Tab} instance.
    */
   public Tab activate(boolean silent) {
-    if (nonNull(parent)) {
+    if (nonNull(parent) && nonNull(parent.getActiveTab())) {
       parent.deActivateTab(parent.getActiveTab(), silent);
     }
     dui_active.apply(tab, tabPanel);

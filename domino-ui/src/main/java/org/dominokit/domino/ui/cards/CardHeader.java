@@ -459,6 +459,11 @@ public class CardHeader extends BaseDominoElement<HTMLDivElement, CardHeader> {
     return PrefixElement.of(mainHeader.get().element());
   }
 
+  @Override
+  public PrimaryAddOnElement getPrimaryAddonsElement() {
+    return PrimaryAddOnElement.of(mainHeader.get().element());
+  }
+
   /** @dominokit-site-ignore {@inheritDoc} */
   @Override
   public HTMLDivElement element() {

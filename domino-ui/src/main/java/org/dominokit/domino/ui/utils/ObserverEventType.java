@@ -61,4 +61,26 @@ public class ObserverEventType {
     return "dui-attribute-change-"
         + element.getAttribute(BaseDominoElement.ATTRIBUTE_CHANGE_UID_KEY);
   }
+
+  /**
+   * Generates an event type for a detached element.
+   *
+   * @param element The element that has been detached.
+   * @return A string representing the event type for detached elements.
+   */
+  public static String characterDataType(Element element) {
+    return "dui-character-data-change-"
+        + element.getAttribute(BaseDominoElement.CHARACTER_DATA_CHANGE_UID_KEY);
+  }
+
+  /**
+   * Generates an event type for a detached element.
+   *
+   * @param element The element that has been detached.
+   * @return A string representing the event type for detached elements.
+   */
+  public static String characterDataType(HasAttributes<?> element) {
+    return "dui-character-data-change-"
+        + element.getAttribute(BaseDominoElement.CHARACTER_DATA_CHANGE_UID_KEY);
+  }
 }

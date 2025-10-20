@@ -125,6 +125,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   public static String ATTACH_UID_KEY = "dui-on-attach-uid";
   public static String DETACH_UID_KEY = "dui-on-detach-uid";
   public static String ATTRIBUTE_CHANGE_UID_KEY = "dui-on-attribute-change-uid";
+  public static String CHARACTER_DATA_CHANGE_UID_KEY = "dui-on-character-data-change-uid";
 
   @Editor.Ignore protected T element;
   /** A unique identifier for this DOM element. */
@@ -176,6 +177,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   private EventListener attachEventListener;
   private EventListener detachEventListener;
   private EventListener attributeChangeEventListener;
+  private EventListener textContentChangeEventListener;
   private List<Consumer<T>> onBeforeRemoveHandlers;
   private List<Consumer<T>> onRemoveHandlers;
   private Map<String, ComponentMeta> metaObjects;
@@ -1127,6 +1129,50 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
       asPropertyMap.set("dui-attribute-observers", new HashMap<>());
     }
     return Js.uncheckedCast(asPropertyMap.get("dui-attribute-observers"));
+  }
+
+  /**
+   * Registers an observer to be notified when this element is attached to the DOM.
+   *
+   * @param observerCallback The observer to be registered.
+   * @return The modified DOM element.
+   */
+  @Editor.Ignore
+  public T onTextContentChange(MutationObserverCallback observerCallback) {
+    Set<MutationObserverCallback> original = getTextContentObservers();
+    Set<MutationObserverCallback> textContentObservers = new HashSet<>(original);
+    if (isNull(this.textContentChangeEventListener)) {
+      if (!hasAttribute(CHARACTER_DATA_CHANGE_UID_KEY)) {
+        setAttribute(CHARACTER_DATA_CHANGE_UID_KEY, DominoId.unique());
+      }
+      this.textContentChangeEventListener =
+          evt -> {
+            CustomEvent cevent = Js.uncheckedCast(evt);
+            MutationRecord record = Js.uncheckedCast(cevent.detail);
+
+            textContentObservers.forEach(
+                callback -> {
+                  callback.onObserved(Js.uncheckedCast(cevent.detail));
+                  if (callback.isAutoRemove()) {
+                    original.remove(callback);
+                  }
+                });
+          };
+      String type = ObserverEventType.characterDataType(this);
+      this.element.element().addEventListener(type, this.textContentChangeEventListener);
+    }
+
+    textContentObservers.add(observerCallback);
+    ElementUtil.startObservingTextContent();
+    return element;
+  }
+
+  private Set<MutationObserverCallback> getTextContentObservers() {
+    JsPropertyMap<Object> asPropertyMap = Js.asPropertyMap(element());
+    if (!asPropertyMap.has("dui-text-content-observers")) {
+      asPropertyMap.set("dui-text-content-observers", new HashSet<>());
+    }
+    return Js.uncheckedCast(asPropertyMap.get("dui-text-content-observers"));
   }
 
   /**

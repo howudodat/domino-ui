@@ -43,8 +43,8 @@ import org.dominokit.domino.ui.utils.LazyChild;
 import org.dominokit.domino.ui.utils.NullLazyChild;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PostfixElement;
-import org.dominokit.domino.ui.utils.PrefixAddOn;
 import org.dominokit.domino.ui.utils.PrefixElement;
+import org.dominokit.domino.ui.utils.PrimaryAddOnElement;
 
 public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<HTMLDivElement, C>
     implements CardStyles, CollapsibleElement<C>, HasComponentConfig<CardConfig> {
@@ -468,28 +468,6 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
     return (C) this;
   }
 
-  /**
-   * Appends an element to the right side of the card header.
-   *
-   * @param postfix A {@link org.dominokit.domino.ui.utils.PostfixAddOn} wrapped element
-   * @return same card instance
-   */
-  public C appendChild(PostfixAddOn<?> postfix) {
-    getPostfixElement().appendChild(postfix);
-    return (C) this;
-  }
-
-  /**
-   * Appends an element to the left side of the card header, between the logo and the title.
-   *
-   * @param prefix A {@link org.dominokit.domino.ui.utils.PrefixAddOn} wrapped element
-   * @return same card instance
-   */
-  public C appendChild(PrefixAddOn<?> prefix) {
-    getPrefixElement().appendChild(prefix);
-    return (C) this;
-  }
-
   @Override
   public PostfixElement getPostfixElement() {
     return header.get().getPostfixElement();
@@ -498,6 +476,11 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
   @Override
   public PrefixElement getPrefixElement() {
     return header.get().getPrefixElement();
+  }
+
+  @Override
+  public PrimaryAddOnElement getPrimaryAddonsElement() {
+    return header.get().getPrimaryAddonsElement();
   }
 
   /**
