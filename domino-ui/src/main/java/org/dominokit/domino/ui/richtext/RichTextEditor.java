@@ -80,7 +80,7 @@ public class RichTextEditor extends BaseDominoElement<HTMLDivElement, RichTextEd
    * @param actions A list of actions to be added to the editor toolbars.
    * @return a new instance of {@link RichTextEditor}
    */
-  public static RichTextEditor create(RichTextActions... actions) {
+  public static RichTextEditor create(RichTextActionsGroup... actions) {
     return new RichTextEditor(actions);
   }
 
@@ -90,7 +90,7 @@ public class RichTextEditor extends BaseDominoElement<HTMLDivElement, RichTextEd
    * @param actions A list of actions to be added to the editor toolbars.
    * @return a new instance of {@link RichTextEditor}
    */
-  public static RichTextEditor create(Collection<RichTextActions> actions) {
+  public static RichTextEditor create(Collection<RichTextActionsGroup> actions) {
     return new RichTextEditor(actions);
   }
 
@@ -99,7 +99,7 @@ public class RichTextEditor extends BaseDominoElement<HTMLDivElement, RichTextEd
    *
    * @param actions A list of actions to be added to the editor toolbars.
    */
-  public RichTextEditor(RichTextActions... actions) {
+  public RichTextEditor(RichTextActionsGroup... actions) {
     this(Arrays.asList(actions));
   }
 
@@ -113,7 +113,7 @@ public class RichTextEditor extends BaseDominoElement<HTMLDivElement, RichTextEd
    *
    * @param actions A list of actions to be added to the editor toolbars.
    */
-  public RichTextEditor(Collection<RichTextActions> actions) {
+  public RichTextEditor(Collection<RichTextActionsGroup> actions) {
     this.root =
         div()
             .addCss(dui_rich_text)

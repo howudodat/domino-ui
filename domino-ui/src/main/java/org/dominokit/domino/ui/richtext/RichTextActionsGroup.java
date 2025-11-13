@@ -13,16 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dominokit.domino.ui.config;
+package org.dominokit.domino.ui.richtext;
 
-import java.util.Arrays;
-import java.util.Collection;
-import org.dominokit.domino.ui.richtext.RichTextActions;
-import org.dominokit.domino.ui.richtext.RichTextActionsGroup;
+import java.util.function.Function;
+import org.dominokit.domino.ui.IsElement;
 
-public interface RichTextConfig extends ComponentConfig {
-
-  default Collection<RichTextActionsGroup> getDefaultRichTextActions() {
-    return Arrays.asList(RichTextActions.values());
-  }
-}
+public interface RichTextActionsGroup extends Function<RichTextEditor, IsElement<?>> {}
