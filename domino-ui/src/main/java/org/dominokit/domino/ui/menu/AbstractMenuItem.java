@@ -177,7 +177,8 @@ public class AbstractMenuItem<V> extends BaseDominoElement<HTMLElement, Abstract
     SingleSelectionMode mode = getEffectiveSelectionMode();
 
     // If we’re in multi-select & already selected, or in TOGGLE mode → deselect
-    if ((parent.isMultiSelect() && selected) || (selected && mode == SingleSelectionMode.TOGGLE)) {
+    if ((nonNull(parent) && parent.isMultiSelect() && selected)
+        || (selected && mode == SingleSelectionMode.TOGGLE)) {
       deselect(silent);
     }
     // Otherwise, if not selected (always select) or in RESELECT mode (re-select) → select
@@ -293,13 +294,14 @@ public class AbstractMenuItem<V> extends BaseDominoElement<HTMLElement, Abstract
   public AbstractMenuItem<V> select(boolean silent) {
     if (!isDisabled() && isSelectable()) {
       addCss(
-          ConditionalCssClass.of(dui_menu_item_selected, () -> parent.isPreserveSelectionStyles()));
+          ConditionalCssClass.of(
+              dui_menu_item_selected, () -> nonNull(parent) && parent.isPreserveSelectionStyles()));
       setAttribute("selected", true);
       if (!silent) {
         triggerSelectionListeners(this, getSelection());
       }
       if (nonNull(parent)) {
-        parent.onItemSelected(this, silent);
+        parent.onItemSelected(this, silent, parent.isOpened());
       }
     }
     return this;
@@ -321,7 +323,7 @@ public class AbstractMenuItem<V> extends BaseDominoElement<HTMLElement, Abstract
         triggerDeselectionListeners(this, getSelection());
       }
       if (nonNull(parent)) {
-        parent.onItemDeselected(this, silent);
+        parent.onItemDeselected(this, silent, parent.isOpened());
       }
     }
     return this;
@@ -786,6 +788,20 @@ public class AbstractMenuItem<V> extends BaseDominoElement<HTMLElement, Abstract
   @Override
   public Menu<V> getMenu() {
     return this.menu;
+  }
+
+  @Override
+  public AbstractMenuItem<V> remove() {
+    if (nonNull(parent)) {
+      parent.removeItem(this);
+    } else {
+      return super.remove();
+    }
+    return this;
+  }
+
+  void doRemove() {
+    super.remove();
   }
 
   /**

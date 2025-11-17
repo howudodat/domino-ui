@@ -143,6 +143,28 @@ public class Animation {
   }
 
   /**
+   * Checks whether the animation is set to repeat infinitely.
+   *
+   * @return true if the animation repeats infinitely, false otherwise
+   */
+  public boolean isInfinite() {
+    return infinite;
+  }
+
+  /**
+   * Sets whether the animation should repeat infinitely or not.
+   *
+   * @param infinite boolean value indicating if the animation should repeat infinitely. Pass <code>
+   *     true</code> to make the animation repeat indefinitely, or <code>false</code> to disable
+   *     infinite repetition.
+   * @return the current instance of the {@link Animation} class for method chaining.
+   */
+  public Animation setInfinite(boolean infinite) {
+    this.infinite = infinite;
+    return this;
+  }
+
+  /**
    * Sets the transition type for this animation.
    *
    * @param transition a {@link org.dominokit.domino.ui.animations.Transition} value

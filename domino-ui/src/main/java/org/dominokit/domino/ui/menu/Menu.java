@@ -543,7 +543,7 @@ public class Menu<V> extends BaseMenu<V, Menu<V>, AbstractMenuItem<V>, AbstractM
    */
   public Menu<V> removeItem(AbstractMenuItem<V> menuItem) {
     if (this.menuItems.contains(menuItem)) {
-      menuItem.remove();
+      menuItem.doRemove();
       this.menuItems.remove(menuItem);
     }
     return this;
@@ -867,11 +867,11 @@ public class Menu<V> extends BaseMenu<V, Menu<V>, AbstractMenuItem<V>, AbstractM
   }
 
   @Override
-  protected void onItemSelected(AbstractMenuItem<V> item, boolean silent) {
+  protected void onItemSelected(AbstractMenuItem<V> item, boolean silent, boolean shouldClose) {
     if (nonNull(parent)) {
-      parent.onItemSelected(item, silent);
+      parent.onItemSelected(item, silent, shouldClose);
     } else {
-      if (isAutoCloseOnSelect() && !item.hasMenu()) {
+      if (shouldClose && isAutoCloseOnSelect() && !item.hasMenu()) {
         close();
         PopupsCloser.close();
       }
@@ -893,11 +893,11 @@ public class Menu<V> extends BaseMenu<V, Menu<V>, AbstractMenuItem<V>, AbstractM
   }
 
   @Override
-  protected void onItemDeselected(AbstractMenuItem<V> item, boolean silent) {
+  protected void onItemDeselected(AbstractMenuItem<V> item, boolean silent, boolean shouldClose) {
     if (nonNull(parent)) {
-      parent.onItemDeselected(item, silent);
+      parent.onItemDeselected(item, silent, shouldClose);
     } else {
-      if (isAutoCloseOnSelect() && !item.hasMenu()) {
+      if (shouldClose && isAutoCloseOnSelect() && !item.hasMenu()) {
         close();
         PopupsCloser.close();
       }

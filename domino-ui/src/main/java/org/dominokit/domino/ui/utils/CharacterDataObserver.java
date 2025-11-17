@@ -33,7 +33,7 @@ import jsinterop.base.Js;
  * tracks the addition and removal of elements with specific attributes and dispatches events
  * accordingly.
  */
-final class CharacterDataObserver {
+public final class CharacterDataObserver {
 
   private static boolean ready = false;
   private static boolean paused = false;
@@ -46,7 +46,7 @@ final class CharacterDataObserver {
    *
    * @param handler The action to perform while the observer is paused.
    */
-  static void pauseFor(Runnable handler) {
+  public static void pauseFor(Runnable handler) {
     paused = true;
     try {
       handler.run();
@@ -56,7 +56,7 @@ final class CharacterDataObserver {
   }
 
   /** Starts observing mutations in the document's body. */
-  static void startObserving() {
+  public static void startObserving() {
     if (!ready) {
       mutationObserver =
           new MutationObserver(

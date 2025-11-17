@@ -75,12 +75,6 @@ public class ToggleButtonsGroup extends BaseButtonsGroup<ToggleButtonsGroup, Tog
 
   @Override
   public void onItemToggle(ToggleButton toggleItem) {
-    getButtons()
-        .forEach(
-            button -> {
-              DomGlobal.console.info(button);
-            });
-
     if (getButtons().contains(toggleItem)) {
       if (isMultipleToggle()) {
         Set<ToggleButton> newValue =

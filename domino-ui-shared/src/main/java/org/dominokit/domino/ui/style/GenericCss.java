@@ -381,6 +381,8 @@ public interface GenericCss {
 
   CssClass dui_w_medium = () -> "dui-w-md";
 
+  CssClass dui_w_xmedium = () -> "dui-w-xmd";
+
   CssClass dui_w_small = () -> "dui-w-sm";
 
   CssClass dui_w_xsmall = () -> "dui-w-xs";
@@ -390,6 +392,8 @@ public interface GenericCss {
   CssClass dui_h_large = () -> "dui-h-lg";
 
   CssClass dui_h_medium = () -> "dui-h-md";
+
+  CssClass dui_h_xmedium = () -> "dui-h-xmd";
 
   CssClass dui_h_small = () -> "dui-h-sm";
 

@@ -85,7 +85,10 @@ public class DisableUtil {
 
   private static <E extends Element> void disableElement(DominoElement<E> element) {
     element.removeAttribute("dui-disabled");
-    element.setAttribute("disabled", "");
+    boolean disabled = ElementUtil.getBooleanAttribute(element.element(), "disabled");
+    if (!disabled) {
+      element.setAttribute("disabled", "true");
+    }
 
     if (element.hasAttribute("tabindex")) {
       String original = element.getAttribute("tabindex");

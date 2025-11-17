@@ -1183,7 +1183,7 @@ public abstract class BaseMenu<
    * @param item The item that was selected.
    * @param silent Indicates whether the selection was silent or should trigger events.
    */
-  protected abstract void onItemSelected(S item, boolean silent);
+  protected abstract void onItemSelected(S item, boolean silent, boolean shouldClose);
 
   /**
    * Handles the event when an item is deselected in the menu.
@@ -1191,7 +1191,7 @@ public abstract class BaseMenu<
    * @param item The item that was deselected.
    * @param silent Indicates whether the deselection was silent or should trigger events.
    */
-  protected abstract void onItemDeselected(S item, boolean silent);
+  protected abstract void onItemDeselected(S item, boolean silent, boolean shouldClose);
 
   /**
    * Checks if the menu is configured to use the small screens direction for dropping.

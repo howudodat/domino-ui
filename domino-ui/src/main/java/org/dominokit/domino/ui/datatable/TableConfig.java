@@ -33,6 +33,7 @@ import org.dominokit.domino.ui.datatable.plugins.column.ResizeColumnMeta;
 import org.dominokit.domino.ui.elements.THeadElement;
 import org.dominokit.domino.ui.elements.TableRowElement;
 import org.dominokit.domino.ui.style.DominoCss;
+import org.dominokit.domino.ui.utils.ChildHandler;
 import org.dominokit.domino.ui.utils.HasMultiSelectionSupport;
 
 /**
@@ -704,6 +705,17 @@ public class TableConfig<T>
     } else {
       this.onRowFinishEditHandler = handler;
     }
+    return this;
+  }
+
+  /**
+   * Adds a utility column to the table configuration by applying the specified handler.
+   *
+   * @param handler a ChildHandler instance that allows custom configuration of the utility column.
+   * @return the updated TableConfig instance.
+   */
+  public TableConfig<T> withUtilityColumn(ChildHandler<TableConfig<T>, ColumnConfig<T>> handler) {
+    handler.apply(this, pluginUtilityColumn);
     return this;
   }
 

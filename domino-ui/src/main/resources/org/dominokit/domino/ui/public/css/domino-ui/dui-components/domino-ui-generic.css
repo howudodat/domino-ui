@@ -852,7 +852,7 @@ hr.dui {
     margin: var(--dui-hr-margin);
     border-width: var(--dui-hr-border-width);
     border-style: var(--dui-hr-border-style);
-    border-color: var(--dui-accent-l-5, var(--dui-hr-border-color));
+    border-color: var(--dui-hr-border-color, var(--dui-accent-l-5));
 }
 
 .dui-hide-empty:empty {

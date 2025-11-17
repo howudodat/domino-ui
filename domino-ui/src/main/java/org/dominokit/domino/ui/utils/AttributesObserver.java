@@ -32,7 +32,7 @@ import jsinterop.base.Js;
  * tracks the addition and removal of elements with specific attributes and dispatches events
  * accordingly.
  */
-final class AttributesObserver {
+public final class AttributesObserver {
 
   private static boolean ready = false;
   private static boolean paused = false;

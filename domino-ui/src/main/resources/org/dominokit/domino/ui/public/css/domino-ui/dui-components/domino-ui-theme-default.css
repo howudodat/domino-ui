@@ -1293,6 +1293,9 @@ body.dui {
     --dui-dialog-medium-width: 35%;
     --dui-dialog-medium-height: 50%;
 
+    --dui-dialog-xmedium-width: 50%;
+    --dui-dialog-xmedium-height: 60%;
+
     --dui-dialog-large-width: 75%;
     --dui-dialog-large-height: 75%;
 
@@ -1352,7 +1355,6 @@ body.dui {
     --dui-hr-margin: var(--dui-spc-4) 0 var(--dui-spc-4) 0;
     --dui-hr-border-width: 1px 0 0 0;
     --dui-hr-border-style: solid;
-    --dui-hr-border-color: var(--dui-accent-l-5);
 
     /* ============================ Calendar ================== */
     --dui-calendar-min-width: var(--dui-spc-80);

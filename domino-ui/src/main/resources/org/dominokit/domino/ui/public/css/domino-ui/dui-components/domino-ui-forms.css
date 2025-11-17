@@ -93,6 +93,13 @@ fieldset.dui {
 
 .dui-form-label-float-left .dui-field-label {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.dui-form-label-float-left .dui-checkbox-label {
+    --dui-form-field-checkbox-label-padding: 0 0 0 14px;
+    --dui-form-field-checkbox-label-min-height: 16px;
 }
 
 .dui-form-label-float-top {
