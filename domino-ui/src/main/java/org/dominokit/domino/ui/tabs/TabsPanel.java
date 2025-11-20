@@ -221,7 +221,7 @@ public class TabsPanel extends BaseDominoElement<HTMLDivElement, TabsPanel>
       }
       if (!tab.isActive()) {
         activeTab = tab;
-        activeTab.activate();
+        activeTab.activate(silent);
         if (!silent) {
           activationHandlers.forEach(handler -> handler.onActiveStateChanged(tab, true));
         }
