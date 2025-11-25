@@ -565,7 +565,7 @@ public class Menu<V> extends BaseMenu<V, Menu<V>, AbstractMenuItem<V>, AbstractM
    * @return The current Menu instance.
    */
   public Menu<V> removeAll() {
-    menuItems.forEach(BaseDominoElement::remove);
+    new ArrayList<>(menuItems).forEach(this::removeItem);
     menuItems.clear();
     closeCurrentOpen();
     currentOpen = null;
