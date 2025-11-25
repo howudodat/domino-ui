@@ -48,5 +48,19 @@ public enum SortDirection {
    *
    * @see org.dominokit.domino.ui.datatable.plugins.pagination.SortPlugin
    */
-  NONE
+  NONE;
+
+  public SortDirection next(boolean triState) {
+    if (this == NONE) return ASC;
+    if (this == ASC) return DESC;
+    if (this == DESC) return triState ? NONE : ASC;
+    return NONE;
+  }
+
+  public SortDirection previous(boolean triState) {
+    if (this == NONE) return DESC;
+    if (this == DESC) return ASC;
+    if (this == ASC) return triState ? NONE : DESC;
+    return NONE;
+  }
 }

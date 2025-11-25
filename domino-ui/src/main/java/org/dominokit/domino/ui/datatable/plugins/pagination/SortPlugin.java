@@ -18,12 +18,10 @@ package org.dominokit.domino.ui.datatable.plugins.pagination;
 
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.datatable.plugins.PluginsConstants.DUI_DT_COL_RESIZING;
-import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLElement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Consumer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
@@ -81,11 +79,7 @@ public class SortPlugin<T>
               EventType.click.getName(),
               evt -> {
                 applySort(
-                    column,
-                    sortContext,
-                    Optional.ofNullable(currentSortContext)
-                        .map(c -> c.sortDirection)
-                        .orElse(SortDirection.DESC));
+                    column, sortContext, sortContext.sortDirection.next(config.isTriStateSort()));
               });
       if (config.isShowSortOptionsInColumnMenu()) {
         column
@@ -121,18 +115,18 @@ public class SortPlugin<T>
       if (config.isShowIconOnSortedColumnOnly() && nonNull(currentSortContext)) {
         currentSortContext.sortElement.clearElement();
       }
-      sortContext.sortElement.appendChild(sortContext.sortIcon);
-      updateSort(sortContext);
+      updateSort(sortContext, sortDirection);
       fireSortEvent(sortDirection, column);
+      currentSortContext.sortElement.appendChild(sortContext.sortIcon);
     }
   }
 
-  private void updateSort(SortContext sortContext) {
+  private void updateSort(SortContext sortContext, SortDirection sortDirection) {
     if (nonNull(currentSortContext)
         && !currentSortContext.columnName.equals(sortContext.columnName)) {
       currentSortContext.clear();
     }
-    sortContext.update(true);
+    sortContext.update(sortDirection);
     currentSortContext = sortContext;
   }
 
@@ -145,7 +139,7 @@ public class SortPlugin<T>
   public void sort(SortDirection direction, ColumnConfig<T> column) {
     SortContext sortContext = sortContainers.get(column.getSortKey());
     sortContext.sortDirection = direction;
-    updateSort(sortContext);
+    updateSort(sortContext, direction);
     fireSortEvent(direction, column);
   }
 
@@ -214,7 +208,7 @@ public class SortPlugin<T>
   private static class SortContext {
     private final String columnName;
     private SortPluginConfig config;
-    private SortDirection sortDirection = SortDirection.DESC;
+    private SortDirection sortDirection = SortDirection.NONE;
     private DominoElement<HTMLElement> sortElement;
     private StateIcon sortIcon;
 
@@ -243,7 +237,9 @@ public class SortPlugin<T>
      * Updates the sorting state of the column, optionally flipping the sort direction.
      *
      * @param flip Whether to flip the sort direction.
+     * @deprecated use
      */
+    @Deprecated
     public void update(boolean flip) {
       if (flip) {
         if (sortDirection.NONE.equals(sortDirection)) {
@@ -258,6 +254,16 @@ public class SortPlugin<T>
           }
         }
       }
+      sortIcon.setState(sortDirection.name());
+    }
+
+    /**
+     * Updates the sorting state of the column, optionally flipping the sort direction.
+     *
+     * @param flip Whether to flip the sort direction.
+     */
+    void update(SortDirection sortDirection) {
+      this.sortDirection = sortDirection;
       sortIcon.setState(sortDirection.name());
     }
   }
