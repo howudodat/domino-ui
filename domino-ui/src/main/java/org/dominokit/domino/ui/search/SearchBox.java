@@ -127,8 +127,8 @@ public class SearchBox extends BaseDominoElement<HTMLDivElement, SearchBox>
     textBox =
         TextBox.create()
             .setPlaceholder(getLabels().defaultQuickSearchPlaceHolder())
-            .appendChild(PrefixAddOn.of(searchIcon))
-            .appendChild(PostfixAddOn.of(clearIcon))
+            .appendChild(PrefixAddOn.of(searchIcon).addCss(dui_order_first))
+            .appendChild(PostfixAddOn.of(clearIcon).addCss(dui_order_last))
             .addCss(dui_m_0)
             .withInputElement(
                 (parent, input) -> {
