@@ -82,6 +82,20 @@ public abstract class CellInfo<T, E extends HTMLElement, C extends CellInfo<T, E
     return Optional.ofNullable(columnConfig);
   }
 
+  public int getRowIndex() {
+    return tableRow.getIndex();
+  }
+
+  public int getColumnIndex() {
+    if (nonNull(tableRow) && nonNull(columnConfig)) {
+      return this.tableRow
+          .getDataTable()
+          .getTableConfig()
+          .getColumnIndexByName(this.columnConfig.getName());
+    }
+    return -1;
+  }
+
   /**
    * Invokes the handler for updating a dirty record.
    *

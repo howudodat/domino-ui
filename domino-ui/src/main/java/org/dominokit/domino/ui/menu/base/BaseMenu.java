@@ -20,8 +20,6 @@ import static elemental2.dom.DomGlobal.window;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.DUI_POSITION_FALLBACK;
-import static org.dominokit.domino.ui.style.DisplayCss.dui_elevation_1;
-import static org.dominokit.domino.ui.style.DisplayCss.dui_elevation_none;
 import static org.dominokit.domino.ui.utils.Domino.elementOf;
 import static org.dominokit.domino.ui.utils.PopupsCloser.DOMINO_UI_AUTO_CLOSABLE;
 
@@ -1236,10 +1234,10 @@ public abstract class BaseMenu<
   private void setDropDown(boolean dropdown) {
     if (dropdown) {
       this.setAttribute("domino-ui-root-menu", true).setAttribute(DOMINO_UI_AUTO_CLOSABLE, true);
-      getMenuElement().addCss(dui_elevation_1);
+      getMenuElement().addCss(dui_menu_elevation);
     } else {
       this.removeAttribute("domino-ui-root-menu").removeAttribute(DOMINO_UI_AUTO_CLOSABLE);
-      getMenuElement().addCss(dui_elevation_none);
+      dui_menu_elevation.remove(getMenuElement());
       document.removeEventListener("scroll", repositionListener);
     }
     addCss(BooleanCssClass.of(dui_menu_drop, dropdown));

@@ -25,6 +25,7 @@ import elemental2.dom.Event;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.KeyboardEvent;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.elements.DivElement;
@@ -310,6 +311,16 @@ public abstract class NumberBox<T extends NumberBox<T, V>, V extends Number>
           getStringValue().startsWith("-") ? getMinValueErrorMessage() : getMaxValueErrorMessage());
       return null;
     }
+  }
+
+  /**
+   * Retrieves the value if it is not null; otherwise, returns the provided default value.
+   *
+   * @param defaultValue the value to return if the actual value is null
+   * @return the actual value if present, or the default value if the actual value is null
+   */
+  public V getValueOr(V defaultValue) {
+    return Optional.ofNullable(getValue()).orElse(defaultValue);
   }
 
   /**

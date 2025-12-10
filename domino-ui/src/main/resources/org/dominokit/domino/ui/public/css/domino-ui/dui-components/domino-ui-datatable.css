@@ -125,13 +125,13 @@
 
 .dui-datatable-th,
 .dui-datatable-td {
-    padding: var(--dui-spc-2);
+    padding: var(--dui-datatable-cell-padding);
     line-height: var(--dui-spc-4);
     background-color: inherit;
 }
 
 .dui-datatable-condensed .dui-datatable-td {
-    padding: var(--dui-datatable-cell-padding);
+    padding: var(--dui-datatable-cell-condenced-padding);
     line-height: var(--dui-datatable-cell-line-height);
 }
 
