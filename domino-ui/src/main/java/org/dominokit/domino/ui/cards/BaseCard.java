@@ -18,11 +18,13 @@ package org.dominokit.domino.ui.cards;
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.style.SpacingCss.dui_order_last;
 import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLImageElement;
+import elemental2.dom.Node;
 import java.util.HashSet;
 import java.util.Set;
 import org.dominokit.domino.ui.IsElement;
@@ -65,6 +67,14 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
    * @param title The card title text
    */
   public BaseCard(String title) {
+    this(text(title));
+  }
+  /**
+   * Creates a card with title in the header
+   *
+   * @param title The card title node
+   */
+  public BaseCard(Node title) {
     this();
     setTitle(title);
   }
@@ -76,6 +86,16 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
    * @param description The card description text
    */
   public BaseCard(String title, String description) {
+    this(text(title), description);
+  }
+
+  /**
+   * Creates a card with the title in the header and a description below the title
+   *
+   * @param title The card title node
+   * @param description The card description text
+   */
+  public BaseCard(Node title, String description) {
     this(title);
     setDescription(description);
   }
@@ -169,6 +189,16 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
    * @return same Card instance
    */
   public C setTitle(String title) {
+    return setTitle(text(title));
+  }
+
+  /**
+   * Sets the card title, this will initialize and append the card header if not yet initialized.
+   *
+   * @param title The card title text
+   * @return same Card instance
+   */
+  public C setTitle(Node title) {
     header.get().setTitle(title);
     return (C) this;
   }

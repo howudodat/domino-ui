@@ -20,6 +20,7 @@ import static org.dominokit.domino.ui.layout.NavBarStyles.*;
 import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLElement;
+import elemental2.dom.Node;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.HeadingElement;
 import org.dominokit.domino.ui.elements.NavElement;
@@ -78,6 +79,15 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
    * @return A new {@code NavBar} instance with the specified title.
    */
   public static NavBar create(String title) {
+    return new NavBar(text(title));
+  }
+  /**
+   * Creates a new {@code NavBar} instance with the specified title.
+   *
+   * @param title The title to display in the navigation bar.
+   * @return A new {@code NavBar} instance with the specified title.
+   */
+  public static NavBar create(Node title) {
     return new NavBar(title);
   }
 
@@ -97,7 +107,7 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
    *
    * @param title The title to display in the navigation bar.
    */
-  public NavBar(String title) {
+  public NavBar(Node title) {
     this();
     setTitle(title);
   }
@@ -109,7 +119,7 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
    * @param description The description to be displayed in the navigation bar.
    */
   public NavBar(String title, String description) {
-    this(title);
+    this(text(title));
     setDescription(description);
   }
 
@@ -120,7 +130,17 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
    * @return This {@code NavBar} instance.
    */
   public NavBar setTitle(String title) {
-    this.titleTextElement.setTextContent(title);
+    return this.setTitle(text(title));
+  }
+
+  /**
+   * Sets the title to display in the navigation bar.
+   *
+   * @param title The title to set.
+   * @return This {@code NavBar} instance.
+   */
+  public NavBar setTitle(Node title) {
+    this.titleTextElement.clearElement().appendChild(title);
     return this;
   }
 
