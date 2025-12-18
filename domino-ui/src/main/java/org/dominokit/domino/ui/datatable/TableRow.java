@@ -82,6 +82,7 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     init(this);
     addCss(dui_datatable_row);
   }
+
   /**
    * Constructs a table row with the given record, index, and parent table.
    *
@@ -530,19 +531,45 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     updateRow(this.record);
   }
 
+  /** Updates the row with the current record. */
+  public void updateRow(Set<ColumnConfig<T>> columns) {
+    updateRow(this.record, columns);
+  }
+
   /**
    * Updates the row with a new record and notifies any listeners.
    *
    * @param record The new record to be set in the row.
    */
   public void updateRow(T record) {
+    updateRow(record, Collections.emptySet());
+  }
+
+  /**
+   * Updates the row with a new record and notifies any listeners.
+   *
+   * @param record The new record to be set in the row.
+   */
+  public void updateRow(T record, Set<ColumnConfig<T>> columns) {
     this.record = record;
-    getCells().values().forEach(RowCell::updateCell);
+    getCells()
+        .values()
+        .forEach(
+            cell -> {
+              cell.getColumnConfig()
+                  .ifPresent(
+                      col -> {
+                        if (columns.contains(col) || columns.isEmpty()) {
+                          cell.updateCell();
+                        }
+                      });
+            });
     this.dataTable.fireTableEvent(new RowRecordUpdatedEvent<>(this));
     this.dataTable.fireTableEvent(
         new TableDataUpdatedEvent<>(
             new ArrayList<>(dataTable.getData()), dataTable.getData().size()));
   }
+
   /**
    * Validates the content of each cell in the row. It uses the validation mechanism provided by the
    * cell's info. If any cell's content is invalid, the method will return the first encountered
@@ -622,9 +649,49 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
    * display to reflect this editable state.
    */
   public void edit() {
+    edit(Collections.emptySet());
+  }
+
+  public void edit(int... columnIndexes) {
+    List<ColumnConfig<T>> columns = getDataTable().getTableConfig().getColumns();
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    for (int index : columnIndexes) {
+      if (index >= 0 && index < columns.size()) {
+        columnsToEdit.add(columns.get(index));
+      }
+    }
+    edit(columnsToEdit);
+  }
+
+  public void edit(int startIndex, int endIndex) {
+    List<ColumnConfig<T>> columns = getDataTable().getTableConfig().getColumns();
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    for (int index = startIndex; index <= endIndex; index++) {
+      if (index >= 0 && index < columns.size()) {
+        columnsToEdit.add(columns.get(index));
+      }
+    }
+    edit(columnsToEdit);
+  }
+
+  public void edit(String... columnsNames) {
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    for (String name : columnsNames) {
+      getDataTable().getTableConfig().findColumnByName(name).ifPresent(columnsToEdit::add);
+    }
+    edit(columnsToEdit);
+  }
+
+  public void edit(ColumnConfig<T>... columns) {
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    Collections.addAll(columnsToEdit, columns);
+    edit(columnsToEdit);
+  }
+
+  public void edit(Set<ColumnConfig<T>> columns) {
     setEditable(true);
     getRowFieldsGroup().removeAllFormElements();
-    updateRow();
+    updateRow(columns);
     this.dataTable.getTableConfig().getOnRowEditHandler().accept(this);
   }
 

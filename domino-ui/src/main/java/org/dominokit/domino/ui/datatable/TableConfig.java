@@ -520,6 +520,24 @@ public class TableConfig<T>
   }
 
   /**
+   * Retrieves a column configuration by its name.
+   *
+   * @param name The name of the column to retrieve.
+   * @return The {@link ColumnConfig} associated with the given name.
+   * @throws ColumnNofFoundException If no column is found with the specified name.
+   */
+  public Optional<ColumnConfig<T>> findColumnByName(String name) {
+    Optional<ColumnConfig<T>> first = Optional.empty();
+    for (ColumnConfig<T> columnConfig : getFlattenColumns()) {
+      if (columnConfig.getName().equals(name)) {
+        first = Optional.of(columnConfig);
+        break;
+      }
+    }
+    return first;
+  }
+
+  /**
    * Returns the index of the first column whose name matches the given value.
    *
    * <p>This method searches the list of leaf columns (as returned by {@link #getLeafColumns()}) for
