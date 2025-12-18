@@ -153,7 +153,7 @@ public class Window extends AbstractDialog<Window> {
     addCloseListener(component -> removeMoveListeners());
     updatePosition();
 
-    onResize((element1, observer, entries) -> updatePosition());
+    modalElement.onResize((element1, observer, entries) -> updatePosition());
   }
 
   private void onMove(Event evt) {
