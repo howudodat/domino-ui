@@ -59,6 +59,7 @@ public class KeyEvent {
   public KeyboardEvent getEvent() {
     return event;
   }
+
   /**
    * Returns the normalized key code.
    *
@@ -67,6 +68,16 @@ public class KeyEvent {
   public KeyboardKeyCode getCode() {
     return code;
   }
+
+  /**
+   * Retrieves the raw code value from the underlying DOM event.
+   *
+   * @return the value of the code property from the DOM KeyboardEvent
+   */
+  public String getNativeCode() {
+    return event.code;
+  }
+
   /**
    * Returns the normalized key value.
    *
@@ -74,6 +85,15 @@ public class KeyEvent {
    */
   public KeyboardKey getKey() {
     return key;
+  }
+
+  /**
+   * Retrieves the raw key value from the underlying DOM event.
+   *
+   * @return the value of the key property from the DOM KeyboardEvent
+   */
+  public String getNativeKey() {
+    return event.key;
   }
 
   /**
