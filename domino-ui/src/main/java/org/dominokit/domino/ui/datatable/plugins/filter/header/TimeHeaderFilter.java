@@ -52,7 +52,7 @@ public class TimeHeaderFilter<T> implements ColumnHeaderFilterPlugin.HeaderFilte
    */
   public TimeHeaderFilter() {
     this.timeBox =
-        TimeBox.create()
+        TimeBox.empty()
             .setPlaceholder("Search")
             .apply(
                 element -> {

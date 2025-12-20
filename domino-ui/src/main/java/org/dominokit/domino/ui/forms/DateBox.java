@@ -142,7 +142,8 @@ public class DateBox extends TextInputFormField<DateBox, HTMLInputElement, Date>
   public DateBox(
       Date date, DateTimeFormatInfo dateTimeFormatInfo, CalendarInitConfig calendarInitConfig) {
     this.value = date;
-    this.calendar = Calendar.create(date, dateTimeFormatInfo, calendarInitConfig);
+    this.calendar =
+        Calendar.create(nonNull(date) ? date : new Date(), dateTimeFormatInfo, calendarInitConfig);
     this.pattern = dateTimeFormatInfo.dateFormatFull();
     this.popover =
         Popover.create(this.getWrapperElement())
@@ -238,6 +239,18 @@ public class DateBox extends TextInputFormField<DateBox, HTMLInputElement, Date>
             });
     this.calendar.bindCalenderViewListener(this);
     setStringValue(value, this.calendar.getDateTimeFormatInfo());
+  }
+
+  // TODO : This needs to be refactored, datebox should be default to empty if data is not specified
+  // and instead of DateBox.empty() we need to add DateBox.now()
+
+  /**
+   * Creates a new DateBox with the current date and default configuration.
+   *
+   * @return A new DateBox instance
+   */
+  public static DateBox empty() {
+    return new DateBox(null, new CalendarInitConfig());
   }
 
   /**
