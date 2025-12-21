@@ -1430,7 +1430,8 @@ body.dui {
     --dui-datatable-font-size: var(--dui-spc-3_5);
     --dui-datatable-cell-padding: var(--dui-spc-2);
     --dui-datatable-cell-condenced-padding: var(--dui-spc-1);
-    --dui-datatable-cell-line-height: var(--dui-spc-2);
+    --dui-datatable-cell-line-height: var(--dui-spc-4);
+    --dui-datatable-condenced-cell-line-height: var(--dui-spc-2);
     --dui-datatable-navbar-padding: 0;
     --dui-datatable-navbar-margin: var(--dui-spc-2) 0 var(--dui-spc-2) 0;
     --dui-datatable-border: 1px solid var(--dui-datatable-border-color);
