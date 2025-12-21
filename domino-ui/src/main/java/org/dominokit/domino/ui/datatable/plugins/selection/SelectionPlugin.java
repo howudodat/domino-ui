@@ -40,7 +40,6 @@ import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.utils.DominoEvent;
 import org.dominokit.domino.ui.utils.HasSelectionListeners;
-import org.dominokit.domino.ui.utils.MutationObserverCallback;
 import org.dominokit.domino.ui.utils.Selectable;
 
 /**
@@ -250,19 +249,9 @@ public class SelectionPlugin<T> implements DataTablePlugin<T> {
         };
 
     checkBox.addClickListener(clickListener);
-    checkBox.registerOnDetached(
-        MutationObserverCallback.doOnce(
-            mutationRecord -> checkBox.removeClickListener(clickListener)));
 
     tableRow.addSelectionListener(selectionListener);
     tableRow.addDeselectionListener(deselectionListener);
-
-    tableRow.onDetached(
-        MutationObserverCallback.doOnce(
-            mutationRecord -> {
-              tableRow.removeSelectionListener(selectionListener);
-              tableRow.removeDeselectionListener(deselectionListener);
-            }));
 
     checkBox.addChangeListener(
         (oldValue, checked) -> {
