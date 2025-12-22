@@ -28,6 +28,7 @@ import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.events.OnBeforeDataChangeEvent;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
+import org.dominokit.domino.ui.datatable.plugins.HasPluginConfig;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.ToggleIcon;
 import org.dominokit.domino.ui.icons.ToggleMdiIcon;
@@ -63,13 +64,17 @@ import org.dominokit.domino.ui.utils.DominoEvent;
  *
  * @param <T> The data type of the DataTable.
  */
-public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowAppender<T> {
+public class GroupingPlugin<T>
+    implements DataTablePlugin<T>,
+        TableConfig.RowAppender<T>,
+        HasPluginConfig<T, GroupingPlugin<T>, GroupingPluginConfig> {
 
   private Map<String, DataGroup<T>> dataGroups = new HashMap<>();
   private final GroupSupplier<T> groupSupplier;
   private GroupCellRenderer<T> groupRenderer;
   private Supplier<ToggleIcon<?, ?>> groupExpandedCollapseIconSupplier =
       () -> ToggleMdiIcon.create(Icons.minus_box(), Icons.plus_box());
+  private GroupingPluginConfig config = new GroupingPluginConfig();
 
   /**
    * Creates a new {@code GroupingPlugin} instance with the given group supplier and group renderer.
@@ -131,15 +136,27 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
       GroupCell<T> groupCell = new GroupCell<>(cellInfo);
       DataGroup<T> dataGroup = new DataGroup<>(tableRow, groupCell);
 
-      ToggleIcon<?, ?> groupIconSupplier =
+      ToggleIcon<?, ?> groupToggleIcon =
           groupExpandedCollapseIconSupplier
               .get()
               .clickable()
               .toggleOnClick(true)
-              .addClickListener(evt -> dataGroup.toggleGroup());
-      dataGroup.setGroupIconSupplier(groupIconSupplier).setGroupRenderer(groupRenderer).render();
+              .addClickListener(
+                  evt -> {
+                    evt.stopPropagation();
+                    dataGroup.toggleGroup();
+                  });
+      dataGroup.setGroupIconSupplier(groupToggleIcon).setGroupRenderer(groupRenderer).render();
 
-      groupPrefix.appendChild(groupIconSupplier);
+      if (config.isToggleGroupOnClick()) {
+        groupCell.addClickListener(
+            evt -> {
+              dataGroup.toggleGroup();
+              groupToggleIcon.toggle();
+            });
+      }
+
+      groupPrefix.appendChild(groupToggleIcon);
 
       dataTable
           .bodyElement()
@@ -199,6 +216,21 @@ public class GroupingPlugin<T> implements DataTablePlugin<T>, TableConfig.RowApp
     if (event.getType().equalsIgnoreCase(OnBeforeDataChangeEvent.ON_BEFORE_DATA_CHANGE)) {
       dataGroups.clear();
     }
+  }
+
+  @Override
+  public GroupingPlugin<T> setConfig(GroupingPluginConfig config) {
+    if (nonNull(config)) {
+      this.config = config;
+    } else {
+      this.config = GroupingPluginConfig.create();
+    }
+    return this;
+  }
+
+  @Override
+  public GroupingPluginConfig getConfig() {
+    return this.config;
   }
 
   /**
