@@ -1107,7 +1107,9 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
 
     applyScreenMedia(this.headElement.element());
 
-    if (tableConfig.isFixed() || isFixed()) {
+    if (tableConfig.getTableMode() == TableMode.FIXED_HEIGHT
+        || tableConfig.getTableMode() == TableMode.AUTO
+        || isFixed()) {
       fixElementWidth(this, this.headElement.element());
     }
 

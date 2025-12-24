@@ -58,9 +58,9 @@ public class TableConfig<T>
   private List<ColumnConfig<T>> columns = new LinkedList<>();
   private List<DataTablePlugin<T>> plugins = new ArrayList<>();
   private DataTable<T> dataTable;
-  private boolean fixed = false;
+  private TableMode tableMode = TableMode.DEFAULT;
   private String fixedDefaultColumnWidth = "100px";
-  private String fixedBodyHeight = "400px";
+  private String fixedBodyHeight = "";
   private boolean lazyLoad = true;
   private boolean multiSelect = true;
   private boolean stickyHeader = false;
@@ -275,9 +275,11 @@ public class TableConfig<T>
    * Checks if the DataTable is in a fixed layout mode.
    *
    * @return {@code true} if the table layout is fixed, {@code false} otherwise.
+   * @deprecated use {@link #getTableMode()} instead
    */
+  @Deprecated
   public boolean isFixed() {
-    return fixed;
+    return TableMode.FIXED_HEIGHT.equals(tableMode);
   }
 
   /**
@@ -285,10 +287,36 @@ public class TableConfig<T>
    *
    * @param fixed {@code true} to set the table layout as fixed, {@code false} for fluid.
    * @return The current instance of {@link TableConfig} for chaining.
+   * @deprecated use {@link #setTableMode(TableMode)} instead
    */
+  @Deprecated
   public TableConfig<T> setFixed(boolean fixed) {
-    this.fixed = fixed;
+    this.tableMode = TableMode.FIXED_HEIGHT;
     return this;
+  }
+
+  /**
+   * Sets the table mode for the table configuration.
+   *
+   * @param tableMode the mode to set for the table, defining its operational behavior or format
+   * @return the updated TableConfig instance with the newly set table mode
+   */
+  public TableConfig<T> setTableMode(TableMode tableMode) {
+    if (nonNull(tableMode)) {
+      this.tableMode = tableMode;
+    } else {
+      this.tableMode = TableMode.DEFAULT;
+    }
+    return this;
+  }
+
+  /**
+   * Retrieves the current mode of the table.
+   *
+   * @return the current TableMode instance representing the table's mode.
+   */
+  public TableMode getTableMode() {
+    return tableMode;
   }
 
   /**

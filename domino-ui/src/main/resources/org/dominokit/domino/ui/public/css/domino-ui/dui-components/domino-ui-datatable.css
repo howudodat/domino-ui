@@ -16,6 +16,19 @@
     display: block;
     overflow-x: auto;
     max-width: 100%;
+    max-height: var(--dui-datatable-fixed-body-height, 400px);
+}
+
+.dui-datatable-responsive.dui-datatable-auto {
+    max-height: var(--dui-datatable-fixed-body-height, 400px);
+    overflow-y: auto;
+}
+
+.dui-datatable-responsive.dui-datatable-auto .dui-datatable {
+    display: table;
+    table-layout: fixed;
+    max-width: 100%;
+    width: 100%;
 }
 
 .dui-datatable-thead {
@@ -36,6 +49,7 @@
     border-top: 1px solid var(--dui-accent-l-4);
 }
 
+.dui-datatable-auto .dui-datatable-thead,
 .dui-datatable-fixed .dui-datatable-thead {
     position: sticky;
     top: 0;

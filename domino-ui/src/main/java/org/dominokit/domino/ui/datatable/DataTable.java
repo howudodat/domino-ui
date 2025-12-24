@@ -232,19 +232,23 @@ public class DataTable<T> extends BaseDominoElement<HTMLDivElement, DataTable<T>
       this.dataStore.load();
     }
 
-    if (tableConfig.isFixed()) {
-      tableElement.setMaxHeight(tableConfig.getFixedBodyHeight());
+    if (tableConfig.getTableMode() == TableMode.AUTO
+        || tableConfig.getTableMode() == TableMode.FIXED_HEIGHT) {
+      if (nonNull(tableConfig.getFixedBodyHeight())
+          && !tableConfig.getFixedBodyHeight().isEmpty()) {
+        this.setCssProperty("--dui-datatable-fixed-body-height", tableConfig.getFixedBodyHeight());
+      }
     }
 
-    if (tableConfig.isFixed()) {
+    if (tableConfig.getTableMode() == TableMode.FIXED_HEIGHT) {
       dui_datatable_width_full.remove(this);
       this.addCss(dui_datatable_fixed);
       ColumnUtils.fixElementWidth(this, tableElement.element());
-    }
-
-    if (tableConfig.isFixed()) {
+    } else if (tableConfig.getTableMode() == TableMode.AUTO) {
+      this.addCss(dui_datatable_auto);
       ColumnUtils.fixElementWidth(this, tableElement.element());
     }
+
     return this;
   }
 

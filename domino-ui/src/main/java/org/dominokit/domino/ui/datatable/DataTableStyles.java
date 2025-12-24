@@ -35,6 +35,7 @@ public interface DataTableStyles {
   CssClass dui_datatable_width_full = () -> "dui-datatable-width-full";
 
   CssClass dui_datatable_fixed = () -> "dui-datatable-fixed";
+  CssClass dui_datatable_auto = () -> "dui-datatable-auto";
 
   CssClass dui_datatable_row = () -> "dui-datatable-row";
 
