@@ -36,6 +36,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 import elemental2.dom.NodeList;
+import elemental2.dom.ScrollIntoViewOptions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -4854,6 +4855,40 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    */
   public WavesSupport getWavesSupport() {
     return wavesSupport;
+  }
+
+  /**
+   * Scrolls the associated element into the visible area of the browser window. This method ensures
+   * that the element is brought into view, allowing interactions or validations to be performed on
+   * the element in its visible state.
+   *
+   * @return The current instance of the object for method chaining.
+   */
+  public T scrollIntoView() {
+    element().scrollIntoView();
+    return (T) this;
+  }
+
+  /**
+   * Scrolls the element into view based on the provided scroll options.
+   *
+   * @param options the scrolling options specifying how the element should be scrolled into view
+   * @return the current instance for method chaining
+   */
+  public T scrollIntoView(ScrollOptions options) {
+    return scrollIntoView(options.build());
+  }
+
+  /**
+   * Scrolls the element into the visible area of the browser viewport.
+   *
+   * @param options the options to define the behavior of scrolling into view, including alignment
+   *     and scroll behavior settings
+   * @return the current instance of the class, allowing for method chaining
+   */
+  public T scrollIntoView(ScrollIntoViewOptions options) {
+    element().scrollIntoView(options);
+    return (T) this;
   }
 
   /**

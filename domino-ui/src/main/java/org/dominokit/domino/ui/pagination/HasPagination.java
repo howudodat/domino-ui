@@ -104,6 +104,25 @@ public interface HasPagination<T extends HasPagination<T>> {
   T gotoLast(boolean silent);
 
   /**
+   * Navigates to the page that contains the record at the specified index.
+   *
+   * @param index the index of the record to navigate to, starting from 0
+   * @return the current instance
+   */
+  T gotoPageByRecordIndex(int index);
+
+  /**
+   * Navigates to the page containing the record at the specified index, with an option to do it
+   * silently.
+   *
+   * @param index the index of the record to navigate to, starting from 0
+   * @param silent if true, the navigation will be performed silently without triggering certain
+   *     events
+   * @return the current instance
+   */
+  T gotoPageByRecordIndex(int index, boolean silent);
+
+  /**
    * Marks the currently active page.
    *
    * @return the current instance

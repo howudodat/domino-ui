@@ -37,6 +37,7 @@ import org.dominokit.domino.ui.datatable.events.BodyScrollEvent;
 import org.dominokit.domino.ui.datatable.events.SearchEvent;
 import org.dominokit.domino.ui.datatable.events.SortEvent;
 import org.dominokit.domino.ui.datatable.plugins.pagination.BodyScrollPlugin;
+import org.dominokit.domino.ui.pagination.VirtualScrollingPagination;
 import org.dominokit.domino.ui.utils.DominoEvent;
 
 /**
@@ -52,9 +53,8 @@ public class LocalListScrollingDataSource<T>
 
   private final List<T> original;
   private List<T> filtered = new ArrayList<>();
-  private final int pageSize;
+  private final VirtualScrollingPagination pagination;
   private int initialLoadedPages = 1;
-  private int pageIndex = 0;
   private List<StoreDataChangeListener<T>> listeners = new ArrayList<>();
   private SearchFilter<T> searchFilter;
   private RecordsSorter<T> recordsSorter;
@@ -62,6 +62,7 @@ public class LocalListScrollingDataSource<T>
   private boolean filtersPaused;
   private Set<DataFilter<? super T>> dataFilters;
   private SearchEvent lastSearch;
+  private boolean append = false;
 
   /**
    * Creates a new instance of {@link LocalListScrollingDataSource} with the specified page size.
@@ -70,7 +71,7 @@ public class LocalListScrollingDataSource<T>
    */
   public LocalListScrollingDataSource(int pageSize) {
     this.original = new ArrayList<>();
-    this.pageSize = pageSize;
+    this.pagination = createPagination(pageSize);
   }
 
   /**
@@ -81,7 +82,7 @@ public class LocalListScrollingDataSource<T>
    */
   public LocalListScrollingDataSource(int pageSize, int initialLoadedPages) {
     this.original = new ArrayList<>();
-    this.pageSize = pageSize;
+    this.pagination = createPagination(pageSize);
     this.initialLoadedPages = initialLoadedPages;
   }
 
@@ -95,8 +96,9 @@ public class LocalListScrollingDataSource<T>
   public LocalListScrollingDataSource(List<T> data, int pageSize) {
     List<T> accepted = filterData(data);
     this.original = data;
-    this.pageSize = pageSize;
+    this.pagination = createPagination(pageSize);
     this.filtered.addAll(accepted);
+    this.pagination.updatePagesByTotalCount(this.filtered.size(), pageSize);
   }
 
   /**
@@ -110,9 +112,21 @@ public class LocalListScrollingDataSource<T>
   public LocalListScrollingDataSource(List<T> data, int pageSize, int initialLoadedPages) {
     List<T> accepted = filterData(data);
     this.original = data;
-    this.pageSize = pageSize;
+    this.pagination = createPagination(pageSize);
     this.initialLoadedPages = initialLoadedPages;
     this.filtered.addAll(accepted);
+    this.pagination.updatePagesByTotalCount(this.filtered.size(), pageSize);
+  }
+
+  private VirtualScrollingPagination createPagination(int pageSize) {
+    VirtualScrollingPagination pagination =
+        VirtualScrollingPagination.create()
+            .setPageSize(pageSize)
+            .addChangeListener(
+                (oldPage, newPage) -> {
+                  fireUpdate(oldPage, newPage, this.append);
+                });
+    return pagination;
   }
 
   /**
@@ -175,6 +189,7 @@ public class LocalListScrollingDataSource<T>
     this.original.addAll(data);
     this.filtered.clear();
     this.filtered.addAll(acceptedData);
+    this.pagination.updatePagesByTotalCount(this.filtered.size(), pagination.getPageSize());
     load();
   }
 
@@ -215,12 +230,17 @@ public class LocalListScrollingDataSource<T>
   /** Loads data from the data source, resetting the page index and triggering a data update. */
   @Override
   public void load() {
-    pageIndex = 0;
-    fireUpdate(false);
+    this.append = false;
+    if (pagination.activePage() == 1) {
+      fireUpdate(0, 1, false);
+    } else {
+      pagination.gotoPage(1, false);
+    }
   }
 
-  private void fireUpdate(boolean append) {
-    int fromIndex = pageSize * pageIndex;
+  private void fireUpdate(int oldPage, int newPage, boolean append) {
+    int fromPage = append ? oldPage : 0;
+    int fromIndex = pagination.getPageSize() * fromPage;
     int toIndex = Math.min(getToIndex(fromIndex), filtered.size());
 
     listeners.forEach(
@@ -230,15 +250,16 @@ public class LocalListScrollingDataSource<T>
                     new ArrayList<>(filtered.subList(fromIndex, toIndex)),
                     append,
                     filtered.size())));
+    this.append = false;
   }
 
   private int getToIndex(int fromIndex) {
-    if (pageIndex == 0 && initialLoadedPages > 1) {
-      int toIndex = fromIndex + (initialLoadedPages * pageSize);
-      pageIndex = initialLoadedPages - 1;
+    if (pagination.activePage() == 1 && initialLoadedPages > 1) {
+      int toIndex = fromIndex + (initialLoadedPages * pagination.getPageSize());
+      pagination.withPausedChangeListeners(p -> pagination.gotoPage(initialLoadedPages, true));
       return toIndex;
     }
-    return fromIndex + pageSize;
+    return pagination.activePage() * pagination.getPageSize();
   }
 
   /**
@@ -271,11 +292,11 @@ public class LocalListScrollingDataSource<T>
    */
   private void onBodyScroll(BodyScrollEvent bodyScrollEvent) {
     if (BodyScrollPlugin.ScrollPosition.BOTTOM.equals(bodyScrollEvent.getScrollPosition())) {
-      int nextIndex = pageIndex + 1;
-      int fromIndex = nextIndex * pageSize;
+      int nextIndex = pagination.activePage();
+      int fromIndex = nextIndex * pagination.getPageSize();
       if (fromIndex < filtered.size()) {
-        pageIndex++;
-        fireUpdate(true);
+        this.append = true;
+        pagination.nextPage(false);
       }
     }
   }
@@ -291,11 +312,12 @@ public class LocalListScrollingDataSource<T>
     if (nonNull(searchFilter)) {
       this.lastSearch = event;
       filtered = filterData(original);
+      this.append = false;
+      this.pagination.updatePagesByTotalCount(this.filtered.size(), pagination.getPageSize());
       if (nonNull(lastSort)) {
         onSort(lastSort);
       } else {
-        pageIndex = 0;
-        fireUpdate(false);
+        load();
       }
     }
   }
@@ -312,8 +334,7 @@ public class LocalListScrollingDataSource<T>
       filtered.sort(
           recordsSorter.onSortChange(
               event.getColumnConfig().getSortKey(), event.getSortDirection()));
-      pageIndex = 0;
-      fireUpdate(false);
+      load();
     }
   }
 
@@ -430,6 +451,15 @@ public class LocalListScrollingDataSource<T>
    */
   public List<T> getFiltered() {
     return new ArrayList<>(filtered);
+  }
+
+  /**
+   * Gets the pagination component used by this data source.
+   *
+   * @return The {@link VirtualScrollingPagination} instance.
+   */
+  public VirtualScrollingPagination getPagination() {
+    return pagination;
   }
 
   @Override
