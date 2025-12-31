@@ -73,7 +73,9 @@ public class HeightCollapseStrategy implements CollapseStrategy, CollapsibleStyl
     this.initialHeight = initialHeight;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void init(Element element, CollapsibleHandlers handlers) {
     this.target = elements.elementOf(element);
@@ -84,7 +86,9 @@ public class HeightCollapseStrategy implements CollapseStrategy, CollapsibleStyl
         .addCss(transition.getStyle());
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void cleanup(Element element) {
     elements
@@ -98,7 +102,9 @@ public class HeightCollapseStrategy implements CollapseStrategy, CollapsibleStyl
     detachRegister.remove();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void expand(Element element) {
     attchedRegister.remove();
@@ -159,7 +165,9 @@ public class HeightCollapseStrategy implements CollapseStrategy, CollapsibleStyl
     return this.target.element().scrollHeight;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void collapse(Element element) {
     boolean disableAnimation = dui_transition_none.isAppliedTo(this.target);

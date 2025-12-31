@@ -126,6 +126,7 @@ public abstract class Option<V, C extends IsElement<?>, O extends Option<V, C, O
   public V getValue() {
     return value;
   }
+
   /**
    * Attaches a menu item to this option using a handler function. The handler function allows
    * customizing the menu item associated with this option.

@@ -66,7 +66,9 @@ public class AnimationCollapseOptions {
     return this;
   }
 
-  /** @return The show/expand animation duration, {@link CollapsibleDuration} */
+  /**
+   * @return The show/expand animation duration, {@link CollapsibleDuration}
+   */
   public CollapsibleDuration getShowDuration() {
     return showDuration;
   }
@@ -82,7 +84,9 @@ public class AnimationCollapseOptions {
     return this;
   }
 
-  /** @return The hide/collapse animation duration, {@link CollapsibleDuration} */
+  /**
+   * @return The hide/collapse animation duration, {@link CollapsibleDuration}
+   */
   public CollapsibleDuration getHideDuration() {
     return hideDuration;
   }

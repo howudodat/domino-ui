@@ -106,7 +106,9 @@ public abstract class BaseButton<E extends HTMLElement, B extends BaseButton<E, 
     setIcon(icon);
   }
 
-  /** @hidden {@inheritDoc} */
+  /**
+   * @hidden {@inheritDoc}
+   */
   @Override
   public Element getAppendTarget() {
     return bodyElement.element();
@@ -254,13 +256,17 @@ public abstract class BaseButton<E extends HTMLElement, B extends BaseButton<E, 
     return (B) this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return buttonElement.element();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public B asButton() {
     return (B) this;

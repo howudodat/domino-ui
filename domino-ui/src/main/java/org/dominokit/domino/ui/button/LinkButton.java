@@ -101,7 +101,9 @@ public class LinkButton extends BaseButton<HTMLAnchorElement, LinkButton> {
     return new LinkButton(icon, text);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   protected AnchorElement createButtonElement() {
     return anchorElement = a().removeHref();

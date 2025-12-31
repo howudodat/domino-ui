@@ -71,6 +71,7 @@ public class FileItem extends BaseDominoElement<HTMLElement, FileItem> {
       File file, UploadOptions options, FilePreviewFactory previewFactory, FileUpload fileUpload) {
     return new FileItem(file, options, previewFactory, fileUpload);
   }
+
   /**
    * Creates a new {@code FileItem} instance for the given file, using the default upload options
    * and the provided file preview factory and file upload.

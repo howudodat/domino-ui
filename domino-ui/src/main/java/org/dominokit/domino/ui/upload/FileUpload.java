@@ -643,7 +643,9 @@ public class FileUpload extends BaseDominoElement<HTMLDivElement, FileUpload>
     return this;
   }
 
-  /** @return true if uploaded files will show a preview in the preview container */
+  /**
+   * @return true if uploaded files will show a preview in the preview container
+   */
   public boolean isShowPreview() {
     return showPreview;
   }

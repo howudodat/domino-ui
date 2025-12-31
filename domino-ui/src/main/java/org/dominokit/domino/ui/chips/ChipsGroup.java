@@ -139,12 +139,16 @@ public class ChipsGroup extends BaseDominoElement<HTMLDivElement, ChipsGroup>
     return chips.stream().allMatch(Chip::isEnabled);
   }
 
-  /** @return a {@link java.util.List} of currently selected chips in this group */
+  /**
+   * @return a {@link java.util.List} of currently selected chips in this group
+   */
   public List<Chip> getSelectedChips() {
     return selectedChips;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return root.element();
@@ -164,26 +168,34 @@ public class ChipsGroup extends BaseDominoElement<HTMLDivElement, ChipsGroup>
     return this;
   }
 
-  /** @return a {@link java.util.List} of all chips in this group. */
+  /**
+   * @return a {@link java.util.List} of all chips in this group.
+   */
   public List<Chip> getChips() {
     return chips;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public ChipsGroup pauseSelectionListeners() {
     this.selectionListenersPaused = true;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public ChipsGroup resumeSelectionListeners() {
     this.selectionListenersPaused = false;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public ChipsGroup togglePauseSelectionListeners(boolean toggle) {
     this.selectionListenersPaused = toggle;
@@ -196,19 +208,25 @@ public class ChipsGroup extends BaseDominoElement<HTMLDivElement, ChipsGroup>
     return selectionListeners;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<SelectionListener<? super Chip, ? super List<Chip>>> getDeselectionListeners() {
     return deselectionListeners;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public boolean isSelectionListenersPaused() {
     return this.selectionListenersPaused;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public ChipsGroup triggerSelectionListeners(Chip source, List<Chip> selection) {
     selectionListeners.forEach(
@@ -217,7 +235,9 @@ public class ChipsGroup extends BaseDominoElement<HTMLDivElement, ChipsGroup>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public ChipsGroup triggerDeselectionListeners(Chip source, List<Chip> selection) {
     deselectionListeners.forEach(
@@ -226,7 +246,9 @@ public class ChipsGroup extends BaseDominoElement<HTMLDivElement, ChipsGroup>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public List<Chip> getSelection() {
     return selectedChips;

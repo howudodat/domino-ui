@@ -320,7 +320,9 @@ public class Stepper extends BaseDominoElement<HTMLDivElement, Stepper>
     return this;
   }
 
-  /** @return true if the stepper last step tail is hidden. */
+  /**
+   * @return true if the stepper last step tail is hidden.
+   */
   public boolean isStepperTailHidden() {
     return stepperTrack.isStepperTailHidden();
   }

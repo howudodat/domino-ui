@@ -132,7 +132,9 @@ public class Draggable<E extends IsElement<? extends HTMLElement>> {
     }
   }
 
-  /** @return Draggble item DraggableConfig */
+  /**
+   * @return Draggble item DraggableConfig
+   */
   public DraggableConfig getConfig() {
     return config;
   }

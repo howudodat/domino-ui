@@ -51,7 +51,9 @@ public class RemoveButton extends BaseDominoElement<HTMLButtonElement, RemoveBut
     init(this);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLButtonElement element() {
     return button.element();

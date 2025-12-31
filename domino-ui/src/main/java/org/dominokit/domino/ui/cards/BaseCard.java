@@ -69,6 +69,7 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
   public BaseCard(String title) {
     this(text(title));
   }
+
   /**
    * Creates a card with title in the header
    *
@@ -650,25 +651,33 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
     return (C) this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<CollapseHandler<C>> getCollapseHandlers() {
     return this.collapseHandlers;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<ExpandHandler<C>> getExpandHandlers() {
     return this.expandHandlers;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement getAppendTarget() {
     return body.element();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();

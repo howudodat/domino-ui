@@ -169,7 +169,9 @@ public class ToggleButton extends BaseButton<HTMLButtonElement, ToggleButton>
     return this.state;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   protected ButtonElement createButtonElement() {
     return button();

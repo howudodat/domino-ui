@@ -195,14 +195,18 @@ public class Counter {
   /** Use to add an implementation of a handler to be called after each count */
   @FunctionalInterface
   public interface CountHandler {
-    /** @param count int the current counter value */
+    /**
+     * @param count int the current counter value
+     */
     void onCount(int count);
   }
 
   /** Use to add an implementation of a handler to be called after counting completion */
   @FunctionalInterface
   public interface CompletionHandler {
-    /** @param counter the completed counter instance */
+    /**
+     * @param counter the completed counter instance
+     */
     void onCount(Counter counter);
   }
 

@@ -267,6 +267,7 @@ public class ListGroup<T> extends BaseDominoElement<HTMLUListElement, ListGroup<
 
     return this;
   }
+
   /**
    * Updates an item in this list group with a new value.
    *

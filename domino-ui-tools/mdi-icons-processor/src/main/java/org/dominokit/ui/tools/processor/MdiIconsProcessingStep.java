@@ -36,8 +36,10 @@ public class MdiIconsProcessingStep {
 
   private static final String MDI_VERSION = "v7.4.47";
   private static final Logger LOGGER = LoggerFactory.getLogger(MdiIconsProcessingStep.class);
+
   /** Constant <code>ICONS_ROOT_PACKAGE="org.dominokit.domino.ui.icons"</code> */
   public static final String ICONS_ROOT_PACKAGE = "org.dominokit.domino.ui.icons";
+
   /** Constant <code>PUBLIC_ROOT="org.dominokit.domino.ui.public"</code> */
   public static final String PUBLIC_ROOT = "org.dominokit.domino.ui.public";
 

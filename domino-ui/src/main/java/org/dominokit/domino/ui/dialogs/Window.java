@@ -470,7 +470,9 @@ public class Window extends AbstractDialog<Window> {
     return closeIcon;
   }
 
-  /** @return the NavBar of this window */
+  /**
+   * @return the NavBar of this window
+   */
   public NavBar getNavHeader() {
     return navHeader;
   }

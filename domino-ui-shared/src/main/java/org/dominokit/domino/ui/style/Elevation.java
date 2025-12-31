@@ -59,7 +59,9 @@ public enum Elevation {
 
   private String style;
 
-  /** @param style String, The css class name for the box-shadow effect */
+  /**
+   * @param style String, The css class name for the box-shadow effect
+   */
   Elevation(String style) {
     this.style = style;
   }

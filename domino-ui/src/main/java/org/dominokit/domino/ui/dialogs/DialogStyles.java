@@ -25,6 +25,7 @@ public interface DialogStyles {
 
   /** Constant <code>dui_modal</code> */
   CssClass dui_dialog = () -> "dui-dialog";
+
   /** Constant <code>dui_modal_box</code> */
   CssClass dui_modal_box = () -> "dui-dialog-box";
 
@@ -33,25 +34,34 @@ public interface DialogStyles {
 
   /** Constant <code>dui_dialog_header</code> */
   CssClass dui_dialog_header = () -> "dui-dialog-header";
+
   /** Constant <code>dui_dialog_content_header</code> */
   CssClass dui_dialog_content_header = () -> "dui-dialog-content-header";
+
   /** Constant <code>dui_dialog_icon</code> */
   CssClass dui_dialog_icon = () -> "dui-dialog-icon";
+
   /** Constant <code>dui_dialog_title</code> */
   CssClass dui_dialog_title = () -> "dui-dialog-title";
+
   /** Constant <code>dui_dialog_utility</code> */
   CssClass dui_dialog_utility = () -> "dui-dialog-utility";
+
   /** Constant <code>dui_dialog_content</code> */
   CssClass dui_dialog_content = () -> "dui-dialog-content";
+
   /** Constant <code>dui_dialog_body</code> */
   CssClass dui_dialog_body = () -> "dui-dialog-body";
+
   /** Constant <code>dui_dialog_footer</code> */
   CssClass dui_dialog_footer = () -> "dui-dialog-footer";
+
   /** Constant <code>dui_dialog_nav</code> */
   CssClass dui_dialog_nav = () -> "dui-dialog-nav";
 
   /** Constant <code>dui_window</code> */
   CssClass dui_window = () -> "dui-window";
+
   /** Constant <code>dui_maximized</code> */
   CssClass dui_maximized = () -> "dui-maximized";
 

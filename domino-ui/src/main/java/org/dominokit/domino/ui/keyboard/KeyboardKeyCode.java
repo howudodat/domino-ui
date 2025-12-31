@@ -36,18 +36,28 @@ public interface KeyboardKeyCode {
     return getCodes().stream().findFirst().orElse(null);
   }
 
-  /** @return {@code true} if this is any modifier key (Ctrl/Shift/Alt/Meta, any side). */
+  /**
+   * @return {@code true} if this is any modifier key (Ctrl/Shift/Alt/Meta, any side).
+   */
   public boolean isModifier();
 
-  /** @return {@code true} if this is a lock key (CapsLock, NumLock, ScrollLock). */
+  /**
+   * @return {@code true} if this is a lock key (CapsLock, NumLock, ScrollLock).
+   */
   public boolean isLockKey();
 
-  /** @return {@code true} if this is a navigation / cursor key. */
+  /**
+   * @return {@code true} if this is a navigation / cursor key.
+   */
   public boolean isNavigationKey();
 
-  /** @return {@code true} if this is one of the function keys F1..F24. */
+  /**
+   * @return {@code true} if this is one of the function keys F1..F24.
+   */
   public boolean isFunctionKey();
 
-  /** @return {@code true} if this is any numpad key. */
+  /**
+   * @return {@code true} if this is any numpad key.
+   */
   public boolean isNumpadKey();
 }

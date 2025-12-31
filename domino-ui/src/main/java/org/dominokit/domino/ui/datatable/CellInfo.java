@@ -77,7 +77,9 @@ public abstract class CellInfo<T, E extends HTMLElement, C extends CellInfo<T, E
     return tableRow.getRecord();
   }
 
-  /** @return The column config the cell belongs to. */
+  /**
+   * @return The column config the cell belongs to.
+   */
   public Optional<ColumnConfig<T>> getColumnConfig() {
     return Optional.ofNullable(columnConfig);
   }

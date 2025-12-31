@@ -73,11 +73,13 @@ public interface TimeFormatter {
     public Date parseStrict(String pattern, DateTimeFormatInfo dtfi, String value) {
       return getFormat(pattern, dtfi).parseStrict(value);
     }
+
     /** {@inheritDoc} */
     @Override
     public Date parse(String pattern, DateTimeFormatInfo dtfi, String value) {
       return getFormat(pattern, dtfi).parse(value);
     }
+
     /** {@inheritDoc} */
     @Override
     public String format(String pattern, DateTimeFormatInfo dtfi, Date date) {

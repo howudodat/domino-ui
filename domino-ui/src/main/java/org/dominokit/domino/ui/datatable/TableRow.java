@@ -107,7 +107,9 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     this.record = record;
   }
 
-  /** @return A modified record containing changes made to the row. */
+  /**
+   * @return A modified record containing changes made to the row.
+   */
   public T getDirtyRecord() {
     T dirtyRecord = dataTable.getTableConfig().getDirtyRecordProvider().createDirtyRecord(record);
     getRowCells().forEach((s, rowCell) -> rowCell.getCellInfo().updateDirtyRecord(dirtyRecord));
@@ -859,7 +861,9 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     return rowFieldsGroup;
   }
 
-  /** @return true if this table should be allowed to be dragged. */
+  /**
+   * @return true if this table should be allowed to be dragged.
+   */
   public boolean isDraggable() {
     return draggable;
   }

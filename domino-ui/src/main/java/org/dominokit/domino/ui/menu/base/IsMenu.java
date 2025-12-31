@@ -48,6 +48,7 @@ public interface IsMenu<
   void focusFirstMatch(String token);
 
   Optional<I> findOptionStarsWith(String token);
+
   /**
    * Determines if the menu is set to be centered on small screen devices.
    *
@@ -90,12 +91,14 @@ public interface IsMenu<
   C appendChild(SubheaderAddon<?> addon);
 
   C appendChild(SubheaderAddon<?>... addons);
+
   /**
    * Clears the current selection of menu items.
    *
    * @param silent if true, does not trigger the deselection listeners; otherwise, does.
    */
   void clearSelection(boolean silent);
+
   /**
    * Gets the label used when an item is not found during a search.
    *
@@ -110,6 +113,7 @@ public interface IsMenu<
    * @return The current {@link Menu} instance.
    */
   C setCreateMissingLabel(String createMissingLabel);
+
   /**
    * Retrieves the element used to display a "no results" message when a search yields no results.
    *
@@ -517,6 +521,7 @@ public interface IsMenu<
    * @return {@code true} if the menu uses the small screens direction, {@code false} otherwise.
    */
   boolean isUseSmallScreensDirection();
+
   /**
    * Sets whether the menu should use the small screens drop direction.
    *

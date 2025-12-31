@@ -44,6 +44,7 @@ public class BooleanCssClass implements CssClass {
   public static BooleanCssClass of(CssClass cssClass, boolean addRemove) {
     return new BooleanCssClass(cssClass, addRemove);
   }
+
   /**
    * Creates an instance with a specified {@link CssClass} and a condition flag.
    *

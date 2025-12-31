@@ -29,6 +29,7 @@ public interface CollapseStrategy {
    * @param handlers a {@link org.dominokit.domino.ui.collapsible.CollapsibleHandlers} object
    */
   default void init(Element element, CollapsibleHandlers handlers) {}
+
   /**
    * Implement this method to show a collapsible element
    *
@@ -49,5 +50,6 @@ public interface CollapseStrategy {
    *
    * @param element The collapsible {@link elemental2.dom.Element}
    */
-  default void cleanup(Element element) {};
+  default void cleanup(Element element) {}
+  ;
 }

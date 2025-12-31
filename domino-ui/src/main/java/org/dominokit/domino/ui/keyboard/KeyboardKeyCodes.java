@@ -259,7 +259,9 @@ public enum KeyboardKeyCodes implements KeyboardKeyCode {
     return LOOKUP.getOrDefault(code, UNIDENTIFIED);
   }
 
-  /** @return {@code true} if this is any modifier key (Ctrl/Shift/Alt/Meta, any side). */
+  /**
+   * @return {@code true} if this is any modifier key (Ctrl/Shift/Alt/Meta, any side).
+   */
   public boolean isModifier() {
     switch (this) {
       case CONTROL_LEFT:
@@ -276,7 +278,9 @@ public enum KeyboardKeyCodes implements KeyboardKeyCode {
     }
   }
 
-  /** @return {@code true} if this is a lock key (CapsLock, NumLock, ScrollLock). */
+  /**
+   * @return {@code true} if this is a lock key (CapsLock, NumLock, ScrollLock).
+   */
   public boolean isLockKey() {
     switch (this) {
       case CAPS_LOCK:
@@ -288,7 +292,9 @@ public enum KeyboardKeyCodes implements KeyboardKeyCode {
     }
   }
 
-  /** @return {@code true} if this is a navigation / cursor key. */
+  /**
+   * @return {@code true} if this is a navigation / cursor key.
+   */
   public boolean isNavigationKey() {
     switch (this) {
       case ARROW_UP:
@@ -307,7 +313,9 @@ public enum KeyboardKeyCodes implements KeyboardKeyCode {
     }
   }
 
-  /** @return {@code true} if this is one of the function keys F1..F24. */
+  /**
+   * @return {@code true} if this is one of the function keys F1..F24.
+   */
   public boolean isFunctionKey() {
     switch (this) {
       case F1:
@@ -340,7 +348,9 @@ public enum KeyboardKeyCodes implements KeyboardKeyCode {
     }
   }
 
-  /** @return {@code true} if this is any numpad key. */
+  /**
+   * @return {@code true} if this is any numpad key.
+   */
   public boolean isNumpadKey() {
     switch (this) {
       case NUMPAD_0:

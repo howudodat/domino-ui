@@ -29,6 +29,7 @@ public interface CalendarLabels extends Labels {
   default String calendarInvalidDateFormat() {
     return "Invalid date format";
   }
+
   /**
    * Returns the localized label for the "Invalid date format" message related to calendar input.
    *

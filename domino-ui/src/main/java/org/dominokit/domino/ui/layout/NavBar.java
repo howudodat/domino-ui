@@ -81,6 +81,7 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
   public static NavBar create(String title) {
     return new NavBar(text(title));
   }
+
   /**
    * Creates a new {@code NavBar} instance with the specified title.
    *
@@ -219,7 +220,9 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
     return title.getTextContent();
   }
 
-  /** @return the element containing the text of the title. */
+  /**
+   * @return the element containing the text of the title.
+   */
   public SpanElement getTitleTextElement() {
     return titleTextElement;
   }
@@ -253,7 +256,9 @@ public class NavBar extends BaseDominoElement<HTMLElement, NavBar> {
     return body;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return root.element();

@@ -51,10 +51,14 @@ public abstract class AbstractSuggestionsStore<
 
   protected Function<T, Optional<O>> optionMapper;
 
-  /** @return This store instance. */
+  /**
+   * @return This store instance.
+   */
   protected abstract S getThis();
 
-  /** @return A collection of all suggestions currently in the store. */
+  /**
+   * @return A collection of all suggestions currently in the store.
+   */
   protected abstract Collection<O> getSuggestionsCollection();
 
   /** {@inheritDoc} */

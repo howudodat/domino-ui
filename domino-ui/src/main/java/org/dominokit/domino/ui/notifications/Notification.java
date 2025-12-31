@@ -112,6 +112,7 @@ public class Notification extends BaseDominoElement<HTMLDivElement, Notification
   public static Notification create() {
     return new Notification();
   }
+
   /** Close all currently opened notifications */
   public static void dismissAll() {
     dismissAll(() -> {});
@@ -352,6 +353,7 @@ public class Notification extends BaseDominoElement<HTMLDivElement, Notification
           });
     }
   }
+
   /**
    * Animates the closing of the notification after a specified delay.
    *

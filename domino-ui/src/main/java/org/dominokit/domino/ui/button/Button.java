@@ -111,7 +111,9 @@ public class Button extends BaseButton<HTMLButtonElement, Button> {
     return new Button(text, icon);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   protected ButtonElement createButtonElement() {
     return button();

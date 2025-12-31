@@ -118,46 +118,60 @@ public class Chip extends BaseDominoElement<HTMLDivElement, Chip>
         });
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Chip pauseSelectionListeners() {
     this.selectionListenersPaused = true;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Chip resumeSelectionListeners() {
     this.selectionListenersPaused = false;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Chip togglePauseSelectionListeners(boolean toggle) {
     this.selectionListenersPaused = toggle;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<SelectionListener<? super Chip, ? super Chip>> getSelectionListeners() {
     return selectionListeners;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<SelectionListener<? super Chip, ? super Chip>> getDeselectionListeners() {
     return deselectionListeners;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public boolean isSelectionListenersPaused() {
     return this.selectionListenersPaused;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Chip triggerSelectionListeners(Chip source, Chip selection) {
     selectionListeners.forEach(
@@ -165,7 +179,9 @@ public class Chip extends BaseDominoElement<HTMLDivElement, Chip>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Chip triggerDeselectionListeners(Chip source, Chip selection) {
     deselectionListeners.forEach(
@@ -173,7 +189,9 @@ public class Chip extends BaseDominoElement<HTMLDivElement, Chip>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Chip getSelection() {
     if (isSelected()) {
@@ -283,7 +301,9 @@ public class Chip extends BaseDominoElement<HTMLDivElement, Chip>
     return selected && isSelectable();
   }
 
-  /** @return boolean, <b>true</b> if the chip is selectable otherwise <b>false</b> */
+  /**
+   * @return boolean, <b>true</b> if the chip is selectable otherwise <b>false</b>
+   */
   @Override
   public boolean isSelectable() {
     return selectable;
@@ -351,7 +371,9 @@ public class Chip extends BaseDominoElement<HTMLDivElement, Chip>
     return this;
   }
 
-  /** @return The {@link org.dominokit.domino.ui.elements.SpanElement} of this chip text. */
+  /**
+   * @return The {@link org.dominokit.domino.ui.elements.SpanElement} of this chip text.
+   */
   public SpanElement getTextElement() {
     return textElement;
   }
@@ -421,7 +443,9 @@ public class Chip extends BaseDominoElement<HTMLDivElement, Chip>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return root.element();

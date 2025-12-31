@@ -259,6 +259,7 @@ public class Collapsible implements IsElement<Element>, IsCollapsible<Collapsibl
       collapseHandlers.remove(handler);
     }
   }
+
   /**
    * removes the before hide handler
    *
@@ -321,7 +322,9 @@ public class Collapsible implements IsElement<Element>, IsCollapsible<Collapsibl
     }
   }
 
-  /** @return the current {@link CollapseStrategy} used by this Collapsible */
+  /**
+   * @return the current {@link CollapseStrategy} used by this Collapsible
+   */
   /**
    * Getter for the field <code>strategy</code>.
    *

@@ -37,7 +37,9 @@ public class AnimationCollapseStrategy implements CollapseStrategy {
   private CollapsibleHandlers handlers;
   private Animation showAnimation;
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void init(Element element, CollapsibleHandlers handlers) {
     this.handlers = handlers;
@@ -90,7 +92,9 @@ public class AnimationCollapseStrategy implements CollapseStrategy {
     this.options = options;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void expand(Element element) {
     if (!showing) {
@@ -124,7 +128,9 @@ public class AnimationCollapseStrategy implements CollapseStrategy {
     }
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void collapse(Element element) {
     Optional.ofNullable(showAnimation)

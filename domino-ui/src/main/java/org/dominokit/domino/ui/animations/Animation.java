@@ -303,7 +303,9 @@ public class Animation {
    */
   @FunctionalInterface
   public interface CompleteCallback {
-    /** @param element an {@link Element} that is being animated */
+    /**
+     * @param element an {@link Element} that is being animated
+     */
     void onComplete(Element element);
   }
 
@@ -313,7 +315,9 @@ public class Animation {
    */
   @FunctionalInterface
   public interface StartHandler {
-    /** @param element an {@link Element} that is being animated */
+    /**
+     * @param element an {@link Element} that is being animated
+     */
     void beforeStart(Element element);
   }
 }

@@ -134,7 +134,9 @@ public abstract class Icon<T extends Icon<T>> extends BaseDominoElement<HTMLElem
     return (T) this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return icon.element();

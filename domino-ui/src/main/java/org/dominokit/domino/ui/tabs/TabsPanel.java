@@ -527,7 +527,9 @@ public class TabsPanel extends BaseDominoElement<HTMLDivElement, TabsPanel>
     return this;
   }
 
-  /** @return the tabs {@link UListElement} */
+  /**
+   * @return the tabs {@link UListElement}
+   */
   public UListElement getTabsNav() {
     return tabsListElement;
   }

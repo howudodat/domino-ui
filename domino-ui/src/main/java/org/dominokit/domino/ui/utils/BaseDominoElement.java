@@ -129,6 +129,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   public static String CHARACTER_DATA_CHANGE_UID_KEY = "dui-on-character-data-change-uid";
 
   @Editor.Ignore protected T element;
+
   /** A unique identifier for this DOM element. */
   private String uuid;
 
@@ -137,6 +138,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
 
   /** The collapsible state of this DOM element. */
   private Collapsible collapsible;
+
   /** The style of this DOM element. */
   @Editor.Ignore private Style<Element> style;
 

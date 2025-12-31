@@ -123,7 +123,9 @@ public class BreadcrumbItem extends BaseDominoElement<HTMLLIElement, BreadcrumbI
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLLIElement element() {
     return element.element();
@@ -138,7 +140,9 @@ public class BreadcrumbItem extends BaseDominoElement<HTMLLIElement, BreadcrumbI
     return anchorElement.element();
   }
 
-  /** @return a {@link elemental2.dom.Text} node for this BreadcrumbItem label text */
+  /**
+   * @return a {@link elemental2.dom.Text} node for this BreadcrumbItem label text
+   */
   public Text getTextElement() {
     return textElement;
   }
@@ -151,7 +155,9 @@ public class BreadcrumbItem extends BaseDominoElement<HTMLLIElement, BreadcrumbI
     return icon;
   }
 
-  /** @return <b>true</b> if the item is active, <b>false</b> otherwise. */
+  /**
+   * @return <b>true</b> if the item is active, <b>false</b> otherwise.
+   */
   public boolean isActive() {
     return dui_active.isAppliedTo(this);
   }

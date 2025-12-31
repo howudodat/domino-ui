@@ -188,7 +188,9 @@ public class LazyLocalSuggestionsStore<T, E extends IsElement<?>, O extends Opti
     items.clear();
   }
 
-  /** @return The list of items in the store. */
+  /**
+   * @return The list of items in the store.
+   */
   public List<T> getItems() {
     return items;
   }

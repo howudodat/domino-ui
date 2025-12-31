@@ -70,6 +70,7 @@ public class KeyboardNavigation<V extends IsElement<?>> implements EventListener
   public KeyboardNavigation(List<V> items) {
     this.itemsSupplier = () -> items;
   }
+
   /**
    * Creates a new `KeyboardNavigation` instance for the given list of items.
    *

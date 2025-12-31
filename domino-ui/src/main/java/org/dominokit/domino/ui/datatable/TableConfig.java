@@ -734,7 +734,9 @@ public class TableConfig<T>
     return this;
   }
 
-  /** @return the handler to be called when a row is being edited. */
+  /**
+   * @return the handler to be called when a row is being edited.
+   */
   Consumer<TableRow<T>> getOnRowEditHandler() {
     return onRowEditHandler;
   }
@@ -765,7 +767,9 @@ public class TableConfig<T>
     return this;
   }
 
-  /** @return the handler to be called when a row editing finished. */
+  /**
+   * @return the handler to be called when a row editing finished.
+   */
   Consumer<TableRow<T>> getOnRowFinishEditHandler() {
     return onRowFinishEditHandler;
   }

@@ -64,7 +64,9 @@ public abstract class BaseAlert<A extends BaseAlert<A>> extends BaseDominoElemen
     return (A) this;
   }
 
-  /** @return true if dismissible. */
+  /**
+   * @return true if dismissible.
+   */
   public boolean isDismissible() {
     return removeButton.isInitialized();
   }

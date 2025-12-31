@@ -132,7 +132,9 @@ public class MenuItem<V> extends AbstractMenuItem<V> implements HasText {
     return textElement;
   }
 
-  /** @inheritDoc */
+  /**
+   * @inheritDoc
+   */
   @Override
   public String getText() {
     return textElement.getTextContent();

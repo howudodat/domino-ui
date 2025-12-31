@@ -426,7 +426,9 @@ public abstract class AbstractSuggestBox<
     return inputElement.toDominoElement();
   }
 
-  /** @return the input element wrapper element of the suggest box */
+  /**
+   * @return the input element wrapper element of the suggest box
+   */
   public DivElement getFieldInput() {
     return fieldInput;
   }

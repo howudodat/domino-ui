@@ -992,6 +992,7 @@ public interface ElementsFactoryDelegate {
   default SvgElement svg() {
     return new SvgElement(dom.svg());
   }
+
   /**
    * Creates a new {@link SvgElement}.
    *

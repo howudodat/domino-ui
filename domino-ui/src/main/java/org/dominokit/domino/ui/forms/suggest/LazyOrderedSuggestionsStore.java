@@ -210,7 +210,9 @@ public class LazyOrderedSuggestionsStore<T, E extends IsElement<?>, O extends Op
     return map;
   }
 
-  /** @return The set of items in the store. */
+  /**
+   * @return The set of items in the store.
+   */
   public Set<T> getItems() {
     return items;
   }

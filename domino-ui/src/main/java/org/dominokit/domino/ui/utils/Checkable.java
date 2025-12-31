@@ -62,6 +62,7 @@ public interface Checkable<T> {
    * @return The updated entity.
    */
   T toggleChecked(boolean silent);
+
   /**
    * Toggles the checked state of the entity based on the given {@code checkedState} parameter.
    *
@@ -78,6 +79,7 @@ public interface Checkable<T> {
    * @return The updated entity.
    */
   T toggleChecked();
+
   /**
    * Checks if the entity is in a checked state.
    *

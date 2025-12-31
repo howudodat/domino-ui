@@ -90,7 +90,9 @@ public class AccordionPanel extends BaseDominoElement<HTMLDivElement, AccordionP
     return new AccordionPanel(title);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement getAppendTarget() {
     return bodyElement.element();
@@ -150,7 +152,9 @@ public class AccordionPanel extends BaseDominoElement<HTMLDivElement, AccordionP
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement getCollapsibleElement() {
     return contentElement.element();
@@ -227,13 +231,17 @@ public class AccordionPanel extends BaseDominoElement<HTMLDivElement, AccordionP
     return setIcon(icon);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();
   }
 
-  /** @return The {@link org.dominokit.domino.ui.elements.DivElement} that host the panel content */
+  /**
+   * @return The {@link org.dominokit.domino.ui.elements.DivElement} that host the panel content
+   */
   public DivElement getContentBody() {
     return bodyElement;
   }

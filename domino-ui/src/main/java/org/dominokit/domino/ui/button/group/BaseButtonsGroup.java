@@ -66,7 +66,9 @@ public class BaseButtonsGroup<T extends BaseButtonsGroup<T, B>, B extends IsButt
 
   protected void onButtonAdded(B btn) {}
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return groupElement.element();

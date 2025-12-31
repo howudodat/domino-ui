@@ -109,7 +109,9 @@ public enum Transition {
     this.name = name;
   }
 
-  /** @return String css class */
+  /**
+   * @return String css class
+   */
   /**
    * Getter for the field <code>style</code>.
    *
@@ -119,7 +121,9 @@ public enum Transition {
     return style;
   }
 
-  /** @return String animation name */
+  /**
+   * @return String animation name
+   */
   /**
    * Getter for the field <code>name</code>.
    *

@@ -155,7 +155,9 @@ public class Blockquote extends BaseDominoElement<HTMLElement, Blockquote> {
     return paragraph;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return element.element();

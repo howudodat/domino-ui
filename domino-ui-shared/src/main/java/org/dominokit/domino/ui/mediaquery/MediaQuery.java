@@ -499,6 +499,7 @@ public class MediaQuery {
     /** on match the query */
     void onMatch();
   }
+
   /** A listener that will be called when media query matches */
   @FunctionalInterface
   public interface MediaQueryListenerRecord {
