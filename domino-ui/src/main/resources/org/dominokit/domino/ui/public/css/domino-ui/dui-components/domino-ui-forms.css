@@ -8,7 +8,7 @@ fieldset.dui {
     flex-direction: var(--dui-form-field-direction, column);
     align-items: var(--dui-form-field-align, flex-start);
     padding: var(--dui-form-field-padding);
-    margin: var(--dui-form-field-marging);
+    margin: var(--dui-form-field-margin);
     width: 100%;
     margin-inline: 0;
     max-inline-size: 100%;
@@ -84,6 +84,22 @@ fieldset.dui {
 .dui-form-label-float-left {
     --dui-form-field-direction: row;
     --dui-form-field-align: baseline;
+}
+
+.dui-form-label-float-left .dui-form-field,
+.dui-form-field.dui-form-label-float-left{
+    gap: var(--dui-form-field-label-gap);
+}
+
+.dui-form-label-float-left .dui-field-label {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.dui-form-label-float-left .dui-checkbox-label {
+    --dui-form-field-checkbox-label-padding: 0 0 0 14px;
+    --dui-form-field-checkbox-label-min-height: 16px;
 }
 
 .dui-form-label-float-top {
@@ -231,6 +247,8 @@ fieldset.dui {
 }
 
 .dui-form-field-body {
+    min-width: var(--dui-form-field-body-min-width, unset);
+    max-width: var(--dui-form-field-body-max-width, unset);
     width: 100%;
     order:20;
 }

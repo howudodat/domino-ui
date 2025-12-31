@@ -161,6 +161,9 @@ public class Weather_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.weather_hurricane_outline_weather());
     icons.add(() -> tagIcons.weather_lightning_weather());
     icons.add(() -> tagIcons.weather_lightning_rainy_weather());
+    icons.add(() -> tagIcons.weather_moonset_weather());
+    icons.add(() -> tagIcons.weather_moonset_down_weather());
+    icons.add(() -> tagIcons.weather_moonset_up_weather());
     icons.add(() -> tagIcons.weather_night_weather());
     icons.add(() -> tagIcons.weather_night_partly_cloudy_weather());
     icons.add(() -> tagIcons.weather_partly_cloudy_weather());

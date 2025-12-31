@@ -16,6 +16,7 @@
 
 package org.dominokit.domino.ui.datatable.store;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.datatable.events.RecordDraggedOutEvent.RECORD_DRAGGED_OUT;
 import static org.dominokit.domino.ui.datatable.events.RecordDroppedEvent.RECORD_DROPPED;
@@ -26,8 +27,16 @@ import static org.dominokit.domino.ui.datatable.events.TablePageChangeEvent.PAGI
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import org.dominokit.domino.ui.data.DataChangedEvent;
+import org.dominokit.domino.ui.data.DataFilter;
+import org.dominokit.domino.ui.data.DataStore;
+import org.dominokit.domino.ui.data.FilterMode;
+import org.dominokit.domino.ui.data.HasDataFilters;
+import org.dominokit.domino.ui.data.StoreDataChangeListener;
 import org.dominokit.domino.ui.datatable.events.*;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortDirection;
 import org.dominokit.domino.ui.pagination.HasPagination;
@@ -39,11 +48,12 @@ import org.dominokit.domino.ui.utils.DominoEvent;
  *
  * @param <T> The type of data representing the records in the data table.
  */
-public class LocalListDataStore<T> implements DataStore<T> {
+public class LocalListDataStore<T>
+    implements DataStore<T>, HasDataFilters<T, LocalListDataStore<T>> {
 
   private final List<StoreDataChangeListener<T>> listeners = new ArrayList<>();
 
-  protected final List<T> original;
+  protected List<T> original;
   protected List<T> filtered;
   private HasPagination pagination;
   private SearchFilter<T> searchFilter;
@@ -60,16 +70,18 @@ public class LocalListDataStore<T> implements DataStore<T> {
       new DragDropRecordActions<T>() {
         @Override
         public void onDropped(T droppedRecord, T target) {
-          int movedIndex = filtered.indexOf(droppedRecord);
-          int targetIndex = filtered.size();
-          if (nonNull(target)) {
-            targetIndex = filtered.indexOf(target);
-          }
-          if (movedIndex > -1) {
-            filtered.remove(movedIndex);
-          }
-          if (targetIndex > -1) {
-            filtered.add(targetIndex, droppedRecord);
+          if (isAcceptedByFilters(droppedRecord)) {
+            int movedIndex = filtered.indexOf(droppedRecord);
+            int targetIndex = filtered.size();
+            if (nonNull(target)) {
+              targetIndex = filtered.indexOf(target);
+            }
+            if (movedIndex > -1) {
+              filtered.remove(movedIndex);
+            }
+            if (targetIndex > -1) {
+              filtered.add(targetIndex, droppedRecord);
+            }
           }
         }
 
@@ -81,14 +93,16 @@ public class LocalListDataStore<T> implements DataStore<T> {
           }
         }
       };
+  private boolean filtersPaused = false;
+  private Set<DataFilter<? super T>> dataFilters;
+  private FilterMode<T> filterMode;
 
   /**
    * Constructs a new {@code LocalListDataStore} with an empty original data list and filtered data
    * list.
    */
   public LocalListDataStore() {
-    this.original = new ArrayList<>();
-    this.filtered = new ArrayList<>();
+    initData(new ArrayList<>());
   }
 
   /**
@@ -97,8 +111,12 @@ public class LocalListDataStore<T> implements DataStore<T> {
    * @param data The list of data records.
    */
   public LocalListDataStore(List<T> data) {
+    initData(data);
+  }
+
+  protected final void initData(List<T> data) {
     this.original = data;
-    this.filtered = new ArrayList<>(data);
+    this.filtered = new ArrayList<>(filterData(data));
   }
 
   /**
@@ -108,10 +126,11 @@ public class LocalListDataStore<T> implements DataStore<T> {
    * @param data The list of data records.
    */
   public void setData(List<T> data) {
+    List<T> acceptedData = filterData(data);
     this.original.clear();
     this.original.addAll(data);
     this.filtered.clear();
-    this.filtered.addAll(original);
+    this.filtered.addAll(acceptedData);
     load();
   }
 
@@ -270,6 +289,30 @@ public class LocalListDataStore<T> implements DataStore<T> {
   }
 
   /**
+   * Registers a data change listener to be notified when data changes.
+   *
+   * @param dataChangeListener The data change listener to register.
+   * @deprecated use {@link #onDataChanged(StoreDataChangeListener)} instead.
+   */
+  @Deprecated
+  public void onDataChanged(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener) {
+    this.onDataChanged((StoreDataChangeListener<T>) dataChangeListener);
+  }
+
+  /**
+   * Removes a registered data change listener.
+   *
+   * @param dataChangeListener The data change listener to remove.
+   * @deprecated use {@link #removeDataChangeListener(StoreDataChangeListener)} instead.
+   */
+  @Deprecated
+  public void removeDataChangeListener(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener) {
+    removeDataChangeListener((StoreDataChangeListener<T>) dataChangeListener);
+  }
+
+  /**
    * Removes a registered data change listener.
    *
    * @param dataChangeListener The data change listener to remove.
@@ -312,9 +355,7 @@ public class LocalListDataStore<T> implements DataStore<T> {
    */
   private void handleDraggedOutEvent(RecordDraggedOutEvent<T> event) {
     T rowToRemove = event.getDraggedOutRecord();
-
     dragDropRecordActions.onDraggedOut(rowToRemove);
-
     fireUpdate(true);
   }
 
@@ -340,10 +381,7 @@ public class LocalListDataStore<T> implements DataStore<T> {
   public void onSearchChanged(SearchEvent event) {
     if (nonNull(getSearchFilter())) {
       setLastSearch(event);
-      filtered =
-          original.stream()
-              .filter(record -> getSearchFilter().filterRecord(event, record))
-              .collect(Collectors.toList());
+      filtered = LocalListDataStore.this.filterData(original);
       if (nonNull(getLastSort())) {
         sort(getLastSort());
       }
@@ -564,8 +602,7 @@ public class LocalListDataStore<T> implements DataStore<T> {
    */
   public void addRecord(T record) {
     original.add(record);
-    List<T> newData = new ArrayList<>(original);
-    setData(newData);
+    setData(new ArrayList<>(original));
   }
 
   /**
@@ -577,8 +614,7 @@ public class LocalListDataStore<T> implements DataStore<T> {
    */
   public void insertRecord(int index, T record) {
     original.add(index, record);
-    List<T> newData = new ArrayList<>(original);
-    setData(newData);
+    setData(new ArrayList<>(original));
   }
 
   /**
@@ -666,8 +702,10 @@ public class LocalListDataStore<T> implements DataStore<T> {
     if (index >= 0 && index < original.size()) {
       T oldRecord = original.get(index);
       original.set(index, record);
-      if (filtered.contains(oldRecord)) {
+      if (filtered.contains(oldRecord) && isAcceptedByFilters(record)) {
         filtered.set(filtered.indexOf(oldRecord), record);
+      } else {
+        filtered.remove(oldRecord);
       }
       if (load) {
         load();
@@ -682,22 +720,7 @@ public class LocalListDataStore<T> implements DataStore<T> {
    */
   public void addRecords(Collection<T> records) {
     original.addAll(records);
-    List<T> newData = new ArrayList<>(original);
-    setData(newData);
-  }
-
-  /**
-   * Deprecated method to remove multiple records from the data store, updating both the original
-   * and filtered lists.
-   *
-   * @param records A collection of records to be removed.
-   * @deprecated Use {@link #removeRecords(Collection)} instead.
-   */
-  @Deprecated
-  public void removeRecord(Collection<T> records) {
-    original.removeAll(records);
-    filtered.removeAll(records);
-    load();
+    setData(new ArrayList<>(original));
   }
 
   /**
@@ -737,6 +760,77 @@ public class LocalListDataStore<T> implements DataStore<T> {
    */
   public void setDragDropRecordActions(DragDropRecordActions<T> dragDropRecordActions) {
     this.dragDropRecordActions = dragDropRecordActions;
+  }
+
+  @Override
+  public LocalListDataStore<T> pauseDataFilters() {
+    this.filtersPaused = true;
+    return this;
+  }
+
+  @Override
+  public LocalListDataStore<T> resumeDataFilters() {
+    this.filtersPaused = false;
+    return this;
+  }
+
+  @Override
+  public LocalListDataStore<T> togglePauseDataFilters(boolean toggle) {
+    this.filtersPaused = toggle;
+    return this;
+  }
+
+  @Override
+  public Set<DataFilter<? super T>> getDataFilters() {
+    if (isNull(this.dataFilters)) {
+      this.dataFilters = new HashSet<>();
+    }
+    return this.dataFilters;
+  }
+
+  @Override
+  public boolean isDataFiltersPaused() {
+    return this.filtersPaused;
+  }
+
+  public LocalListDataStore<T> setFilterMode(FilterMode<T> filterMode) {
+    this.filterMode = filterMode;
+    return this;
+  }
+
+  @Override
+  public FilterMode<T> getFilterMode() {
+    return nonNull(filterMode) ? filterMode : FilterMode.denial();
+  }
+
+  public LocalListDataStore<T> setDataFiltersEnabled(boolean state) {
+    if (state) {
+      this.filterMode = FilterMode.denial();
+    } else {
+      this.filterMode = FilterMode.acceptAll();
+    }
+    setData(this.original);
+    return this;
+  }
+
+  @Override
+  public List<T> filterData(T data) {
+    return HasDataFilters.super.filterData(data).stream()
+        .filter(
+            record ->
+                isNull(this.getLastSearch())
+                    || getSearchFilter().filterRecord(getLastSearch(), record))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<T> filterData(Collection<T> data) {
+    return HasDataFilters.super.filterData(data).stream()
+        .filter(
+            record ->
+                isNull(this.getLastSearch())
+                    || getSearchFilter().filterRecord(getLastSearch(), record))
+        .collect(Collectors.toList());
   }
 
   /**

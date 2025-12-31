@@ -188,6 +188,11 @@ public class ElementUtil {
     AttributesObserver.startObserving();
   }
 
+  /** Starts observing the body for elements attributes changes events. */
+  public static void startObservingTextContent() {
+    CharacterDataObserver.startObserving();
+  }
+
   /**
    * Registers an observer to be notified when an HTMLElement is detached from the DOM.
    *
@@ -291,5 +296,25 @@ public class ElementUtil {
     if (!isViewable) {
       parent.scrollTop = (childRect.top + parent.scrollTop) - parentRect.top;
     }
+  }
+
+  public static boolean getBooleanAttribute(Element element, String attributeName) {
+    if (!element.hasAttribute(attributeName)) {
+      return false;
+    }
+    String raw = element.getAttribute(attributeName);
+    if (raw == null || raw.isEmpty()) {
+      // presence with empty value => true (standard HTML boolean attribute)
+      return true;
+    }
+    String v = raw.trim().toLowerCase();
+    if ("false".equals(v) || "0".equals(v) || "no".equals(v) || "off".equals(v)) {
+      return false;
+    }
+    if ("true".equals(v) || "1".equals(v) || "yes".equals(v) || "on".equals(v)) {
+      return true;
+    }
+    // Any other non-empty value with presence => treat as true
+    return true;
   }
 }

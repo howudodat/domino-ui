@@ -16,30 +16,59 @@
 
 package org.dominokit.domino.ui.datatable.store;
 
-import org.dominokit.domino.ui.utils.DominoEventListener;
+import java.util.Objects;
+import org.dominokit.domino.ui.data.DataChangedEvent;
 
 /**
  * The {@code DataStore} interface defines a contract for managing and retrieving data for a data
  * table.
  *
  * @param <T> The type of data representing the records in the data table.
+ * @deprecated use {@link org.dominokit.domino.ui.data.DataStore} instead
  */
-public interface DataStore<T> extends DominoEventListener {
+@Deprecated
+public interface DataStore<T> extends org.dominokit.domino.ui.data.DataStore<T> {
 
-  /**
-   * Registers a data change listener to be notified when the data in the store changes.
-   *
-   * @param dataChangeListener The data change listener to register.
-   */
-  void onDataChanged(StoreDataChangeListener<T> dataChangeListener);
+  void onDataChanged(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener);
 
-  /**
-   * Removes a previously registered data change listener.
-   *
-   * @param dataChangeListener The data change listener to remove.
-   */
-  void removeDataChangeListener(StoreDataChangeListener<T> dataChangeListener);
+  void removeDataChangeListener(
+      org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> dataChangeListener);
 
-  /** Loads or refreshes the data in the data store. */
-  void load();
+  default void onDataChanged(
+      org.dominokit.domino.ui.data.StoreDataChangeListener<T> dataChangeListener) {
+    onDataChanged(new ListenerWrapper<>(dataChangeListener));
+  }
+
+  default void removeDataChangeListener(
+      org.dominokit.domino.ui.data.StoreDataChangeListener<T> dataChangeListener) {
+    removeDataChangeListener(new ListenerWrapper<>(dataChangeListener));
+  }
+
+  final class ListenerWrapper<T>
+      implements org.dominokit.domino.ui.datatable.store.StoreDataChangeListener<T> {
+
+    private final org.dominokit.domino.ui.data.StoreDataChangeListener<T> wrapped;
+
+    public ListenerWrapper(org.dominokit.domino.ui.data.StoreDataChangeListener<T> wrapped) {
+      this.wrapped = wrapped;
+    }
+
+    @Override
+    public void onDataChanged(DataChangedEvent<T> dataChangedEvent) {
+      wrapped.onDataChanged(dataChangedEvent);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o == null || getClass() != o.getClass()) return false;
+      ListenerWrapper<?> that = (ListenerWrapper<?>) o;
+      return Objects.equals(wrapped, that.wrapped);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hashCode(wrapped);
+    }
+  }
 }

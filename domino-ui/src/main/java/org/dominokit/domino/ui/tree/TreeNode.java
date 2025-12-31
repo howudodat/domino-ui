@@ -557,16 +557,6 @@ public abstract class TreeNode<V, N extends TreeNode<V, N, S>, S>
   }
 
   /**
-   * @return this node
-   * @deprecated use {@link #activate()}
-   */
-  @Deprecated
-  public N select() {
-    activate();
-    return (N) this;
-  }
-
-  /**
    * Retrieves the currently active (or highlighted) child node of this node, or {@code null} if
    * none is active.
    *

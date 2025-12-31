@@ -83,6 +83,14 @@ public interface HomeAutomation {
     return MdiIcon.create("mdi-amplifier");
   }
 
+  default MdiIcon arrow_oscillating_homeautomation() {
+    return MdiIcon.create("mdi-arrow-oscillating");
+  }
+
+  default MdiIcon arrow_oscillating_off_homeautomation() {
+    return MdiIcon.create("mdi-arrow-oscillating-off");
+  }
+
   default MdiIcon audio_video_homeautomation() {
     return MdiIcon.create("mdi-audio-video");
   }
@@ -600,6 +608,10 @@ public interface HomeAutomation {
     return MdiIcon.create("mdi-door-closed");
   }
 
+  default MdiIcon door_closed_cancel_homeautomation() {
+    return MdiIcon.create("mdi-door-closed-cancel");
+  }
+
   default MdiIcon door_closed_lock_homeautomation() {
     return MdiIcon.create("mdi-door-closed-lock");
   }
@@ -942,6 +954,18 @@ public interface HomeAutomation {
 
   default MdiIcon gauge_low_homeautomation() {
     return MdiIcon.create("mdi-gauge-low");
+  }
+
+  default MdiIcon generator_mobile_homeautomation() {
+    return MdiIcon.create("mdi-generator-mobile");
+  }
+
+  default MdiIcon generator_portable_homeautomation() {
+    return MdiIcon.create("mdi-generator-portable");
+  }
+
+  default MdiIcon generator_stationary_homeautomation() {
+    return MdiIcon.create("mdi-generator-stationary");
   }
 
   default MdiIcon globe_light_homeautomation() {

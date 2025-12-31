@@ -18,6 +18,9 @@ package org.dominokit.domino.ui.utils;
 
 import static java.util.Objects.isNull;
 
+import elemental2.core.JsRegExp;
+import elemental2.core.RegExpResult;
+
 /**
  * The {@code MatchHighlighter} class provides utility methods for highlighting matching substrings
  * within a source string. It allows you to emphasize specific parts of the source string by
@@ -44,10 +47,13 @@ public class MatchHighlighter {
         || !containsPart(source, part)) {
       return sourceOrEmpty(source);
     }
-    int startIndex = source.toLowerCase().indexOf(part.toLowerCase());
-    String partInSource = source.substring(startIndex, startIndex + part.length());
-    String result = source.replace(partInSource, prefix + partInSource + postfix);
-    return result;
+    JsRegExp regExp = new JsRegExp(escapeRegExp(part), "i");
+    RegExpResult result = regExp.exec(source);
+    if (isNull(result)) {
+      return source;
+    }
+    String partInSource = result.getAt(0);
+    return source.replace(partInSource, prefix + partInSource + postfix);
   }
 
   /**
@@ -59,7 +65,8 @@ public class MatchHighlighter {
    *     {@code false}.
    */
   private static boolean containsPart(String source, String part) {
-    return source.toLowerCase().contains(part.toLowerCase());
+    JsRegExp regExp = new JsRegExp(escapeRegExp(part), "i");
+    return !isNull(regExp.exec(source));
   }
 
   /**
@@ -70,5 +77,32 @@ public class MatchHighlighter {
    */
   private static String sourceOrEmpty(String source) {
     return isNull(source) ? "" : source;
+  }
+
+  private static String escapeRegExp(String text) {
+    StringBuilder builder = new StringBuilder(text.length());
+    for (int i = 0; i < text.length(); i++) {
+      char ch = text.charAt(i);
+      switch (ch) {
+        case '\\':
+        case '^':
+        case '$':
+        case '.':
+        case '|':
+        case '?':
+        case '*':
+        case '+':
+        case '(':
+        case ')':
+        case '[':
+        case ']':
+        case '{':
+        case '}':
+          builder.append('\\');
+        default:
+          builder.append(ch);
+      }
+    }
+    return builder.toString();
   }
 }

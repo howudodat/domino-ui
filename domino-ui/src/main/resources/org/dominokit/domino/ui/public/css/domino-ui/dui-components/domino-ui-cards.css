@@ -101,6 +101,10 @@
     order: 60;
 }
 
+.dui-card-header .dui-primary-addon:not(.dui-order-last) {
+    order: 80;
+}
+
 .dui-card-subheader {
     padding: var(--dui-cardsubheader-padding);
     display: flex;

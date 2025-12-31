@@ -28,16 +28,16 @@ import org.dominokit.domino.ui.utils.MutationObserverCallback;
 
 /**
  * Represents a target for the menu in the UI. This class wraps a target DOM {@link Element} to be
- * used as a menu target in a Domino UI application.
+ * used as a drop target in a Domino UI application.
  *
  * <p><b>Usage example:</b>
  *
  * <pre>
  * Element myElement = ... // some DOM element
- * MenuTarget menuTarget = MenuTarget.of(myElement);
+ * DropTarget menuTarget = DropTarget.of(myElement);
  * </pre>
  */
-public class MenuTarget implements HasMeta<MenuTarget> {
+public class DropTarget implements HasMeta<DropTarget> {
 
   private DominoElement<Element> targetElement;
   private MutationObserverCallback targetDetachObserver;
@@ -45,21 +45,21 @@ public class MenuTarget implements HasMeta<MenuTarget> {
   private Map<String, ComponentMeta> metaObjects;
 
   /**
-   * Factory method to create an instance of {@link MenuTarget} using the given DOM {@link Element}.
+   * Factory method to create an instance of {@link DropTarget} using the given DOM {@link Element}.
    *
    * @param element the target DOM element
-   * @return a new instance of {@link MenuTarget}
+   * @return a new instance of {@link DropTarget}
    */
-  public static MenuTarget of(Element element) {
-    return new MenuTarget(element);
+  public static DropTarget of(Element element) {
+    return new DropTarget(element);
   }
 
   /**
-   * Constructs a new {@link MenuTarget} for the provided target DOM {@link Element}.
+   * Constructs a new {@link DropTarget} for the provided target DOM {@link Element}.
    *
    * @param targetElement the target DOM element
    */
-  public MenuTarget(Element targetElement) {
+  public DropTarget(Element targetElement) {
     this.targetElement = elements.elementOf(targetElement);
   }
 
@@ -124,12 +124,12 @@ public class MenuTarget implements HasMeta<MenuTarget> {
     return metaObjects;
   }
 
-  void setObservers() {
+  public final void setObservers() {
     getTargetElement().registerOnDetached(getTargetDetachObserver());
     getTargetElement().registerOnAttached(getTargetAttachObserver());
   }
 
-  void cleanUp() {
+  public final void cleanUp() {
     getTargetElement().removeDetachObserver(getTargetDetachObserver());
     getTargetElement().removeAttachObserver(getTargetAttachObserver());
     this.targetDetachObserver = null;

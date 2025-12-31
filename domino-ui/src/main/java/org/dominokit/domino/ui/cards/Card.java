@@ -15,6 +15,7 @@
  */
 package org.dominokit.domino.ui.cards;
 
+import elemental2.dom.Node;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 /**
@@ -46,6 +47,16 @@ public class Card extends BaseCard<Card> {
   }
 
   /**
+   * Factory method to create a card with a title in the header
+   *
+   * @param title The card title text.
+   * @return new Card instance
+   */
+  public static Card create(Node title) {
+    return new Card(title);
+  }
+
+  /**
    * Factory method to create a card with a title in the header and a description below the title
    *
    * @param title The card title text
@@ -53,6 +64,17 @@ public class Card extends BaseCard<Card> {
    * @return new Card instance
    */
   public static Card create(String title, String description) {
+    return new Card(title, description);
+  }
+
+  /**
+   * Factory method to create a card with a title in the header and a description below the title
+   *
+   * @param title The card title text
+   * @param description The card description text
+   * @return new Card instance
+   */
+  public static Card create(Node title, String description) {
     return new Card(title, description);
   }
 
@@ -69,12 +91,31 @@ public class Card extends BaseCard<Card> {
   }
 
   /**
+   * Creates a card with title in the header
+   *
+   * @param title The card title text
+   */
+  public Card(Node title) {
+    super(title);
+  }
+
+  /**
    * Creates a card with the title in the header and a description below the title
    *
    * @param title The card title text
    * @param description The card description text
    */
   public Card(String title, String description) {
+    super(title, description);
+  }
+
+  /**
+   * Creates a card with the title in the header and a description below the title
+   *
+   * @param title The card title text
+   * @param description The card description text
+   */
+  public Card(Node title, String description) {
     super(title, description);
   }
 }

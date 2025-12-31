@@ -112,8 +112,8 @@ public class TabsPanel extends BaseDominoElement<HTMLDivElement, TabsPanel>
       if (nonNull(tab)) {
         tabs.add(index, tab);
         if (isNull(activeTab) && autoActivate) {
+          activateTab(tab);
           this.activeTab = tab;
-          activateTab(this.activeTab);
         } else {
           if (tab.isActive()) {
             activateTab(tab);
@@ -221,7 +221,7 @@ public class TabsPanel extends BaseDominoElement<HTMLDivElement, TabsPanel>
       }
       if (!tab.isActive()) {
         activeTab = tab;
-        activeTab.activate();
+        activeTab.activate(silent);
         if (!silent) {
           activationHandlers.forEach(handler -> handler.onActiveStateChanged(tab, true));
         }
@@ -527,7 +527,9 @@ public class TabsPanel extends BaseDominoElement<HTMLDivElement, TabsPanel>
     return this;
   }
 
-  /** @return the tabs {@link UListElement} */
+  /**
+   * @return the tabs {@link UListElement}
+   */
   public UListElement getTabsNav() {
     return tabsListElement;
   }

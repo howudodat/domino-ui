@@ -132,7 +132,7 @@ public abstract class ToggleIcon<I extends Icon<I>, T extends ToggleIcon<I, T>> 
    * @return The HTML element of the primary icon.
    */
   @Override
-  protected HTMLElement getStyleTarget() {
+  public HTMLElement getStyleTarget() {
     return primary.element();
   }
 

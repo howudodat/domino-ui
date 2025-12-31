@@ -36,6 +36,7 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 import elemental2.dom.NodeList;
+import elemental2.dom.ScrollIntoViewOptions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -62,7 +63,8 @@ import org.dominokit.domino.ui.keyboard.HasKeyboardEvents;
 import org.dominokit.domino.ui.keyboard.KeyEventsConsumer;
 import org.dominokit.domino.ui.keyboard.KeyboardEventOptions;
 import org.dominokit.domino.ui.keyboard.KeyboardEvents;
-import org.dominokit.domino.ui.menu.Menu;
+import org.dominokit.domino.ui.menu.base.IsMenu;
+import org.dominokit.domino.ui.menu.base.IsMenuItem;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.Tooltip;
@@ -124,8 +126,10 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   public static String ATTACH_UID_KEY = "dui-on-attach-uid";
   public static String DETACH_UID_KEY = "dui-on-detach-uid";
   public static String ATTRIBUTE_CHANGE_UID_KEY = "dui-on-attribute-change-uid";
+  public static String CHARACTER_DATA_CHANGE_UID_KEY = "dui-on-character-data-change-uid";
 
   @Editor.Ignore protected T element;
+
   /** A unique identifier for this DOM element. */
   private String uuid;
 
@@ -134,6 +138,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
 
   /** The collapsible state of this DOM element. */
   private Collapsible collapsible;
+
   /** The style of this DOM element. */
   @Editor.Ignore private Style<Element> style;
 
@@ -148,9 +153,6 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
 
   /** The Waves support for this DOM element. */
   protected WavesSupport wavesSupport;
-
-  /** A list of detach observers for this DOM element. */
-  private Map<String, List<MutationObserverCallback>> attributesObservers;
 
   /** Optional ResizeObserver for this DOM element. */
   private ResizeObserver resizeObserver;
@@ -178,6 +180,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   private EventListener attachEventListener;
   private EventListener detachEventListener;
   private EventListener attributeChangeEventListener;
+  private EventListener textContentChangeEventListener;
   private List<Consumer<T>> onBeforeRemoveHandlers;
   private List<Consumer<T>> onRemoveHandlers;
   private Map<String, ComponentMeta> metaObjects;
@@ -253,6 +256,18 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
     onDetached(
         NamedMutationObserverCallback.doOnce(
             "dui-freestyles-detach-observer", mutationRecord -> freeStyle()));
+    onAttributeChange(
+        "readonly",
+        NamedMutationObserverCallback.of(
+            "dui-readonly-observer",
+            mutationRecord ->
+                setReadOnly(ElementUtil.getBooleanAttribute(this.element(), "readonly"))));
+    onAttributeChange(
+        "disabled",
+        NamedMutationObserverCallback.of(
+            "dui-disable-observer",
+            mutationRecord ->
+                setDisabled(ElementUtil.getBooleanAttribute(this.element(), "disabled"))));
   }
 
   private void freeStyle() {
@@ -762,7 +777,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   }
 
   private void initAttachListener() {
-    if (isNull(this.attachEventListener)) {
+    if (!hasAttachListener()) {
       if (!hasAttribute(ATTACH_UID_KEY)) {
         setAttribute(ATTACH_UID_KEY, DominoId.unique());
 
@@ -787,8 +802,13 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
         this.element
             .element()
             .addEventListener(ObserverEventType.attachedType(this), this.attachEventListener);
+        propertyBag().set("dui-attach-listener", this.attachEventListener);
       }
     }
+  }
+
+  private boolean hasAttachListener() {
+    return propertyBag().has("dui-attach-listener");
   }
 
   private Set<MutationObserverCallback> getAttachObservers() {
@@ -834,7 +854,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   }
 
   private void initDetachListener() {
-    if (isNull(this.detachEventListener)) {
+    if (!hasDetachListener()) {
       if (!hasAttribute(DETACH_UID_KEY)) {
         setAttribute(DETACH_UID_KEY, DominoId.unique());
 
@@ -860,8 +880,13 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
         this.element
             .element()
             .addEventListener(ObserverEventType.detachedType(this), this.detachEventListener);
+        propertyBag().set("dui-detach-listener", this.detachEventListener);
       }
     }
+  }
+
+  private boolean hasDetachListener() {
+    return propertyBag().has("dui-detach-listener");
   }
 
   private Set<MutationObserverCallback> getDetachObservers() {
@@ -1075,45 +1100,166 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    */
   @Editor.Ignore
   public T onAttributeChange(String attribute, MutationObserverCallback observerCallback) {
-    if (isNull(this.attributeChangeEventListener)) {
+    Map<String, Set<MutationObserverCallback>> original = getAttributesObservers();
+    if (!hasAttributeChangeEventListener()) {
       if (!hasAttribute(ATTRIBUTE_CHANGE_UID_KEY)) {
         setAttribute(ATTRIBUTE_CHANGE_UID_KEY, DominoId.unique());
       }
       this.attributeChangeEventListener =
           evt -> {
-            CustomEvent cevent = Js.uncheckedCast(evt);
-            MutationRecord record = Js.uncheckedCast(cevent.detail);
+            boolean paused =
+                Js.uncheckedCast(
+                    Optional.ofNullable(propertyBag().get("dui-attribute-observer-paused"))
+                        .orElse(false));
+            if (!paused) {
+              Map<String, Set<MutationObserverCallback>> originalObservers =
+                  getAttributesObservers();
+              Map<String, Set<MutationObserverCallback>> observers =
+                  new HashMap<>(originalObservers);
 
-            Optional.ofNullable(getAttributesObservers().get("*"))
-                .ifPresent(
-                    observerCallbacks -> {
-                      observerCallbacks.forEach(
-                          callback -> callback.onObserved(Js.uncheckedCast(cevent.detail)));
-                    });
+              CustomEvent cevent = Js.uncheckedCast(evt);
+              MutationRecord record = Js.uncheckedCast(cevent.detail);
 
-            Optional.ofNullable(getAttributesObservers().get(record.attributeName))
-                .ifPresent(
-                    ObserverCallbacks -> {
-                      ObserverCallbacks.forEach(
-                          callback -> callback.onObserved(Js.uncheckedCast(cevent.detail)));
-                    });
+              Optional.ofNullable(observers.get("*"))
+                  .ifPresent(
+                      observerCallbacks -> {
+                        observerCallbacks.forEach(
+                            callback -> {
+                              callback.onObserved(Js.uncheckedCast(cevent.detail));
+                              if (callback.isAutoRemove()) {
+                                originalObservers.get("*").remove(callback);
+                              }
+                            });
+                      });
+
+              Set<MutationObserverCallback> attributeObservers =
+                  observers.get(record.attributeName);
+
+              Optional.ofNullable(attributeObservers)
+                  .ifPresent(
+                      ObserverCallbacks -> {
+                        ObserverCallbacks.forEach(
+                            callback -> {
+                              callback.onObserved(Js.uncheckedCast(cevent.detail));
+                              if (callback.isAutoRemove()) {
+                                originalObservers.get(record.attributeName).remove(callback);
+                              }
+                            });
+                      });
+            }
           };
       String type = ObserverEventType.attributeType(this);
       this.element.element().addEventListener(type, this.attributeChangeEventListener);
+      propertyBag().set("dui-attributes-change-listener", this.attributeChangeEventListener);
     }
-    if (!getAttributesObservers().containsKey(attribute)) {
-      getAttributesObservers().put(attribute, new ArrayList<>());
+    if (!original.containsKey(attribute)) {
+      original.put(attribute, new HashSet<>());
     }
-    getAttributesObservers().get(attribute).add(observerCallback);
+    original.get(attribute).add(observerCallback);
     ElementUtil.startObservingAttributes();
+
     return element;
   }
 
-  private Map<String, List<MutationObserverCallback>> getAttributesObservers() {
-    if (isNull(this.attributesObservers)) {
-      this.attributesObservers = new HashMap<>();
+  private JsPropertyMap<Object> propertyBag() {
+    return Js.asPropertyMap(element());
+  }
+
+  private boolean hasAttributeChangeEventListener() {
+    return Js.asPropertyMap(element()).has("dui-attributes-change-listener");
+  }
+
+  private Map<String, Set<MutationObserverCallback>> getAttributesObservers() {
+    JsPropertyMap<Object> asPropertyMap = Js.asPropertyMap(element());
+    if (!asPropertyMap.has("dui-attribute-observers")) {
+      asPropertyMap.set("dui-attribute-observers", new HashMap<>());
     }
-    return attributesObservers;
+    return Js.uncheckedCast(asPropertyMap.get("dui-attribute-observers"));
+  }
+
+  public T withAttributeObserverPaused(Runnable runnable) {
+    try {
+      propertyBag().set("dui-attribute-observer-paused", true);
+      runnable.run();
+    } finally {
+      DomGlobal.setTimeout(
+          p -> {
+            propertyBag().delete("dui-attribute-observer-paused");
+          },
+          0);
+    }
+    return (T) this;
+  }
+
+  /**
+   * Registers an observer to be notified when this element is attached to the DOM.
+   *
+   * @param observerCallback The observer to be registered.
+   * @return The modified DOM element.
+   */
+  @Editor.Ignore
+  public T onTextContentChange(MutationObserverCallback observerCallback) {
+    Set<MutationObserverCallback> original = getTextContentObservers();
+    Set<MutationObserverCallback> textContentObservers = new HashSet<>(original);
+    if (!hasTextContentChangeEventListener()) {
+      if (!hasAttribute(CHARACTER_DATA_CHANGE_UID_KEY)) {
+        setAttribute(CHARACTER_DATA_CHANGE_UID_KEY, DominoId.unique());
+      }
+      this.textContentChangeEventListener =
+          evt -> {
+            boolean paused =
+                Js.uncheckedCast(
+                    Optional.ofNullable(propertyBag().get("dui-character-data-observer-paused"))
+                        .orElse(false));
+            if (!paused) {
+              Set<MutationObserverCallback> originalObservers = getTextContentObservers();
+              Set<MutationObserverCallback> observers = new HashSet<>(originalObservers);
+              CustomEvent cevent = Js.uncheckedCast(evt);
+              MutationRecord record = Js.uncheckedCast(cevent.detail);
+
+              observers.forEach(
+                  callback -> {
+                    callback.onObserved(Js.uncheckedCast(cevent.detail));
+                    if (callback.isAutoRemove()) {
+                      originalObservers.remove(callback);
+                    }
+                  });
+            }
+          };
+      String type = ObserverEventType.characterDataType(this);
+      this.element.element().addEventListener(type, this.textContentChangeEventListener);
+      propertyBag().set("dui-text-change-listener", this.textContentChangeEventListener);
+    }
+
+    original.add(observerCallback);
+    ElementUtil.startObservingTextContent();
+    return element;
+  }
+
+  private boolean hasTextContentChangeEventListener() {
+    return Js.asPropertyMap(element()).has("dui-text-change-listener");
+  }
+
+  private Set<MutationObserverCallback> getTextContentObservers() {
+    JsPropertyMap<Object> asPropertyMap = Js.asPropertyMap(element());
+    if (!asPropertyMap.has("dui-text-content-observers")) {
+      asPropertyMap.set("dui-text-content-observers", new HashSet<>());
+    }
+    return Js.uncheckedCast(asPropertyMap.get("dui-text-content-observers"));
+  }
+
+  public T withTextContentObserverPaused(Runnable runnable) {
+    try {
+      propertyBag().set("dui-character-data-observer-paused", true);
+      runnable.run();
+    } finally {
+      DomGlobal.setTimeout(
+          p -> {
+            propertyBag().delete("dui-character-data-observer-paused");
+          },
+          0);
+    }
+    return (T) this;
   }
 
   /**
@@ -1340,7 +1486,7 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    *
    * @return The target element for applying styles.
    */
-  protected Element getStyleTarget() {
+  public Element getStyleTarget() {
     return element.element();
   }
 
@@ -2015,11 +2161,15 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   @Editor.Ignore
   @Override
   public T setReadOnly(boolean readOnly) {
-    if (readOnly) {
-      return setAttribute("readonly", "readonly");
-    } else {
-      return removeAttribute("readonly");
-    }
+    AttributesObserver.pauseFor(
+        () -> {
+          if (readOnly) {
+            setAttribute("readonly", "readonly");
+          } else {
+            removeAttribute("readonly");
+          }
+        });
+    return (T) this;
   }
 
   /**
@@ -2954,15 +3104,19 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    */
   @Editor.Ignore
   public T setDisabled(boolean disabled) {
-    if (disabled) {
-      DisableUtil.disable(this);
-      elementOf(getClickableElement()).setCssProperty("pointer-events", "none");
-      return element;
-    } else {
-      DisableUtil.enable(this);
-      elementOf(getClickableElement()).removeCssProperty("pointer-events");
-      return element;
+    if (isDisabled() != disabled) {
+      AttributesObserver.pauseFor(
+          () -> {
+            if (disabled) {
+              DisableUtil.disable(this);
+              elementOf(getClickableElement()).setCssProperty("pointer-events", "none");
+            } else {
+              DisableUtil.enable(this);
+              elementOf(getClickableElement()).removeCssProperty("pointer-events");
+            }
+          });
     }
+    return element;
   }
 
   /**
@@ -2974,39 +3128,6 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   @Editor.Ignore
   public T setEnabled(boolean enabled) {
     return setDisabled(!enabled);
-  }
-
-  /**
-   * Elevates this element to the specified elevation level.
-   *
-   * @param level The elevation level to apply.
-   * @return The modified DOM element.
-   * @deprecated use addCss(dui_elevation_xxx) instead
-   */
-  @Deprecated
-  public T elevate(int level) {
-    return elevate(Elevation.of(level));
-  }
-
-  /**
-   * Elevates this element using the specified elevation style.
-   *
-   * @param elevation The elevation style to apply.
-   * @return The modified DOM element.
-   * @deprecated use addCss(dui_elevation_xxx) instead
-   */
-  @Deprecated
-  @SuppressWarnings("unchecked")
-  public T elevate(Elevation elevation) {
-    if (nonNull(this.elevation)) {
-      removeCss(this.elevation.getStyle());
-    } else {
-      Elevation.removeFrom(element());
-    }
-
-    this.elevation = elevation;
-    addCss(this.elevation.getStyle());
-    return (T) this;
   }
 
   /**
@@ -4425,7 +4546,8 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    * @param dropMenu The drop-down menu to set.
    * @return The modified DOM element.
    */
-  public T setDropMenu(Menu<?> dropMenu) {
+  public <V, C extends IsMenu<V, C, I, S>, I extends IsMenuItem<V, I, S>, S extends Selectable<S>>
+      T setDropMenu(C dropMenu) {
     if (nonNull(dropMenu)) {
       dropMenu.setTargetElement(this);
     }
@@ -4572,39 +4694,6 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
   public T stopOnKeyUp() {
     keyEventsInitializer.apply();
     keyboardEvents.stopListenOnKeyUp();
-    return (T) this;
-  }
-
-  /**
-   * Registers an event handler to be executed when a key is pressed and released.
-   *
-   * @param onKeyPress The event handler for key press events.
-   * @return The modified DOM element.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   * @deprecated use keydown instead.
-   */
-  @Deprecated
-  @Override
-  public T onKeyPress(KeyEventsConsumer onKeyPress) {
-    keyEventsInitializer.apply();
-    keyboardEvents.listenOnKeyPress(onKeyPress);
-    return (T) this;
-  }
-
-  /**
-   * Stops listening to key press events.
-   *
-   * @return The modified DOM element.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   * @deprecated use keydown instead.
-   */
-  @Deprecated
-  @Override
-  public T stopOnKeyPress() {
-    keyEventsInitializer.apply();
-    keyboardEvents.stopListenOnKeyPress();
     return (T) this;
   }
 
@@ -4768,6 +4857,40 @@ public abstract class BaseDominoElement<E extends Element, T extends IsElement<E
    */
   public WavesSupport getWavesSupport() {
     return wavesSupport;
+  }
+
+  /**
+   * Scrolls the associated element into the visible area of the browser window. This method ensures
+   * that the element is brought into view, allowing interactions or validations to be performed on
+   * the element in its visible state.
+   *
+   * @return The current instance of the object for method chaining.
+   */
+  public T scrollIntoView() {
+    element().scrollIntoView();
+    return (T) this;
+  }
+
+  /**
+   * Scrolls the element into view based on the provided scroll options.
+   *
+   * @param options the scrolling options specifying how the element should be scrolled into view
+   * @return the current instance for method chaining
+   */
+  public T scrollIntoView(ScrollOptions options) {
+    return scrollIntoView(options.build());
+  }
+
+  /**
+   * Scrolls the element into the visible area of the browser viewport.
+   *
+   * @param options the options to define the behavior of scrolling into view, including alignment
+   *     and scroll behavior settings
+   * @return the current instance of the class, allowing for method chaining
+   */
+  public T scrollIntoView(ScrollIntoViewOptions options) {
+    element().scrollIntoView(options);
+    return (T) this;
   }
 
   /**

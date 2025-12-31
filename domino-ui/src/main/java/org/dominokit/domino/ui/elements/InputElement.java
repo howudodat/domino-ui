@@ -87,7 +87,9 @@ public class InputElement extends BaseElement<HTMLInputElement, InputElement> {
     return this;
   }
 
-  /** @return The String value of the input element */
+  /**
+   * @return The String value of the input element
+   */
   public String getValue() {
     return element.element().value;
   }

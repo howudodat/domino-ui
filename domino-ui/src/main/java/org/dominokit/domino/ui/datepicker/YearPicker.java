@@ -72,7 +72,7 @@ public class YearPicker extends BaseDominoElement<HTMLDivElement, YearPicker>
                 .textContent(String.valueOf(counter + 1900))
                 .addClickListener(
                     evt -> {
-                      Date date = new Date(calendar.getDate().getTime());
+                      Date date = new Date(calendar.getActiveSelection().getTime());
                       date.setYear(year);
                       dispatchEvent(CalendarCustomEvents.dateNavigationChanged(date.getTime()));
                     }));

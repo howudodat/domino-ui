@@ -374,6 +374,42 @@ public abstract class BasePagination<T extends BasePagination<T>>
   }
 
   /**
+   * Navigates to the page containing the record at the specified index. This method determines the
+   * appropriate page based on the record index and optionally considers if change listeners are
+   * paused.
+   *
+   * @param index The zero-based index of the record for which the page should be navigated.
+   * @return The current instance of the class, allowing method chaining.
+   */
+  @Override
+  public T gotoPageByRecordIndex(int index) {
+    return gotoPageByRecordIndex(index, isChangeListenersPaused());
+  }
+
+  /**
+   * Navigates to the page that contains the specified record index.
+   *
+   * @param index the zero-based index of the record to navigate to
+   * @param silent if true, suppresses side effects or notifications resulting from the navigation
+   * @return the current instance after performing the navigation
+   */
+  @Override
+  public T gotoPageByRecordIndex(int index, boolean silent) {
+    if (index < 0 || index >= totalCount) {
+      LOGGER.warn(
+          "Record index "
+              + index
+              + " is out of range. Total count is "
+              + totalCount
+              + ". Navigation ignored.");
+      return (T) this;
+    }
+
+    int targetPage = (index / pageSize) + 1;
+    return gotoPage(targetPage, silent);
+  }
+
+  /**
    * Gets the total count of items.
    *
    * @return The total count of items.

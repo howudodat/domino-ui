@@ -16,7 +16,9 @@
 package org.dominokit.domino.ui.config;
 
 public interface CarouselConfig extends ComponentConfig {
-  /** @return boolean, true to allow scrolling a carousel with mouse scroll wheel. */
+  /**
+   * @return boolean, true to allow scrolling a carousel with mouse scroll wheel.
+   */
   default boolean isScrollCarouselWithWheel() {
     return false;
   }

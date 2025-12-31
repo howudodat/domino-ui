@@ -85,6 +85,7 @@ public class Device_Tech_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.remote_tv_device_tech());
     icons.add(() -> tagIcons.remote_tv_off_device_tech());
     icons.add(() -> tagIcons.robot_vacuum_device_tech());
+    icons.add(() -> tagIcons.router_network_wireless_device_tech());
     icons.add(() -> tagIcons.scanner_device_tech());
     icons.add(() -> tagIcons.scanner_off_device_tech());
     icons.add(() -> tagIcons.smoke_detector_device_tech());

@@ -91,7 +91,8 @@ public interface IsDominoTheme extends ElementsFactory, DominoCss {
   /** Applies the theme globally. */
   default void apply() {
     apply(body().element());
-  };
+  }
+  ;
 
   /** Removes the theme globally. */
   default void cleanup() {

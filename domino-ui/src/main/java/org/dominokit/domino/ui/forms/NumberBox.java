@@ -23,14 +23,16 @@ import static org.dominokit.domino.ui.utils.Domino.input;
 import elemental2.dom.ClipboardEvent;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLInputElement;
-import elemental2.dom.KeyboardEvent;
+import elemental2.dom.InputEvent;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.events.EventType;
 import org.dominokit.domino.ui.forms.validations.InputAutoValidator;
 import org.dominokit.domino.ui.forms.validations.ValidationResult;
+import org.dominokit.domino.ui.keyboard.KeyEvent;
 import org.dominokit.domino.ui.utils.ApplyFunction;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.HasMinMaxValue;
@@ -97,8 +99,8 @@ public abstract class NumberBox<T extends NumberBox<T, V>, V extends Number>
     setAutoValidation(true);
     enableFormatting();
 
-    getInputElement().addEventListener(EventType.keydown, this::onKeyDown);
     getInputElement().addEventListener(EventType.paste, this::onPaste);
+    getInputElement().addEventListener(EventType.keydown, this::onKeyDown);
   }
 
   /**
@@ -213,23 +215,43 @@ public abstract class NumberBox<T extends NumberBox<T, V>, V extends Number>
   }
 
   /**
-   * Handles the "keypress" event for the number box. Only allows key presses that match the pattern
-   * created by the {@link #createKeyMatch()} method.
+   * Handles the key-down event and processes user input accordingly. This method prevents invalid
+   * characters, handles paste operations, and ensures that only specific keys are allowed based on
+   * the defined criteria.
    *
-   * @param event The keyboard event associated with the key press.
+   * @param event the event triggered on key-down, representing the user's input action
    */
   protected void onKeyDown(Event event) {
-    KeyboardEvent keyboardEvent = Js.uncheckedCast(event);
-    if (keyboardEvent.key.length() == 1 && !keyboardEvent.key.matches(createKeyMatch())) {
-      event.preventDefault();
+    clearInvalid();
+    KeyEvent keyEvent = KeyEvent.of(Js.uncheckedCast(event));
+
+    if (keyEvent.isModifierKey()) {
+      return;
     }
+
+    if (keyEvent.getNativeKey().length() != 1) {
+      return;
+    }
+
+    if (keyEvent.getNativeKey().matches(createKeyMatch())) {
+      return;
+    }
+
+    if (event instanceof InputEvent) {
+      InputEvent inputEvent = Js.uncheckedCast(event);
+      if ("insertFromPaste".equals(inputEvent.inputType)) {
+        return;
+      }
+    }
+
+    event.preventDefault();
   }
 
   /**
    * Handles the "paste" event for the number box. It ensures that pasted value is of a valid
    * format. If the pasted value is not a valid number, the event is prevented.
    *
-   * @param event The clipboard event associated with the paste action.
+   * @param event The clipboard event associated with the paste action.-2
    */
   protected void onPaste(Event event) {
     ClipboardEvent clipboardEvent = Js.uncheckedCast(event);
@@ -310,6 +332,16 @@ public abstract class NumberBox<T extends NumberBox<T, V>, V extends Number>
           getStringValue().startsWith("-") ? getMinValueErrorMessage() : getMaxValueErrorMessage());
       return null;
     }
+  }
+
+  /**
+   * Retrieves the value if it is not null; otherwise, returns the provided default value.
+   *
+   * @param defaultValue the value to return if the actual value is null
+   * @return the actual value if present, or the default value if the actual value is null
+   */
+  public V getValueOr(V defaultValue) {
+    return Optional.ofNullable(getValue()).orElse(defaultValue);
   }
 
   /**

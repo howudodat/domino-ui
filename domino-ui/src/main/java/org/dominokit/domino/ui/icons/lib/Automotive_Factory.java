@@ -90,6 +90,7 @@ public class Automotive_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.car_defrost_rear_automotive());
     icons.add(() -> tagIcons.car_door_automotive());
     icons.add(() -> tagIcons.car_door_lock_automotive());
+    icons.add(() -> tagIcons.car_door_lock_open_automotive());
     icons.add(() -> tagIcons.car_electric_automotive());
     icons.add(() -> tagIcons.car_electric_outline_automotive());
     icons.add(() -> tagIcons.car_emergency_automotive());

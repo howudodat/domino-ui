@@ -113,6 +113,22 @@ public interface Developer_Languages {
     return MdiIcon.create("mdi-code-array");
   }
 
+  default MdiIcon code_block_braces_developer_languages() {
+    return MdiIcon.create("mdi-code-block-braces");
+  }
+
+  default MdiIcon code_block_brackets_developer_languages() {
+    return MdiIcon.create("mdi-code-block-brackets");
+  }
+
+  default MdiIcon code_block_parentheses_developer_languages() {
+    return MdiIcon.create("mdi-code-block-parentheses");
+  }
+
+  default MdiIcon code_block_tags_developer_languages() {
+    return MdiIcon.create("mdi-code-block-tags");
+  }
+
   default MdiIcon code_braces_developer_languages() {
     return MdiIcon.create("mdi-code-braces");
   }

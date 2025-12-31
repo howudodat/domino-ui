@@ -1278,6 +1278,11 @@ public abstract class AbstractSelect<
     return (C) this;
   }
 
+  /**
+   * This method is invoked when an option is removed.
+   *
+   * @param option the option that was removed
+   */
   protected void onOptionRemoved(O option) {}
 
   /**
@@ -1360,6 +1365,12 @@ public abstract class AbstractSelect<
     return (C) this;
   }
 
+  /**
+   * Retrieves a list of options by processing the flat menu items from the options menu. The method
+   * filters and maps each menu item's metadata into a corresponding option.
+   *
+   * @return a list of options collected from the menu items
+   */
   public List<O> getOptions() {
     return getOptionsMenu().getFlatMenuItems().stream()
         .map(OptionMeta::<T, E, O>get)
@@ -1369,8 +1380,27 @@ public abstract class AbstractSelect<
         .collect(Collectors.toList());
   }
 
+  /**
+   * Configures the current instance with the provided options handler.
+   *
+   * @param handler the handler responsible for applying additional options to the current instance
+   *     and its associated list of options
+   * @return the current instance with the applied options
+   */
   public C withOptions(ChildHandler<C, List<O>> handler) {
     handler.apply((C) this, getOptions());
+    return (C) this;
+  }
+
+  /**
+   * Processes the provided handler with the current instance and the fieldInput element.
+   *
+   * @param handler a ChildHandler that performs actions using the current instance and the
+   *     fieldInput element
+   * @return the current instance after the handler is applied
+   */
+  public C withFieldInput(ChildHandler<C, DivElement> handler) {
+    handler.apply((C) this, fieldInput);
     return (C) this;
   }
 

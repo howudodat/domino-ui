@@ -247,6 +247,10 @@ public interface Device_Tech {
     return MdiIcon.create("mdi-robot-vacuum");
   }
 
+  default MdiIcon router_network_wireless_device_tech() {
+    return MdiIcon.create("mdi-router-network-wireless");
+  }
+
   default MdiIcon scanner_device_tech() {
     return MdiIcon.create("mdi-scanner");
   }

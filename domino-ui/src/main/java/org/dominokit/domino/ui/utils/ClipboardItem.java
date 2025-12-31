@@ -31,5 +31,6 @@ import jsinterop.annotations.JsType;
  */
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class ClipboardItem {
-  public ClipboardItem(JsArray<String> mimeTypes, Blob blob) {};
+  public ClipboardItem(JsArray<String> mimeTypes, Blob blob) {}
+  ;
 }

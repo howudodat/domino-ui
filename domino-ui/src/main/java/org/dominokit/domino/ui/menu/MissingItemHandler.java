@@ -30,7 +30,7 @@ package org.dominokit.domino.ui.menu;
  * @param <T> The type of the item's value in the menu
  */
 @FunctionalInterface
-public interface MissingItemHandler<T> {
+public interface MissingItemHandler<T, C> {
 
   /**
    * This method is invoked when an item is not found in the menu.
@@ -38,5 +38,5 @@ public interface MissingItemHandler<T> {
    * @param token The search token or identifier for the missing item
    * @param menu The menu where the search was conducted
    */
-  void onMissingItem(String token, Menu<T> menu);
+  void onMissingItem(String token, C menu);
 }

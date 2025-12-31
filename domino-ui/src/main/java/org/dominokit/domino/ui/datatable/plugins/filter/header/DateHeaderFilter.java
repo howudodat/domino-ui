@@ -51,7 +51,7 @@ public class DateHeaderFilter<T> implements ColumnHeaderFilterPlugin.HeaderFilte
   /** Initializes a new DateHeaderFilter. */
   public DateHeaderFilter() {
     this.dateBox =
-        DateBox.create()
+        DateBox.empty()
             .setPlaceholder("Search")
             .addCss(dui_m_b_0)
             .apply(

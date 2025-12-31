@@ -203,6 +203,10 @@ public interface People_Family {
     return MdiIcon.create("mdi-human-female-female");
   }
 
+  default MdiIcon human_female_female_child_people_family() {
+    return MdiIcon.create("mdi-human-female-female-child");
+  }
+
   default MdiIcon human_female_girl_people_family() {
     return MdiIcon.create("mdi-human-female-girl");
   }
@@ -269,6 +273,10 @@ public interface People_Family {
 
   default MdiIcon human_male_male_people_family() {
     return MdiIcon.create("mdi-human-male-male");
+  }
+
+  default MdiIcon human_male_male_child_people_family() {
+    return MdiIcon.create("mdi-human-male-male-child");
   }
 
   default MdiIcon human_non_binary_people_family() {

@@ -139,6 +139,10 @@ public interface Lock {
     return MdiIcon.create("mdi-car-door-lock");
   }
 
+  default MdiIcon car_door_lock_open_lock() {
+    return MdiIcon.create("mdi-car-door-lock-open");
+  }
+
   default MdiIcon cash_lock_lock() {
     return MdiIcon.create("mdi-cash-lock");
   }

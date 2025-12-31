@@ -116,7 +116,7 @@ public class TimeBox extends TextInputFormField<TimeBox, HTMLInputElement, Date>
    */
   public TimeBox(Date date, DateTimeFormatInfo dateTimeFormatInfo) {
     this.value = date;
-    this.timePicker = TimePicker.create(date, dateTimeFormatInfo);
+    this.timePicker = TimePicker.create(nonNull(date) ? date : new Date(), dateTimeFormatInfo);
     this.pattern = dateTimeFormatInfo.timeFormatFull();
     this.popover =
         Popover.create(this.getWrapperElement())
@@ -188,6 +188,18 @@ public class TimeBox extends TextInputFormField<TimeBox, HTMLInputElement, Date>
             });
     this.timePicker.bindTimePickerViewListener(this);
     setStringValue(value, this.timePicker.getDateTimeFormatInfo());
+  }
+
+  // TODO : This needs to be refactored, timebox should be default to empty if data is not specified
+  // and instead of Timebox.empty() we need to add Timebox.now()
+
+  /**
+   * Creates and returns an empty TimeBox instance with a null Date.
+   *
+   * @return a new TimeBox instance with a null Date.
+   */
+  public static TimeBox empty() {
+    return new TimeBox((Date) null);
   }
 
   /**

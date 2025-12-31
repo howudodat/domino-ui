@@ -20,14 +20,9 @@ package org.dominokit.domino.ui.datatable.store;
  * change events in a data store used by a data table.
  *
  * @param <T> The type of data representing the records in the data table.
+ * @deprecated use {@link org.dominokit.domino.ui.data.StoreDataChangeListener} instead
  */
+@Deprecated
 @FunctionalInterface
-public interface StoreDataChangeListener<T> {
-
-  /**
-   * Called when the data in the data store changes.
-   *
-   * @param dataChangedEvent The event containing information about the data change.
-   */
-  void onDataChanged(DataChangedEvent<T> dataChangedEvent);
-}
+public interface StoreDataChangeListener<T>
+    extends org.dominokit.domino.ui.data.StoreDataChangeListener<T> {}

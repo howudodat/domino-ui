@@ -45,6 +45,8 @@ public class Math_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.chart_bell_curve_math());
     icons.add(() -> tagIcons.chart_bell_curve_cumulative_math());
     icons.add(() -> tagIcons.chart_box_math());
+    icons.add(() -> tagIcons.chart_box_multiple_math());
+    icons.add(() -> tagIcons.chart_box_multiple_outline_math());
     icons.add(() -> tagIcons.chart_box_outline_math());
     icons.add(() -> tagIcons.chart_box_plus_outline_math());
     icons.add(() -> tagIcons.chart_bubble_math());

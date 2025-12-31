@@ -18,10 +18,11 @@ package org.dominokit.domino.ui.config;
 import java.util.Arrays;
 import java.util.Collection;
 import org.dominokit.domino.ui.richtext.RichTextActions;
+import org.dominokit.domino.ui.richtext.RichTextActionsGroup;
 
 public interface RichTextConfig extends ComponentConfig {
 
-  default Collection<RichTextActions> getDefaultRichTextActions() {
+  default Collection<RichTextActionsGroup> getDefaultRichTextActions() {
     return Arrays.asList(RichTextActions.values());
   }
 }

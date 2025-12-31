@@ -44,6 +44,8 @@ public class HomeAutomation_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.alarm_panel_homeautomation());
     icons.add(() -> tagIcons.alarm_panel_outline_homeautomation());
     icons.add(() -> tagIcons.amplifier_homeautomation());
+    icons.add(() -> tagIcons.arrow_oscillating_homeautomation());
+    icons.add(() -> tagIcons.arrow_oscillating_off_homeautomation());
     icons.add(() -> tagIcons.audio_video_homeautomation());
     icons.add(() -> tagIcons.audio_video_off_homeautomation());
     icons.add(() -> tagIcons.awning_homeautomation());
@@ -173,6 +175,7 @@ public class HomeAutomation_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.dolby_homeautomation());
     icons.add(() -> tagIcons.door_homeautomation());
     icons.add(() -> tagIcons.door_closed_homeautomation());
+    icons.add(() -> tagIcons.door_closed_cancel_homeautomation());
     icons.add(() -> tagIcons.door_closed_lock_homeautomation());
     icons.add(() -> tagIcons.door_open_homeautomation());
     icons.add(() -> tagIcons.door_sliding_homeautomation());
@@ -259,6 +262,9 @@ public class HomeAutomation_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.gauge_empty_homeautomation());
     icons.add(() -> tagIcons.gauge_full_homeautomation());
     icons.add(() -> tagIcons.gauge_low_homeautomation());
+    icons.add(() -> tagIcons.generator_mobile_homeautomation());
+    icons.add(() -> tagIcons.generator_portable_homeautomation());
+    icons.add(() -> tagIcons.generator_stationary_homeautomation());
     icons.add(() -> tagIcons.globe_light_homeautomation());
     icons.add(() -> tagIcons.globe_light_outline_homeautomation());
     icons.add(() -> tagIcons.greenhouse_homeautomation());

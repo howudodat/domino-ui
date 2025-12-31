@@ -130,7 +130,9 @@ public class LabeledIcon extends WavesElement<HTMLElement, LabeledIcon> {
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return element.element();

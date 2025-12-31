@@ -358,6 +358,30 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon account_box_edit_outline() {
+    return MdiIcon.create(
+        "mdi-account-box-edit-outline",
+        new MdiMeta(
+            "account-box-edit-outline",
+            "F1CC8",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon account_box_minus_outline() {
+    return MdiIcon.create(
+        "mdi-account-box-minus-outline",
+        new MdiMeta(
+            "account-box-minus-outline",
+            "F1CC9",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon account_box_multiple() {
     return MdiIcon.create(
         "mdi-account-box-multiple",
@@ -403,6 +427,18 @@ public class IconsMeta {
                 "person-box-outline"),
             "Google",
             "1.5.54"));
+  }
+
+  public static MdiIcon account_box_plus_outline() {
+    return MdiIcon.create(
+        "mdi-account-box-plus-outline",
+        new MdiMeta(
+            "account-box-plus-outline",
+            "F1CCA",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
   }
 
   public static MdiIcon account_cancel() {
@@ -771,6 +807,54 @@ public class IconsMeta {
             "4.7.95"));
   }
 
+  public static MdiIcon account_file() {
+    return MdiIcon.create(
+        "mdi-account-file",
+        new MdiMeta(
+            "account-file",
+            "F1CA7",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Contributors",
+            "7.3.67"));
+  }
+
+  public static MdiIcon account_file_outline() {
+    return MdiIcon.create(
+        "mdi-account-file-outline",
+        new MdiMeta(
+            "account-file-outline",
+            "F1CA8",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Contributors",
+            "7.3.67"));
+  }
+
+  public static MdiIcon account_file_text() {
+    return MdiIcon.create(
+        "mdi-account-file-text",
+        new MdiMeta(
+            "account-file-text",
+            "F1CA9",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Contributors",
+            "7.3.67"));
+  }
+
+  public static MdiIcon account_file_text_outline() {
+    return MdiIcon.create(
+        "mdi-account-file-text-outline",
+        new MdiMeta(
+            "account-file-text-outline",
+            "F1CAA",
+            Arrays.asList("Account / User"),
+            Arrays.asList(),
+            "Contributors",
+            "7.3.67"));
+  }
+
   public static MdiIcon account_filter() {
     return MdiIcon.create(
         "mdi-account-filter",
@@ -880,7 +964,7 @@ public class IconsMeta {
             "account-injury",
             "F1815",
             Arrays.asList("Medical / Hospital", "Account / User"),
-            Arrays.asList("account-disability", "patient"),
+            Arrays.asList("account-disability", "patient", "person-injury"),
             "Google",
             "6.1.95"));
   }
@@ -892,7 +976,7 @@ public class IconsMeta {
             "account-injury-outline",
             "F1816",
             Arrays.asList("Account / User", "Medical / Hospital"),
-            Arrays.asList("account-disability-outline", "patient-outline"),
+            Arrays.asList("account-disability-outline", "patient-outline", "person-injury-outline"),
             "Google",
             "6.1.95"));
   }
@@ -6672,6 +6756,30 @@ public class IconsMeta {
             "6.1.95"));
   }
 
+  public static MdiIcon arrow_oscillating() {
+    return MdiIcon.create(
+        "mdi-arrow-oscillating",
+        new MdiMeta(
+            "arrow-oscillating",
+            "F1C91",
+            Arrays.asList("Home Automation"),
+            Arrays.asList(),
+            "Matthias de Baat",
+            "7.3.67"));
+  }
+
+  public static MdiIcon arrow_oscillating_off() {
+    return MdiIcon.create(
+        "mdi-arrow-oscillating-off",
+        new MdiMeta(
+            "arrow-oscillating-off",
+            "F1C92",
+            Arrays.asList("Home Automation"),
+            Arrays.asList(),
+            "Matthias de Baat",
+            "7.3.67"));
+  }
+
   public static MdiIcon arrow_projectile() {
     return MdiIcon.create(
         "mdi-arrow-projectile",
@@ -8697,6 +8805,31 @@ public class IconsMeta {
             Arrays.asList("backpack-outline"),
             "Michael Richins",
             "3.6.95"));
+  }
+
+  public static MdiIcon bag_personal_plus() {
+    return MdiIcon.create(
+        "mdi-bag-personal-plus",
+        new MdiMeta(
+            "bag-personal-plus",
+            "F1CA4",
+            Arrays.asList(),
+            Arrays.asList("bag-personal-add", "backpack-add", "backpack-plus"),
+            "Matthew Terry",
+            "7.3.67"));
+  }
+
+  public static MdiIcon bag_personal_plus_outline() {
+    return MdiIcon.create(
+        "mdi-bag-personal-plus-outline",
+        new MdiMeta(
+            "bag-personal-plus-outline",
+            "F1CA5",
+            Arrays.asList(),
+            Arrays.asList(
+                "backpack-plus-outline", "backpack-add-outline", "bag-personal-add-outline"),
+            "Matthew Terry",
+            "7.3.67"));
   }
 
   public static MdiIcon bag_personal_tag() {
@@ -12260,6 +12393,18 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon book_open_blank_variant_outline() {
+    return MdiIcon.create(
+        "mdi-book-open-blank-variant-outline",
+        new MdiMeta(
+            "book-open-blank-variant-outline",
+            "F1CCB",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon book_open_outline() {
     return MdiIcon.create(
         "mdi-book-open-outline",
@@ -12296,6 +12441,18 @@ public class IconsMeta {
         "mdi-book-open-variant",
         new MdiMeta(
             "book-open-variant", "F14F7", Arrays.asList(), Arrays.asList(), "Google", "5.4.55"));
+  }
+
+  public static MdiIcon book_open_variant_outline() {
+    return MdiIcon.create(
+        "mdi-book-open-variant-outline",
+        new MdiMeta(
+            "book-open-variant-outline",
+            "F1CCC",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
   }
 
   public static MdiIcon book_outline() {
@@ -14502,6 +14659,13 @@ public class IconsMeta {
             "2.0.46"));
   }
 
+  public static MdiIcon bus_sign() {
+    return MdiIcon.create(
+        "mdi-bus-sign",
+        new MdiMeta(
+            "bus-sign", "F1CC1", Arrays.asList(), Arrays.asList(), "Michael Richins", "7.3.67"));
+  }
+
   public static MdiIcon bus_stop() {
     return MdiIcon.create(
         "mdi-bus-stop",
@@ -14536,6 +14700,13 @@ public class IconsMeta {
             Arrays.asList(),
             "Michael Richins",
             "4.1.95"));
+  }
+
+  public static MdiIcon bus_wrench() {
+    return MdiIcon.create(
+        "mdi-bus-wrench",
+        new MdiMeta(
+            "bus-wrench", "F1CC2", Arrays.asList(), Arrays.asList(), "Michael Richins", "7.3.67"));
   }
 
   public static MdiIcon butterfly() {
@@ -16707,6 +16878,18 @@ public class IconsMeta {
             "4.2.95"));
   }
 
+  public static MdiIcon car_door_lock_open() {
+    return MdiIcon.create(
+        "mdi-car-door-lock-open",
+        new MdiMeta(
+            "car-door-lock-open",
+            "F1C81",
+            Arrays.asList("Automotive", "Lock"),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
   public static MdiIcon car_electric() {
     return MdiIcon.create(
         "mdi-car-electric",
@@ -16930,7 +17113,7 @@ public class IconsMeta {
             "car-pickup",
             "F07AA",
             Arrays.asList("Transportation + Road", "Automotive", "Agriculture"),
-            Arrays.asList(),
+            Arrays.asList("truck-pickup"),
             "GreenTurtwig",
             "2.0.46"));
   }
@@ -17182,7 +17365,7 @@ public class IconsMeta {
             "caravan",
             "F07AD",
             Arrays.asList("Transportation + Road", "Home Automation", "Automotive"),
-            Arrays.asList(),
+            Arrays.asList("holiday", "camping"),
             "GreenTurtwig",
             "2.0.46"));
   }
@@ -18094,6 +18277,18 @@ public class IconsMeta {
             "6.8.96"));
   }
 
+  public static MdiIcon cash_edit() {
+    return MdiIcon.create(
+        "mdi-cash-edit",
+        new MdiMeta(
+            "cash-edit",
+            "F1CAB",
+            Arrays.asList("Banking"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.3.67"));
+  }
+
   public static MdiIcon cash_fast() {
     return MdiIcon.create(
         "mdi-cash-fast",
@@ -18855,6 +19050,13 @@ public class IconsMeta {
             "3.2.89"));
   }
 
+  public static MdiIcon charity_search() {
+    return MdiIcon.create(
+        "mdi-charity-search",
+        new MdiMeta(
+            "charity-search", "F1C82", Arrays.asList(), Arrays.asList(), "Ryan Donahue", "7.3.67"));
+  }
+
   public static MdiIcon chart_arc() {
     return MdiIcon.create(
         "mdi-chart-arc",
@@ -18955,6 +19157,38 @@ public class IconsMeta {
             Arrays.asList("poll-box", "report-box", "widget-box", "graph-box"),
             "Google",
             "5.4.55"));
+  }
+
+  public static MdiIcon chart_box_multiple() {
+    return MdiIcon.create(
+        "mdi-chart-box-multiple",
+        new MdiMeta(
+            "chart-box-multiple",
+            "F1CCD",
+            Arrays.asList("Math"),
+            Arrays.asList(
+                "poll-box-multiple",
+                "graph-box-multiple",
+                "widget-box-multiple",
+                "report-box-multiple"),
+            "Konstantin Saller",
+            "7.4.47"));
+  }
+
+  public static MdiIcon chart_box_multiple_outline() {
+    return MdiIcon.create(
+        "mdi-chart-box-multiple-outline",
+        new MdiMeta(
+            "chart-box-multiple-outline",
+            "F1CCE",
+            Arrays.asList("Math"),
+            Arrays.asList(
+                "graph-box-multiple-outline",
+                "widget-box-multiple-outline",
+                "report-box-multiple-outline",
+                "poll-box-multiple-outline"),
+            "Konstantin Saller",
+            "7.4.47"));
   }
 
   public static MdiIcon chart_box_outline() {
@@ -19275,7 +19509,13 @@ public class IconsMeta {
   public static MdiIcon chat() {
     return MdiIcon.create(
         "mdi-chat",
-        new MdiMeta("chat", "F0B79", Arrays.asList(), Arrays.asList(), "Austin Andrews", "3.0.39"));
+        new MdiMeta(
+            "chat",
+            "F0B79",
+            Arrays.asList(),
+            Arrays.asList("message", "message-bubble", "speak"),
+            "Austin Andrews",
+            "3.0.39"));
   }
 
   public static MdiIcon chat_alert() {
@@ -19328,7 +19568,7 @@ public class IconsMeta {
             "chat-outline",
             "F0EDE",
             Arrays.asList(),
-            Arrays.asList(),
+            Arrays.asList("message-outline", "message-bubble-outline", "speak-outline"),
             "Michael Richins",
             "3.8.95"));
   }
@@ -22152,7 +22392,7 @@ public class IconsMeta {
             "close",
             "F0156",
             Arrays.asList("Math", "Form"),
-            Arrays.asList("clear", "multiply", "remove", "cancel"),
+            Arrays.asList("clear", "multiply", "remove", "cancel", "times"),
             "Google",
             "1.5.54"));
   }
@@ -22714,6 +22954,30 @@ public class IconsMeta {
             "3.0.39"));
   }
 
+  public static MdiIcon cloud_key() {
+    return MdiIcon.create(
+        "mdi-cloud-key",
+        new MdiMeta(
+            "cloud-key",
+            "F1CA1",
+            Arrays.asList("Cloud"),
+            Arrays.asList("cloud-security", "cloud-access"),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
+  public static MdiIcon cloud_key_outline() {
+    return MdiIcon.create(
+        "mdi-cloud-key-outline",
+        new MdiMeta(
+            "cloud-key-outline",
+            "F1CA2",
+            Arrays.asList("Cloud"),
+            Arrays.asList("cloud-security-outline", "cloud-access-outline"),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
   public static MdiIcon cloud_lock() {
     return MdiIcon.create(
         "mdi-cloud-lock",
@@ -22805,7 +23069,7 @@ public class IconsMeta {
             "cloud-off-outline",
             "F0164",
             Arrays.asList("Cloud", "Weather"),
-            Arrays.asList(),
+            Arrays.asList("offline", "local"),
             "Google",
             "1.5.54"));
   }
@@ -23156,6 +23420,54 @@ public class IconsMeta {
             Arrays.asList(),
             "Austin Andrews",
             "1.5.54"));
+  }
+
+  public static MdiIcon code_block_braces() {
+    return MdiIcon.create(
+        "mdi-code-block-braces",
+        new MdiMeta(
+            "code-block-braces",
+            "F1C83",
+            Arrays.asList("Developer / Languages"),
+            Arrays.asList("code-block-tag", "code-block-json"),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
+  public static MdiIcon code_block_brackets() {
+    return MdiIcon.create(
+        "mdi-code-block-brackets",
+        new MdiMeta(
+            "code-block-brackets",
+            "F1C84",
+            Arrays.asList("Developer / Languages"),
+            Arrays.asList("code-block-square"),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
+  public static MdiIcon code_block_parentheses() {
+    return MdiIcon.create(
+        "mdi-code-block-parentheses",
+        new MdiMeta(
+            "code-block-parentheses",
+            "F1C85",
+            Arrays.asList("Developer / Languages"),
+            Arrays.asList(),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
+  public static MdiIcon code_block_tags() {
+    return MdiIcon.create(
+        "mdi-code-block-tags",
+        new MdiMeta(
+            "code-block-tags",
+            "F1C86",
+            Arrays.asList("Developer / Languages"),
+            Arrays.asList("code-block-html", "code-block-xml"),
+            "frankgrinaert",
+            "7.3.67"));
   }
 
   public static MdiIcon code_braces() {
@@ -25503,7 +25815,7 @@ public class IconsMeta {
             "creation",
             "F0674",
             Arrays.asList(),
-            Arrays.asList("auto-awesome"),
+            Arrays.asList("auto-awesome", "sparkles", "stars", "shimmer"),
             "Google",
             "1.7.12"));
   }
@@ -25515,7 +25827,8 @@ public class IconsMeta {
             "creation-outline",
             "F1C2B",
             Arrays.asList(),
-            Arrays.asList("auto-awesome-outline"),
+            Arrays.asList(
+                "auto-awesome-outline", "sparkles-outline", "stars-outline", "shimmer-outline"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -28232,6 +28545,18 @@ public class IconsMeta {
             "diamond-stone", "F01C8", Arrays.asList(), Arrays.asList("jewel"), "Simran", "1.5.54"));
   }
 
+  public static MdiIcon diaper_outline() {
+    return MdiIcon.create(
+        "mdi-diaper-outline",
+        new MdiMeta(
+            "diaper-outline",
+            "F1CCF",
+            Arrays.asList("Clothing", "Medical / Hospital"),
+            Arrays.asList("nappy-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon dice_1() {
     return MdiIcon.create(
         "mdi-dice-1",
@@ -29143,6 +29468,18 @@ public class IconsMeta {
             "2.1.19"));
   }
 
+  public static MdiIcon door_closed_cancel() {
+    return MdiIcon.create(
+        "mdi-door-closed-cancel",
+        new MdiMeta(
+            "door-closed-cancel",
+            "F1C93",
+            Arrays.asList("Home Automation"),
+            Arrays.asList("door-forbidden", "door-do-not-enter", "door-unavailable"),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
   public static MdiIcon door_closed_lock() {
     return MdiIcon.create(
         "mdi-door-closed-lock",
@@ -29446,6 +29783,18 @@ public class IconsMeta {
             Arrays.asList("downloads"),
             "GreenTurtwig",
             "2.5.94"));
+  }
+
+  public static MdiIcon download_multiple_outline() {
+    return MdiIcon.create(
+        "mdi-download-multiple-outline",
+        new MdiMeta(
+            "download-multiple-outline",
+            "F1CD0",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
   }
 
   public static MdiIcon download_network() {
@@ -29813,6 +30162,30 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon earth_arrow_down() {
+    return MdiIcon.create(
+        "mdi-earth-arrow-down",
+        new MdiMeta(
+            "earth-arrow-down",
+            "F1C87",
+            Arrays.asList(),
+            Arrays.asList("globe-arrow-down", "world-arrow-down", "planet-arrow-down"),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
+  public static MdiIcon earth_arrow_left() {
+    return MdiIcon.create(
+        "mdi-earth-arrow-left",
+        new MdiMeta(
+            "earth-arrow-left",
+            "F1C88",
+            Arrays.asList(),
+            Arrays.asList("globe-arrow-left", "world-arrow-left", "planet-arrow-left"),
+            "frankgrinaert",
+            "7.3.67"));
+  }
+
   public static MdiIcon earth_arrow_right() {
     return MdiIcon.create(
         "mdi-earth-arrow-right",
@@ -29823,6 +30196,18 @@ public class IconsMeta {
             Arrays.asList("globe-arrow-right", "world-arrow-right", "planet-arrow-right"),
             "Michael Irigoyen",
             "4.8.95"));
+  }
+
+  public static MdiIcon earth_arrow_up() {
+    return MdiIcon.create(
+        "mdi-earth-arrow-up",
+        new MdiMeta(
+            "earth-arrow-up",
+            "F1C89",
+            Arrays.asList(),
+            Arrays.asList("globe-arrow-up", "planet-arrow-up", "world-arrow-up"),
+            "frankgrinaert",
+            "7.3.67"));
   }
 
   public static MdiIcon earth_box() {
@@ -31052,6 +31437,30 @@ public class IconsMeta {
             "4.6.95"));
   }
 
+  public static MdiIcon emoticon_minus() {
+    return MdiIcon.create(
+        "mdi-emoticon-minus",
+        new MdiMeta(
+            "emoticon-minus",
+            "F1CB2",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Austin Andrews",
+            "7.3.67"));
+  }
+
+  public static MdiIcon emoticon_minus_outline() {
+    return MdiIcon.create(
+        "mdi-emoticon-minus-outline",
+        new MdiMeta(
+            "emoticon-minus-outline",
+            "F1CB3",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Austin Andrews",
+            "7.3.67"));
+  }
+
   public static MdiIcon emoticon_neutral() {
     return MdiIcon.create(
         "mdi-emoticon-neutral",
@@ -31096,6 +31505,25 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon emoticon_plus() {
+    return MdiIcon.create(
+        "mdi-emoticon-plus",
+        new MdiMeta(
+            "emoticon-plus", "F1CB4", Arrays.asList(), Arrays.asList(), "bakotamas", "7.3.67"));
+  }
+
+  public static MdiIcon emoticon_plus_outline() {
+    return MdiIcon.create(
+        "mdi-emoticon-plus-outline",
+        new MdiMeta(
+            "emoticon-plus-outline",
+            "F1CB5",
+            Arrays.asList(),
+            Arrays.asList(),
+            "bakotamas",
+            "7.3.67"));
+  }
+
   public static MdiIcon emoticon_poop() {
     return MdiIcon.create(
         "mdi-emoticon-poop",
@@ -31118,6 +31546,30 @@ public class IconsMeta {
             Arrays.asList("face-poop-outline", "emoji-poop-outline"),
             "Michael Irigoyen",
             "3.2.89"));
+  }
+
+  public static MdiIcon emoticon_remove() {
+    return MdiIcon.create(
+        "mdi-emoticon-remove",
+        new MdiMeta(
+            "emoticon-remove",
+            "F1CB6",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Austin Andrews",
+            "7.3.67"));
+  }
+
+  public static MdiIcon emoticon_remove_outline() {
+    return MdiIcon.create(
+        "mdi-emoticon-remove-outline",
+        new MdiMeta(
+            "emoticon-remove-outline",
+            "F1CB7",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Austin Andrews",
+            "7.3.67"));
   }
 
   public static MdiIcon emoticon_sad() {
@@ -31428,6 +31880,18 @@ public class IconsMeta {
             "ethernet-cable-off", "F0202", Arrays.asList(), Arrays.asList(), "Simran", "1.5.54"));
   }
 
+  public static MdiIcon ethernet_off() {
+    return MdiIcon.create(
+        "mdi-ethernet-off",
+        new MdiMeta(
+            "ethernet-off",
+            "F1CD1",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Colton Wiscombe",
+            "7.4.47"));
+  }
+
   public static MdiIcon ev_plug_ccs1() {
     return MdiIcon.create(
         "mdi-ev-plug-ccs1",
@@ -31538,7 +32002,7 @@ public class IconsMeta {
         new MdiMeta(
             "excavator",
             "F1025",
-            Arrays.asList("Hardware / Tools"),
+            Arrays.asList("Hardware / Tools", "Transportation + Other"),
             Arrays.asList(),
             "Michael Irigoyen",
             "4.1.95"));
@@ -31778,6 +32242,18 @@ public class IconsMeta {
             Arrays.asList(),
             "Michael Richins",
             "3.0.39"));
+  }
+
+  public static MdiIcon eye_closed() {
+    return MdiIcon.create(
+        "mdi-eye-closed",
+        new MdiMeta(
+            "eye-closed",
+            "F1CA3",
+            Arrays.asList(),
+            Arrays.asList("eye-shut", "visibility-hidden"),
+            "joshua-maros",
+            "7.3.67"));
   }
 
   public static MdiIcon eye_lock() {
@@ -35097,6 +35573,18 @@ public class IconsMeta {
             Arrays.asList("flame-off"),
             "Michael Irigoyen",
             "5.9.55"));
+  }
+
+  public static MdiIcon fire_station() {
+    return MdiIcon.create(
+        "mdi-fire-station",
+        new MdiMeta(
+            "fire-station",
+            "F1CC3",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon fire_truck() {
@@ -39210,7 +39698,13 @@ public class IconsMeta {
             "forum",
             "F028C",
             Arrays.asList(),
-            Arrays.asList("message-group", "question-answer", "chat"),
+            Arrays.asList(
+                "message-group",
+                "question-answer",
+                "chat",
+                "dialogue",
+                "conversation",
+                "discussion"),
             "Google",
             "1.5.54"));
   }
@@ -39222,7 +39716,13 @@ public class IconsMeta {
             "forum-minus",
             "F1AA9",
             Arrays.asList(),
-            Arrays.asList("chat-minus", "forum-subtract", "chat-subtract"),
+            Arrays.asList(
+                "discussion-minus",
+                "conversation-minus",
+                "dialogue-minus",
+                "chat-minus",
+                "forum-subtract",
+                "chat-subtract"),
             "nlsve",
             "6.8.96"));
   }
@@ -39234,7 +39734,13 @@ public class IconsMeta {
             "forum-minus-outline",
             "F1AAA",
             Arrays.asList(),
-            Arrays.asList("chat-minus-outline", "forum-subtract-outline", "chat-subtract-outline"),
+            Arrays.asList(
+                "dialogue-minus-outline",
+                "chat-minus-outline",
+                "forum-subtract-outline",
+                "chat-subtract-outline",
+                "conversation-minus-outline",
+                "discussion-minus-outline"),
             "nlsve",
             "6.8.96"));
   }
@@ -39246,7 +39752,8 @@ public class IconsMeta {
             "forum-outline",
             "F0822",
             Arrays.asList(),
-            Arrays.asList("chat-outline"),
+            Arrays.asList(
+                "chat-outline", "dialogue-outline", "discussion-outline", "conversation-outline"),
             "Google",
             "2.1.19"));
   }
@@ -39258,7 +39765,13 @@ public class IconsMeta {
             "forum-plus",
             "F1AAB",
             Arrays.asList(),
-            Arrays.asList("chat-plus", "forum-add", "chat-add"),
+            Arrays.asList(
+                "chat-plus",
+                "forum-add",
+                "chat-add",
+                "dialogue-plus",
+                "conversation-plus",
+                "discussion-plus"),
             "nlsve",
             "6.8.96"));
   }
@@ -39270,7 +39783,13 @@ public class IconsMeta {
             "forum-plus-outline",
             "F1AAC",
             Arrays.asList(),
-            Arrays.asList("chat-plus-outline", "chat-add-outline", "forum-add-outline"),
+            Arrays.asList(
+                "chat-plus-outline",
+                "chat-add-outline",
+                "forum-add-outline",
+                "dialogue-plus-outline",
+                "conversation-plus-outline",
+                "discussion-plus-outline"),
             "nlsve",
             "6.8.96"));
   }
@@ -39282,7 +39801,13 @@ public class IconsMeta {
             "forum-remove",
             "F1AAD",
             Arrays.asList(),
-            Arrays.asList("forum-delete", "chat-remove", "chat-delete"),
+            Arrays.asList(
+                "forum-delete",
+                "chat-remove",
+                "chat-delete",
+                "dialogue-remove",
+                "conversation-remove",
+                "discussion-remove"),
             "Michael Irigoyen",
             "6.8.96"));
   }
@@ -39294,7 +39819,13 @@ public class IconsMeta {
             "forum-remove-outline",
             "F1AAE",
             Arrays.asList(),
-            Arrays.asList("forum-delete-outline", "chat-remove-outline", "chat-delete-outline"),
+            Arrays.asList(
+                "forum-delete-outline",
+                "chat-remove-outline",
+                "chat-delete-outline",
+                "dialogue-remove-outline",
+                "conversation-remove-outline",
+                "discussion-remove-outline"),
             "Michael Irigoyen",
             "6.8.96"));
   }
@@ -40271,7 +40802,7 @@ public class IconsMeta {
             "gas-burner",
             "F1A1B",
             Arrays.asList("Home Automation"),
-            Arrays.asList("stove-burner", "cooktop-burner", "grill"),
+            Arrays.asList("stove-burner", "cooktop-burner", "grill", "natural-gas", "energy"),
             "Austin Andrews",
             "6.6.96"));
   }
@@ -40304,6 +40835,30 @@ public class IconsMeta {
                 "fuel-pump"),
             "Google",
             "1.5.54"));
+  }
+
+  public static MdiIcon gas_station_in_use() {
+    return MdiIcon.create(
+        "mdi-gas-station-in-use",
+        new MdiMeta(
+            "gas-station-in-use",
+            "F1CC4",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon gas_station_in_use_outline() {
+    return MdiIcon.create(
+        "mdi-gas-station-in-use-outline",
+        new MdiMeta(
+            "gas-station-in-use-outline",
+            "F1CC5",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon gas_station_off() {
@@ -40641,6 +41196,42 @@ public class IconsMeta {
             Arrays.asList(),
             "Austin Andrews",
             "1.5.54"));
+  }
+
+  public static MdiIcon generator_mobile() {
+    return MdiIcon.create(
+        "mdi-generator-mobile",
+        new MdiMeta(
+            "generator-mobile",
+            "F1C8A",
+            Arrays.asList("Home Automation", "Transportation + Other"),
+            Arrays.asList("power-generator", "electricity-generator"),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon generator_portable() {
+    return MdiIcon.create(
+        "mdi-generator-portable",
+        new MdiMeta(
+            "generator-portable",
+            "F1C8B",
+            Arrays.asList("Home Automation"),
+            Arrays.asList("power-generator", "electricity-generator"),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon generator_stationary() {
+    return MdiIcon.create(
+        "mdi-generator-stationary",
+        new MdiMeta(
+            "generator-stationary",
+            "F1C8C",
+            Arrays.asList("Home Automation"),
+            Arrays.asList("power-generator", "electricity-generator"),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   @Deprecated
@@ -43316,6 +43907,18 @@ public class IconsMeta {
             "5.2.45"));
   }
 
+  public static MdiIcon heart_search() {
+    return MdiIcon.create(
+        "mdi-heart-search",
+        new MdiMeta(
+            "heart-search",
+            "F1C8D",
+            Arrays.asList(),
+            Arrays.asList("find-love"),
+            "Ryan Donahue",
+            "7.3.67"));
+  }
+
   public static MdiIcon heart_settings() {
     return MdiIcon.create(
         "mdi-heart-settings",
@@ -44647,7 +45250,7 @@ public class IconsMeta {
             "hoop-house",
             "F0E56",
             Arrays.asList("Agriculture", "Home Automation"),
-            Arrays.asList("green-house"),
+            Arrays.asList("green-house", "high-tunnel"),
             "Jeff Anders",
             "3.6.95"));
   }
@@ -44814,6 +45417,18 @@ public class IconsMeta {
         new MdiMeta("hot-tub", "F0828", Arrays.asList(), Arrays.asList(), "Google", "2.1.19"));
   }
 
+  public static MdiIcon hours_12() {
+    return MdiIcon.create(
+        "mdi-hours-12",
+        new MdiMeta(
+            "hours-12",
+            "F1C94",
+            Arrays.asList("Date / Time"),
+            Arrays.asList(),
+            "circa1665",
+            "7.3.67"));
+  }
+
   public static MdiIcon hours_24() {
     return MdiIcon.create(
         "mdi-hours-24",
@@ -44824,6 +45439,18 @@ public class IconsMeta {
             Arrays.asList(),
             "Haley Halcyon",
             "5.2.45"));
+  }
+
+  public static MdiIcon hub() {
+    return MdiIcon.create(
+        "mdi-hub",
+        new MdiMeta("hub", "F1C95", Arrays.asList(), Arrays.asList(), "Google", "7.3.67"));
+  }
+
+  public static MdiIcon hub_outline() {
+    return MdiIcon.create(
+        "mdi-hub-outline",
+        new MdiMeta("hub-outline", "F1C96", Arrays.asList(), Arrays.asList(), "Google", "7.3.67"));
   }
 
   public static MdiIcon hubspot() {
@@ -44988,6 +45615,18 @@ public class IconsMeta {
             Arrays.asList("woman-woman", "women"),
             "Henrique César Madeira",
             "2.6.95"));
+  }
+
+  public static MdiIcon human_female_female_child() {
+    return MdiIcon.create(
+        "mdi-human-female-female-child",
+        new MdiMeta(
+            "human-female-female-child",
+            "F1C8E",
+            Arrays.asList("People / Family"),
+            Arrays.asList("family"),
+            "Michael Irigoyen",
+            "7.3.67"));
   }
 
   public static MdiIcon human_female_girl() {
@@ -45199,6 +45838,18 @@ public class IconsMeta {
             Arrays.asList("man-man", "men"),
             "Henrique César Madeira",
             "2.6.95"));
+  }
+
+  public static MdiIcon human_male_male_child() {
+    return MdiIcon.create(
+        "mdi-human-male-male-child",
+        new MdiMeta(
+            "human-male-male-child",
+            "F1C8F",
+            Arrays.asList("People / Family"),
+            Arrays.asList("family"),
+            "Michael Irigoyen",
+            "7.3.67"));
   }
 
   public static MdiIcon human_non_binary() {
@@ -45913,7 +46564,7 @@ public class IconsMeta {
         new MdiMeta(
             "image-remove-outline",
             "F1B48",
-            Arrays.asList(),
+            Arrays.asList("Photography"),
             Arrays.asList(),
             "Colton Wiscombe",
             "6.9.96"));
@@ -46491,6 +47142,642 @@ public class IconsMeta {
             "3.6.95"));
   }
 
+  public static MdiIcon invoice() {
+    return MdiIcon.create(
+        "mdi-invoice",
+        new MdiMeta(
+            "invoice",
+            "F1CD2",
+            Arrays.asList("Banking"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_arrow_left() {
+    return MdiIcon.create(
+        "mdi-invoice-arrow-left",
+        new MdiMeta(
+            "invoice-arrow-left",
+            "F1CD3",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_arrow_left_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-arrow-left-outline",
+        new MdiMeta(
+            "invoice-arrow-left-outline",
+            "F1CD4",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_arrow_right() {
+    return MdiIcon.create(
+        "mdi-invoice-arrow-right",
+        new MdiMeta(
+            "invoice-arrow-right",
+            "F1CD5",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_arrow_right_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-arrow-right-outline",
+        new MdiMeta(
+            "invoice-arrow-right-outline",
+            "F1CD6",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_check() {
+    return MdiIcon.create(
+        "mdi-invoice-check",
+        new MdiMeta(
+            "invoice-check",
+            "F1CD7",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_check_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-check-outline",
+        new MdiMeta(
+            "invoice-check-outline",
+            "F1CD8",
+            Arrays.asList("Banking"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_clock() {
+    return MdiIcon.create(
+        "mdi-invoice-clock",
+        new MdiMeta(
+            "invoice-clock",
+            "F1CD9",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-scheduled"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_clock_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-clock-outline",
+        new MdiMeta(
+            "invoice-clock-outline",
+            "F1CDA",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-scheduled-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_edit() {
+    return MdiIcon.create(
+        "mdi-invoice-edit",
+        new MdiMeta(
+            "invoice-edit",
+            "F1CDB",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_edit_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-edit-outline",
+        new MdiMeta(
+            "invoice-edit-outline",
+            "F1CDC",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_export_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-export-outline",
+        new MdiMeta(
+            "invoice-export-outline",
+            "F1CDD",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-outbound-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_fast() {
+    return MdiIcon.create(
+        "mdi-invoice-fast",
+        new MdiMeta(
+            "invoice-fast",
+            "F1CDE",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_fast_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-fast-outline",
+        new MdiMeta(
+            "invoice-fast-outline",
+            "F1CDF",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_import() {
+    return MdiIcon.create(
+        "mdi-invoice-import",
+        new MdiMeta(
+            "invoice-import",
+            "F1CE0",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-inbound"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_import_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-import-outline",
+        new MdiMeta(
+            "invoice-import-outline",
+            "F1CE1",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-inbound-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_list() {
+    return MdiIcon.create(
+        "mdi-invoice-list",
+        new MdiMeta(
+            "invoice-list",
+            "F1CE2",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-line-items"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_list_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-list-outline",
+        new MdiMeta(
+            "invoice-list-outline",
+            "F1CE3",
+            Arrays.asList("Shopping", "Banking"),
+            Arrays.asList("invoice-line-items-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_minus() {
+    return MdiIcon.create(
+        "mdi-invoice-minus",
+        new MdiMeta(
+            "invoice-minus",
+            "F1CE4",
+            Arrays.asList("Banking"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_minus_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-minus-outline",
+        new MdiMeta(
+            "invoice-minus-outline",
+            "F1CE5",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_multiple() {
+    return MdiIcon.create(
+        "mdi-invoice-multiple",
+        new MdiMeta(
+            "invoice-multiple",
+            "F1CE6",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_multiple_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-multiple-outline",
+        new MdiMeta(
+            "invoice-multiple-outline",
+            "F1CE7",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-outline",
+        new MdiMeta(
+            "invoice-outline",
+            "F1CE8",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_plus() {
+    return MdiIcon.create(
+        "mdi-invoice-plus",
+        new MdiMeta(
+            "invoice-plus",
+            "F1CE9",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-new"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_plus_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-plus-outline",
+        new MdiMeta(
+            "invoice-plus-outline",
+            "F1CEA",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-new-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_remove() {
+    return MdiIcon.create(
+        "mdi-invoice-remove",
+        new MdiMeta(
+            "invoice-remove",
+            "F1CEB",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_remove_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-remove-outline",
+        new MdiMeta(
+            "invoice-remove-outline",
+            "F1CEC",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_send() {
+    return MdiIcon.create(
+        "mdi-invoice-send",
+        new MdiMeta(
+            "invoice-send",
+            "F1CED",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_send_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-send-outline",
+        new MdiMeta(
+            "invoice-send-outline",
+            "F1CEE",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text() {
+    return MdiIcon.create(
+        "mdi-invoice-text",
+        new MdiMeta(
+            "invoice-text",
+            "F1CEF",
+            Arrays.asList("Banking"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_arrow_left() {
+    return MdiIcon.create(
+        "mdi-invoice-text-arrow-left",
+        new MdiMeta(
+            "invoice-text-arrow-left",
+            "F1CF0",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_arrow_left_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-arrow-left-outline",
+        new MdiMeta(
+            "invoice-text-arrow-left-outline",
+            "F1CF1",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_arrow_right() {
+    return MdiIcon.create(
+        "mdi-invoice-text-arrow-right",
+        new MdiMeta(
+            "invoice-text-arrow-right",
+            "F1CF2",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_arrow_right_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-arrow-right-outline",
+        new MdiMeta(
+            "invoice-text-arrow-right-outline",
+            "F1CF3",
+            Arrays.asList("Shopping", "Banking"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_check() {
+    return MdiIcon.create(
+        "mdi-invoice-text-check",
+        new MdiMeta(
+            "invoice-text-check",
+            "F1CF4",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_check_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-check-outline",
+        new MdiMeta(
+            "invoice-text-check-outline",
+            "F1CF5",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_clock() {
+    return MdiIcon.create(
+        "mdi-invoice-text-clock",
+        new MdiMeta(
+            "invoice-text-clock",
+            "F1CF6",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-text-scheduled"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_clock_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-clock-outline",
+        new MdiMeta(
+            "invoice-text-clock-outline",
+            "F1CF7",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-text-scheduled-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_edit() {
+    return MdiIcon.create(
+        "mdi-invoice-text-edit",
+        new MdiMeta(
+            "invoice-text-edit",
+            "F1CF8",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_edit_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-edit-outline",
+        new MdiMeta(
+            "invoice-text-edit-outline",
+            "F1CF9",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_fast() {
+    return MdiIcon.create(
+        "mdi-invoice-text-fast",
+        new MdiMeta(
+            "invoice-text-fast",
+            "F1CFA",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_fast_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-fast-outline",
+        new MdiMeta(
+            "invoice-text-fast-outline",
+            "F1CFB",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_minus() {
+    return MdiIcon.create(
+        "mdi-invoice-text-minus",
+        new MdiMeta(
+            "invoice-text-minus",
+            "F1CFC",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_minus_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-minus-outline",
+        new MdiMeta(
+            "invoice-text-minus-outline",
+            "F1CFD",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_multiple() {
+    return MdiIcon.create(
+        "mdi-invoice-text-multiple",
+        new MdiMeta(
+            "invoice-text-multiple",
+            "F1CFE",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_multiple_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-multiple-outline",
+        new MdiMeta(
+            "invoice-text-multiple-outline",
+            "F1CFF",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-outline",
+        new MdiMeta(
+            "invoice-text-outline",
+            "F1D00",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_plus() {
+    return MdiIcon.create(
+        "mdi-invoice-text-plus",
+        new MdiMeta(
+            "invoice-text-plus",
+            "F1D01",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-text-new"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_plus_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-plus-outline",
+        new MdiMeta(
+            "invoice-text-plus-outline",
+            "F1D02",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList("invoice-text-new-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_remove() {
+    return MdiIcon.create(
+        "mdi-invoice-text-remove",
+        new MdiMeta(
+            "invoice-text-remove",
+            "F1D03",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_remove_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-remove-outline",
+        new MdiMeta(
+            "invoice-text-remove-outline",
+            "F1D04",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_send() {
+    return MdiIcon.create(
+        "mdi-invoice-text-send",
+        new MdiMeta(
+            "invoice-text-send",
+            "F1D05",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon invoice_text_send_outline() {
+    return MdiIcon.create(
+        "mdi-invoice-text-send-outline",
+        new MdiMeta(
+            "invoice-text-send-outline",
+            "F1D06",
+            Arrays.asList("Banking", "Shopping"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   @Deprecated
   public static MdiIcon iobroker() {
     return MdiIcon.create(
@@ -46605,6 +47892,18 @@ public class IconsMeta {
             Arrays.asList(),
             "Michael Irigoyen",
             "4.1.95"));
+  }
+
+  public static MdiIcon island_variant() {
+    return MdiIcon.create(
+        "mdi-island-variant",
+        new MdiMeta(
+            "island-variant",
+            "F1CC6",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon iv_bag() {
@@ -49297,6 +50596,32 @@ public class IconsMeta {
             "3.3.92"));
   }
 
+  public static MdiIcon link_circle() {
+    return MdiIcon.create(
+        "mdi-link-circle",
+        new MdiMeta(
+            "link-circle", "F1CAC", Arrays.asList(), Arrays.asList(), "Jeff Anders", "7.3.67"));
+  }
+
+  public static MdiIcon link_circle_outline() {
+    return MdiIcon.create(
+        "mdi-link-circle-outline",
+        new MdiMeta(
+            "link-circle-outline",
+            "F1CAD",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.3.67"));
+  }
+
+  public static MdiIcon link_edit() {
+    return MdiIcon.create(
+        "mdi-link-edit",
+        new MdiMeta(
+            "link-edit", "F1CAE", Arrays.asList(), Arrays.asList(), "Jeff Anders", "7.3.67"));
+  }
+
   public static MdiIcon link_lock() {
     return MdiIcon.create(
         "mdi-link-lock",
@@ -50097,7 +51422,7 @@ public class IconsMeta {
             "F0342",
             Arrays.asList(),
             Arrays.asList("log-in", "sign-in"),
-            "Austin Andrews",
+            "Google",
             "1.5.54"));
   }
 
@@ -50121,7 +51446,7 @@ public class IconsMeta {
             "F0343",
             Arrays.asList(),
             Arrays.asList("log-out", "sign-out"),
-            "Austin Andrews",
+            "Google",
             "1.5.54"));
   }
 
@@ -51408,6 +52733,18 @@ public class IconsMeta {
         new MdiMeta("memory", "F035B", Arrays.asList(), Arrays.asList("chip"), "Google", "1.5.54"));
   }
 
+  public static MdiIcon memory_arrow_down() {
+    return MdiIcon.create(
+        "mdi-memory-arrow-down",
+        new MdiMeta(
+            "memory-arrow-down",
+            "F1CA6",
+            Arrays.asList(),
+            Arrays.asList("chip-arrow-down"),
+            "Michael Irigoyen",
+            "7.3.67"));
+  }
+
   public static MdiIcon menorah() {
     return MdiIcon.create(
         "mdi-menorah",
@@ -51444,6 +52781,18 @@ public class IconsMeta {
         "mdi-menu",
         new MdiMeta(
             "menu", "F035C", Arrays.asList(), Arrays.asList("hamburger-menu"), "Google", "1.5.54"));
+  }
+
+  public static MdiIcon menu_close() {
+    return MdiIcon.create(
+        "mdi-menu-close",
+        new MdiMeta(
+            "menu-close",
+            "F1C90",
+            Arrays.asList("Navigation"),
+            Arrays.asList("hamburger-close"),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon menu_down() {
@@ -51497,7 +52846,13 @@ public class IconsMeta {
   public static MdiIcon menu_open() {
     return MdiIcon.create(
         "mdi-menu-open",
-        new MdiMeta("menu-open", "F0BAB", Arrays.asList(), Arrays.asList(), "Google", "3.0.39"));
+        new MdiMeta(
+            "menu-open",
+            "F0BAB",
+            Arrays.asList(),
+            Arrays.asList("hamburger-open"),
+            "Google",
+            "3.0.39"));
   }
 
   public static MdiIcon menu_right() {
@@ -53829,6 +55184,30 @@ public class IconsMeta {
             "2.4.85"));
   }
 
+  public static MdiIcon mouse_left_click() {
+    return MdiIcon.create(
+        "mdi-mouse-left-click",
+        new MdiMeta(
+            "mouse-left-click",
+            "F1D07",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon mouse_left_click_outline() {
+    return MdiIcon.create(
+        "mdi-mouse-left-click-outline",
+        new MdiMeta(
+            "mouse-left-click-outline",
+            "F1D08",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon mouse_move_down() {
     return MdiIcon.create(
         "mdi-mouse-move-down",
@@ -53870,6 +55249,49 @@ public class IconsMeta {
         "mdi-mouse-off",
         new MdiMeta(
             "mouse-off", "F037E", Arrays.asList(), Arrays.asList(), "Austin Andrews", "1.5.54"));
+  }
+
+  public static MdiIcon mouse_outline() {
+    return MdiIcon.create(
+        "mdi-mouse-outline",
+        new MdiMeta(
+            "mouse-outline", "F1D09", Arrays.asList(), Arrays.asList(), "Jeff Anders", "7.4.47"));
+  }
+
+  public static MdiIcon mouse_right_click() {
+    return MdiIcon.create(
+        "mdi-mouse-right-click",
+        new MdiMeta(
+            "mouse-right-click",
+            "F1D0A",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon mouse_right_click_outline() {
+    return MdiIcon.create(
+        "mdi-mouse-right-click-outline",
+        new MdiMeta(
+            "mouse-right-click-outline",
+            "F1D0B",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon mouse_scroll_wheel() {
+    return MdiIcon.create(
+        "mdi-mouse-scroll-wheel",
+        new MdiMeta(
+            "mouse-scroll-wheel",
+            "F1D0C",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
   }
 
   public static MdiIcon mouse_variant() {
@@ -59208,6 +60630,18 @@ public class IconsMeta {
             "passport", "F07E3", Arrays.asList(), Arrays.asList(), "GreenTurtwig", "2.0.46"));
   }
 
+  public static MdiIcon passport_alert() {
+    return MdiIcon.create(
+        "mdi-passport-alert",
+        new MdiMeta(
+            "passport-alert",
+            "F1CB8",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
   public static MdiIcon passport_biometric() {
     return MdiIcon.create(
         "mdi-passport-biometric",
@@ -59218,6 +60652,66 @@ public class IconsMeta {
             Arrays.asList("passport-electronic"),
             "GreenTurtwig",
             "3.5.94"));
+  }
+
+  public static MdiIcon passport_cancel() {
+    return MdiIcon.create(
+        "mdi-passport-cancel",
+        new MdiMeta(
+            "passport-cancel",
+            "F1CB9",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon passport_check() {
+    return MdiIcon.create(
+        "mdi-passport-check",
+        new MdiMeta(
+            "passport-check",
+            "F1CBA",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon passport_minus() {
+    return MdiIcon.create(
+        "mdi-passport-minus",
+        new MdiMeta(
+            "passport-minus",
+            "F1CBB",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon passport_plus() {
+    return MdiIcon.create(
+        "mdi-passport-plus",
+        new MdiMeta(
+            "passport-plus",
+            "F1CBC",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon passport_remove() {
+    return MdiIcon.create(
+        "mdi-passport-remove",
+        new MdiMeta(
+            "passport-remove",
+            "F1CBD",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon pasta() {
@@ -61587,6 +63081,12 @@ public class IconsMeta {
             "4.5.95"));
   }
 
+  public static MdiIcon pocket() {
+    return MdiIcon.create(
+        "mdi-pocket",
+        new MdiMeta("pocket", "F1CBE", Arrays.asList(), Arrays.asList(), "Contributors", "7.3.67"));
+  }
+
   public static MdiIcon podcast() {
     return MdiIcon.create(
         "mdi-podcast",
@@ -63099,6 +64599,13 @@ public class IconsMeta {
             "7.2.96"));
   }
 
+  public static MdiIcon progress_tag() {
+    return MdiIcon.create(
+        "mdi-progress-tag",
+        new MdiMeta(
+            "progress-tag", "F1D0D", Arrays.asList(), Arrays.asList(), "Jeff Anders", "7.4.47"));
+  }
+
   public static MdiIcon progress_upload() {
     return MdiIcon.create(
         "mdi-progress-upload",
@@ -63673,6 +65180,19 @@ public class IconsMeta {
             "2.5.94"));
   }
 
+  public static MdiIcon queue_first_in_last_out() {
+    return MdiIcon.create(
+        "mdi-queue-first-in-last-out",
+        new MdiMeta(
+            "queue-first-in-last-out",
+            "F1CAF",
+            Arrays.asList(),
+            Arrays.asList(),
+            "mschutti",
+            "7.3.67"));
+  }
+
+  @Deprecated
   public static MdiIcon quora() {
     return MdiIcon.create(
         "mdi-quora",
@@ -64135,7 +65655,7 @@ public class IconsMeta {
         new MdiMeta(
             "receipt",
             "F0824",
-            Arrays.asList(),
+            Arrays.asList("Banking"),
             Arrays.asList("cloth", "fabric", "swatch"),
             "Michael Irigoyen",
             "2.1.19"));
@@ -64171,7 +65691,7 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-outline",
             "F04F7",
-            Arrays.asList(),
+            Arrays.asList("Banking"),
             Arrays.asList("cloth-outline", "fabric-outline", "swatch-outline"),
             "Michael Irigoyen",
             "1.5.54"));
@@ -64202,8 +65722,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text",
             "F0449",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice"),
             "Google",
             "1.5.54"));
   }
@@ -64214,8 +65734,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-arrow-left",
             "F1C42",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-arrow-left", "invoice-receive"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64226,8 +65746,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-arrow-left-outline",
             "F1C43",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-arrow-left-outline", "invoice-receive-outline"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64238,8 +65758,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-arrow-right",
             "F1C44",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-arrow-right", "invoice-send"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64250,8 +65770,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-arrow-right-outline",
             "F1C45",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-arrow-right-outline", "invoice-send-outline"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64262,8 +65782,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-check",
             "F1A63",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-check"),
             "Simran",
             "6.7.96"));
   }
@@ -64274,8 +65794,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-check-outline",
             "F1A64",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-check-outline"),
             "Michael Irigoyen",
             "6.7.96"));
   }
@@ -64286,8 +65806,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-clock",
             "F1C46",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-clock", "invoice-schedule", "receipt-text-pending"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64298,9 +65818,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-clock-outline",
             "F1C47",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList(
-                "invoice-clock-outline", "invoice-schedule-outline", "receipt-text-pending"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64311,8 +65830,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-edit",
             "F1C48",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-edit"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64323,8 +65842,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-edit-outline",
             "F1C49",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-edit-outline"),
             "Jeff Anders",
             "7.2.96"));
   }
@@ -64335,8 +65854,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-minus",
             "F1A65",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-minus"),
             "Simran",
             "6.7.96"));
   }
@@ -64347,8 +65866,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-minus-outline",
             "F1A66",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-minus-outline"),
             "Michael Irigoyen",
             "6.7.96"));
   }
@@ -64359,7 +65878,7 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-outline",
             "F19DC",
-            Arrays.asList(),
+            Arrays.asList("Banking"),
             Arrays.asList("invoice-outline"),
             "Google",
             "6.6.96"));
@@ -64371,8 +65890,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-plus",
             "F1A67",
-            Arrays.asList(),
-            Arrays.asList("invoice-plus", "invoice-add", "receipt-text-add"),
+            Arrays.asList("Banking"),
+            Arrays.asList("receipt-text-add"),
             "Simran",
             "6.7.96"));
   }
@@ -64383,8 +65902,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-plus-outline",
             "F1A68",
-            Arrays.asList(),
-            Arrays.asList("invoice-plus", "invoice-add", "receipt-text-add"),
+            Arrays.asList("Banking"),
+            Arrays.asList("receipt-text-add"),
             "Michael Irigoyen",
             "6.7.96"));
   }
@@ -64395,8 +65914,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-remove",
             "F1A69",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-remove"),
             "Simran",
             "6.7.96"));
   }
@@ -64407,8 +65926,8 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-remove-outline",
             "F1A6A",
+            Arrays.asList("Banking"),
             Arrays.asList(),
-            Arrays.asList("invoice-remove-outline"),
             "Michael Irigoyen",
             "6.7.96"));
   }
@@ -64419,7 +65938,7 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-send",
             "F1C4A",
-            Arrays.asList(),
+            Arrays.asList("Banking"),
             Arrays.asList(),
             "Jeff Anders",
             "7.2.96"));
@@ -64431,7 +65950,7 @@ public class IconsMeta {
         new MdiMeta(
             "receipt-text-send-outline",
             "F1C4B",
-            Arrays.asList(),
+            Arrays.asList("Banking"),
             Arrays.asList(),
             "Jeff Anders",
             "7.2.96"));
@@ -65197,14 +66716,25 @@ public class IconsMeta {
   public static MdiIcon rename() {
     return MdiIcon.create(
         "mdi-rename",
-        new MdiMeta("rename", "F1C18", Arrays.asList(), Arrays.asList(), "Google", "7.1.96"));
+        new MdiMeta(
+            "rename",
+            "F1C18",
+            Arrays.asList("Edit / Modify"),
+            Arrays.asList(),
+            "Google",
+            "7.1.96"));
   }
 
   public static MdiIcon rename_box() {
     return MdiIcon.create(
         "mdi-rename-box",
         new MdiMeta(
-            "rename-box", "F0455", Arrays.asList(), Arrays.asList(), "frankgrinaert", "1.5.54"));
+            "rename-box",
+            "F0455",
+            Arrays.asList("Edit / Modify"),
+            Arrays.asList(),
+            "frankgrinaert",
+            "1.5.54"));
   }
 
   public static MdiIcon rename_box_outline() {
@@ -65213,7 +66743,7 @@ public class IconsMeta {
         new MdiMeta(
             "rename-box-outline",
             "F1C19",
-            Arrays.asList(),
+            Arrays.asList("Edit / Modify"),
             Arrays.asList(),
             "Michael Irigoyen",
             "7.1.96"));
@@ -65223,7 +66753,12 @@ public class IconsMeta {
     return MdiIcon.create(
         "mdi-rename-outline",
         new MdiMeta(
-            "rename-outline", "F1C1A", Arrays.asList(), Arrays.asList(), "Google", "7.1.96"));
+            "rename-outline",
+            "F1C1A",
+            Arrays.asList("Edit / Modify"),
+            Arrays.asList(),
+            "Google",
+            "7.1.96"));
   }
 
   public static MdiIcon reorder_horizontal() {
@@ -66390,6 +67925,18 @@ public class IconsMeta {
         "mdi-router-network",
         new MdiMeta(
             "router-network", "F1087", Arrays.asList(), Arrays.asList(), "Simran", "4.2.95"));
+  }
+
+  public static MdiIcon router_network_wireless() {
+    return MdiIcon.create(
+        "mdi-router-network-wireless",
+        new MdiMeta(
+            "router-network-wireless",
+            "F1C97",
+            Arrays.asList("Device / Tech"),
+            Arrays.asList("wireless-router"),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon router_wireless() {
@@ -67994,6 +69541,18 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon server_minus_outline() {
+    return MdiIcon.create(
+        "mdi-server-minus-outline",
+        new MdiMeta(
+            "server-minus-outline",
+            "F1C98",
+            Arrays.asList(),
+            Arrays.asList("server-remove-outline"),
+            "Kadensvw",
+            "7.3.67"));
+  }
+
   public static MdiIcon server_network() {
     return MdiIcon.create(
         "mdi-server-network",
@@ -68018,11 +69577,30 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon server_network_outline() {
+    return MdiIcon.create(
+        "mdi-server-network-outline",
+        new MdiMeta(
+            "server-network-outline",
+            "F1C99",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Kadensvw",
+            "7.3.67"));
+  }
+
   public static MdiIcon server_off() {
     return MdiIcon.create(
         "mdi-server-off",
         new MdiMeta(
             "server-off", "F048F", Arrays.asList(), Arrays.asList(), "Austin Andrews", "1.5.54"));
+  }
+
+  public static MdiIcon server_outline() {
+    return MdiIcon.create(
+        "mdi-server-outline",
+        new MdiMeta(
+            "server-outline", "F1C9A", Arrays.asList(), Arrays.asList(), "Kadensvw", "7.3.67"));
   }
 
   public static MdiIcon server_plus() {
@@ -68035,6 +69613,18 @@ public class IconsMeta {
             Arrays.asList("server-add"),
             "Austin Andrews",
             "1.5.54"));
+  }
+
+  public static MdiIcon server_plus_outline() {
+    return MdiIcon.create(
+        "mdi-server-plus-outline",
+        new MdiMeta(
+            "server-plus-outline",
+            "F1C9B",
+            Arrays.asList(),
+            Arrays.asList("server-add-outline"),
+            "Kadensvw",
+            "7.3.67"));
   }
 
   public static MdiIcon server_remove() {
@@ -70829,7 +72419,7 @@ public class IconsMeta {
             "snowflake",
             "F0717",
             Arrays.asList("Weather", "Holiday", "Automotive"),
-            Arrays.asList(),
+            Arrays.asList("power-hibernate"),
             "Google",
             "1.8.36"));
   }
@@ -74303,6 +75893,18 @@ public class IconsMeta {
             "4.0.96"));
   }
 
+  public static MdiIcon swap_horizontal_hidden() {
+    return MdiIcon.create(
+        "mdi-swap-horizontal-hidden",
+        new MdiMeta(
+            "swap-horizontal-hidden",
+            "F1D0E",
+            Arrays.asList("Arrow"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon swap_horizontal_variant() {
     return MdiIcon.create(
         "mdi-swap-horizontal-variant",
@@ -75396,6 +76998,25 @@ public class IconsMeta {
             "6.7.96"));
   }
 
+  public static MdiIcon tag_edit() {
+    return MdiIcon.create(
+        "mdi-tag-edit",
+        new MdiMeta(
+            "tag-edit", "F1C9C", Arrays.asList(), Arrays.asList(), "Michael Richins", "7.3.67"));
+  }
+
+  public static MdiIcon tag_edit_outline() {
+    return MdiIcon.create(
+        "mdi-tag-edit-outline",
+        new MdiMeta(
+            "tag-edit-outline",
+            "F1C9D",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
   public static MdiIcon tag_faces() {
     return MdiIcon.create(
         "mdi-tag-faces",
@@ -76087,7 +77708,7 @@ public class IconsMeta {
             "tent",
             "F0508",
             Arrays.asList(),
-            Arrays.asList("camping"),
+            Arrays.asList("camping", "holiday"),
             "Austin Andrews",
             "1.5.54"));
   }
@@ -78576,6 +80197,13 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon train_bus() {
+    return MdiIcon.create(
+        "mdi-train-bus",
+        new MdiMeta(
+            "train-bus", "F1CC7", Arrays.asList(), Arrays.asList(), "Michael Richins", "7.3.67"));
+  }
+
   public static MdiIcon train_car() {
     return MdiIcon.create(
         "mdi-train-car",
@@ -78910,7 +80538,8 @@ public class IconsMeta {
   public static MdiIcon transfer() {
     return MdiIcon.create(
         "mdi-transfer",
-        new MdiMeta("transfer", "F1065", Arrays.asList(), Arrays.asList(), "Simran", "4.1.95"));
+        new MdiMeta(
+            "transfer", "F1065", Arrays.asList("Banking"), Arrays.asList(), "Simran", "4.1.95"));
   }
 
   public static MdiIcon transfer_down() {
@@ -79663,6 +81292,30 @@ public class IconsMeta {
             "6.5.95"));
   }
 
+  public static MdiIcon truck_off_road() {
+    return MdiIcon.create(
+        "mdi-truck-off-road",
+        new MdiMeta(
+            "truck-off-road",
+            "F1C9E",
+            Arrays.asList("Transportation + Other"),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
+  public static MdiIcon truck_off_road_off() {
+    return MdiIcon.create(
+        "mdi-truck-off-road-off",
+        new MdiMeta(
+            "truck-off-road-off",
+            "F1C9F",
+            Arrays.asList("Transportation + Other"),
+            Arrays.asList(),
+            "Michael Richins",
+            "7.3.67"));
+  }
+
   public static MdiIcon truck_outline() {
     return MdiIcon.create(
         "mdi-truck-outline",
@@ -79874,7 +81527,7 @@ public class IconsMeta {
             "tune-variant",
             "F1542",
             Arrays.asList("Audio", "Settings"),
-            Arrays.asList("settings", "equalizer"),
+            Arrays.asList("settings", "equalizer", "slider"),
             "Colton Wiscombe",
             "5.4.55"));
   }
@@ -79902,7 +81555,7 @@ public class IconsMeta {
             "tune-vertical-variant",
             "F1543",
             Arrays.asList("Audio", "Settings"),
-            Arrays.asList("settings-vertical", "equalizer-vertical"),
+            Arrays.asList("settings-vertical", "equalizer-vertical", "slider-vertical"),
             "Colton Wiscombe",
             "5.4.55"));
   }
@@ -80185,6 +81838,18 @@ public class IconsMeta {
             "1.5.54"));
   }
 
+  public static MdiIcon underwear_outline() {
+    return MdiIcon.create(
+        "mdi-underwear-outline",
+        new MdiMeta(
+            "underwear-outline",
+            "F1D0F",
+            Arrays.asList("Clothing"),
+            Arrays.asList("briefs-outline"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon undo() {
     return MdiIcon.create(
         "mdi-undo",
@@ -80352,6 +82017,44 @@ public class IconsMeta {
             "upload", "F0552", Arrays.asList(), Arrays.asList("file-upload"), "Google", "1.5.54"));
   }
 
+  public static MdiIcon upload_box() {
+    return MdiIcon.create(
+        "mdi-upload-box",
+        new MdiMeta(
+            "upload-box", "F1D10", Arrays.asList(), Arrays.asList(), "Jeff Anders", "7.4.47"));
+  }
+
+  public static MdiIcon upload_box_outline() {
+    return MdiIcon.create(
+        "mdi-upload-box-outline",
+        new MdiMeta(
+            "upload-box-outline",
+            "F1D11",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon upload_circle() {
+    return MdiIcon.create(
+        "mdi-upload-circle",
+        new MdiMeta(
+            "upload-circle", "F1D12", Arrays.asList(), Arrays.asList(), "Jeff Anders", "7.4.47"));
+  }
+
+  public static MdiIcon upload_circle_outline() {
+    return MdiIcon.create(
+        "mdi-upload-circle-outline",
+        new MdiMeta(
+            "upload-circle-outline",
+            "F1D13",
+            Arrays.asList("Files / Folders"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon upload_lock() {
     return MdiIcon.create(
         "mdi-upload-lock",
@@ -80386,6 +82089,18 @@ public class IconsMeta {
             Arrays.asList("uploads"),
             "Michael Richins",
             "2.1.19"));
+  }
+
+  public static MdiIcon upload_multiple_outline() {
+    return MdiIcon.create(
+        "mdi-upload-multiple-outline",
+        new MdiMeta(
+            "upload-multiple-outline",
+            "F1D14",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
   }
 
   public static MdiIcon upload_network() {
@@ -80447,6 +82162,13 @@ public class IconsMeta {
     return MdiIcon.create(
         "mdi-usb",
         new MdiMeta("usb", "F0553", Arrays.asList(), Arrays.asList(), "Google", "1.5.54"));
+  }
+
+  public static MdiIcon usb_c_port() {
+    return MdiIcon.create(
+        "mdi-usb-c-port",
+        new MdiMeta(
+            "usb-c-port", "F1CBF", Arrays.asList(), Arrays.asList(), "Austin Andrews", "7.3.67"));
   }
 
   public static MdiIcon usb_flash_drive() {
@@ -81439,6 +83161,18 @@ public class IconsMeta {
             Arrays.asList("video-stabilisation"),
             "Google",
             "2.3.50"));
+  }
+
+  public static MdiIcon video_standard_definition() {
+    return MdiIcon.create(
+        "mdi-video-standard-definition",
+        new MdiMeta(
+            "video-standard-definition",
+            "F1CA0",
+            Arrays.asList("Video / Movie"),
+            Arrays.asList("video-sd", "video-quality-sd"),
+            "Michael Richins",
+            "7.3.67"));
   }
 
   public static MdiIcon video_switch() {
@@ -82588,7 +84322,7 @@ public class IconsMeta {
             "washing-machine",
             "F072A",
             Arrays.asList("Home Automation"),
-            Arrays.asList("laundrette", "local-laundry-service", "laundry-room"),
+            Arrays.asList("laundrette", "local-laundry-service", "laundry-room", "washer"),
             "Google",
             "1.8.36"));
   }
@@ -82600,7 +84334,7 @@ public class IconsMeta {
             "washing-machine-alert",
             "F11BC",
             Arrays.asList("Home Automation", "Alert / Error"),
-            Arrays.asList("laundry-room-alert"),
+            Arrays.asList("laundry-room-alert", "washer-alert"),
             "Michael Irigoyen",
             "4.5.95"));
   }
@@ -82612,7 +84346,7 @@ public class IconsMeta {
             "washing-machine-off",
             "F11BD",
             Arrays.asList("Home Automation"),
-            Arrays.asList("laundry-room-off"),
+            Arrays.asList("laundry-room-off", "washer-off"),
             "Michael Irigoyen",
             "4.5.95"));
   }
@@ -83141,6 +84875,37 @@ public class IconsMeta {
             "3.8.95"));
   }
 
+  public static MdiIcon wave_arrow_down() {
+    return MdiIcon.create(
+        "mdi-wave-arrow-down",
+        new MdiMeta(
+            "wave-arrow-down",
+            "F1CB0",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Contributors",
+            "7.3.67"));
+  }
+
+  public static MdiIcon wave_arrow_up() {
+    return MdiIcon.create(
+        "mdi-wave-arrow-up",
+        new MdiMeta(
+            "wave-arrow-up", "F1CB1", Arrays.asList(), Arrays.asList(), "Contributors", "7.3.67"));
+  }
+
+  public static MdiIcon wave_undercurrent() {
+    return MdiIcon.create(
+        "mdi-wave-undercurrent",
+        new MdiMeta(
+            "wave-undercurrent",
+            "F1CC0",
+            Arrays.asList(),
+            Arrays.asList(),
+            "Austin Andrews",
+            "7.3.67"));
+  }
+
   public static MdiIcon waveform() {
     return MdiIcon.create(
         "mdi-waveform",
@@ -83363,6 +85128,42 @@ public class IconsMeta {
             "1.7.12"));
   }
 
+  public static MdiIcon weather_moonset() {
+    return MdiIcon.create(
+        "mdi-weather-moonset",
+        new MdiMeta(
+            "weather-moonset",
+            "F1D15",
+            Arrays.asList("Weather"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon weather_moonset_down() {
+    return MdiIcon.create(
+        "mdi-weather-moonset-down",
+        new MdiMeta(
+            "weather-moonset-down",
+            "F1D16",
+            Arrays.asList("Weather"),
+            Arrays.asList(),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
+  public static MdiIcon weather_moonset_up() {
+    return MdiIcon.create(
+        "mdi-weather-moonset-up",
+        new MdiMeta(
+            "weather-moonset-up",
+            "F1D17",
+            Arrays.asList("Weather"),
+            Arrays.asList("moonrise"),
+            "Jeff Anders",
+            "7.4.47"));
+  }
+
   public static MdiIcon weather_night() {
     return MdiIcon.create(
         "mdi-weather-night",
@@ -83370,7 +85171,7 @@ public class IconsMeta {
             "weather-night",
             "F0594",
             Arrays.asList("Weather", "Holiday"),
-            Arrays.asList("moon-and-stars", "night-sky"),
+            Arrays.asList("moon-and-stars", "night-sky", "weather-night-outline"),
             "Austin Andrews",
             "1.5.54"));
   }

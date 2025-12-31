@@ -67,12 +67,16 @@ public class DropdownButton<T extends BaseButton<?, T>, V>
     init(this);
   }
 
-  /** @return The button component of this DropdownButton instance. */
+  /**
+   * @return The button component of this DropdownButton instance.
+   */
   public T getButton() {
     return button;
   }
 
-  /** @return The menu component of this DropdownButton instance */
+  /**
+   * @return The menu component of this DropdownButton instance
+   */
   public Menu<V> getMenu() {
     return menu;
   }
@@ -101,13 +105,17 @@ public class DropdownButton<T extends BaseButton<?, T>, V>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return button.element();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public T asButton() {
     return button;

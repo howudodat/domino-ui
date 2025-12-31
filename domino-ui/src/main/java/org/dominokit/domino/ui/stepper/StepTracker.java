@@ -69,6 +69,10 @@ public class StepTracker extends BaseDominoElement<HTMLDivElement, StepTracker>
     this.parent = parent;
   }
 
+  void unbind(StepperTrack stepperTrack) {
+    this.parent = null;
+  }
+
   @Override
   public StepTracker remove() {
     this.parent.removeTracker(this);
@@ -274,6 +278,20 @@ public class StepTracker extends BaseDominoElement<HTMLDivElement, StepTracker>
    */
   public boolean isActive() {
     return dui_active.isAppliedTo(this);
+  }
+
+  /**
+   * Retrieves the index of this step tracker within its parent tracker collection. If the parent is
+   * null, returns -1.
+   *
+   * @return The index of this step tracker in the parent's tracker collection, or -1 if the parent
+   *     is null.
+   */
+  public int getIndex() {
+    if (nonNull(parent)) {
+      return parent.indexOf(this);
+    }
+    return -1;
   }
 
   /** Listener interface to handle state changes in a step tracker. */

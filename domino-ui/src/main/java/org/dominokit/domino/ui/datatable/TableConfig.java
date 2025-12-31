@@ -22,13 +22,18 @@ import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 import elemental2.dom.DOMRect;
 import elemental2.dom.HTMLElement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
 import org.dominokit.domino.ui.datatable.plugins.column.ResizeColumnMeta;
 import org.dominokit.domino.ui.elements.THeadElement;
 import org.dominokit.domino.ui.elements.TableRowElement;
 import org.dominokit.domino.ui.style.DominoCss;
+import org.dominokit.domino.ui.utils.ChildHandler;
 import org.dominokit.domino.ui.utils.HasMultiSelectionSupport;
 
 /**
@@ -53,9 +58,9 @@ public class TableConfig<T>
   private List<ColumnConfig<T>> columns = new LinkedList<>();
   private List<DataTablePlugin<T>> plugins = new ArrayList<>();
   private DataTable<T> dataTable;
-  private boolean fixed = false;
+  private TableMode tableMode = TableMode.DEFAULT;
   private String fixedDefaultColumnWidth = "100px";
-  private String fixedBodyHeight = "400px";
+  private String fixedBodyHeight = "";
   private boolean lazyLoad = true;
   private boolean multiSelect = true;
   private boolean stickyHeader = false;
@@ -71,6 +76,8 @@ public class TableConfig<T>
   private Consumer<TableRow<T>> onRowEditHandler = (tableRow) -> {};
   private Consumer<TableRow<T>> onRowFinishEditHandler = (tableRow) -> {};
 
+  private boolean frozen = false;
+
   private final ColumnConfig<T> pluginUtilityColumn =
       ColumnConfig.<T>create("plugin-utility-column")
           .setShowTooltip(false)
@@ -78,8 +85,8 @@ public class TableConfig<T>
           .setPluginColumn(true)
           .applyMeta(ResizeColumnMeta.create().setResizable(false))
           .setCellRenderer(
-              cellInfo -> {
-                elements.elementOf(cellInfo.getElement()).addCss(dui_datatable_column_utility);
+              rowCell -> {
+                rowCell.addCss(dui_datatable_column_utility);
                 return elements
                     .div()
                     .addCss(dui_datatable_utility_elements)
@@ -88,7 +95,7 @@ public class TableConfig<T>
                           List<DataTablePlugin<T>> pluginsList = getPlugins();
                           for (DataTablePlugin<T> plugin : pluginsList) {
                             Optional<List<HTMLElement>> optionalElements =
-                                plugin.getUtilityElements(dataTable, cellInfo);
+                                plugin.getUtilityElements(dataTable, rowCell);
                             if (optionalElements.isPresent()) {
                               List<HTMLElement> nodes = optionalElements.get();
                               for (HTMLElement node : nodes) {
@@ -104,11 +111,11 @@ public class TableConfig<T>
                             }
                           }
 
-                          cellInfo
+                          rowCell
                               .getColumnConfig()
                               .ifPresent(
                                   columnConfig -> {
-                                    if (cellInfo
+                                    if (rowCell
                                         .getTableRow()
                                         .getDataTable()
                                         .getTableConfig()
@@ -118,8 +125,7 @@ public class TableConfig<T>
                                               .getHeadElement()
                                               .element()
                                               .getBoundingClientRect();
-                                      elements
-                                          .elementOf(cellInfo.getElement())
+                                      rowCell
                                           .setCssProperty("width", domRect.width + "px")
                                           .setCssProperty("min-width", domRect.width + "px")
                                           .setCssProperty("max-width", domRect.width + "px");
@@ -129,6 +135,9 @@ public class TableConfig<T>
                     .element();
               });
   private UtilityColumnHandler<T> utilityColumnHandler = utilityColumn -> {};
+  private List<ColumnConfig<T>> flattenColumns;
+  private List<ColumnConfig<T>> leafColumnsList;
+  private List<ColumnConfig<T>> allColumns;
 
   /**
    * Draws headers of the DataTable based on the provided configurations.
@@ -266,9 +275,11 @@ public class TableConfig<T>
    * Checks if the DataTable is in a fixed layout mode.
    *
    * @return {@code true} if the table layout is fixed, {@code false} otherwise.
+   * @deprecated use {@link #getTableMode()} instead
    */
+  @Deprecated
   public boolean isFixed() {
-    return fixed;
+    return TableMode.FIXED_HEIGHT.equals(tableMode);
   }
 
   /**
@@ -276,10 +287,36 @@ public class TableConfig<T>
    *
    * @param fixed {@code true} to set the table layout as fixed, {@code false} for fluid.
    * @return The current instance of {@link TableConfig} for chaining.
+   * @deprecated use {@link #setTableMode(TableMode)} instead
    */
+  @Deprecated
   public TableConfig<T> setFixed(boolean fixed) {
-    this.fixed = fixed;
+    this.tableMode = TableMode.FIXED_HEIGHT;
     return this;
+  }
+
+  /**
+   * Sets the table mode for the table configuration.
+   *
+   * @param tableMode the mode to set for the table, defining its operational behavior or format
+   * @return the updated TableConfig instance with the newly set table mode
+   */
+  public TableConfig<T> setTableMode(TableMode tableMode) {
+    if (nonNull(tableMode)) {
+      this.tableMode = tableMode;
+    } else {
+      this.tableMode = TableMode.DEFAULT;
+    }
+    return this;
+  }
+
+  /**
+   * Retrieves the current mode of the table.
+   *
+   * @return the current TableMode instance representing the table's mode.
+   */
+  public TableMode getTableMode() {
+    return tableMode;
   }
 
   /**
@@ -415,12 +452,14 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing the leaf columns.
    */
   public List<ColumnConfig<T>> getColumns() {
-    List<ColumnConfig<T>> allColumns = new ArrayList<>();
-    for (ColumnConfig<T> col : columns) {
-      // Retrieve the leaf columns from the current column
-      List<ColumnConfig<T>> leafColumns = col.leafColumns();
-      for (ColumnConfig<T> leaf : leafColumns) {
-        allColumns.add(leaf);
+    if (isNull(this.allColumns) || !this.frozen) {
+      allColumns = new ArrayList<>();
+      for (ColumnConfig<T> col : columns) {
+        // Retrieve the leaf columns from the current column
+        List<ColumnConfig<T>> leafColumns = col.leafColumns();
+        for (ColumnConfig<T> leaf : leafColumns) {
+          allColumns.add(leaf);
+        }
       }
     }
     return allColumns;
@@ -432,11 +471,13 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing all columns, flattened.
    */
   public List<ColumnConfig<T>> getFlattenColumns() {
-    List<ColumnConfig<T>> flattenColumns = new ArrayList<>();
-    for (ColumnConfig<T> col : columns) {
-      List<ColumnConfig<T>> colFlattenColumns = col.flattenColumns();
-      for (ColumnConfig<T> flattened : colFlattenColumns) {
-        flattenColumns.add(flattened);
+    if (isNull(flattenColumns) || !this.frozen) {
+      flattenColumns = new ArrayList<>();
+      for (ColumnConfig<T> col : columns) {
+        List<ColumnConfig<T>> colFlattenColumns = col.flattenColumns();
+        for (ColumnConfig<T> flattened : colFlattenColumns) {
+          flattenColumns.add(flattened);
+        }
       }
     }
     return flattenColumns;
@@ -448,11 +489,13 @@ public class TableConfig<T>
    * @return A list of {@link ColumnConfig} representing all columns, flattened.
    */
   public List<ColumnConfig<T>> getLeafColumns() {
-    List<ColumnConfig<T>> leafColumnsList = new ArrayList<>();
-    for (ColumnConfig<T> col : columns) {
-      List<ColumnConfig<T>> childLeafColumns = col.leafColumns();
-      for (ColumnConfig<T> leaf : childLeafColumns) {
-        leafColumnsList.add(leaf);
+    if (isNull(leafColumnsList) || !frozen) {
+      leafColumnsList = new ArrayList<>();
+      for (ColumnConfig<T> col : columns) {
+        List<ColumnConfig<T>> childLeafColumns = col.leafColumns();
+        for (ColumnConfig<T> leaf : childLeafColumns) {
+          leafColumnsList.add(leaf);
+        }
       }
     }
     return leafColumnsList;
@@ -502,6 +545,24 @@ public class TableConfig<T>
     } else {
       throw new ColumnNofFoundException(name);
     }
+  }
+
+  /**
+   * Retrieves a column configuration by its name.
+   *
+   * @param name The name of the column to retrieve.
+   * @return The {@link ColumnConfig} associated with the given name.
+   * @throws ColumnNofFoundException If no column is found with the specified name.
+   */
+  public Optional<ColumnConfig<T>> findColumnByName(String name) {
+    Optional<ColumnConfig<T>> first = Optional.empty();
+    for (ColumnConfig<T> columnConfig : getFlattenColumns()) {
+      if (columnConfig.getName().equals(name)) {
+        first = Optional.of(columnConfig);
+        break;
+      }
+    }
+    return first;
   }
 
   /**
@@ -673,7 +734,9 @@ public class TableConfig<T>
     return this;
   }
 
-  /** @return the handler to be called when a row is being edited. */
+  /**
+   * @return the handler to be called when a row is being edited.
+   */
   Consumer<TableRow<T>> getOnRowEditHandler() {
     return onRowEditHandler;
   }
@@ -693,9 +756,33 @@ public class TableConfig<T>
     return this;
   }
 
-  /** @return the handler to be called when a row editing finished. */
+  /**
+   * Adds a utility column to the table configuration by applying the specified handler.
+   *
+   * @param handler a ChildHandler instance that allows custom configuration of the utility column.
+   * @return the updated TableConfig instance.
+   */
+  public TableConfig<T> withUtilityColumn(ChildHandler<TableConfig<T>, ColumnConfig<T>> handler) {
+    handler.apply(this, pluginUtilityColumn);
+    return this;
+  }
+
+  /**
+   * @return the handler to be called when a row editing finished.
+   */
   Consumer<TableRow<T>> getOnRowFinishEditHandler() {
     return onRowFinishEditHandler;
+  }
+
+  TableConfig<T> freezeAndApply(Consumer<TableConfig<T>> consumer) {
+    boolean oldState = this.frozen;
+    this.frozen = true;
+    try {
+      consumer.accept(this);
+    } finally {
+      this.frozen = oldState;
+    }
+    return this;
   }
 
   /** A functional interface defining the behavior for appending rows. */

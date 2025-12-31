@@ -54,6 +54,8 @@ public class Cloud_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.cloud_cog_outline_cloud());
     icons.add(() -> tagIcons.cloud_download_cloud());
     icons.add(() -> tagIcons.cloud_download_outline_cloud());
+    icons.add(() -> tagIcons.cloud_key_cloud());
+    icons.add(() -> tagIcons.cloud_key_outline_cloud());
     icons.add(() -> tagIcons.cloud_lock_cloud());
     icons.add(() -> tagIcons.cloud_lock_open_cloud());
     icons.add(() -> tagIcons.cloud_lock_open_outline_cloud());

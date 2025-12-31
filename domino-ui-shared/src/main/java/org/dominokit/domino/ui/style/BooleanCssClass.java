@@ -17,6 +17,7 @@
 package org.dominokit.domino.ui.style;
 
 import elemental2.dom.Element;
+import java.util.function.Supplier;
 import org.dominokit.domino.ui.IsElement;
 
 /**
@@ -30,7 +31,7 @@ import org.dominokit.domino.ui.IsElement;
 public class BooleanCssClass implements CssClass {
 
   private CssClass cssClass;
-  private boolean addRemove;
+  private Supplier<Boolean> addRemove;
 
   /**
    * Creates an instance with a specified {@link CssClass} and a condition flag.
@@ -41,6 +42,18 @@ public class BooleanCssClass implements CssClass {
    * @return A new instance of {@code BooleanCssClass}.
    */
   public static BooleanCssClass of(CssClass cssClass, boolean addRemove) {
+    return new BooleanCssClass(cssClass, addRemove);
+  }
+
+  /**
+   * Creates an instance with a specified {@link CssClass} and a condition flag.
+   *
+   * @param cssClass The CSS class to be conditionally applied or removed.
+   * @param addRemove Condition flag to determine if the class should be applied (true) or removed
+   *     (false).
+   * @return A new instance of {@code BooleanCssClass}.
+   */
+  public static BooleanCssClass of(CssClass cssClass, Supplier<Boolean> addRemove) {
     return new BooleanCssClass(cssClass, addRemove);
   }
 
@@ -58,6 +71,19 @@ public class BooleanCssClass implements CssClass {
   }
 
   /**
+   * Creates an instance with a specified {@link HasCssClass} and a condition flag. This method
+   * extracts the {@link CssClass} from the provided {@link HasCssClass}.
+   *
+   * @param cssClass The object implementing {@link HasCssClass} whose CSS class will be extracted.
+   * @param addRemove Condition flag to determine if the class should be applied (true) or removed
+   *     (false).
+   * @return A new instance of {@code BooleanCssClass}.
+   */
+  public static BooleanCssClass of(HasCssClass cssClass, Supplier<Boolean> addRemove) {
+    return new BooleanCssClass(cssClass.getCssClass(), addRemove);
+  }
+
+  /**
    * Creates an instance with a specified CSS class string and a condition flag.
    *
    * @param cssClass The string representation of the CSS class to be conditionally applied or
@@ -67,6 +93,19 @@ public class BooleanCssClass implements CssClass {
    * @return A new instance of {@code BooleanCssClass}.
    */
   public static BooleanCssClass of(String cssClass, boolean addRemove) {
+    return new BooleanCssClass(() -> cssClass, addRemove);
+  }
+
+  /**
+   * Creates an instance with a specified CSS class string and a condition flag.
+   *
+   * @param cssClass The string representation of the CSS class to be conditionally applied or
+   *     removed.
+   * @param addRemove Condition flag to determine if the class should be applied (true) or removed
+   *     (false).
+   * @return A new instance of {@code BooleanCssClass}.
+   */
+  public static BooleanCssClass of(String cssClass, Supplier<Boolean> addRemove) {
     return new BooleanCssClass(() -> cssClass, addRemove);
   }
 
@@ -112,6 +151,17 @@ public class BooleanCssClass implements CssClass {
    *     (false).
    */
   public BooleanCssClass(CssClass cssClass, boolean addRemove) {
+    this(cssClass, () -> addRemove);
+  }
+
+  /**
+   * Initializes the {@code BooleanCssClass} with a provided {@link CssClass} and a condition flag.
+   *
+   * @param cssClass The CSS class to be managed.
+   * @param addRemove Condition flag to determine if the class should be applied (true) or removed
+   *     (false).
+   */
+  public BooleanCssClass(CssClass cssClass, Supplier<Boolean> addRemove) {
     this.cssClass = cssClass;
     this.addRemove = addRemove;
   }
@@ -133,7 +183,7 @@ public class BooleanCssClass implements CssClass {
    */
   @Override
   public void apply(Element element) {
-    apply(element, addRemove);
+    apply(element, addRemove.get());
   }
 
   /**

@@ -121,7 +121,7 @@ public class Search extends BaseDominoElement<HTMLDivElement, Search>
     }
 
     searchInput.addEventListener(
-        EventType.keypress.getName(),
+        EventType.keydown.getName(),
         evt -> {
           if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
             searchHandler.onSearch(searchInput.element().value);

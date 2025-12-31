@@ -70,6 +70,7 @@ public class ButtonsToolbar extends BaseDominoElement<HTMLDivElement, ButtonsToo
     Arrays.stream(groups).forEach(this::appendChild);
     return this;
   }
+
   /**
    * Adds provided buttons to the toolbar
    *
@@ -81,7 +82,9 @@ public class ButtonsToolbar extends BaseDominoElement<HTMLDivElement, ButtonsToo
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return toolbarElement.element();

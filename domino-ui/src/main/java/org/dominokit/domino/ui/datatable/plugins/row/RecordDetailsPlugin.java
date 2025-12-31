@@ -19,7 +19,6 @@ package org.dominokit.domino.ui.datatable.plugins.row;
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.datatable.DataTableStyles.dui_datatable_details_td;
 import static org.dominokit.domino.ui.datatable.DataTableStyles.dui_datatable_details_tr;
-import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.*;
 import java.util.Collections;
@@ -30,6 +29,8 @@ import org.dominokit.domino.ui.IsElement;
 import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.RowCell;
+import org.dominokit.domino.ui.datatable.RowCellInfo;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.events.ExpandRecordEvent;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
@@ -54,11 +55,11 @@ import org.dominokit.domino.ui.utils.DominoEvent;
  */
 public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
 
-  private DivElement element = div();
-  private TDElement td = td().addCss(dui_datatable_details_td).appendChild(element);
+  private DivElement detailsElement = div();
+  private TDElement td = td().addCss(dui_datatable_details_td).appendChild(detailsElement);
   private TableRowElement tr = tr().addCss(dui_datatable_details_tr).appendChild(td);
 
-  private final CellRenderer<T> cellRenderer;
+  private final RecordDetailsRenderer<T> cellRenderer;
   private Supplier<Icon<?>> expandIcon;
   private Supplier<Icon<?>> collapseIcon;
   private DataTable<T> dataTable;
@@ -69,7 +70,20 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
    *
    * @param cellRenderer The cell renderer used to render details content.
    */
+  @Deprecated
   public RecordDetailsPlugin(CellRenderer<T> cellRenderer) {
+    this(
+        toDetailsRenderer(cellRenderer),
+        () -> Icons.fullscreen().clickable(),
+        () -> Icons.fullscreen_exit().clickable());
+  }
+
+  /**
+   * Creates a new {@code RecordDetailsPlugin} with the provided cell renderer.
+   *
+   * @param cellRenderer The cell renderer used to render details content.
+   */
+  public RecordDetailsPlugin(RecordDetailsRenderer<T> cellRenderer) {
     this(
         cellRenderer,
         () -> Icons.fullscreen().clickable(),
@@ -84,11 +98,35 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
    * @param expandIcon A supplier of the expand icon.
    * @param collapseIcon A supplier of the collapse icon.
    */
+  @Deprecated
   public RecordDetailsPlugin(
       CellRenderer<T> cellRenderer, Supplier<Icon<?>> expandIcon, Supplier<Icon<?>> collapseIcon) {
+    this(toDetailsRenderer(cellRenderer), expandIcon, collapseIcon);
+  }
+
+  /**
+   * Creates a new {@code RecordDetailsPlugin} with the provided cell renderer and custom expand and
+   * collapse icons.
+   *
+   * @param cellRenderer The cell renderer used to render details content.
+   * @param expandIcon A supplier of the expand icon.
+   * @param collapseIcon A supplier of the collapse icon.
+   */
+  public RecordDetailsPlugin(
+      RecordDetailsRenderer<T> cellRenderer,
+      Supplier<Icon<?>> expandIcon,
+      Supplier<Icon<?>> collapseIcon) {
     this.cellRenderer = cellRenderer;
     this.expandIcon = expandIcon;
     this.collapseIcon = collapseIcon;
+  }
+
+  private static <T> RecordDetailsRenderer<T> toDetailsRenderer(CellRenderer<T> renderer) {
+    return cell -> {
+      RowCellInfo<T> rowCellInfo = new RowCellInfo<>(cell.getTableRow(), cell.element());
+      RowCell<T> rowCell = new RowCell<>(rowCellInfo, null);
+      cell.appendChild(renderer.asElement(rowCell));
+    };
   }
 
   /**
@@ -110,8 +148,7 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
    * @return An optional list of utility elements, empty if none.
    */
   @Override
-  public Optional<List<HTMLElement>> getUtilityElements(
-      DataTable<T> dataTable, CellRenderer.CellInfo<T> cell) {
+  public Optional<List<HTMLElement>> getUtilityElements(DataTable<T> dataTable, RowCell<T> cell) {
     applyStyles(cell);
     DetailsButtonElement<T> detailsButtonElement =
         new DetailsButtonElement<>(
@@ -182,8 +219,8 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
    *
    * @return The details element.
    */
-  public DivElement getElement() {
-    return element;
+  public DivElement getDetailsElement() {
+    return detailsElement;
   }
 
   /**
@@ -209,7 +246,7 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
    *
    * @param cellInfo The cell information containing the cell content and metadata.
    */
-  public void applyStyles(CellRenderer.CellInfo<T> cellInfo) {}
+  public void applyStyles(RowCell<T> cellInfo) {}
 
   /**
    * Sets up a column with the specified configuration.
@@ -221,7 +258,7 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
   /** Clears the current details content. */
   private void clear() {
     tr.remove();
-    element.clearElement();
+    detailsElement.clearElement();
   }
 
   /**
@@ -235,7 +272,15 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
     }
     this.expandedRow = expandElement;
     td.setAttribute("colspan", dataTable.getTableConfig().getColumns().size() + "");
-    element.appendChild(cellRenderer.asElement(expandElement.getCellInfo()));
+    RowCell<T> cellInfo = expandElement.getCellInfo();
+    TableRow<T> detailsRow =
+        new TableRow<>(tr, cellInfo.getRecord(), cellInfo.getTableRow().getIndex(), this.dataTable);
+    RecordDetailsCell<T> cell =
+        new RecordDetailsCell<>(
+            new RecordDetailsCellInfo<>(
+                detailsRow, cellInfo.getTableRow(), td.element(), detailsElement));
+    td.clearElement();
+    cellRenderer.render(cell);
     dataTable
         .bodyElement()
         .insertBefore(tr, expandElement.getCellInfo().getTableRow().element().nextSibling);
@@ -252,7 +297,7 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
   private static class DetailsButtonElement<T> implements IsElement<HTMLElement>, ComponentMeta {
     public static final String RECORD_DETAILS_BUTTON = "record-details-button";
     private final DivElement element;
-    private final CellRenderer.CellInfo<T> cellInfo;
+    private final RowCell<T> cellInfo;
     private StateIcon stateIcon;
     private RecordDetailsPlugin<T> recordDetailsPlugin;
 
@@ -268,7 +313,7 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
         Icon<?> expandIcon,
         Icon<?> collapseIcon,
         RecordDetailsPlugin<T> recordDetailsPlugin,
-        CellRenderer.CellInfo<T> cellInfo) {
+        RowCell<T> cellInfo) {
       this.stateIcon =
           StateIcon.create(expandIcon.copy())
               .withState("collapsed", IconWrapper.of(expandIcon))
@@ -296,7 +341,7 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
      *
      * @return The cell information.
      */
-    public CellRenderer.CellInfo<T> getCellInfo() {
+    public RowCell<T> getCellInfo() {
       return cellInfo;
     }
 

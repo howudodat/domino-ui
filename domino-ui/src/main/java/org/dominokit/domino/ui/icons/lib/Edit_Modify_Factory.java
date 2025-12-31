@@ -88,6 +88,10 @@ public class Edit_Modify_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.puzzle_edit_edit_modify());
     icons.add(() -> tagIcons.puzzle_edit_outline_edit_modify());
     icons.add(() -> tagIcons.qrcode_edit_edit_modify());
+    icons.add(() -> tagIcons.rename_edit_modify());
+    icons.add(() -> tagIcons.rename_box_edit_modify());
+    icons.add(() -> tagIcons.rename_box_outline_edit_modify());
+    icons.add(() -> tagIcons.rename_outline_edit_modify());
     icons.add(() -> tagIcons.shield_edit_edit_modify());
     icons.add(() -> tagIcons.shield_edit_outline_edit_modify());
     icons.add(() -> tagIcons.square_edit_outline_edit_modify());

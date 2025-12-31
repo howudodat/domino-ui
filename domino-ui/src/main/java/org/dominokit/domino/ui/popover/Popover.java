@@ -51,6 +51,7 @@ import org.dominokit.domino.ui.menu.direction.DropDirectionContext;
 public class Popover extends BasePopover<Popover> {
 
   private static boolean asDialog = false;
+
   /** Static initialization block to add a global click event listener for closing popovers. */
   static {
     document.body.addEventListener(
@@ -100,6 +101,7 @@ public class Popover extends BasePopover<Popover> {
     this();
     setTargetElement(target);
   }
+
   /** Creates a new `Popover` instance for the specified HTML element target. */
   public Popover() {
     showListener =

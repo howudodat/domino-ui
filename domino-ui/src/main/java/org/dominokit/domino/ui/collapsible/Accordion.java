@@ -83,6 +83,7 @@ public class Accordion extends BaseDominoElement<HTMLDivElement, Accordion>
     Arrays.asList(panels).forEach(this::appendChild);
     return this;
   }
+
   /**
    * Inserts an accordion panel at the specified index in the accordion
    *
@@ -216,7 +217,9 @@ public class Accordion extends BaseDominoElement<HTMLDivElement, Accordion>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();

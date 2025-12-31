@@ -78,12 +78,30 @@ public class Window extends AbstractDialog<Window> {
   }
 
   /**
+   * Factory method to create a new instance of the window with a title.
+   *
+   * @param title The title of the window.
+   * @return A new instance of the Window.
+   */
+  public static Window create(Node title) {
+    return new Window(title);
+  }
+
+  /**
    * Constructs a new Window instance with the provided title.
    *
    * @param title The title of the window.
    */
   public Window(String title) {
-    super();
+    this(text(title));
+  }
+
+  /**
+   * Constructs a new Window instance with the provided title.
+   *
+   * @param title The title of the window.
+   */
+  public Window(Node title) {
     headerElement.get().appendChild(navHeader = NavBar.create(title).addCss(dui_dialog_nav));
     setModal(false);
     setAutoClose(false);
@@ -135,7 +153,7 @@ public class Window extends AbstractDialog<Window> {
     addCloseListener(component -> removeMoveListeners());
     updatePosition();
 
-    onResize((element1, observer, entries) -> updatePosition());
+    modalElement.onResize((element1, observer, entries) -> updatePosition());
   }
 
   private void onMove(Event evt) {
@@ -452,7 +470,9 @@ public class Window extends AbstractDialog<Window> {
     return closeIcon;
   }
 
-  /** @return the NavBar of this window */
+  /**
+   * @return the NavBar of this window
+   */
   public NavBar getNavHeader() {
     return navHeader;
   }

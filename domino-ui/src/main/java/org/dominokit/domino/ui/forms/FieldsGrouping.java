@@ -547,24 +547,6 @@ public class FieldsGrouping
   }
 
   /**
-   * Registers a key press event listener for all input elements within this `FieldsGrouping`.
-   *
-   * @param handler The event handler to execute on key press events.
-   * @return The current `FieldsGrouping` instance for method chaining.
-   * @deprecated use keydown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated
-  public FieldsGrouping onKeyPress(KeyEventsConsumer handler) {
-    HTMLElement[] elements = getInputElements();
-    Arrays.stream(elements)
-        .map(ElementsFactory.elements::elementOf)
-        .forEach(element -> element.onKeyPress(handler));
-    return this;
-  }
-
-  /**
    * Retrieves an array of HTML elements representing the input elements within this
    * `FieldsGrouping`.
    *

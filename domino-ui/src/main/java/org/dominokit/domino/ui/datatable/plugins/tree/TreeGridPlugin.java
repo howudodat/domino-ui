@@ -17,10 +17,8 @@
 package org.dominokit.domino.ui.datatable.plugins.tree;
 
 import static java.util.Objects.nonNull;
-import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLTableCellElement;
 import java.util.*;
 import java.util.stream.Collectors;
 import jsinterop.base.Js;
@@ -36,7 +34,6 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.ToggleIcon;
 import org.dominokit.domino.ui.utils.ComponentMeta;
-import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.DominoEvent;
 import org.dominokit.domino.ui.utils.Unit;
 
@@ -414,27 +411,22 @@ public class TreeGridPlugin<T>
    * @param subRow The TableRow for which the cell element is retrieved.
    * @return A DominoElement representing the cell element.
    */
-  private DominoElement<HTMLTableCellElement> getRowCellElement(TableRow<T> subRow) {
-    return elements.elementOf(
-        subRow
-            .getRowCells()
-            .get(TreeGridPlugin.TREE_GRID_EXPAND_COLLAPSE)
-            .getCellInfo()
-            .getElement());
+  private RowCell<T> getRowCellElement(TableRow<T> subRow) {
+    return subRow.getRowCells().get(TreeGridPlugin.TREE_GRID_EXPAND_COLLAPSE);
   }
 
   /**
    * Generates utility elements to be displayed in a cell of the DataTable.
    *
    * @param dataTable The DataTable instance.
-   * @param cellInfo Information about the cell.
+   * @param rowCell Information about the cell.
    * @return A list of utility elements to be displayed in the cell.
    */
   @Override
   public Optional<List<HTMLElement>> getUtilityElements(
-      DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
+      DataTable<T> dataTable, RowCell<T> rowCell) {
     List<HTMLElement> elementsList = new ArrayList<>();
-    TableRow<T> tableRow = cellInfo.getTableRow();
+    TableRow<T> tableRow = rowCell.getCellInfo().getTableRow();
     Optional<TreeGridRowSubItemsMeta<T>> subRecordsMeta = TreeGridRowSubItemsMeta.get(tableRow);
 
     if (config.isLazy() && !subRecordsMeta.get().hasChildren(tableRow)) {
@@ -445,7 +437,7 @@ public class TreeGridPlugin<T>
       subRecordsMeta.ifPresent(
           meta -> {
             meta.getRecords(
-                cellInfo.getTableRow(),
+                rowCell.getCellInfo().getTableRow(),
                 itemsOptional -> {
                   if (itemsOptional.isPresent() && itemsOptional.get().size() > 0) {
                     initParent(elementsList, tableRow);

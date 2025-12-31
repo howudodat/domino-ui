@@ -267,6 +267,10 @@ public interface Automotive {
     return MdiIcon.create("mdi-car-door-lock");
   }
 
+  default MdiIcon car_door_lock_open_automotive() {
+    return MdiIcon.create("mdi-car-door-lock-open");
+  }
+
   default MdiIcon car_electric_automotive() {
     return MdiIcon.create("mdi-car-electric");
   }

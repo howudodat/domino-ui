@@ -72,9 +72,9 @@ public class LocalTreeDataStore<T> extends LocalListDataStore<T> implements Tree
    * @param subItemsProvider the provider of sub-items
    */
   public LocalTreeDataStore(List<T> records, SubItemsProvider<T> subItemsProvider) {
-    super(records);
     this.subItemsProvider = subItemsProvider;
     this.treeNodeChildrenAware = record -> true;
+    initData(records);
   }
 
   /**
@@ -89,9 +89,9 @@ public class LocalTreeDataStore<T> extends LocalListDataStore<T> implements Tree
       List<T> records,
       SubItemsProvider<T> subItemsProvider,
       TreeNodeChildrenAware<T> treeNodeChildrenAware) {
-    super(records);
     this.subItemsProvider = subItemsProvider;
     this.treeNodeChildrenAware = treeNodeChildrenAware;
+    initData(records);
   }
 
   /**

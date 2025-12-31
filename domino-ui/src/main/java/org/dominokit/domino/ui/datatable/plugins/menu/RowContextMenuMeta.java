@@ -18,8 +18,8 @@ package org.dominokit.domino.ui.datatable.plugins.menu;
 
 import java.util.Optional;
 import org.dominokit.domino.ui.datatable.TableRow;
+import org.dominokit.domino.ui.menu.DropTarget;
 import org.dominokit.domino.ui.menu.Menu;
-import org.dominokit.domino.ui.menu.MenuTarget;
 import org.dominokit.domino.ui.utils.ComponentMeta;
 
 /**
@@ -61,7 +61,7 @@ public class RowContextMenuMeta<T> implements ComponentMeta {
    * @return An {@link Optional} containing the context menu metadata if found, or empty otherwise.
    */
   public static <T> Optional<RowContextMenuMeta<T>> get(Menu<?> menu) {
-    Optional<MenuTarget> target = menu.getTarget();
+    Optional<DropTarget> target = menu.getTarget();
     if (target.isPresent()) {
       return target.get().getMeta(ROW_CONTEXT_MENU_META);
     }

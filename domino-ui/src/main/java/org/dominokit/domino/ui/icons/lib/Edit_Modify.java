@@ -259,6 +259,22 @@ public interface Edit_Modify {
     return MdiIcon.create("mdi-qrcode-edit");
   }
 
+  default MdiIcon rename_edit_modify() {
+    return MdiIcon.create("mdi-rename");
+  }
+
+  default MdiIcon rename_box_edit_modify() {
+    return MdiIcon.create("mdi-rename-box");
+  }
+
+  default MdiIcon rename_box_outline_edit_modify() {
+    return MdiIcon.create("mdi-rename-box-outline");
+  }
+
+  default MdiIcon rename_outline_edit_modify() {
+    return MdiIcon.create("mdi-rename-outline");
+  }
+
   default MdiIcon shield_edit_edit_modify() {
     return MdiIcon.create("mdi-shield-edit");
   }

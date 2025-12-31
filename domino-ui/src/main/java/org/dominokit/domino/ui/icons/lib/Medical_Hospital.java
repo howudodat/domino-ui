@@ -75,6 +75,10 @@ public interface Medical_Hospital {
     return MdiIcon.create("mdi-diabetes");
   }
 
+  default MdiIcon diaper_outline_medical_hospital() {
+    return MdiIcon.create("mdi-diaper-outline");
+  }
+
   default MdiIcon doctor_medical_hospital() {
     return MdiIcon.create("mdi-doctor");
   }

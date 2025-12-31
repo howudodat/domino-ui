@@ -16,6 +16,7 @@
 
 package org.dominokit.domino.ui.datatable.plugins.tree.store;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.dominokit.domino.ui.datatable.events.SearchEvent;
 import org.dominokit.domino.ui.datatable.events.SortEvent;
@@ -43,6 +44,7 @@ public class SubItemsStore<T> extends LocalListDataStore<T> {
    */
   public SubItemsStore(LocalTreeDataStore<T> parent) {
     this.parent = parent;
+    initData(new ArrayList<>());
   }
 
   /**
@@ -53,8 +55,8 @@ public class SubItemsStore<T> extends LocalListDataStore<T> {
    * @param parent The parent LocalTreeDataStore to delegate data operations to.
    */
   public SubItemsStore(List<T> data, LocalTreeDataStore<T> parent) {
-    super(data);
     this.parent = parent;
+    initData(data);
   }
 
   /** {@inheritDoc} */

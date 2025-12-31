@@ -42,9 +42,12 @@ public class Account_User_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.account_badge_account_user());
     icons.add(() -> tagIcons.account_badge_outline_account_user());
     icons.add(() -> tagIcons.account_box_account_user());
+    icons.add(() -> tagIcons.account_box_edit_outline_account_user());
+    icons.add(() -> tagIcons.account_box_minus_outline_account_user());
     icons.add(() -> tagIcons.account_box_multiple_account_user());
     icons.add(() -> tagIcons.account_box_multiple_outline_account_user());
     icons.add(() -> tagIcons.account_box_outline_account_user());
+    icons.add(() -> tagIcons.account_box_plus_outline_account_user());
     icons.add(() -> tagIcons.account_cancel_account_user());
     icons.add(() -> tagIcons.account_cancel_outline_account_user());
     icons.add(() -> tagIcons.account_card_account_user());
@@ -74,6 +77,10 @@ public class Account_User_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.account_edit_outline_account_user());
     icons.add(() -> tagIcons.account_eye_account_user());
     icons.add(() -> tagIcons.account_eye_outline_account_user());
+    icons.add(() -> tagIcons.account_file_account_user());
+    icons.add(() -> tagIcons.account_file_outline_account_user());
+    icons.add(() -> tagIcons.account_file_text_account_user());
+    icons.add(() -> tagIcons.account_file_text_outline_account_user());
     icons.add(() -> tagIcons.account_filter_account_user());
     icons.add(() -> tagIcons.account_filter_outline_account_user());
     icons.add(() -> tagIcons.account_group_account_user());

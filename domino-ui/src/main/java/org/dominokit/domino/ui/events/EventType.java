@@ -97,15 +97,6 @@ public interface EventType {
   /** Represents the "keydown" event type. */
   EventType keydown = () -> "keydown";
 
-  /**
-   * Represents the "keypress" event type.
-   *
-   * @deprecated use keydown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated EventType keypress = () -> "keypress";
-
   /** Represents the "keyup" event type. */
   EventType keyup = () -> "keyup";
 

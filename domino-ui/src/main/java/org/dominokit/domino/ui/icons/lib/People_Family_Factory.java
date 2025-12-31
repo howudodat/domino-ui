@@ -74,6 +74,7 @@ public class People_Family_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.human_female_boy_people_family());
     icons.add(() -> tagIcons.human_female_dance_people_family());
     icons.add(() -> tagIcons.human_female_female_people_family());
+    icons.add(() -> tagIcons.human_female_female_child_people_family());
     icons.add(() -> tagIcons.human_female_girl_people_family());
     icons.add(() -> tagIcons.human_greeting_people_family());
     icons.add(() -> tagIcons.human_greeting_proximity_people_family());
@@ -91,6 +92,7 @@ public class People_Family_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.human_male_height_people_family());
     icons.add(() -> tagIcons.human_male_height_variant_people_family());
     icons.add(() -> tagIcons.human_male_male_people_family());
+    icons.add(() -> tagIcons.human_male_male_child_people_family());
     icons.add(() -> tagIcons.human_non_binary_people_family());
     icons.add(() -> tagIcons.human_pregnant_people_family());
     icons.add(() -> tagIcons.human_queue_people_family());

@@ -16,6 +16,19 @@
     display: block;
     overflow-x: auto;
     max-width: 100%;
+    max-height: var(--dui-datatable-fixed-body-height, 400px);
+}
+
+.dui-datatable-responsive.dui-datatable-auto {
+    max-height: var(--dui-datatable-fixed-body-height, 400px);
+    overflow-y: auto;
+}
+
+.dui-datatable-responsive.dui-datatable-auto .dui-datatable {
+    display: table;
+    table-layout: fixed;
+    max-width: 100%;
+    width: 100%;
 }
 
 .dui-datatable-thead {
@@ -36,6 +49,7 @@
     border-top: 1px solid var(--dui-accent-l-4);
 }
 
+.dui-datatable-auto .dui-datatable-thead,
 .dui-datatable-fixed .dui-datatable-thead {
     position: sticky;
     top: 0;
@@ -46,6 +60,12 @@
 .dui-datatable-hover tbody .dui-datatable-row:nth-child(odd):not(.dui-datatable-row-editable):hover,
 .dui-datatable-hover tbody .dui-datatable-row:nth-child(even):not(.dui-datatable-row-editable):hover {
     background-color: var(--dui-datatable-row-hover-bg-color);
+}
+
+.dui-datatable-hover tbody .dui-datatable-row.dui-datatable-row-selected:not(.dui-datatable-row-editable):hover,
+.dui-datatable-hover tbody .dui-datatable-row.dui-datatable-row-selected:nth-child(odd):not(.dui-datatable-row-editable):hover,
+.dui-datatable-hover tbody .dui-datatable-row.dui-datatable-row-selected:nth-child(even):not(.dui-datatable-row-editable):hover {
+    background-color: var(--dui-datatable-row-selected-hover-bg-color);
 }
 
 .dui-datatable-row.dui-context-menu-target-open:not(.dui-datatable-row-editable),
@@ -119,14 +139,14 @@
 
 .dui-datatable-th,
 .dui-datatable-td {
-    padding: var(--dui-spc-2);
-    line-height: var(--dui-spc-4);
+    padding: var(--dui-datatable-cell-padding);
+    line-height: var(--dui-datatable-cell-line-height);
     background-color: inherit;
 }
 
 .dui-datatable-condensed .dui-datatable-td {
-    padding: var(--dui-datatable-cell-padding);
-    line-height: var(--dui-datatable-cell-line-height);
+    padding: var(--dui-datatable-cell-condenced-padding);
+    --dui-datatable-cell-line-height: var(--dui-datatable-condenced-cell-line-height);
 }
 
 .dui-datatable-th:hover {
@@ -266,4 +286,10 @@
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+.dui-datatable-responsive.dui-datatable-row-highlight .dui-datatable-row-highlighted {
+    --dui-datatable-even-bg-color: var(--dui-datatable-row-highlight-bg-color, var(--dui-accent-l-3));
+    --dui-datatable-odd-bg-color: var(--dui-datatable-row-highlight-bg-color, var(--dui-accent-l-3));
+    --dui-bg-clr: var(--dui-datatable-row-highlight-bg-color, var(--dui-accent-l-3));
 }

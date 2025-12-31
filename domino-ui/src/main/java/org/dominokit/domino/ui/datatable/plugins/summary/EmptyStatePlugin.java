@@ -55,7 +55,6 @@ public class EmptyStatePlugin<T> implements DataTablePlugin<T> {
   private TableRowElement rowElement = tr();
   private TDElement stateCell = td();
   private TFootElement footer;
-  private DataTable<T> datatable;
 
   /**
    * Creates and returns a new instance of {@code EmptyStatePlugin} with the provided icon and
@@ -82,7 +81,6 @@ public class EmptyStatePlugin<T> implements DataTablePlugin<T> {
 
   @Override
   public void init(DataTable<T> dataTable) {
-    this.datatable = dataTable;
     rowElement
         .addCss(dui_table_row)
         .appendChild(stateCell.addCss(dui_table_cell).appendChild(emptyState));

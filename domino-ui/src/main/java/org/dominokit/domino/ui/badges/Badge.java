@@ -63,7 +63,9 @@ public class Badge extends BaseDominoElement<HTMLElement, Badge> {
     appendChild(textNode);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return element.element();

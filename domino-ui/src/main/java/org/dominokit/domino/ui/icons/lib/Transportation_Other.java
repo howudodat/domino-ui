@@ -107,6 +107,14 @@ public interface Transportation_Other {
     return MdiIcon.create("mdi-escalator-up");
   }
 
+  default MdiIcon excavator_transportation_other() {
+    return MdiIcon.create("mdi-excavator");
+  }
+
+  default MdiIcon generator_mobile_transportation_other() {
+    return MdiIcon.create("mdi-generator-mobile");
+  }
+
   default MdiIcon golf_cart_transportation_other() {
     return MdiIcon.create("mdi-golf-cart");
   }
@@ -321,6 +329,14 @@ public interface Transportation_Other {
 
   default MdiIcon transit_transfer_transportation_other() {
     return MdiIcon.create("mdi-transit-transfer");
+  }
+
+  default MdiIcon truck_off_road_transportation_other() {
+    return MdiIcon.create("mdi-truck-off-road");
+  }
+
+  default MdiIcon truck_off_road_off_transportation_other() {
+    return MdiIcon.create("mdi-truck-off-road-off");
   }
 
   default MdiIcon tunnel_transportation_other() {

@@ -131,6 +131,14 @@ public class Icons {
     return MdiIcon.create("mdi-account-box");
   }
 
+  public static MdiIcon account_box_edit_outline() {
+    return MdiIcon.create("mdi-account-box-edit-outline");
+  }
+
+  public static MdiIcon account_box_minus_outline() {
+    return MdiIcon.create("mdi-account-box-minus-outline");
+  }
+
   public static MdiIcon account_box_multiple() {
     return MdiIcon.create("mdi-account-box-multiple");
   }
@@ -141,6 +149,10 @@ public class Icons {
 
   public static MdiIcon account_box_outline() {
     return MdiIcon.create("mdi-account-box-outline");
+  }
+
+  public static MdiIcon account_box_plus_outline() {
+    return MdiIcon.create("mdi-account-box-plus-outline");
   }
 
   public static MdiIcon account_cancel() {
@@ -257,6 +269,22 @@ public class Icons {
 
   public static MdiIcon account_eye_outline() {
     return MdiIcon.create("mdi-account-eye-outline");
+  }
+
+  public static MdiIcon account_file() {
+    return MdiIcon.create("mdi-account-file");
+  }
+
+  public static MdiIcon account_file_outline() {
+    return MdiIcon.create("mdi-account-file-outline");
+  }
+
+  public static MdiIcon account_file_text() {
+    return MdiIcon.create("mdi-account-file-text");
+  }
+
+  public static MdiIcon account_file_text_outline() {
+    return MdiIcon.create("mdi-account-file-text-outline");
   }
 
   public static MdiIcon account_filter() {
@@ -2223,6 +2251,14 @@ public class Icons {
     return MdiIcon.create("mdi-arrow-left-top-bold");
   }
 
+  public static MdiIcon arrow_oscillating() {
+    return MdiIcon.create("mdi-arrow-oscillating");
+  }
+
+  public static MdiIcon arrow_oscillating_off() {
+    return MdiIcon.create("mdi-arrow-oscillating-off");
+  }
+
   public static MdiIcon arrow_projectile() {
     return MdiIcon.create("mdi-arrow-projectile");
   }
@@ -2909,6 +2945,14 @@ public class Icons {
 
   public static MdiIcon bag_personal_outline() {
     return MdiIcon.create("mdi-bag-personal-outline");
+  }
+
+  public static MdiIcon bag_personal_plus() {
+    return MdiIcon.create("mdi-bag-personal-plus");
+  }
+
+  public static MdiIcon bag_personal_plus_outline() {
+    return MdiIcon.create("mdi-bag-personal-plus-outline");
   }
 
   public static MdiIcon bag_personal_tag() {
@@ -4135,6 +4179,10 @@ public class Icons {
     return MdiIcon.create("mdi-book-open-blank-variant");
   }
 
+  public static MdiIcon book_open_blank_variant_outline() {
+    return MdiIcon.create("mdi-book-open-blank-variant-outline");
+  }
+
   public static MdiIcon book_open_outline() {
     return MdiIcon.create("mdi-book-open-outline");
   }
@@ -4149,6 +4197,10 @@ public class Icons {
 
   public static MdiIcon book_open_variant() {
     return MdiIcon.create("mdi-book-open-variant");
+  }
+
+  public static MdiIcon book_open_variant_outline() {
+    return MdiIcon.create("mdi-book-open-variant-outline");
   }
 
   public static MdiIcon book_outline() {
@@ -4914,6 +4966,10 @@ public class Icons {
     return MdiIcon.create("mdi-bus-side");
   }
 
+  public static MdiIcon bus_sign() {
+    return MdiIcon.create("mdi-bus-sign");
+  }
+
   public static MdiIcon bus_stop() {
     return MdiIcon.create("mdi-bus-stop");
   }
@@ -4924,6 +4980,10 @@ public class Icons {
 
   public static MdiIcon bus_stop_uncovered() {
     return MdiIcon.create("mdi-bus-stop-uncovered");
+  }
+
+  public static MdiIcon bus_wrench() {
+    return MdiIcon.create("mdi-bus-wrench");
   }
 
   public static MdiIcon butterfly() {
@@ -5642,6 +5702,10 @@ public class Icons {
     return MdiIcon.create("mdi-car-door-lock");
   }
 
+  public static MdiIcon car_door_lock_open() {
+    return MdiIcon.create("mdi-car-door-lock-open");
+  }
+
   public static MdiIcon car_electric() {
     return MdiIcon.create("mdi-car-electric");
   }
@@ -6114,6 +6178,10 @@ public class Icons {
     return MdiIcon.create("mdi-cash-clock");
   }
 
+  public static MdiIcon cash_edit() {
+    return MdiIcon.create("mdi-cash-edit");
+  }
+
   public static MdiIcon cash_fast() {
     return MdiIcon.create("mdi-cash-fast");
   }
@@ -6367,6 +6435,10 @@ public class Icons {
     return MdiIcon.create("mdi-charity");
   }
 
+  public static MdiIcon charity_search() {
+    return MdiIcon.create("mdi-charity-search");
+  }
+
   public static MdiIcon chart_arc() {
     return MdiIcon.create("mdi-chart-arc");
   }
@@ -6397,6 +6469,14 @@ public class Icons {
 
   public static MdiIcon chart_box() {
     return MdiIcon.create("mdi-chart-box");
+  }
+
+  public static MdiIcon chart_box_multiple() {
+    return MdiIcon.create("mdi-chart-box-multiple");
+  }
+
+  public static MdiIcon chart_box_multiple_outline() {
+    return MdiIcon.create("mdi-chart-box-multiple-outline");
   }
 
   public static MdiIcon chart_box_outline() {
@@ -7663,6 +7743,14 @@ public class Icons {
     return MdiIcon.create("mdi-cloud-download-outline");
   }
 
+  public static MdiIcon cloud_key() {
+    return MdiIcon.create("mdi-cloud-key");
+  }
+
+  public static MdiIcon cloud_key_outline() {
+    return MdiIcon.create("mdi-cloud-key-outline");
+  }
+
   public static MdiIcon cloud_lock() {
     return MdiIcon.create("mdi-cloud-lock");
   }
@@ -7809,6 +7897,22 @@ public class Icons {
 
   public static MdiIcon code_array() {
     return MdiIcon.create("mdi-code-array");
+  }
+
+  public static MdiIcon code_block_braces() {
+    return MdiIcon.create("mdi-code-block-braces");
+  }
+
+  public static MdiIcon code_block_brackets() {
+    return MdiIcon.create("mdi-code-block-brackets");
+  }
+
+  public static MdiIcon code_block_parentheses() {
+    return MdiIcon.create("mdi-code-block-parentheses");
+  }
+
+  public static MdiIcon code_block_tags() {
+    return MdiIcon.create("mdi-code-block-tags");
   }
 
   public static MdiIcon code_braces() {
@@ -9570,6 +9674,10 @@ public class Icons {
     return MdiIcon.create("mdi-diamond-stone");
   }
 
+  public static MdiIcon diaper_outline() {
+    return MdiIcon.create("mdi-diaper-outline");
+  }
+
   public static MdiIcon dice_1() {
     return MdiIcon.create("mdi-dice-1");
   }
@@ -9907,6 +10015,10 @@ public class Icons {
     return MdiIcon.create("mdi-door-closed");
   }
 
+  public static MdiIcon door_closed_cancel() {
+    return MdiIcon.create("mdi-door-closed-cancel");
+  }
+
   public static MdiIcon door_closed_lock() {
     return MdiIcon.create("mdi-door-closed-lock");
   }
@@ -10014,6 +10126,10 @@ public class Icons {
 
   public static MdiIcon download_multiple() {
     return MdiIcon.create("mdi-download-multiple");
+  }
+
+  public static MdiIcon download_multiple_outline() {
+    return MdiIcon.create("mdi-download-multiple-outline");
   }
 
   public static MdiIcon download_network() {
@@ -10146,8 +10262,20 @@ public class Icons {
     return MdiIcon.create("mdi-earth");
   }
 
+  public static MdiIcon earth_arrow_down() {
+    return MdiIcon.create("mdi-earth-arrow-down");
+  }
+
+  public static MdiIcon earth_arrow_left() {
+    return MdiIcon.create("mdi-earth-arrow-left");
+  }
+
   public static MdiIcon earth_arrow_right() {
     return MdiIcon.create("mdi-earth-arrow-right");
+  }
+
+  public static MdiIcon earth_arrow_up() {
+    return MdiIcon.create("mdi-earth-arrow-up");
   }
 
   public static MdiIcon earth_box() {
@@ -10565,6 +10693,14 @@ public class Icons {
     return MdiIcon.create("mdi-emoticon-lol-outline");
   }
 
+  public static MdiIcon emoticon_minus() {
+    return MdiIcon.create("mdi-emoticon-minus");
+  }
+
+  public static MdiIcon emoticon_minus_outline() {
+    return MdiIcon.create("mdi-emoticon-minus-outline");
+  }
+
   public static MdiIcon emoticon_neutral() {
     return MdiIcon.create("mdi-emoticon-neutral");
   }
@@ -10577,12 +10713,28 @@ public class Icons {
     return MdiIcon.create("mdi-emoticon-outline");
   }
 
+  public static MdiIcon emoticon_plus() {
+    return MdiIcon.create("mdi-emoticon-plus");
+  }
+
+  public static MdiIcon emoticon_plus_outline() {
+    return MdiIcon.create("mdi-emoticon-plus-outline");
+  }
+
   public static MdiIcon emoticon_poop() {
     return MdiIcon.create("mdi-emoticon-poop");
   }
 
   public static MdiIcon emoticon_poop_outline() {
     return MdiIcon.create("mdi-emoticon-poop-outline");
+  }
+
+  public static MdiIcon emoticon_remove() {
+    return MdiIcon.create("mdi-emoticon-remove");
+  }
+
+  public static MdiIcon emoticon_remove_outline() {
+    return MdiIcon.create("mdi-emoticon-remove-outline");
   }
 
   public static MdiIcon emoticon_sad() {
@@ -10701,6 +10853,10 @@ public class Icons {
 
   public static MdiIcon ethernet_cable_off() {
     return MdiIcon.create("mdi-ethernet-cable-off");
+  }
+
+  public static MdiIcon ethernet_off() {
+    return MdiIcon.create("mdi-ethernet-off");
   }
 
   public static MdiIcon ev_plug_ccs1() {
@@ -10822,6 +10978,10 @@ public class Icons {
 
   public static MdiIcon eye_circle_outline() {
     return MdiIcon.create("mdi-eye-circle-outline");
+  }
+
+  public static MdiIcon eye_closed() {
+    return MdiIcon.create("mdi-eye-closed");
   }
 
   public static MdiIcon eye_lock() {
@@ -11943,6 +12103,10 @@ public class Icons {
 
   public static MdiIcon fire_off() {
     return MdiIcon.create("mdi-fire-off");
+  }
+
+  public static MdiIcon fire_station() {
+    return MdiIcon.create("mdi-fire-station");
   }
 
   public static MdiIcon fire_truck() {
@@ -13714,6 +13878,14 @@ public class Icons {
     return MdiIcon.create("mdi-gas-station");
   }
 
+  public static MdiIcon gas_station_in_use() {
+    return MdiIcon.create("mdi-gas-station-in-use");
+  }
+
+  public static MdiIcon gas_station_in_use_outline() {
+    return MdiIcon.create("mdi-gas-station-in-use-outline");
+  }
+
   public static MdiIcon gas_station_off() {
     return MdiIcon.create("mdi-gas-station-off");
   }
@@ -13825,6 +13997,18 @@ public class Icons {
 
   public static MdiIcon gender_transgender() {
     return MdiIcon.create("mdi-gender-transgender");
+  }
+
+  public static MdiIcon generator_mobile() {
+    return MdiIcon.create("mdi-generator-mobile");
+  }
+
+  public static MdiIcon generator_portable() {
+    return MdiIcon.create("mdi-generator-portable");
+  }
+
+  public static MdiIcon generator_stationary() {
+    return MdiIcon.create("mdi-generator-stationary");
   }
 
   @Deprecated
@@ -14805,6 +14989,10 @@ public class Icons {
     return MdiIcon.create("mdi-heart-remove-outline");
   }
 
+  public static MdiIcon heart_search() {
+    return MdiIcon.create("mdi-heart-search");
+  }
+
   public static MdiIcon heart_settings() {
     return MdiIcon.create("mdi-heart-settings");
   }
@@ -15302,8 +15490,20 @@ public class Icons {
     return MdiIcon.create("mdi-hot-tub");
   }
 
+  public static MdiIcon hours_12() {
+    return MdiIcon.create("mdi-hours-12");
+  }
+
   public static MdiIcon hours_24() {
     return MdiIcon.create("mdi-hours-24");
+  }
+
+  public static MdiIcon hub() {
+    return MdiIcon.create("mdi-hub");
+  }
+
+  public static MdiIcon hub_outline() {
+    return MdiIcon.create("mdi-hub-outline");
   }
 
   public static MdiIcon hubspot() {
@@ -15361,6 +15561,10 @@ public class Icons {
 
   public static MdiIcon human_female_female() {
     return MdiIcon.create("mdi-human-female-female");
+  }
+
+  public static MdiIcon human_female_female_child() {
+    return MdiIcon.create("mdi-human-female-female-child");
   }
 
   public static MdiIcon human_female_girl() {
@@ -15429,6 +15633,10 @@ public class Icons {
 
   public static MdiIcon human_male_male() {
     return MdiIcon.create("mdi-human-male-male");
+  }
+
+  public static MdiIcon human_male_male_child() {
+    return MdiIcon.create("mdi-human-male-male-child");
   }
 
   public static MdiIcon human_non_binary() {
@@ -15885,6 +16093,218 @@ public class Icons {
     return MdiIcon.create("mdi-invert-colors-off");
   }
 
+  public static MdiIcon invoice() {
+    return MdiIcon.create("mdi-invoice");
+  }
+
+  public static MdiIcon invoice_arrow_left() {
+    return MdiIcon.create("mdi-invoice-arrow-left");
+  }
+
+  public static MdiIcon invoice_arrow_left_outline() {
+    return MdiIcon.create("mdi-invoice-arrow-left-outline");
+  }
+
+  public static MdiIcon invoice_arrow_right() {
+    return MdiIcon.create("mdi-invoice-arrow-right");
+  }
+
+  public static MdiIcon invoice_arrow_right_outline() {
+    return MdiIcon.create("mdi-invoice-arrow-right-outline");
+  }
+
+  public static MdiIcon invoice_check() {
+    return MdiIcon.create("mdi-invoice-check");
+  }
+
+  public static MdiIcon invoice_check_outline() {
+    return MdiIcon.create("mdi-invoice-check-outline");
+  }
+
+  public static MdiIcon invoice_clock() {
+    return MdiIcon.create("mdi-invoice-clock");
+  }
+
+  public static MdiIcon invoice_clock_outline() {
+    return MdiIcon.create("mdi-invoice-clock-outline");
+  }
+
+  public static MdiIcon invoice_edit() {
+    return MdiIcon.create("mdi-invoice-edit");
+  }
+
+  public static MdiIcon invoice_edit_outline() {
+    return MdiIcon.create("mdi-invoice-edit-outline");
+  }
+
+  public static MdiIcon invoice_export_outline() {
+    return MdiIcon.create("mdi-invoice-export-outline");
+  }
+
+  public static MdiIcon invoice_fast() {
+    return MdiIcon.create("mdi-invoice-fast");
+  }
+
+  public static MdiIcon invoice_fast_outline() {
+    return MdiIcon.create("mdi-invoice-fast-outline");
+  }
+
+  public static MdiIcon invoice_import() {
+    return MdiIcon.create("mdi-invoice-import");
+  }
+
+  public static MdiIcon invoice_import_outline() {
+    return MdiIcon.create("mdi-invoice-import-outline");
+  }
+
+  public static MdiIcon invoice_list() {
+    return MdiIcon.create("mdi-invoice-list");
+  }
+
+  public static MdiIcon invoice_list_outline() {
+    return MdiIcon.create("mdi-invoice-list-outline");
+  }
+
+  public static MdiIcon invoice_minus() {
+    return MdiIcon.create("mdi-invoice-minus");
+  }
+
+  public static MdiIcon invoice_minus_outline() {
+    return MdiIcon.create("mdi-invoice-minus-outline");
+  }
+
+  public static MdiIcon invoice_multiple() {
+    return MdiIcon.create("mdi-invoice-multiple");
+  }
+
+  public static MdiIcon invoice_multiple_outline() {
+    return MdiIcon.create("mdi-invoice-multiple-outline");
+  }
+
+  public static MdiIcon invoice_outline() {
+    return MdiIcon.create("mdi-invoice-outline");
+  }
+
+  public static MdiIcon invoice_plus() {
+    return MdiIcon.create("mdi-invoice-plus");
+  }
+
+  public static MdiIcon invoice_plus_outline() {
+    return MdiIcon.create("mdi-invoice-plus-outline");
+  }
+
+  public static MdiIcon invoice_remove() {
+    return MdiIcon.create("mdi-invoice-remove");
+  }
+
+  public static MdiIcon invoice_remove_outline() {
+    return MdiIcon.create("mdi-invoice-remove-outline");
+  }
+
+  public static MdiIcon invoice_send() {
+    return MdiIcon.create("mdi-invoice-send");
+  }
+
+  public static MdiIcon invoice_send_outline() {
+    return MdiIcon.create("mdi-invoice-send-outline");
+  }
+
+  public static MdiIcon invoice_text() {
+    return MdiIcon.create("mdi-invoice-text");
+  }
+
+  public static MdiIcon invoice_text_arrow_left() {
+    return MdiIcon.create("mdi-invoice-text-arrow-left");
+  }
+
+  public static MdiIcon invoice_text_arrow_left_outline() {
+    return MdiIcon.create("mdi-invoice-text-arrow-left-outline");
+  }
+
+  public static MdiIcon invoice_text_arrow_right() {
+    return MdiIcon.create("mdi-invoice-text-arrow-right");
+  }
+
+  public static MdiIcon invoice_text_arrow_right_outline() {
+    return MdiIcon.create("mdi-invoice-text-arrow-right-outline");
+  }
+
+  public static MdiIcon invoice_text_check() {
+    return MdiIcon.create("mdi-invoice-text-check");
+  }
+
+  public static MdiIcon invoice_text_check_outline() {
+    return MdiIcon.create("mdi-invoice-text-check-outline");
+  }
+
+  public static MdiIcon invoice_text_clock() {
+    return MdiIcon.create("mdi-invoice-text-clock");
+  }
+
+  public static MdiIcon invoice_text_clock_outline() {
+    return MdiIcon.create("mdi-invoice-text-clock-outline");
+  }
+
+  public static MdiIcon invoice_text_edit() {
+    return MdiIcon.create("mdi-invoice-text-edit");
+  }
+
+  public static MdiIcon invoice_text_edit_outline() {
+    return MdiIcon.create("mdi-invoice-text-edit-outline");
+  }
+
+  public static MdiIcon invoice_text_fast() {
+    return MdiIcon.create("mdi-invoice-text-fast");
+  }
+
+  public static MdiIcon invoice_text_fast_outline() {
+    return MdiIcon.create("mdi-invoice-text-fast-outline");
+  }
+
+  public static MdiIcon invoice_text_minus() {
+    return MdiIcon.create("mdi-invoice-text-minus");
+  }
+
+  public static MdiIcon invoice_text_minus_outline() {
+    return MdiIcon.create("mdi-invoice-text-minus-outline");
+  }
+
+  public static MdiIcon invoice_text_multiple() {
+    return MdiIcon.create("mdi-invoice-text-multiple");
+  }
+
+  public static MdiIcon invoice_text_multiple_outline() {
+    return MdiIcon.create("mdi-invoice-text-multiple-outline");
+  }
+
+  public static MdiIcon invoice_text_outline() {
+    return MdiIcon.create("mdi-invoice-text-outline");
+  }
+
+  public static MdiIcon invoice_text_plus() {
+    return MdiIcon.create("mdi-invoice-text-plus");
+  }
+
+  public static MdiIcon invoice_text_plus_outline() {
+    return MdiIcon.create("mdi-invoice-text-plus-outline");
+  }
+
+  public static MdiIcon invoice_text_remove() {
+    return MdiIcon.create("mdi-invoice-text-remove");
+  }
+
+  public static MdiIcon invoice_text_remove_outline() {
+    return MdiIcon.create("mdi-invoice-text-remove-outline");
+  }
+
+  public static MdiIcon invoice_text_send() {
+    return MdiIcon.create("mdi-invoice-text-send");
+  }
+
+  public static MdiIcon invoice_text_send_outline() {
+    return MdiIcon.create("mdi-invoice-text-send-outline");
+  }
+
   @Deprecated
   public static MdiIcon iobroker() {
     return MdiIcon.create("mdi-iobroker");
@@ -15924,6 +16344,10 @@ public class Icons {
 
   public static MdiIcon island() {
     return MdiIcon.create("mdi-island");
+  }
+
+  public static MdiIcon island_variant() {
+    return MdiIcon.create("mdi-island-variant");
   }
 
   public static MdiIcon iv_bag() {
@@ -16918,6 +17342,18 @@ public class Icons {
     return MdiIcon.create("mdi-link-box-variant-outline");
   }
 
+  public static MdiIcon link_circle() {
+    return MdiIcon.create("mdi-link-circle");
+  }
+
+  public static MdiIcon link_circle_outline() {
+    return MdiIcon.create("mdi-link-circle-outline");
+  }
+
+  public static MdiIcon link_edit() {
+    return MdiIcon.create("mdi-link-edit");
+  }
+
   public static MdiIcon link_lock() {
     return MdiIcon.create("mdi-link-lock");
   }
@@ -17624,6 +18060,10 @@ public class Icons {
     return MdiIcon.create("mdi-memory");
   }
 
+  public static MdiIcon memory_arrow_down() {
+    return MdiIcon.create("mdi-memory-arrow-down");
+  }
+
   public static MdiIcon menorah() {
     return MdiIcon.create("mdi-menorah");
   }
@@ -17634,6 +18074,10 @@ public class Icons {
 
   public static MdiIcon menu() {
     return MdiIcon.create("mdi-menu");
+  }
+
+  public static MdiIcon menu_close() {
+    return MdiIcon.create("mdi-menu-close");
   }
 
   public static MdiIcon menu_down() {
@@ -18487,6 +18931,14 @@ public class Icons {
     return MdiIcon.create("mdi-mouse-bluetooth");
   }
 
+  public static MdiIcon mouse_left_click() {
+    return MdiIcon.create("mdi-mouse-left-click");
+  }
+
+  public static MdiIcon mouse_left_click_outline() {
+    return MdiIcon.create("mdi-mouse-left-click-outline");
+  }
+
   public static MdiIcon mouse_move_down() {
     return MdiIcon.create("mdi-mouse-move-down");
   }
@@ -18501,6 +18953,22 @@ public class Icons {
 
   public static MdiIcon mouse_off() {
     return MdiIcon.create("mdi-mouse-off");
+  }
+
+  public static MdiIcon mouse_outline() {
+    return MdiIcon.create("mdi-mouse-outline");
+  }
+
+  public static MdiIcon mouse_right_click() {
+    return MdiIcon.create("mdi-mouse-right-click");
+  }
+
+  public static MdiIcon mouse_right_click_outline() {
+    return MdiIcon.create("mdi-mouse-right-click-outline");
+  }
+
+  public static MdiIcon mouse_scroll_wheel() {
+    return MdiIcon.create("mdi-mouse-scroll-wheel");
   }
 
   public static MdiIcon mouse_variant() {
@@ -20285,8 +20753,32 @@ public class Icons {
     return MdiIcon.create("mdi-passport");
   }
 
+  public static MdiIcon passport_alert() {
+    return MdiIcon.create("mdi-passport-alert");
+  }
+
   public static MdiIcon passport_biometric() {
     return MdiIcon.create("mdi-passport-biometric");
+  }
+
+  public static MdiIcon passport_cancel() {
+    return MdiIcon.create("mdi-passport-cancel");
+  }
+
+  public static MdiIcon passport_check() {
+    return MdiIcon.create("mdi-passport-check");
+  }
+
+  public static MdiIcon passport_minus() {
+    return MdiIcon.create("mdi-passport-minus");
+  }
+
+  public static MdiIcon passport_plus() {
+    return MdiIcon.create("mdi-passport-plus");
+  }
+
+  public static MdiIcon passport_remove() {
+    return MdiIcon.create("mdi-passport-remove");
   }
 
   public static MdiIcon pasta() {
@@ -21129,6 +21621,10 @@ public class Icons {
     return MdiIcon.create("mdi-plus-thick");
   }
 
+  public static MdiIcon pocket() {
+    return MdiIcon.create("mdi-pocket");
+  }
+
   public static MdiIcon podcast() {
     return MdiIcon.create("mdi-podcast");
   }
@@ -21647,6 +22143,10 @@ public class Icons {
     return MdiIcon.create("mdi-progress-star-four-points");
   }
 
+  public static MdiIcon progress_tag() {
+    return MdiIcon.create("mdi-progress-tag");
+  }
+
   public static MdiIcon progress_upload() {
     return MdiIcon.create("mdi-progress-upload");
   }
@@ -21861,6 +22361,11 @@ public class Icons {
     return MdiIcon.create("mdi-quality-medium");
   }
 
+  public static MdiIcon queue_first_in_last_out() {
+    return MdiIcon.create("mdi-queue-first-in-last-out");
+  }
+
+  @Deprecated
   public static MdiIcon quora() {
     return MdiIcon.create("mdi-quora");
   }
@@ -22857,6 +23362,10 @@ public class Icons {
     return MdiIcon.create("mdi-router-network");
   }
 
+  public static MdiIcon router_network_wireless() {
+    return MdiIcon.create("mdi-router-network-wireless");
+  }
+
   public static MdiIcon router_wireless() {
     return MdiIcon.create("mdi-router-wireless");
   }
@@ -23436,6 +23945,10 @@ public class Icons {
     return MdiIcon.create("mdi-server-minus");
   }
 
+  public static MdiIcon server_minus_outline() {
+    return MdiIcon.create("mdi-server-minus-outline");
+  }
+
   public static MdiIcon server_network() {
     return MdiIcon.create("mdi-server-network");
   }
@@ -23444,12 +23957,24 @@ public class Icons {
     return MdiIcon.create("mdi-server-network-off");
   }
 
+  public static MdiIcon server_network_outline() {
+    return MdiIcon.create("mdi-server-network-outline");
+  }
+
   public static MdiIcon server_off() {
     return MdiIcon.create("mdi-server-off");
   }
 
+  public static MdiIcon server_outline() {
+    return MdiIcon.create("mdi-server-outline");
+  }
+
   public static MdiIcon server_plus() {
     return MdiIcon.create("mdi-server-plus");
+  }
+
+  public static MdiIcon server_plus_outline() {
+    return MdiIcon.create("mdi-server-plus-outline");
   }
 
   public static MdiIcon server_remove() {
@@ -25622,6 +26147,10 @@ public class Icons {
     return MdiIcon.create("mdi-swap-horizontal-circle-outline");
   }
 
+  public static MdiIcon swap_horizontal_hidden() {
+    return MdiIcon.create("mdi-swap-horizontal-hidden");
+  }
+
   public static MdiIcon swap_horizontal_variant() {
     return MdiIcon.create("mdi-swap-horizontal-variant");
   }
@@ -26009,6 +26538,14 @@ public class Icons {
 
   public static MdiIcon tag_check_outline() {
     return MdiIcon.create("mdi-tag-check-outline");
+  }
+
+  public static MdiIcon tag_edit() {
+    return MdiIcon.create("mdi-tag-edit");
+  }
+
+  public static MdiIcon tag_edit_outline() {
+    return MdiIcon.create("mdi-tag-edit-outline");
   }
 
   public static MdiIcon tag_faces() {
@@ -27114,6 +27651,10 @@ public class Icons {
     return MdiIcon.create("mdi-train");
   }
 
+  public static MdiIcon train_bus() {
+    return MdiIcon.create("mdi-train-bus");
+  }
+
   public static MdiIcon train_car() {
     return MdiIcon.create("mdi-train-car");
   }
@@ -27487,6 +28028,14 @@ public class Icons {
     return MdiIcon.create("mdi-truck-minus-outline");
   }
 
+  public static MdiIcon truck_off_road() {
+    return MdiIcon.create("mdi-truck-off-road");
+  }
+
+  public static MdiIcon truck_off_road_off() {
+    return MdiIcon.create("mdi-truck-off-road-off");
+  }
+
   public static MdiIcon truck_outline() {
     return MdiIcon.create("mdi-truck-outline");
   }
@@ -27668,6 +28217,10 @@ public class Icons {
     return MdiIcon.create("mdi-umbrella-outline");
   }
 
+  public static MdiIcon underwear_outline() {
+    return MdiIcon.create("mdi-underwear-outline");
+  }
+
   public static MdiIcon undo() {
     return MdiIcon.create("mdi-undo");
   }
@@ -27731,6 +28284,22 @@ public class Icons {
     return MdiIcon.create("mdi-upload");
   }
 
+  public static MdiIcon upload_box() {
+    return MdiIcon.create("mdi-upload-box");
+  }
+
+  public static MdiIcon upload_box_outline() {
+    return MdiIcon.create("mdi-upload-box-outline");
+  }
+
+  public static MdiIcon upload_circle() {
+    return MdiIcon.create("mdi-upload-circle");
+  }
+
+  public static MdiIcon upload_circle_outline() {
+    return MdiIcon.create("mdi-upload-circle-outline");
+  }
+
   public static MdiIcon upload_lock() {
     return MdiIcon.create("mdi-upload-lock");
   }
@@ -27741,6 +28310,10 @@ public class Icons {
 
   public static MdiIcon upload_multiple() {
     return MdiIcon.create("mdi-upload-multiple");
+  }
+
+  public static MdiIcon upload_multiple_outline() {
+    return MdiIcon.create("mdi-upload-multiple-outline");
   }
 
   public static MdiIcon upload_network() {
@@ -27765,6 +28338,10 @@ public class Icons {
 
   public static MdiIcon usb() {
     return MdiIcon.create("mdi-usb");
+  }
+
+  public static MdiIcon usb_c_port() {
+    return MdiIcon.create("mdi-usb-c-port");
   }
 
   public static MdiIcon usb_flash_drive() {
@@ -28101,6 +28678,10 @@ public class Icons {
 
   public static MdiIcon video_stabilization() {
     return MdiIcon.create("mdi-video-stabilization");
+  }
+
+  public static MdiIcon video_standard_definition() {
+    return MdiIcon.create("mdi-video-standard-definition");
   }
 
   public static MdiIcon video_switch() {
@@ -28707,6 +29288,18 @@ public class Icons {
     return MdiIcon.create("mdi-wave");
   }
 
+  public static MdiIcon wave_arrow_down() {
+    return MdiIcon.create("mdi-wave-arrow-down");
+  }
+
+  public static MdiIcon wave_arrow_up() {
+    return MdiIcon.create("mdi-wave-arrow-up");
+  }
+
+  public static MdiIcon wave_undercurrent() {
+    return MdiIcon.create("mdi-wave-undercurrent");
+  }
+
   public static MdiIcon waveform() {
     return MdiIcon.create("mdi-waveform");
   }
@@ -28778,6 +29371,18 @@ public class Icons {
 
   public static MdiIcon weather_lightning_rainy() {
     return MdiIcon.create("mdi-weather-lightning-rainy");
+  }
+
+  public static MdiIcon weather_moonset() {
+    return MdiIcon.create("mdi-weather-moonset");
+  }
+
+  public static MdiIcon weather_moonset_down() {
+    return MdiIcon.create("mdi-weather-moonset-down");
+  }
+
+  public static MdiIcon weather_moonset_up() {
+    return MdiIcon.create("mdi-weather-moonset-up");
   }
 
   public static MdiIcon weather_night() {

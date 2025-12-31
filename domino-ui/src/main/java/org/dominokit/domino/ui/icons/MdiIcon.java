@@ -377,7 +377,9 @@ public class MdiIcon extends Icon<MdiIcon> implements CanChangeIcon<MdiIcon> {
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return icon.element();

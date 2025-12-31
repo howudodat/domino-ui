@@ -334,6 +334,7 @@ public class Column extends BaseDominoElement<HTMLElement, Column>
   public static Column span10(IsElement<?> content) {
     return span10().appendChild(content);
   }
+
   /**
    * Creates a new column with a size of 11 for extra-large screens (>=1200px) and full width.
    *

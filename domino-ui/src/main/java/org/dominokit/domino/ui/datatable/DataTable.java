@@ -30,17 +30,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.dominokit.domino.ui.IsElement;
+import org.dominokit.domino.ui.data.DataStore;
 import org.dominokit.domino.ui.datatable.events.DataSortEvent;
 import org.dominokit.domino.ui.datatable.events.OnBeforeDataChangeEvent;
 import org.dominokit.domino.ui.datatable.events.SelectAllEvent;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.model.SearchContext;
-import org.dominokit.domino.ui.datatable.store.DataStore;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.TBodyElement;
 import org.dominokit.domino.ui.elements.TFootElement;
@@ -121,51 +122,55 @@ public class DataTable<T> extends BaseDominoElement<HTMLDivElement, DataTable<T>
     tableElement = table().addCss(dui_datatable, dui_datatable_width_full);
     super.init(this);
     this.tableConfig = tableConfig;
-
     this.dataStore = dataStore;
-    this.addTableEventListener(ANY, dataStore);
-    tableElement.setAttribute("dui-data-v-scroll", 0);
-    tableElement.setAttribute("dui-data-h-scroll", 0);
-    this.addEventListener(EventType.keydown.getName(), disableKeyboardListener, true);
-    tableElement.addEventListener(
-        "scroll",
-        evt -> {
-          double scrollTop = new Double(tableElement.element().scrollTop).intValue();
-          double scrollLeft = new Double(tableElement.element().scrollLeft).intValue();
-          tableElement.setAttribute("dui-data-v-scroll", scrollTop);
-          tableElement.setAttribute("dui-data-h-scroll", scrollLeft);
-        });
-    this.dataStore.onDataChanged(
-        dataChangedEvent -> {
-          fireTableEvent(
-              new OnBeforeDataChangeEvent<>(
-                  this.data, dataChangedEvent.getTotalCount(), dataChangedEvent.isAppend()));
-          if (dataChangedEvent.getSortDir().isPresent()
-              && dataChangedEvent.getSortColumn().isPresent()) {
-            fireTableEvent(
-                new DataSortEvent(
-                    dataChangedEvent.getSortDir().get(), dataChangedEvent.getSortColumn().get()));
-          }
+    this.tableConfig.freezeAndApply(
+        tTableConfig -> {
+          this.addTableEventListener(ANY, dataStore);
+          tableElement.setAttribute("dui-data-v-scroll", 0);
+          tableElement.setAttribute("dui-data-h-scroll", 0);
+          this.addEventListener(EventType.keydown.getName(), disableKeyboardListener, true);
+          tableElement.addEventListener(
+              "scroll",
+              evt -> {
+                double scrollTop = new Double(tableElement.element().scrollTop).intValue();
+                double scrollLeft = new Double(tableElement.element().scrollLeft).intValue();
+                tableElement.setAttribute("dui-data-v-scroll", scrollTop);
+                tableElement.setAttribute("dui-data-h-scroll", scrollLeft);
+              });
+          this.dataStore.onDataChanged(
+              dataChangedEvent -> {
+                fireTableEvent(
+                    new OnBeforeDataChangeEvent<>(
+                        this.data, dataChangedEvent.getTotalCount(), dataChangedEvent.isAppend()));
+                if (dataChangedEvent.getSortDir().isPresent()
+                    && dataChangedEvent.getSortColumn().isPresent()) {
+                  fireTableEvent(
+                      new DataSortEvent(
+                          dataChangedEvent.getSortDir().get(),
+                          dataChangedEvent.getSortColumn().get()));
+                }
 
-          if (dataChangedEvent.isAppend()) {
-            appendData(dataChangedEvent.getNewData());
-          } else {
-            setData(dataChangedEvent.getNewData());
-          }
-          fireTableEvent(new TableDataUpdatedEvent<>(this.data, dataChangedEvent.getTotalCount()));
-        });
+                if (dataChangedEvent.isAppend()) {
+                  appendData(dataChangedEvent.getNewData());
+                } else {
+                  setData(dataChangedEvent.getNewData());
+                }
+                fireTableEvent(
+                    new TableDataUpdatedEvent<>(this.data, dataChangedEvent.getTotalCount()));
+              });
 
-    initDynamicStyleSheet();
-    init();
-    onAttached(
-        mutationRecord -> {
-          DomGlobal.setTimeout(
-              p0 -> {
-                getDynamicStyleSheet().flush();
-              },
-              0);
+          initDynamicStyleSheet();
+          init();
+          onAttached(
+              mutationRecord -> {
+                DomGlobal.setTimeout(
+                    p0 -> {
+                      getDynamicStyleSheet().flush();
+                    },
+                    0);
+              });
+          addCss(dui_datatable_hover, dui_datatable_striped);
         });
-    addCss(dui_datatable_hover, dui_datatable_striped);
   }
 
   /** Initializes dynamic style sheet configurations for the table columns. */
@@ -227,19 +232,23 @@ public class DataTable<T> extends BaseDominoElement<HTMLDivElement, DataTable<T>
       this.dataStore.load();
     }
 
-    if (tableConfig.isFixed()) {
-      tableElement.setMaxHeight(tableConfig.getFixedBodyHeight());
+    if (tableConfig.getTableMode() == TableMode.AUTO
+        || tableConfig.getTableMode() == TableMode.FIXED_HEIGHT) {
+      if (nonNull(tableConfig.getFixedBodyHeight())
+          && !tableConfig.getFixedBodyHeight().isEmpty()) {
+        this.setCssProperty("--dui-datatable-fixed-body-height", tableConfig.getFixedBodyHeight());
+      }
     }
 
-    if (tableConfig.isFixed()) {
+    if (tableConfig.getTableMode() == TableMode.FIXED_HEIGHT) {
       dui_datatable_width_full.remove(this);
       this.addCss(dui_datatable_fixed);
       ColumnUtils.fixElementWidth(this, tableElement.element());
-    }
-
-    if (tableConfig.isFixed()) {
+    } else if (tableConfig.getTableMode() == TableMode.AUTO) {
+      this.addCss(dui_datatable_auto);
       ColumnUtils.fixElementWidth(this, tableElement.element());
     }
+
     return this;
   }
 
@@ -575,6 +584,17 @@ public class DataTable<T> extends BaseDominoElement<HTMLDivElement, DataTable<T>
    */
   public List<TableRow<T>> getRootRows() {
     return getRows().stream().filter(TableRow::isRoot).collect(Collectors.toList());
+  }
+
+  /**
+   * Retrieves the table row containing the specified record.
+   *
+   * @param record the record to find in the table rows
+   * @return an Optional containing the matching table row if found, or an empty Optional if no
+   *     matching row is found
+   */
+  public Optional<TableRow<T>> getRecordRow(T record) {
+    return getRows().stream().filter(row -> Objects.equals(row.getRecord(), record)).findFirst();
   }
 
   /**

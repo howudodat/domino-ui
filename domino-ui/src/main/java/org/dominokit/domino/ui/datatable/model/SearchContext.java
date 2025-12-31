@@ -17,6 +17,7 @@
 package org.dominokit.domino.ui.datatable.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -83,10 +84,12 @@ public class SearchContext<T> {
    * @return this SearchContext for method chaining
    */
   public SearchContext remove(String fieldName) {
-    filters.removeAll(
-        filters.stream()
-            .filter(filter -> filter.getFieldName().equals(fieldName))
-            .collect(Collectors.toList()));
+    for (Iterator<Filter> it = filters.iterator(); it.hasNext(); ) {
+      Filter filter = it.next();
+      if (filter.getFieldName().equals(fieldName)) {
+        it.remove();
+      }
+    }
     return this;
   }
 
@@ -98,13 +101,13 @@ public class SearchContext<T> {
    * @return this SearchContext for method chaining
    */
   public SearchContext remove(String fieldName, IsFilterCategory category) {
-    filters.removeAll(
-        filters.stream()
-            .filter(
-                filter ->
-                    filter.getFieldName().equals(fieldName)
-                        && filter.getCategory().isSameCategory(category))
-            .collect(Collectors.toList()));
+    for (Iterator<Filter> it = filters.iterator(); it.hasNext(); ) {
+      Filter filter = it.next();
+      if (filter.getFieldName().equals(fieldName)
+          && filter.getCategory().isSameCategory(category)) {
+        it.remove();
+      }
+    }
     return this;
   }
 

@@ -31,6 +31,10 @@ public interface Clothing {
     return MdiIcon.create("mdi-coat-rack");
   }
 
+  default MdiIcon diaper_outline_clothing() {
+    return MdiIcon.create("mdi-diaper-outline");
+  }
+
   default MdiIcon face_mask_clothing() {
     return MdiIcon.create("mdi-face-mask");
   }
@@ -117,6 +121,10 @@ public interface Clothing {
 
   default MdiIcon tshirt_v_outline_clothing() {
     return MdiIcon.create("mdi-tshirt-v-outline");
+  }
+
+  default MdiIcon underwear_outline_clothing() {
+    return MdiIcon.create("mdi-underwear-outline");
   }
 
   default MdiIcon wizard_hat_clothing() {

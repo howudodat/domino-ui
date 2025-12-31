@@ -188,7 +188,9 @@ public class Slide extends BaseDominoElement<HTMLDivElement, Slide> {
     return new Slide(element.element());
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return slideElement.element();
@@ -234,7 +236,9 @@ public class Slide extends BaseDominoElement<HTMLDivElement, Slide> {
     return dui_active.isAppliedTo(element());
   }
 
-  /** @return This slide indicator element attached to the carousel slides indicators. */
+  /**
+   * @return This slide indicator element attached to the carousel slides indicators.
+   */
   public DominoElement<HTMLLIElement> getIndicatorElement() {
     return elementOf(indicatorElement);
   }
@@ -261,7 +265,9 @@ public class Slide extends BaseDominoElement<HTMLDivElement, Slide> {
     return this;
   }
 
-  /** @return The {@link org.dominokit.domino.ui.elements.HeadingElement} of the slide title. */
+  /**
+   * @return The {@link org.dominokit.domino.ui.elements.HeadingElement} of the slide title.
+   */
   public HeadingElement getSlideLabelElement() {
     return slideLabelElement.get();
   }
@@ -320,15 +326,8 @@ public class Slide extends BaseDominoElement<HTMLDivElement, Slide> {
   }
 
   /**
-   * @return The element of the image of this slide.
-   * @deprecated use {@link #getWrappedElement()}
+   * @return The element wrapped by this slide.
    */
-  @Deprecated
-  public DominoElement<Element> getImageElement() {
-    return elementOf(wrappedElement);
-  }
-
-  /** @return The element wrapped by this slide. */
   public DominoElement<Element> getWrappedElement() {
     return elementOf(wrappedElement);
   }

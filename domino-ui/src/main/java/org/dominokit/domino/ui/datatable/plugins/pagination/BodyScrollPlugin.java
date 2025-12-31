@@ -73,7 +73,9 @@ public class BodyScrollPlugin<T>
     return this;
   }
 
-  /** @return the plugin configuration */
+  /**
+   * @return the plugin configuration
+   */
   @Override
   public BodyScrollPluginConfig getConfig() {
     return this.config;

@@ -75,6 +75,14 @@ public interface Account_User {
     return MdiIcon.create("mdi-account-box");
   }
 
+  default MdiIcon account_box_edit_outline_account_user() {
+    return MdiIcon.create("mdi-account-box-edit-outline");
+  }
+
+  default MdiIcon account_box_minus_outline_account_user() {
+    return MdiIcon.create("mdi-account-box-minus-outline");
+  }
+
   default MdiIcon account_box_multiple_account_user() {
     return MdiIcon.create("mdi-account-box-multiple");
   }
@@ -85,6 +93,10 @@ public interface Account_User {
 
   default MdiIcon account_box_outline_account_user() {
     return MdiIcon.create("mdi-account-box-outline");
+  }
+
+  default MdiIcon account_box_plus_outline_account_user() {
+    return MdiIcon.create("mdi-account-box-plus-outline");
   }
 
   default MdiIcon account_cancel_account_user() {
@@ -201,6 +213,22 @@ public interface Account_User {
 
   default MdiIcon account_eye_outline_account_user() {
     return MdiIcon.create("mdi-account-eye-outline");
+  }
+
+  default MdiIcon account_file_account_user() {
+    return MdiIcon.create("mdi-account-file");
+  }
+
+  default MdiIcon account_file_outline_account_user() {
+    return MdiIcon.create("mdi-account-file-outline");
+  }
+
+  default MdiIcon account_file_text_account_user() {
+    return MdiIcon.create("mdi-account-file-text");
+  }
+
+  default MdiIcon account_file_text_outline_account_user() {
+    return MdiIcon.create("mdi-account-file-text-outline");
   }
 
   default MdiIcon account_filter_account_user() {

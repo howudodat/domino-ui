@@ -61,11 +61,11 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
   private String maxWidth;
   private CellTextAlign cellTextAlign = CellTextAlign.LEFT;
   private CellTextAlign headerCellTextAlign = CellTextAlign.LEFT;
-  private CellRenderer<T> cellRenderer;
-  private CellRenderer<T> editableCellRenderer;
+  private RowCellRenderer<T> cellRenderer;
+  private RowCellRenderer<T> editableCellRenderer;
   private HeaderElementSupplier headerElementSupplier = this::text;
-  private Handler<ColumnConfig<T>> headerHandler = col -> {};
-  private Handler<RowCell<T>> cellHandler = cell -> {};
+  private Set<Handler<ColumnConfig<T>>> headerHandlers;
+  private Set<Handler<RowCell<T>>> cellHandlers;
   private boolean sortable = false;
   private String sortKey;
   private String width;
@@ -339,7 +339,7 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @return the cell renderer
    */
-  public CellRenderer<T> getCellRenderer() {
+  public RowCellRenderer<T> getCellRenderer() {
     return cellRenderer;
   }
 
@@ -347,11 +347,11 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    * Sets the renderer for displaying cell data in this column. If the editable cell renderer is
    * null, it also updates the editable cell renderer.
    *
-   * @param cellRenderer the cell renderer to set
+   * @param renderer the cell renderer to set
    * @return the current instance for chaining
    */
-  public ColumnConfig<T> setCellRenderer(CellRenderer<T> cellRenderer) {
-    this.cellRenderer = cellRenderer;
+  public ColumnConfig<T> setRenderer(RowCellRenderer<T> renderer) {
+    this.cellRenderer = renderer;
     if (isNull(editableCellRenderer)) {
       this.editableCellRenderer = cellRenderer;
     }
@@ -364,11 +364,24 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @return the editable cell renderer or the cell renderer if editable one is null
    */
-  public CellRenderer<T> getEditableCellRenderer() {
+  public RowCellRenderer<T> getEditableCellRenderer() {
     if (isNull(editableCellRenderer)) {
       return cellRenderer;
     }
     return editableCellRenderer;
+  }
+
+  /**
+   * Sets the renderer for displaying cell data in this column. If the editable cell renderer is
+   * null, it also updates the editable cell renderer.
+   *
+   * @param cellRenderer the cell renderer to set
+   * @return the current instance for chaining
+   * @deprecated use {@link #setRenderer(RowCellRenderer)}
+   */
+  @Deprecated
+  public ColumnConfig<T> setCellRenderer(CellRenderer<T> cellRenderer) {
+    return setRenderer(cell -> cell.appendChild(cellRenderer.asElement(cell)));
   }
 
   /**
@@ -378,12 +391,25 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    * @param editableCellRenderer the editable cell renderer to set
    * @return the current instance for chaining
    */
-  public ColumnConfig<T> setEditableCellRenderer(CellRenderer<T> editableCellRenderer) {
+  public ColumnConfig<T> setEditableRenderer(RowCellRenderer<T> editableCellRenderer) {
     this.editableCellRenderer = editableCellRenderer;
     if (isNull(cellRenderer)) {
       this.cellRenderer = editableCellRenderer;
     }
     return this;
+  }
+
+  /**
+   * Sets the renderer for editable cells in this column. If the cell renderer is null, it also
+   * updates the cell renderer.
+   *
+   * @param editableCellRenderer the editable cell renderer to set
+   * @return the current instance for chaining
+   * @deprecated use {@link #setEditableRenderer(RowCellRenderer)}
+   */
+  @Deprecated
+  public ColumnConfig<T> setEditableCellRenderer(CellRenderer<T> editableCellRenderer) {
+    return setEditableRenderer(cell -> cell.appendChild(editableCellRenderer.asElement(cell)));
   }
 
   /**
@@ -395,7 +421,7 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    */
   @Deprecated
   public ColumnConfig<T> styleHeader(CellStyler<T> headerStyler) {
-    this.headerHandler = col -> headerStyler.styleCell(col.getHeadElement().element());
+    getHeaderHandlers().add(col -> headerStyler.styleCell(col.getHeadElement().element()));
     return this;
   }
 
@@ -408,7 +434,7 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    */
   @Deprecated
   public ColumnConfig<T> styleCell(CellStyler<T> cellStyler) {
-    this.cellHandler = cell -> cellStyler.styleCell(cell.getCellInfo().getElement());
+    getCellHandlers().add(cell -> cellStyler.styleCell(cell.getCellInfo().element()));
     return this;
   }
 
@@ -423,7 +449,10 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    * @return this {@code ColumnConfig} instance for method chaining
    */
   public ColumnConfig<T> onHeaderReady(Handler<ColumnConfig<T>> handler) {
-    this.headerHandler = handler;
+    getHeaderHandlers().add(handler);
+    if (nonNull(headElement) && headElement.isAttached()) {
+      handler.apply(this);
+    }
     return this;
   }
 
@@ -438,7 +467,7 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    * @return this {@code ColumnConfig} instance for method chaining
    */
   public ColumnConfig<T> onCellReady(Handler<RowCell<T>> handler) {
-    this.cellHandler = handler;
+    getCellHandlers().add(handler);
     return this;
   }
 
@@ -599,8 +628,8 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
   }
 
   /** Applies header styling to the header element. */
-  void applyHeaderHandler() {
-    headerHandler.apply(this);
+  public final void applyHeaderHandlers() {
+    getHeaderHandlers().forEach(handler -> handler.apply(this));
   }
 
   /**
@@ -608,26 +637,26 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @param cell the element to be styled
    */
-  void applyCellHandler(RowCell<T> cell) {
-    cellHandler.apply(cell);
+  void applyCellHandlers(RowCell<T> cell) {
+    getCellHandlers().forEach(handler -> handler.apply(cell));
   }
 
   /**
    * Retrieves the styler used for the header.
    *
    * @return the header styler
-   * @deprecated use {@link #getHeaderHandler()}
+   * @deprecated use {@link #getHeaderHandlers()}
    */
   @Deprecated
   public CellStyler<T> getHeaderStyler() {
-    return col -> headerHandler.apply(this);
+    return col -> applyHeaderHandlers();
   }
 
   /**
    * Retrieves the styler used for the cells.
    *
    * @return the cell styler
-   * @deprecated use {@link #getCellHandler()}
+   * @deprecated use {@link #getCellHandlers()}
    */
   @Deprecated
   public CellStyler<T> getCellStyler() {
@@ -640,8 +669,11 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @return the header {@link Handler}, or {@code null} if no handler is set
    */
-  public Handler<ColumnConfig<T>> getHeaderHandler() {
-    return this.headerHandler;
+  public Set<Handler<ColumnConfig<T>>> getHeaderHandlers() {
+    if (isNull(headerHandlers)) {
+      this.headerHandlers = new HashSet<>();
+    }
+    return this.headerHandlers;
   }
 
   /**
@@ -650,8 +682,11 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
    *
    * @return the cell {@link Handler}, or {@code null} if no handler is set
    */
-  public Handler<RowCell<T>> getCellHandler() {
-    return this.cellHandler;
+  public Set<Handler<RowCell<T>>> getCellHandlers() {
+    if (isNull(cellHandlers)) {
+      this.cellHandlers = new HashSet<>();
+    }
+    return this.cellHandlers;
   }
 
   /**
@@ -1072,14 +1107,16 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
 
     applyScreenMedia(this.headElement.element());
 
-    if (tableConfig.isFixed() || isFixed()) {
+    if (tableConfig.getTableMode() == TableMode.FIXED_HEIGHT
+        || tableConfig.getTableMode() == TableMode.AUTO
+        || isFixed()) {
       fixElementWidth(this, this.headElement.element());
     }
 
     if (isShowTooltip()) {
       Tooltip.create(this.headElement.element(), getTooltipNode());
     }
-    applyHeaderHandler();
+    applyHeaderHandlers();
     addShowHideListener(DefaultColumnShowHideListener.of(this.headElement.element(), true));
     this.headElement.toggleDisplay(!isHidden());
     return this.headElement;
@@ -1113,6 +1150,32 @@ public class ColumnConfig<T> implements ElementsFactory, DataTableStyles {
     if (isColumnGroup()) {
       getSubColumns().forEach(col -> col.applyAndOnSubColumns(handler));
     }
+    return this;
+  }
+
+  /**
+   * Applies the given handler to this column if the specified condition is met.
+   *
+   * @param condition The condition to check before applying the column handler.
+   * @param handler The column handler to apply.
+   * @return the current column instance for chaining
+   */
+  public ColumnConfig<T> applyIf(
+      Predicate<ColumnConfig<T>> condition, Consumer<ColumnConfig<T>> handler) {
+    if (condition.test(this)) {
+      handler.accept(this);
+    }
+    return this;
+  }
+
+  /**
+   * Applies the given handler to this column.
+   *
+   * @param handler the consumer to be applied
+   * @return the current column instance for chaining
+   */
+  public ColumnConfig<T> apply(Consumer<ColumnConfig<T>> handler) {
+    handler.accept(this);
     return this;
   }
 

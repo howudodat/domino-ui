@@ -53,7 +53,7 @@ import org.dominokit.domino.ui.richtext.commands.SuperscriptCommand;
 import org.dominokit.domino.ui.richtext.commands.UnderLineCommand;
 import org.dominokit.domino.ui.richtext.commands.UndoCommand;
 
-public enum RichTextActions {
+public enum RichTextActions implements RichTextActionsGroup {
   COPY_PASTE(
       editor ->
           ButtonsGroup.create()

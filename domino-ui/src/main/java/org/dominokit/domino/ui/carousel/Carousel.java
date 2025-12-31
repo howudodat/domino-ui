@@ -363,7 +363,9 @@ public class Carousel extends BaseDominoElement<HTMLDivElement, Carousel>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();
@@ -458,12 +460,16 @@ public class Carousel extends BaseDominoElement<HTMLDivElement, Carousel>
     return this;
   }
 
-  /** @return a {@link java.util.List} of all slides in this carousel */
+  /**
+   * @return a {@link java.util.List} of all slides in this carousel
+   */
   public List<Slide> getSlides() {
     return slides;
   }
 
-  /** @return The current active {@link org.dominokit.domino.ui.carousel.Slide} component */
+  /**
+   * @return The current active {@link org.dominokit.domino.ui.carousel.Slide} component
+   */
   public Slide getActiveSlide() {
     return activeSlide;
   }

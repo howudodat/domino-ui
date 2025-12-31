@@ -304,7 +304,7 @@ public class DelayedTextInput {
         });
 
     inputElement.addEventListener(
-        EventType.keypress.getName(),
+        EventType.keydown.getName(),
         evt -> {
           if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
             autoActionTimer.cancel();

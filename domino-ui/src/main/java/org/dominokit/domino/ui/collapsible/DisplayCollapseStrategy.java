@@ -30,21 +30,27 @@ public class DisplayCollapseStrategy implements CollapseStrategy, CollapsibleSty
 
   private CollapsibleHandlers handlers;
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void init(Element element, CollapsibleHandlers handlers) {
     this.handlers = handlers;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void expand(Element element) {
-    elements.elementOf(element).removeCss(dui_hidden).removeAttribute(DUI_COLLAPSED);
     this.handlers.onBeforeExpand().run();
+    elements.elementOf(element).removeCss(dui_hidden).removeAttribute(DUI_COLLAPSED);
     this.handlers.onExpandCompleted().run();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void collapse(Element element) {
     this.handlers.onBeforeCollapse().run();

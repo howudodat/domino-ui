@@ -99,6 +99,15 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @param title The title of the tab.
    */
   public Tab(String title) {
+    this(text(title));
+  }
+
+  /**
+   * Constructor to create a tab with a specified title.
+   *
+   * @param title The title of the tab.
+   */
+  public Tab(Node title) {
     this();
     setTitle(title);
   }
@@ -121,6 +130,17 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @param key The key associated with the tab.
    */
   public Tab(Icon<?> icon, String title, String key) {
+    this(icon, text(title), key);
+  }
+
+  /**
+   * Constructor to create a tab with a specified icon, title, and key.
+   *
+   * @param icon The icon of the tab.
+   * @param title The title of the tab.
+   * @param key The key associated with the tab.
+   */
+  public Tab(Icon<?> icon, Node title, String key) {
     this();
     setIcon(icon);
     setTitle(title);
@@ -134,6 +154,16 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @param title The title of the tab.
    */
   public Tab(Icon<?> icon, String title) {
+    this(icon, text(title));
+  }
+
+  /**
+   * Constructor to create a tab with a specified icon and title.
+   *
+   * @param icon The icon of the tab.
+   * @param title The title of the tab.
+   */
+  public Tab(Icon<?> icon, Node title) {
     this();
     setIcon(icon);
     setTitle(title);
@@ -150,6 +180,16 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
   }
 
   /**
+   * Factory method to create a tab with a specified title.
+   *
+   * @param title The title of the tab.
+   * @return The created tab.
+   */
+  public static Tab create(Node title) {
+    return new Tab(title);
+  }
+
+  /**
    * Creates a new {@link Tab} instance with the specified key and title.
    *
    * @param key The key associated with the tab.
@@ -158,6 +198,20 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @see Tab#Tab(String)
    */
   public static Tab create(String key, String title) {
+    Tab tab = new Tab(title);
+    tab.setKey(key);
+    return tab;
+  }
+
+  /**
+   * Creates a new {@link Tab} instance with the specified key and title.
+   *
+   * @param key The key associated with the tab.
+   * @param title The title of the tab.
+   * @return The newly created {@link Tab} instance.
+   * @see Tab#Tab(String)
+   */
+  public static Tab create(String key, Node title) {
     Tab tab = new Tab(title);
     tab.setKey(key);
     return tab;
@@ -201,6 +255,18 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
   }
 
   /**
+   * Creates a new {@link Tab} instance with the specified icon and title.
+   *
+   * @param icon The icon of the tab.
+   * @param title The title of the tab.
+   * @return The newly created {@link Tab} instance.
+   * @see Tab#Tab(Icon, String)
+   */
+  public static Tab create(Icon<?> icon, Node title) {
+    return new Tab(icon, title);
+  }
+
+  /**
    * Creates a new {@link Tab} instance with the specified key, icon, and title.
    *
    * @param key The key associated with the tab.
@@ -210,6 +276,21 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @see Tab#Tab(Icon, String, String)
    */
   public static Tab create(String key, Icon<?> icon, String title) {
+    Tab tab = new Tab(icon, title);
+    tab.setKey(key);
+    return tab;
+  }
+
+  /**
+   * Creates a new {@link Tab} instance with the specified key, icon, and title.
+   *
+   * @param key The key associated with the tab.
+   * @param icon The icon of the tab.
+   * @param title The title of the tab.
+   * @return The newly created {@link Tab} instance.
+   * @see Tab#Tab(Icon, String, String)
+   */
+  public static Tab create(String key, Icon<?> icon, Node title) {
     Tab tab = new Tab(icon, title);
     tab.setKey(key);
     return tab;
@@ -304,18 +385,36 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @return The current {@link Tab} instance.
    */
   public Tab setTitle(String title) {
-    if (nonNull(tabTitle) && tabTitle.isInitialized()) {
-      tabTitle.remove();
-    }
-
     if (nonNull(title) && !title.isEmpty()) {
+      setTitle(text(title));
+    } else {
+      removeTitle();
+    }
+    return this;
+  }
+
+  /**
+   * Sets the title of the tab.
+   *
+   * @param title The title to be set.
+   * @return The current {@link Tab} instance.
+   */
+  public Tab setTitle(Node title) {
+    removeTitle();
+    if (nonNull(title)) {
       tabTitle =
           LazyChild.of(
-              span().textContent(title).addCss(dui_tab_header_item, dui_tab_header_text),
+              span().appendChild(title).addCss(dui_tab_header_item, dui_tab_header_text),
               tabHeader);
       tabTitle.get();
     }
     return this;
+  }
+
+  private void removeTitle() {
+    if (nonNull(tabTitle) && tabTitle.isInitialized()) {
+      tabTitle.remove();
+    }
   }
 
   /**
@@ -352,7 +451,7 @@ public class Tab extends BaseDominoElement<HTMLLIElement, Tab>
    * @return The current {@link Tab} instance.
    */
   public Tab activate(boolean silent) {
-    if (nonNull(parent)) {
+    if (nonNull(parent) && nonNull(parent.getActiveTab())) {
       parent.deActivateTab(parent.getActiveTab(), silent);
     }
     dui_active.apply(tab, tabPanel);

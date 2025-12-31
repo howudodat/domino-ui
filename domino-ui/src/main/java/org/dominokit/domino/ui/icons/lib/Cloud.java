@@ -123,6 +123,14 @@ public interface Cloud {
     return MdiIcon.create("mdi-cloud-download-outline");
   }
 
+  default MdiIcon cloud_key_cloud() {
+    return MdiIcon.create("mdi-cloud-key");
+  }
+
+  default MdiIcon cloud_key_outline_cloud() {
+    return MdiIcon.create("mdi-cloud-key-outline");
+  }
+
   default MdiIcon cloud_lock_cloud() {
     return MdiIcon.create("mdi-cloud-lock");
   }

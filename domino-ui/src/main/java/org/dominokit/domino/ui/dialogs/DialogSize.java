@@ -47,6 +47,9 @@ public enum DialogSize implements IsDialogSize {
   /** Medium dialog size. */
   MEDIUM(dui_w_medium, dui_h_medium),
 
+  /** Extra Medium dialog size. */
+  XMEDIUM(dui_w_xmedium, dui_h_xmedium),
+
   /** Large dialog size. */
   LARGE(dui_w_large, dui_h_large),
 

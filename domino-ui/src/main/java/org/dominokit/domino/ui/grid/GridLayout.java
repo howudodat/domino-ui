@@ -259,7 +259,9 @@ public class GridLayout extends BaseDominoElement<HTMLDivElement, GridLayout>
     return rightElement.element().isAttached();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();

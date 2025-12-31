@@ -16,8 +16,12 @@
 package org.dominokit.domino.ui.menu;
 
 public enum SingleSelectionMode {
+  /** If the item is selected it will be deselected */
   TOGGLE,
+  /** Skip the whole selection, nothing happens and the item remains selected. */
   SKIP_SELECTED,
+  /** reselect the item and trigger the selection listeners, the item remains selected. */
   RESELECT,
+  /** Inherit the selection mode from the parent menu. */
   INHERIT
 }

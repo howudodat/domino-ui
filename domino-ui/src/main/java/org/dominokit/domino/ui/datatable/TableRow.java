@@ -69,6 +69,23 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
   /**
    * Constructs a table row with the given record, index, and parent table.
    *
+   * @param tr the {@link TableRowElement}.
+   * @param record The data record for this row.
+   * @param index The index of this row.
+   * @param dataTable The parent table containing this row.
+   */
+  public TableRow(TableRowElement tr, T record, int index, DataTable<T> dataTable) {
+    this.record = record;
+    this.index = index;
+    this.dataTable = dataTable;
+    this.element = tr;
+    init(this);
+    addCss(dui_datatable_row);
+  }
+
+  /**
+   * Constructs a table row with the given record, index, and parent table.
+   *
    * @param record The data record for this row.
    * @param index The index of this row.
    * @param dataTable The parent table containing this row.
@@ -90,7 +107,9 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     this.record = record;
   }
 
-  /** @return A modified record containing changes made to the row. */
+  /**
+   * @return A modified record containing changes made to the row.
+   */
   public T getDirtyRecord() {
     T dirtyRecord = dataTable.getTableConfig().getDirtyRecordProvider().createDirtyRecord(record);
     getRowCells().forEach((s, rowCell) -> rowCell.getCellInfo().updateDirtyRecord(dirtyRecord));
@@ -482,7 +501,12 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
    * @param rowCell The cell to be added.
    */
   public void addCell(RowCell<T> rowCell) {
-    getCells().put(rowCell.getColumnConfig().getName(), rowCell);
+    rowCell
+        .getColumnConfig()
+        .ifPresent(
+            columnConfig -> {
+              getCells().put(columnConfig.getName(), rowCell);
+            });
   }
 
   /**
@@ -509,19 +533,45 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     updateRow(this.record);
   }
 
+  /** Updates the row with the current record. */
+  public void updateRow(Set<ColumnConfig<T>> columns) {
+    updateRow(this.record, columns);
+  }
+
   /**
    * Updates the row with a new record and notifies any listeners.
    *
    * @param record The new record to be set in the row.
    */
   public void updateRow(T record) {
+    updateRow(record, Collections.emptySet());
+  }
+
+  /**
+   * Updates the row with a new record and notifies any listeners.
+   *
+   * @param record The new record to be set in the row.
+   */
+  public void updateRow(T record, Set<ColumnConfig<T>> columns) {
     this.record = record;
-    getCells().values().forEach(RowCell::updateCell);
+    getCells()
+        .values()
+        .forEach(
+            cell -> {
+              cell.getColumnConfig()
+                  .ifPresent(
+                      col -> {
+                        if (columns.contains(col) || columns.isEmpty()) {
+                          cell.updateCell();
+                        }
+                      });
+            });
     this.dataTable.fireTableEvent(new RowRecordUpdatedEvent<>(this));
     this.dataTable.fireTableEvent(
         new TableDataUpdatedEvent<>(
             new ArrayList<>(dataTable.getData()), dataTable.getData().size()));
   }
+
   /**
    * Validates the content of each cell in the row. It uses the validation mechanism provided by the
    * cell's info. If any cell's content is invalid, the method will return the first encountered
@@ -601,9 +651,49 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
    * display to reflect this editable state.
    */
   public void edit() {
+    edit(Collections.emptySet());
+  }
+
+  public void edit(int... columnIndexes) {
+    List<ColumnConfig<T>> columns = getDataTable().getTableConfig().getColumns();
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    for (int index : columnIndexes) {
+      if (index >= 0 && index < columns.size()) {
+        columnsToEdit.add(columns.get(index));
+      }
+    }
+    edit(columnsToEdit);
+  }
+
+  public void edit(int startIndex, int endIndex) {
+    List<ColumnConfig<T>> columns = getDataTable().getTableConfig().getColumns();
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    for (int index = startIndex; index <= endIndex; index++) {
+      if (index >= 0 && index < columns.size()) {
+        columnsToEdit.add(columns.get(index));
+      }
+    }
+    edit(columnsToEdit);
+  }
+
+  public void edit(String... columnsNames) {
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    for (String name : columnsNames) {
+      getDataTable().getTableConfig().findColumnByName(name).ifPresent(columnsToEdit::add);
+    }
+    edit(columnsToEdit);
+  }
+
+  public void edit(ColumnConfig<T>... columns) {
+    Set<ColumnConfig<T>> columnsToEdit = new HashSet<>();
+    Collections.addAll(columnsToEdit, columns);
+    edit(columnsToEdit);
+  }
+
+  public void edit(Set<ColumnConfig<T>> columns) {
     setEditable(true);
     getRowFieldsGroup().removeAllFormElements();
-    updateRow();
+    updateRow(columns);
     this.dataTable.getTableConfig().getOnRowEditHandler().accept(this);
   }
 
@@ -676,13 +766,13 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
                                 .addCss(columnCssRule.getCssRule().getCssClass())));
 
     RowCell<T> rowCell =
-        new RowCell<>(new CellRenderer.CellInfo<>(this, columnConfig, cellElement), columnConfig);
+        new RowCell<>(new RowCellInfo<>(this, columnConfig, cellElement), columnConfig);
     rowCell.updateCell();
     addCell(rowCell);
 
     columnConfig.applyScreenMedia(cellElement);
 
-    columnConfig.applyCellHandler(rowCell);
+    columnConfig.applyCellHandlers(rowCell);
     if (columnConfig.isHidden()) {
       elementOf(cellElement).hide();
     }
@@ -771,7 +861,9 @@ public class TableRow<T> extends BaseDominoElement<HTMLTableRowElement, TableRow
     return rowFieldsGroup;
   }
 
-  /** @return true if this table should be allowed to be dragged. */
+  /**
+   * @return true if this table should be allowed to be dragged.
+   */
   public boolean isDraggable() {
     return draggable;
   }

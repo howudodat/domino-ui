@@ -18,11 +18,13 @@ package org.dominokit.domino.ui.cards;
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.style.SpacingCss.dui_order_last;
 import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLImageElement;
+import elemental2.dom.Node;
 import java.util.HashSet;
 import java.util.Set;
 import org.dominokit.domino.ui.IsElement;
@@ -43,8 +45,8 @@ import org.dominokit.domino.ui.utils.LazyChild;
 import org.dominokit.domino.ui.utils.NullLazyChild;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PostfixElement;
-import org.dominokit.domino.ui.utils.PrefixAddOn;
 import org.dominokit.domino.ui.utils.PrefixElement;
+import org.dominokit.domino.ui.utils.PrimaryAddOnElement;
 
 public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<HTMLDivElement, C>
     implements CardStyles, CollapsibleElement<C>, HasComponentConfig<CardConfig> {
@@ -65,6 +67,15 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
    * @param title The card title text
    */
   public BaseCard(String title) {
+    this(text(title));
+  }
+
+  /**
+   * Creates a card with title in the header
+   *
+   * @param title The card title node
+   */
+  public BaseCard(Node title) {
     this();
     setTitle(title);
   }
@@ -76,6 +87,16 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
    * @param description The card description text
    */
   public BaseCard(String title, String description) {
+    this(text(title), description);
+  }
+
+  /**
+   * Creates a card with the title in the header and a description below the title
+   *
+   * @param title The card title node
+   * @param description The card description text
+   */
+  public BaseCard(Node title, String description) {
     this(title);
     setDescription(description);
   }
@@ -87,7 +108,10 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
     collapseIcon = getConfig().getCardCollapseExpandIcon().get();
 
     init((C) this);
+    onInit();
   }
+
+  protected void onInit() {}
 
   /**
    * Calling this will assume the Header is needed to for customization and will initialize the
@@ -166,6 +190,16 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
    * @return same Card instance
    */
   public C setTitle(String title) {
+    return setTitle(text(title));
+  }
+
+  /**
+   * Sets the card title, this will initialize and append the card header if not yet initialized.
+   *
+   * @param title The card title text
+   * @return same Card instance
+   */
+  public C setTitle(Node title) {
     header.get().setTitle(title);
     return (C) this;
   }
@@ -465,28 +499,6 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
     return (C) this;
   }
 
-  /**
-   * Appends an element to the right side of the card header.
-   *
-   * @param postfix A {@link org.dominokit.domino.ui.utils.PostfixAddOn} wrapped element
-   * @return same card instance
-   */
-  public C appendChild(PostfixAddOn<?> postfix) {
-    getPostfixElement().appendChild(postfix);
-    return (C) this;
-  }
-
-  /**
-   * Appends an element to the left side of the card header, between the logo and the title.
-   *
-   * @param prefix A {@link org.dominokit.domino.ui.utils.PrefixAddOn} wrapped element
-   * @return same card instance
-   */
-  public C appendChild(PrefixAddOn<?> prefix) {
-    getPrefixElement().appendChild(prefix);
-    return (C) this;
-  }
-
   @Override
   public PostfixElement getPostfixElement() {
     return header.get().getPostfixElement();
@@ -495,6 +507,11 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
   @Override
   public PrefixElement getPrefixElement() {
     return header.get().getPrefixElement();
+  }
+
+  @Override
+  public PrimaryAddOnElement getPrimaryAddonsElement() {
+    return header.get().getPrimaryAddonsElement();
   }
 
   /**
@@ -634,25 +651,33 @@ public abstract class BaseCard<C extends BaseCard<C>> extends BaseDominoElement<
     return (C) this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<CollapseHandler<C>> getCollapseHandlers() {
     return this.collapseHandlers;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<ExpandHandler<C>> getExpandHandlers() {
     return this.expandHandlers;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement getAppendTarget() {
     return body.element();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();

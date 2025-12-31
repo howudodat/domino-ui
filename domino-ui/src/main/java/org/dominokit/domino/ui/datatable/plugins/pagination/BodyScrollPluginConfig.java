@@ -34,7 +34,9 @@ public class BodyScrollPluginConfig implements PluginConfig {
     this.offset = offset;
   }
 
-  /** @return int number of pixels to use as an offset for reaching the scroll bottom. */
+  /**
+   * @return int number of pixels to use as an offset for reaching the scroll bottom.
+   */
   public int getOffset() {
     return offset;
   }

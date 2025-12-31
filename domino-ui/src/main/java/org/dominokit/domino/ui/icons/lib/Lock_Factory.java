@@ -58,6 +58,7 @@ public class Lock_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.camera_lock_lock());
     icons.add(() -> tagIcons.camera_lock_outline_lock());
     icons.add(() -> tagIcons.car_door_lock_lock());
+    icons.add(() -> tagIcons.car_door_lock_open_lock());
     icons.add(() -> tagIcons.cash_lock_lock());
     icons.add(() -> tagIcons.cash_lock_open_lock());
     icons.add(() -> tagIcons.cellphone_lock_lock());

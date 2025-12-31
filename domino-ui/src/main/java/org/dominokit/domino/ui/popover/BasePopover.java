@@ -189,7 +189,9 @@ public abstract class BasePopover<T extends BasePopover<T>>
     return (T) this;
   }
 
-  /** @return delay in milliseconds before showing the popover. */
+  /**
+   * @return delay in milliseconds before showing the popover.
+   */
   public int getOpenDelay() {
     return openDelay;
   }

@@ -20,6 +20,7 @@ import static org.dominokit.domino.ui.utils.Domino.*;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLImageElement;
+import elemental2.dom.Node;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.HeadingElement;
 import org.dominokit.domino.ui.elements.ImageElement;
@@ -162,7 +163,18 @@ public class CardHeader extends BaseDominoElement<HTMLDivElement, CardHeader> {
    * @return same CardHeader instance
    */
   public CardHeader setTitle(String title) {
-    mainTitle.get().setTextContent(title);
+    return setTitle(text(title));
+  }
+
+  /**
+   * Sets the CardHeader title, this will initialize and append the main header container if not yet
+   * initialized.
+   *
+   * @param title The CardHeader title text
+   * @return same CardHeader instance
+   */
+  public CardHeader setTitle(Node title) {
+    mainTitle.get().clearElement().appendChild(title);
     return this;
   }
 
@@ -459,7 +471,14 @@ public class CardHeader extends BaseDominoElement<HTMLDivElement, CardHeader> {
     return PrefixElement.of(mainHeader.get().element());
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  @Override
+  public PrimaryAddOnElement getPrimaryAddonsElement() {
+    return PrimaryAddOnElement.of(mainHeader.get().element());
+  }
+
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return element.element();

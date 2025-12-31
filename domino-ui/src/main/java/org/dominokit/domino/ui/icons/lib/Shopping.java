@@ -147,6 +147,198 @@ public interface Shopping {
     return MdiIcon.create("mdi-gift-outline");
   }
 
+  default MdiIcon invoice_arrow_left_shopping() {
+    return MdiIcon.create("mdi-invoice-arrow-left");
+  }
+
+  default MdiIcon invoice_arrow_right_shopping() {
+    return MdiIcon.create("mdi-invoice-arrow-right");
+  }
+
+  default MdiIcon invoice_arrow_right_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-arrow-right-outline");
+  }
+
+  default MdiIcon invoice_check_shopping() {
+    return MdiIcon.create("mdi-invoice-check");
+  }
+
+  default MdiIcon invoice_clock_shopping() {
+    return MdiIcon.create("mdi-invoice-clock");
+  }
+
+  default MdiIcon invoice_clock_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-clock-outline");
+  }
+
+  default MdiIcon invoice_edit_shopping() {
+    return MdiIcon.create("mdi-invoice-edit");
+  }
+
+  default MdiIcon invoice_edit_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-edit-outline");
+  }
+
+  default MdiIcon invoice_export_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-export-outline");
+  }
+
+  default MdiIcon invoice_fast_shopping() {
+    return MdiIcon.create("mdi-invoice-fast");
+  }
+
+  default MdiIcon invoice_fast_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-fast-outline");
+  }
+
+  default MdiIcon invoice_import_shopping() {
+    return MdiIcon.create("mdi-invoice-import");
+  }
+
+  default MdiIcon invoice_import_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-import-outline");
+  }
+
+  default MdiIcon invoice_list_shopping() {
+    return MdiIcon.create("mdi-invoice-list");
+  }
+
+  default MdiIcon invoice_list_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-list-outline");
+  }
+
+  default MdiIcon invoice_minus_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-minus-outline");
+  }
+
+  default MdiIcon invoice_multiple_shopping() {
+    return MdiIcon.create("mdi-invoice-multiple");
+  }
+
+  default MdiIcon invoice_multiple_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-multiple-outline");
+  }
+
+  default MdiIcon invoice_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-outline");
+  }
+
+  default MdiIcon invoice_plus_shopping() {
+    return MdiIcon.create("mdi-invoice-plus");
+  }
+
+  default MdiIcon invoice_plus_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-plus-outline");
+  }
+
+  default MdiIcon invoice_remove_shopping() {
+    return MdiIcon.create("mdi-invoice-remove");
+  }
+
+  default MdiIcon invoice_remove_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-remove-outline");
+  }
+
+  default MdiIcon invoice_send_shopping() {
+    return MdiIcon.create("mdi-invoice-send");
+  }
+
+  default MdiIcon invoice_send_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-send-outline");
+  }
+
+  default MdiIcon invoice_text_arrow_left_shopping() {
+    return MdiIcon.create("mdi-invoice-text-arrow-left");
+  }
+
+  default MdiIcon invoice_text_arrow_left_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-arrow-left-outline");
+  }
+
+  default MdiIcon invoice_text_arrow_right_shopping() {
+    return MdiIcon.create("mdi-invoice-text-arrow-right");
+  }
+
+  default MdiIcon invoice_text_arrow_right_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-arrow-right-outline");
+  }
+
+  default MdiIcon invoice_text_check_shopping() {
+    return MdiIcon.create("mdi-invoice-text-check");
+  }
+
+  default MdiIcon invoice_text_check_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-check-outline");
+  }
+
+  default MdiIcon invoice_text_clock_shopping() {
+    return MdiIcon.create("mdi-invoice-text-clock");
+  }
+
+  default MdiIcon invoice_text_clock_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-clock-outline");
+  }
+
+  default MdiIcon invoice_text_edit_shopping() {
+    return MdiIcon.create("mdi-invoice-text-edit");
+  }
+
+  default MdiIcon invoice_text_edit_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-edit-outline");
+  }
+
+  default MdiIcon invoice_text_fast_shopping() {
+    return MdiIcon.create("mdi-invoice-text-fast");
+  }
+
+  default MdiIcon invoice_text_fast_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-fast-outline");
+  }
+
+  default MdiIcon invoice_text_minus_shopping() {
+    return MdiIcon.create("mdi-invoice-text-minus");
+  }
+
+  default MdiIcon invoice_text_minus_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-minus-outline");
+  }
+
+  default MdiIcon invoice_text_multiple_shopping() {
+    return MdiIcon.create("mdi-invoice-text-multiple");
+  }
+
+  default MdiIcon invoice_text_multiple_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-multiple-outline");
+  }
+
+  default MdiIcon invoice_text_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-outline");
+  }
+
+  default MdiIcon invoice_text_plus_shopping() {
+    return MdiIcon.create("mdi-invoice-text-plus");
+  }
+
+  default MdiIcon invoice_text_plus_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-plus-outline");
+  }
+
+  default MdiIcon invoice_text_remove_shopping() {
+    return MdiIcon.create("mdi-invoice-text-remove");
+  }
+
+  default MdiIcon invoice_text_remove_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-remove-outline");
+  }
+
+  default MdiIcon invoice_text_send_shopping() {
+    return MdiIcon.create("mdi-invoice-text-send");
+  }
+
+  default MdiIcon invoice_text_send_outline_shopping() {
+    return MdiIcon.create("mdi-invoice-text-send-outline");
+  }
+
   default MdiIcon percent_shopping() {
     return MdiIcon.create("mdi-percent");
   }

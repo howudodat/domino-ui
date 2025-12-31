@@ -245,6 +245,7 @@ public class Arrow_Factory implements MdiIconsByTagFactory {
     icons.add(() -> tagIcons.swap_horizontal_bold_arrow());
     icons.add(() -> tagIcons.swap_horizontal_circle_arrow());
     icons.add(() -> tagIcons.swap_horizontal_circle_outline_arrow());
+    icons.add(() -> tagIcons.swap_horizontal_hidden_arrow());
     icons.add(() -> tagIcons.swap_horizontal_variant_arrow());
     icons.add(() -> tagIcons.swap_vertical_arrow());
     icons.add(() -> tagIcons.swap_vertical_bold_arrow());

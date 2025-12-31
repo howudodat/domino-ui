@@ -42,10 +42,10 @@ public class Collapsible implements IsElement<Element>, IsCollapsible<Collapsibl
   private boolean collapsed = false;
   private boolean forceHidden = false;
 
-  private List<CollapseHandler> collapseHandlers = new ArrayList<>();
-  private List<CollapseHandler> beforeCollapseHandlers = new ArrayList<>();
-  private List<ExpandHandler> expandHandlers = new ArrayList<>();
-  private List<ExpandHandler> beforeExpandHandlers = new ArrayList<>();
+  private List<CollapseHandler> collapseHandlers;
+  private List<CollapseHandler> beforeCollapseHandlers;
+  private List<ExpandHandler> expandHandlers;
+  private List<ExpandHandler> beforeExpandHandlers;
   private CollapseStrategy strategy = new DisplayCollapseStrategy();
 
   /**
@@ -259,6 +259,7 @@ public class Collapsible implements IsElement<Element>, IsCollapsible<Collapsibl
       collapseHandlers.remove(handler);
     }
   }
+
   /**
    * removes the before hide handler
    *
@@ -321,7 +322,9 @@ public class Collapsible implements IsElement<Element>, IsCollapsible<Collapsibl
     }
   }
 
-  /** @return the current {@link CollapseStrategy} used by this Collapsible */
+  /**
+   * @return the current {@link CollapseStrategy} used by this Collapsible
+   */
   /**
    * Getter for the field <code>strategy</code>.
    *

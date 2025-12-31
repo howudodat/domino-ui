@@ -15,7 +15,6 @@
  */
 package org.dominokit.domino.ui.animations;
 
-import static org.dominokit.domino.ui.utils.Domino.*;
 import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 import elemental2.dom.Element;
@@ -59,6 +58,7 @@ public class Animation {
   private StartHandler startHandler = DEFAULT_START_HANDLER;
   private EventListener stopListener;
   private double repeatCount = 1;
+  private boolean completed = false;
 
   /**
    * Creates a new Animation instance for the provided element.
@@ -143,6 +143,28 @@ public class Animation {
   }
 
   /**
+   * Checks whether the animation is set to repeat infinitely.
+   *
+   * @return true if the animation repeats infinitely, false otherwise
+   */
+  public boolean isInfinite() {
+    return infinite;
+  }
+
+  /**
+   * Sets whether the animation should repeat infinitely or not.
+   *
+   * @param infinite boolean value indicating if the animation should repeat infinitely. Pass <code>
+   *     true</code> to make the animation repeat indefinitely, or <code>false</code> to disable
+   *     infinite repetition.
+   * @return the current instance of the {@link Animation} class for method chaining.
+   */
+  public Animation setInfinite(boolean infinite) {
+    this.infinite = infinite;
+    return this;
+  }
+
+  /**
    * Sets the transition type for this animation.
    *
    * @param transition a {@link org.dominokit.domino.ui.animations.Transition} value
@@ -196,6 +218,7 @@ public class Animation {
    * @return same instance
    */
   public Animation animate() {
+    this.completed = false;
     if (delay > 0) {
       new Timer() {
         @Override
@@ -267,6 +290,11 @@ public class Animation {
     if (!silent) {
       callback.onComplete(element.element());
     }
+    this.completed = true;
+  }
+
+  public boolean isCompleted() {
+    return completed;
   }
 
   /**
@@ -275,7 +303,9 @@ public class Animation {
    */
   @FunctionalInterface
   public interface CompleteCallback {
-    /** @param element an {@link Element} that is being animated */
+    /**
+     * @param element an {@link Element} that is being animated
+     */
     void onComplete(Element element);
   }
 
@@ -285,7 +315,9 @@ public class Animation {
    */
   @FunctionalInterface
   public interface StartHandler {
-    /** @param element an {@link Element} that is being animated */
+    /**
+     * @param element an {@link Element} that is being animated
+     */
     void beforeStart(Element element);
   }
 }

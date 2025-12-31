@@ -910,7 +910,7 @@ body.dui {
     --dui-quick-search-input-placeholder-opacity: 0.5;
 
     /* ============================== Menu ===================== */
-
+    --dui-menu-elevation: var(--dui-elevation-1);
     --dui-menu-border: 1px solid var(--dui-menu-border-color);
     --dui-menu-color: var(--dui-color);
     --dui-menu-background-color: var(--dui-clr-dominant);
@@ -1005,13 +1005,13 @@ body.dui {
 
     /* =========================== Form fields =========================*/
     --dui-form-field-padding: 0px;
-    --dui-form-field-marging: 0 0 var(--dui-spc-4) 0;
+    --dui-form-field-margin: 0 0 var(--dui-spc-4) 0;
     --dui-form-field-wrapper-padding: 5px;
     --dui-form-field-wrapper-radius: 5px;
     --dui-form-field-wrapper-gap: 5px;
     --dui-form-field-border: 1px solid var(--dui-form-field-border-color);
     --dui-form-field-invalid-border-color: var(--dui-clr-red);
-
+    --dui-form-field-label-gap: var(--dui-spc-1);
 
     --dui-form-field-readonly-border: 1px solid var(--dui-form-field-readonly-border-color);
     --dui-form-field-input-readonly-border: 1px solid var(--dui-clr-transparent);
@@ -1293,6 +1293,9 @@ body.dui {
     --dui-dialog-medium-width: 35%;
     --dui-dialog-medium-height: 50%;
 
+    --dui-dialog-xmedium-width: 50%;
+    --dui-dialog-xmedium-height: 60%;
+
     --dui-dialog-large-width: 75%;
     --dui-dialog-large-height: 75%;
 
@@ -1352,7 +1355,6 @@ body.dui {
     --dui-hr-margin: var(--dui-spc-4) 0 var(--dui-spc-4) 0;
     --dui-hr-border-width: 1px 0 0 0;
     --dui-hr-border-style: solid;
-    --dui-hr-border-color: var(--dui-accent-l-5);
 
     /* ============================ Calendar ================== */
     --dui-calendar-min-width: var(--dui-spc-80);
@@ -1426,8 +1428,10 @@ body.dui {
 
     /* ======================= data table ====================== */
     --dui-datatable-font-size: var(--dui-spc-3_5);
-    --dui-datatable-cell-padding: var(--dui-spc-1);
-    --dui-datatable-cell-line-height: var(--dui-spc-2);
+    --dui-datatable-cell-padding: var(--dui-spc-2);
+    --dui-datatable-cell-condenced-padding: var(--dui-spc-1);
+    --dui-datatable-cell-line-height: var(--dui-spc-4);
+    --dui-datatable-condenced-cell-line-height: var(--dui-spc-2);
     --dui-datatable-navbar-padding: 0;
     --dui-datatable-navbar-margin: var(--dui-spc-2) 0 var(--dui-spc-2) 0;
     --dui-datatable-border: 1px solid var(--dui-datatable-border-color);

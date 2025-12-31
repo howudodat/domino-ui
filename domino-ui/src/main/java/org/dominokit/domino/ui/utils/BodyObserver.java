@@ -23,6 +23,7 @@ import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 import elemental2.core.JsArray;
 import elemental2.dom.CustomEvent;
 import elemental2.dom.CustomEventInit;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationObserver;
@@ -57,7 +58,7 @@ final class BodyObserver {
     try {
       handler.run();
     } finally {
-      paused = false;
+      DomGlobal.setTimeout(p0 -> paused = false, 0);
     }
   }
 

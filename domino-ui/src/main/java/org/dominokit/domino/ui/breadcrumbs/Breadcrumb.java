@@ -261,76 +261,100 @@ public class Breadcrumb extends BaseDominoElement<HTMLOListElement, Breadcrumb>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLOListElement element() {
     return element.element();
   }
 
-  /** @return a current active {@link org.dominokit.domino.ui.breadcrumbs.BreadcrumbItem} */
+  /**
+   * @return a current active {@link org.dominokit.domino.ui.breadcrumbs.BreadcrumbItem}
+   */
   public BreadcrumbItem getActiveItem() {
     return activeItem;
   }
 
-  /** @return a List of all breadcrumb items currently available in the breadcrumb instance. */
+  /**
+   * @return a List of all breadcrumb items currently available in the breadcrumb instance.
+   */
   public List<BreadcrumbItem> getItems() {
     return items;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Breadcrumb addChangeListener(ChangeListener<? super BreadcrumbItem> changeListener) {
     changeListeners.add(changeListener);
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Breadcrumb removeChangeListener(ChangeListener<? super BreadcrumbItem> changeListener) {
     changeListeners.remove(changeListener);
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public boolean hasChangeListener(ChangeListener<? super BreadcrumbItem> changeListener) {
     return changeListeners.contains(changeListener);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Breadcrumb pauseChangeListeners() {
     this.changeListenersPaused = true;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Breadcrumb resumeChangeListeners() {
     this.changeListenersPaused = false;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Breadcrumb togglePauseChangeListeners(boolean toggle) {
     this.changeListenersPaused = toggle;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Set<ChangeListener<? super BreadcrumbItem>> getChangeListeners() {
     return changeListeners;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public boolean isChangeListenersPaused() {
     return this.changeListenersPaused;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc} {@link HasChangeListeners}
+   */
   @Override
   public Breadcrumb triggerChangeListeners(BreadcrumbItem oldValue, BreadcrumbItem newValue) {
     changeListeners.forEach(changeListener -> changeListener.onValueChanged(oldValue, newValue));

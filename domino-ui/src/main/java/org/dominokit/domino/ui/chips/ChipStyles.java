@@ -21,15 +21,19 @@ import org.dominokit.domino.ui.style.CssClass;
 public class ChipStyles {
   /** CSS class for chip */
   public static final CssClass dui_chip = () -> "dui-chip";
+
   /** CSS class for chip value container */
   public static final CssClass dui_chip_value = () -> "dui-chip-value";
+
   /** CSS class for left element */
   public static final CssClass dui_chip_addon = () -> "dui-chip-addon";
+
   /** CSS class for remove element */
   public static final CssClass dui_chip_selected = () -> "dui-chip-selected";
 
   /** Constant <code>dui_chip_remove</code> */
   public static final CssClass dui_chip_remove = () -> "dui-chip-remove";
+
   /** Constant <code>dui_chip_has_addon</code> */
   public static final CssClass dui_chip_has_addon = () -> "dui-has-addon";
 }

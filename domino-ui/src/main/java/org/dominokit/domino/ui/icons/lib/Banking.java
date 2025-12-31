@@ -108,6 +108,10 @@ public interface Banking {
     return MdiIcon.create("mdi-cash-clock");
   }
 
+  default MdiIcon cash_edit_banking() {
+    return MdiIcon.create("mdi-cash-edit");
+  }
+
   default MdiIcon cash_fast_banking() {
     return MdiIcon.create("mdi-cash-fast");
   }
@@ -472,6 +476,214 @@ public interface Banking {
     return MdiIcon.create("mdi-integrated-circuit-chip");
   }
 
+  default MdiIcon invoice_banking() {
+    return MdiIcon.create("mdi-invoice");
+  }
+
+  default MdiIcon invoice_arrow_left_banking() {
+    return MdiIcon.create("mdi-invoice-arrow-left");
+  }
+
+  default MdiIcon invoice_arrow_right_banking() {
+    return MdiIcon.create("mdi-invoice-arrow-right");
+  }
+
+  default MdiIcon invoice_arrow_right_outline_banking() {
+    return MdiIcon.create("mdi-invoice-arrow-right-outline");
+  }
+
+  default MdiIcon invoice_check_banking() {
+    return MdiIcon.create("mdi-invoice-check");
+  }
+
+  default MdiIcon invoice_check_outline_banking() {
+    return MdiIcon.create("mdi-invoice-check-outline");
+  }
+
+  default MdiIcon invoice_clock_banking() {
+    return MdiIcon.create("mdi-invoice-clock");
+  }
+
+  default MdiIcon invoice_clock_outline_banking() {
+    return MdiIcon.create("mdi-invoice-clock-outline");
+  }
+
+  default MdiIcon invoice_edit_banking() {
+    return MdiIcon.create("mdi-invoice-edit");
+  }
+
+  default MdiIcon invoice_edit_outline_banking() {
+    return MdiIcon.create("mdi-invoice-edit-outline");
+  }
+
+  default MdiIcon invoice_export_outline_banking() {
+    return MdiIcon.create("mdi-invoice-export-outline");
+  }
+
+  default MdiIcon invoice_fast_banking() {
+    return MdiIcon.create("mdi-invoice-fast");
+  }
+
+  default MdiIcon invoice_fast_outline_banking() {
+    return MdiIcon.create("mdi-invoice-fast-outline");
+  }
+
+  default MdiIcon invoice_import_banking() {
+    return MdiIcon.create("mdi-invoice-import");
+  }
+
+  default MdiIcon invoice_import_outline_banking() {
+    return MdiIcon.create("mdi-invoice-import-outline");
+  }
+
+  default MdiIcon invoice_list_banking() {
+    return MdiIcon.create("mdi-invoice-list");
+  }
+
+  default MdiIcon invoice_list_outline_banking() {
+    return MdiIcon.create("mdi-invoice-list-outline");
+  }
+
+  default MdiIcon invoice_minus_banking() {
+    return MdiIcon.create("mdi-invoice-minus");
+  }
+
+  default MdiIcon invoice_minus_outline_banking() {
+    return MdiIcon.create("mdi-invoice-minus-outline");
+  }
+
+  default MdiIcon invoice_multiple_banking() {
+    return MdiIcon.create("mdi-invoice-multiple");
+  }
+
+  default MdiIcon invoice_multiple_outline_banking() {
+    return MdiIcon.create("mdi-invoice-multiple-outline");
+  }
+
+  default MdiIcon invoice_outline_banking() {
+    return MdiIcon.create("mdi-invoice-outline");
+  }
+
+  default MdiIcon invoice_plus_banking() {
+    return MdiIcon.create("mdi-invoice-plus");
+  }
+
+  default MdiIcon invoice_plus_outline_banking() {
+    return MdiIcon.create("mdi-invoice-plus-outline");
+  }
+
+  default MdiIcon invoice_remove_banking() {
+    return MdiIcon.create("mdi-invoice-remove");
+  }
+
+  default MdiIcon invoice_remove_outline_banking() {
+    return MdiIcon.create("mdi-invoice-remove-outline");
+  }
+
+  default MdiIcon invoice_send_banking() {
+    return MdiIcon.create("mdi-invoice-send");
+  }
+
+  default MdiIcon invoice_send_outline_banking() {
+    return MdiIcon.create("mdi-invoice-send-outline");
+  }
+
+  default MdiIcon invoice_text_banking() {
+    return MdiIcon.create("mdi-invoice-text");
+  }
+
+  default MdiIcon invoice_text_arrow_left_banking() {
+    return MdiIcon.create("mdi-invoice-text-arrow-left");
+  }
+
+  default MdiIcon invoice_text_arrow_left_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-arrow-left-outline");
+  }
+
+  default MdiIcon invoice_text_arrow_right_banking() {
+    return MdiIcon.create("mdi-invoice-text-arrow-right");
+  }
+
+  default MdiIcon invoice_text_arrow_right_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-arrow-right-outline");
+  }
+
+  default MdiIcon invoice_text_check_banking() {
+    return MdiIcon.create("mdi-invoice-text-check");
+  }
+
+  default MdiIcon invoice_text_check_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-check-outline");
+  }
+
+  default MdiIcon invoice_text_clock_banking() {
+    return MdiIcon.create("mdi-invoice-text-clock");
+  }
+
+  default MdiIcon invoice_text_clock_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-clock-outline");
+  }
+
+  default MdiIcon invoice_text_edit_banking() {
+    return MdiIcon.create("mdi-invoice-text-edit");
+  }
+
+  default MdiIcon invoice_text_edit_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-edit-outline");
+  }
+
+  default MdiIcon invoice_text_fast_banking() {
+    return MdiIcon.create("mdi-invoice-text-fast");
+  }
+
+  default MdiIcon invoice_text_fast_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-fast-outline");
+  }
+
+  default MdiIcon invoice_text_minus_banking() {
+    return MdiIcon.create("mdi-invoice-text-minus");
+  }
+
+  default MdiIcon invoice_text_minus_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-minus-outline");
+  }
+
+  default MdiIcon invoice_text_multiple_banking() {
+    return MdiIcon.create("mdi-invoice-text-multiple");
+  }
+
+  default MdiIcon invoice_text_multiple_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-multiple-outline");
+  }
+
+  default MdiIcon invoice_text_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-outline");
+  }
+
+  default MdiIcon invoice_text_plus_banking() {
+    return MdiIcon.create("mdi-invoice-text-plus");
+  }
+
+  default MdiIcon invoice_text_plus_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-plus-outline");
+  }
+
+  default MdiIcon invoice_text_remove_banking() {
+    return MdiIcon.create("mdi-invoice-text-remove");
+  }
+
+  default MdiIcon invoice_text_remove_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-remove-outline");
+  }
+
+  default MdiIcon invoice_text_send_banking() {
+    return MdiIcon.create("mdi-invoice-text-send");
+  }
+
+  default MdiIcon invoice_text_send_outline_banking() {
+    return MdiIcon.create("mdi-invoice-text-send-outline");
+  }
+
   @Deprecated
   default MdiIcon litecoin_banking() {
     return MdiIcon.create("mdi-litecoin");
@@ -489,8 +701,100 @@ public interface Banking {
     return MdiIcon.create("mdi-piggy-bank-outline");
   }
 
+  default MdiIcon receipt_banking() {
+    return MdiIcon.create("mdi-receipt");
+  }
+
+  default MdiIcon receipt_outline_banking() {
+    return MdiIcon.create("mdi-receipt-outline");
+  }
+
+  default MdiIcon receipt_text_banking() {
+    return MdiIcon.create("mdi-receipt-text");
+  }
+
+  default MdiIcon receipt_text_arrow_left_banking() {
+    return MdiIcon.create("mdi-receipt-text-arrow-left");
+  }
+
+  default MdiIcon receipt_text_arrow_left_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-arrow-left-outline");
+  }
+
+  default MdiIcon receipt_text_arrow_right_banking() {
+    return MdiIcon.create("mdi-receipt-text-arrow-right");
+  }
+
+  default MdiIcon receipt_text_arrow_right_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-arrow-right-outline");
+  }
+
+  default MdiIcon receipt_text_check_banking() {
+    return MdiIcon.create("mdi-receipt-text-check");
+  }
+
+  default MdiIcon receipt_text_check_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-check-outline");
+  }
+
+  default MdiIcon receipt_text_clock_banking() {
+    return MdiIcon.create("mdi-receipt-text-clock");
+  }
+
+  default MdiIcon receipt_text_clock_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-clock-outline");
+  }
+
+  default MdiIcon receipt_text_edit_banking() {
+    return MdiIcon.create("mdi-receipt-text-edit");
+  }
+
+  default MdiIcon receipt_text_edit_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-edit-outline");
+  }
+
+  default MdiIcon receipt_text_minus_banking() {
+    return MdiIcon.create("mdi-receipt-text-minus");
+  }
+
+  default MdiIcon receipt_text_minus_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-minus-outline");
+  }
+
+  default MdiIcon receipt_text_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-outline");
+  }
+
+  default MdiIcon receipt_text_plus_banking() {
+    return MdiIcon.create("mdi-receipt-text-plus");
+  }
+
+  default MdiIcon receipt_text_plus_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-plus-outline");
+  }
+
+  default MdiIcon receipt_text_remove_banking() {
+    return MdiIcon.create("mdi-receipt-text-remove");
+  }
+
+  default MdiIcon receipt_text_remove_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-remove-outline");
+  }
+
+  default MdiIcon receipt_text_send_banking() {
+    return MdiIcon.create("mdi-receipt-text-send");
+  }
+
+  default MdiIcon receipt_text_send_outline_banking() {
+    return MdiIcon.create("mdi-receipt-text-send-outline");
+  }
+
   default MdiIcon safe_banking() {
     return MdiIcon.create("mdi-safe");
+  }
+
+  default MdiIcon transfer_banking() {
+    return MdiIcon.create("mdi-transfer");
   }
 
   default MdiIcon wallet_banking() {

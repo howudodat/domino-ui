@@ -17,7 +17,6 @@
 package org.dominokit.domino.ui.datatable.store;
 
 import java.util.List;
-import java.util.Optional;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortDirection;
 
 /**
@@ -25,13 +24,10 @@ import org.dominokit.domino.ui.datatable.plugins.pagination.SortDirection;
  * store changes, such as when records are loaded or sorted.
  *
  * @param <T> The type of data representing the records in the data table.
+ * @deprecated use {@link org.dominokit.domino.ui.data.DataChangedEvent} instead
  */
-public class DataChangedEvent<T> {
-  private final List<T> newData;
-  private final boolean append;
-  private final int totalCount;
-  private final Optional<SortDirection> sortDir;
-  private final Optional<String> sortColumn;
+@Deprecated
+public class DataChangedEvent<T> extends org.dominokit.domino.ui.data.DataChangedEvent<T> {
 
   /**
    * Constructs a new {@code DataChangedEvent} with the provided data and total count.
@@ -40,11 +36,7 @@ public class DataChangedEvent<T> {
    * @param totalCount The total count of records.
    */
   public DataChangedEvent(List<T> newData, int totalCount) {
-    this.newData = newData;
-    this.totalCount = totalCount;
-    this.append = false;
-    this.sortDir = Optional.empty();
-    this.sortColumn = Optional.empty();
+    super(newData, totalCount);
   }
 
   /**
@@ -58,11 +50,7 @@ public class DataChangedEvent<T> {
    */
   public DataChangedEvent(
       List<T> newData, int totalCount, SortDirection sortDirection, String sortColumn) {
-    this.newData = newData;
-    this.totalCount = totalCount;
-    this.append = false;
-    this.sortDir = Optional.of(sortDirection);
-    this.sortColumn = Optional.of(sortColumn);
+    super(newData, totalCount, sortDirection, sortColumn);
   }
 
   /**
@@ -74,11 +62,7 @@ public class DataChangedEvent<T> {
    * @param totalCount The total count of records.
    */
   public DataChangedEvent(List<T> newData, boolean append, int totalCount) {
-    this.newData = newData;
-    this.append = append;
-    this.totalCount = totalCount;
-    this.sortDir = Optional.empty();
-    this.sortColumn = Optional.empty();
+    super(newData, append, totalCount);
   }
 
   /**
@@ -98,55 +82,6 @@ public class DataChangedEvent<T> {
       int totalCount,
       SortDirection sortDirection,
       String sortColumn) {
-    this.newData = newData;
-    this.append = append;
-    this.totalCount = totalCount;
-    this.sortDir = Optional.of(sortDirection);
-    this.sortColumn = Optional.of(sortColumn);
-  }
-
-  /**
-   * Gets the list of new data records.
-   *
-   * @return A list of new data records.
-   */
-  public List<T> getNewData() {
-    return newData;
-  }
-
-  /**
-   * Checks if the data is being appended to the existing data.
-   *
-   * @return {@code true} if the data is being appended; {@code false} otherwise.
-   */
-  public boolean isAppend() {
-    return append;
-  }
-
-  /**
-   * Gets the total count of records.
-   *
-   * @return The total count of records.
-   */
-  public int getTotalCount() {
-    return totalCount;
-  }
-
-  /**
-   * Gets the sorting direction, if available.
-   *
-   * @return An {@code Optional} containing the sorting direction, or empty if not available.
-   */
-  public Optional<SortDirection> getSortDir() {
-    return sortDir;
-  }
-
-  /**
-   * Gets the column used for sorting, if available.
-   *
-   * @return An {@code Optional} containing the sort column, or empty if not available.
-   */
-  public Optional<String> getSortColumn() {
-    return sortColumn;
+    super(newData, append, totalCount, sortDirection, sortColumn);
   }
 }

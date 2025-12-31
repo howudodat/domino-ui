@@ -52,8 +52,16 @@
     width: var(--dui-dialog-medium-width);
 }
 
+.dui-dialog.dui-w-xmd{
+    width: var(--dui-dialog-xmedium-width);
+}
+
 .dui-dialog.dui-h-md{
     min-height: var(--dui-dialog-medium-height);
+}
+
+.dui-dialog.dui-h-xmd{
+    min-height: var(--dui-dialog-xmedium-height);
 }
 
 .dui-dialog.dui-w-lg{

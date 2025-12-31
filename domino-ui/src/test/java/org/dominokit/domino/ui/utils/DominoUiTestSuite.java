@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dominokit.domino.ui.menu;
+package org.dominokit.domino.ui.utils;
 
-/**
- * Defines the behavior of deselection a menu item when other menu items are selected. this will
- * only be applied for single selection menu.
- */
-public enum DeselectionMode {
-  /** The menu item is deselected when another menu item is selected. */
-  DESELECT,
+import com.google.gwt.junit.tools.GWTTestSuite;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-  /** The menu item is not deselected when another menu item is selected. */
-  PRESERVE_SELECTION
+public class DominoUiTestSuite extends GWTTestSuite {
+  public static Test suite() {
+    TestSuite suite = new TestSuite("Tests for client domino-ui");
+    suite.addTestSuite(MatchHighlighterTest.class);
+
+    return suite;
+  }
 }

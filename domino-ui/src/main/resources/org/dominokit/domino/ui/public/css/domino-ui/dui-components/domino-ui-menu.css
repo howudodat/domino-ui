@@ -303,3 +303,7 @@ a.dui-menu-group-header .dui-menu-item-prefix:empty {
 .dui-menu-footer {
     order: 50;
 }
+
+.dui-menu-elevation {
+    box-shadow: var(--dui-menu-elevation);
+}

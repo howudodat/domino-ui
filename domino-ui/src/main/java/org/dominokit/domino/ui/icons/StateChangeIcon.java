@@ -125,7 +125,7 @@ public abstract class StateChangeIcon<I extends Icon<I>, T extends StateChangeIc
    * @return The HTMLElement of the default icon.
    */
   @Override
-  protected HTMLElement getStyleTarget() {
+  public HTMLElement getStyleTarget() {
     return defaultIcon.element();
   }
 

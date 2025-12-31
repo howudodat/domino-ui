@@ -51,15 +51,6 @@ public class KeyboardEvents<T extends Node>
   /** The constant representing the "keyup" event type. */
   public static final String KEYUP = "keyup";
 
-  /**
-   * The constant representing the "keypress" event type.
-   *
-   * @deprecated use keydown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated public static final String KEYPRESS = "keypress";
-
   public static final String INPUT = "input";
   public static final String BEFORE_INPUT = "beforeinput";
 
@@ -89,8 +80,6 @@ public class KeyboardEvents<T extends Node>
         new LazyInitializer(() -> element.addEventListener(KEYUP, keyUpListener));
     keyDownListenerInitializer =
         new LazyInitializer(() -> element.addEventListener(KEYDOWN, keyDownListener));
-    keyPressListenerInitializer =
-        new LazyInitializer(() -> element.addEventListener(KEYPRESS, keyPressListener));
     inputListenerInitializer =
         new LazyInitializer(() -> element.addEventListener(INPUT, inputListener));
     beforeInputListenerInitializer =
@@ -186,38 +175,6 @@ public class KeyboardEvents<T extends Node>
   public KeyboardEvents<T> stopListenOnKeyUp() {
     element.removeEventListener(KEYUP, keyUpListener);
     keyDownListenerInitializer.reset();
-    return this;
-  }
-
-  /**
-   * Adds a keypress event listener to the element and associates it with the provided {@code
-   * onKeyPress} consumer.
-   *
-   * @param onKeyPress The consumer that will receive keypress events.
-   * @return This {@code KeyboardEvents} instance for method chaining.
-   * @deprecated use listenOnKeyDown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated
-  public KeyboardEvents<T> listenOnKeyPress(KeyEventsConsumer onKeyPress) {
-    keyPressListenerInitializer.apply();
-    onKeyPress.accept(keyPressListener);
-    return this;
-  }
-
-  /**
-   * Removes the keypress event listener from the element.
-   *
-   * @return This {@code KeyboardEvents} instance for method chaining.
-   * @deprecated use listenOnKeyDown instead.
-   * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Element: keypress
-   *     event </a>MDN Web Docs (div element)</a>
-   */
-  @Deprecated
-  public KeyboardEvents<T> stopListenOnKeyPress() {
-    element.removeEventListener(KEYPRESS, keyPressListener);
-    keyPressListenerInitializer.reset();
     return this;
   }
 

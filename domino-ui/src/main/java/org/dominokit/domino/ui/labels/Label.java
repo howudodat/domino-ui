@@ -62,7 +62,9 @@ public class Label extends BaseDominoElement<HTMLElement, Label> {
     return new Label(text);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLElement element() {
     return element.element();

@@ -266,7 +266,9 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     return new Calendar(date, dateTimeFormatInfo, config);
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public CalendarInitConfig getConfig() {
     return config;
@@ -287,10 +289,17 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
         .forEach(listener -> listener.onDateSelectionChanged(updatedDate));
   }
 
-  /** @return the current selected date. */
+  /**
+   * @return the current selected date.
+   */
   @Override
   public Date getDate() {
     return this.date;
+  }
+
+  @Override
+  public Date getActiveSelection() {
+    return selectors.getDate() != null ? selectors.getDate() : getDate();
   }
 
   /**
@@ -335,7 +344,9 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     return this;
   }
 
-  /** @return the {@link DateTimeFormatInfo} used by this calendar instance */
+  /**
+   * @return the {@link DateTimeFormatInfo} used by this calendar instance
+   */
   @Override
   public DateTimeFormatInfo getDateTimeFormatInfo() {
     return dateTimeFormatInfo;
@@ -353,13 +364,17 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public HTMLDivElement element() {
     return root.element();
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void bindCalenderViewListener(CalendarViewListener listener) {
     if (nonNull(listener)) {
@@ -367,7 +382,9 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     }
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public void unbindCalenderViewListener(CalendarViewListener listener) {
     if (nonNull(listener)) {
@@ -466,40 +483,52 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Calendar pauseChangeListeners() {
     this.changeListenersPaused = true;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Calendar resumeChangeListeners() {
     this.changeListenersPaused = false;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Calendar togglePauseChangeListeners(boolean toggle) {
     this.changeListenersPaused = toggle;
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<ChangeListener<? super Date>> getChangeListeners() {
     return changeListeners;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public boolean isChangeListenersPaused() {
     return this.changeListenersPaused;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Calendar triggerChangeListeners(Date oldValue, Date newValue) {
     if (!this.changeListenersPaused) {
@@ -509,7 +538,9 @@ public class Calendar extends BaseDominoElement<HTMLDivElement, Calendar>
     return this;
   }
 
-  /** @dominokit-site-ignore {@inheritDoc} */
+  /**
+   * @dominokit-site-ignore {@inheritDoc}
+   */
   @Override
   public Set<DateSelectionListener> getDateSelectionListeners() {
     return this.dateSelectionListeners;

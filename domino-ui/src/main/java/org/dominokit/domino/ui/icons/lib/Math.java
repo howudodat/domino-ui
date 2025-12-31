@@ -87,6 +87,14 @@ public interface Math {
     return MdiIcon.create("mdi-chart-box");
   }
 
+  default MdiIcon chart_box_multiple_math() {
+    return MdiIcon.create("mdi-chart-box-multiple");
+  }
+
+  default MdiIcon chart_box_multiple_outline_math() {
+    return MdiIcon.create("mdi-chart-box-multiple-outline");
+  }
+
   default MdiIcon chart_box_outline_math() {
     return MdiIcon.create("mdi-chart-box-outline");
   }
